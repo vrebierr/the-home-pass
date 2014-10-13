@@ -6,14 +6,19 @@ angular.module('theHomePassApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'restangular'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+
+    // restangular - config
+    RestangularProvider.setBaseUrl('/api');
+    RestangularProvider.setRestangularFields({id: '_id'});
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

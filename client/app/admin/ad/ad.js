@@ -3,11 +3,11 @@
 angular.module('theHomePassApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('main', {
-        url: '/',
-        templateUrl: 'app/main/main.html',
-        controller: 'MainCtrl',
-        resolve: {
+      .state('ad', {
+        url: '/admin/ad',
+        templateUrl: 'app/admin/ad/ad.html',
+        controller: 'AdCtrl',
+        resolve : {
         	ads: function (Restangular) {
         		return Restangular.all('ads').getList();
         	}
