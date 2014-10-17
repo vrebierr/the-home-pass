@@ -1,0 +1,10 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+	.row
+		.col-md-6
+			#map
+			input.controls#search(type='text', ng-model='ad.address')
+		.col-md-6
+			form
+				input.form-control(type='text', ng-model='ad.address')
