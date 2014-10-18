@@ -5,7 +5,8 @@ div(ng-include='"components/navbar/navbar.html"')
 		.col-md-6
 			#map
 		.col-md-6
-			form(enctype='multipart/form-data', name='ad', ng-submit='send()')
+			h2 Ajouter un point de vente
+			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Adresse
 					input.form-control#search(type='text', ng-model='ad.address', required='')
@@ -32,4 +33,12 @@ div(ng-include='"components/navbar/navbar.html"')
 					label Annonce
 					textarea.form-control(ng-model='ad.info', rows='5', required='')
 					
-				input.btn.btn-primary(type='submit', value='Ajouter')
+				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
+				span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
+
+.modal.fade#confirmation
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type='button')
+			.mo
