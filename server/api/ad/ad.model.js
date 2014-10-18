@@ -5,10 +5,13 @@ var mongoose = require('mongoose'),
 
 var AdSchema = new Schema({
   name: String,
+  address: String,
   info: String,
   active: Boolean,
   lat: Number,
   lng: Number,
+  type: String,
+  
 });
 
 module.exports = mongoose.model('Ad', AdSchema);

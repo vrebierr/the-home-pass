@@ -4,7 +4,12 @@ div(ng-include='"components/navbar/navbar.html"')
 	.row
 		.col-md-6
 			#map
-			input.controls#search(type='text', ng-model='ad.address')
 		.col-md-6
-			form
-				input.form-control(type='text', ng-model='ad.address')
+			form(enctype='multipart/form-data')
+				.form-group
+					label Adresse
+					input.form-control#search(type='text', ng-model='ad.address')
+				.form-group
+					label Image
+					input(type='file', nv-file-select='', uploader='uploader')
+				button.btn.btn-primary(type='submit', ng-click='send()') Ajouter
