@@ -18,13 +18,6 @@ angular.module('theHomePassApp')
             }
         });
 
-        $scope.resetMarkers = function () {
-            $scope.marker.setMap(null);
-            for (var i = 0; i < $scope.markers.length; i++) {
-                $scope.markers[i].setIcon(null);
-            }
-        };
-
         $scope.confirmation = Modal.confirm.delete(function () {
             $scope.selected.remove().then(function () {
                 $scope.pos = _.without($scope.pos, $scope.selected);
@@ -58,6 +51,15 @@ angular.module('theHomePassApp')
                         $scope.markers.push(marker);
                     });
                 }
+            }
+        };
+
+        var current = new google.maps.Marker();
+        $scope.resetMarkers = function () {
+            $scope.marker.setIcon(null);
+            current.setMap(null);
+            for (var i = 0; i < $scope.markers.length; i++) {
+                $scope.markers[i].setIcon(null);
             }
         };
 
@@ -120,7 +122,7 @@ angular.module('theHomePassApp')
                         if (results[0]) {
                             $scope.resetMarkers();
 
-                            $scope.marker = new google.maps.Marker({
+                            current = new google.maps.Marker({
                                 position: event.latLng,
                                 map: map,
                                 title: results[0].formatted_address,
@@ -136,6 +138,8 @@ angular.module('theHomePassApp')
                         }
                     }
                 });
+
+                
             });
         };
 
