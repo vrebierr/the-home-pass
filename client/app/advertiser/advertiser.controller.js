@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdvertiserCtrl', function ($scope, ads, FileUploader) {
+    .controller('AdvertiserCtrl', function ($scope, ads, Restangular, FileUploader) {
         $scope.ads = ads;
         $scope.marker = new google.maps.Marker();
-        $scope.ad = {};
+        $scope.ad = {
+            type: 'euro'
+        };
         $scope.uploader = new FileUploader({
             url: '/api/ad/image'
         });
         $scope.uploader.filters.push({
             name: 'imageFilter',
-            fn: function(item /*{File|FileLikeObject}*/, options) {
+            fn: function(item, options) {
                 var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
                 return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
             }
@@ -20,8 +22,17 @@ angular.module('theHomePassApp')
             $scope.uploader.uploadAll();
         };
 
+        var baseAds = Restangular.all('ads');
         $scope.send = function () {
+            baseAds.post($scope.ad).then(function (ad) {
+                console.log('ok');
 
+                $scope.marker.setMap(null);
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(ad.lat, ad.lng),
+                    map: map,
+                });
+            });
         };
 
         var map;
@@ -75,7 +86,10 @@ angular.module('theHomePassApp')
                                 icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                             });
 
+                            console.log(event);
                             $scope.ad.address = results[0].formatted_address;
+                            $scope.ad.lat = event.latLng.k;
+                            $scope.ad.lng = event.latLng.B;
                             $scope.$apply();
                         }
                     }

@@ -5,11 +5,31 @@ div(ng-include='"components/navbar/navbar.html"')
 		.col-md-6
 			#map
 		.col-md-6
-			form(enctype='multipart/form-data')
+			form(enctype='multipart/form-data', name='ad', ng-submit='send()')
 				.form-group
 					label Adresse
-					input.form-control#search(type='text', ng-model='ad.address')
+					input.form-control#search(type='text', ng-model='ad.address', required='')
 				.form-group
 					label Image
 					input(type='file', nv-file-select='', uploader='uploader')
-				button.btn.btn-primary(type='submit', ng-click='send()') Ajouter
+
+				label Montant
+				.form-group
+					label.radio-inline
+						input(type='radio', ng-model='ad.type', value='percent')
+						| Pourcentage
+					label.radio-inline
+						input(type='radio', ng-model='ad.type', value='euro')
+						| Euro
+				.input-group(ng-if='ad.type == "percent"')
+					input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
+					span.input-group-addon %
+				.input-group(ng-if='ad.type == "euro"')
+					input.form-control(type='number', ng-model='ad.value', min='1', required='')
+					span.input-group-addon €
+
+				.form-group
+					label Annonce
+					textarea.form-control(ng-model='ad.info', rows='5', required='')
+					
+				input.btn.btn-primary(type='submit', value='Ajouter')

@@ -12,6 +12,7 @@ angular.module('theHomePassApp')
     		};
     		map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
+            console.log(ads);
     		_.forEach(ads, function (ad) {
     			var marker = new google.maps.Marker({
     				position: new google.maps.LatLng(ad.lat, ad.lng),
