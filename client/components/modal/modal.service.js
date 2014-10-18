@@ -49,17 +49,17 @@ angular.module('theHomePassApp')
             deleteModal = openModal({
               modal: {
                 dismissable: true,
-                title: 'Confirm Delete',
-                html: '<p>Are you sure you want to delete <strong>' + name + '</strong> ?</p>',
+                title: 'Confirmation',
+                html: '<p>Êtes vous certain de vouloir supprimer <strong>' + name + '</strong> ?</p>',
                 buttons: [{
                   classes: 'btn-danger',
-                  text: 'Delete',
+                  text: 'Supprimer',
                   click: function(e) {
                     deleteModal.close(e);
                   }
                 }, {
                   classes: 'btn-default',
-                  text: 'Cancel',
+                  text: 'Annuler',
                   click: function(e) {
                     deleteModal.dismiss(e);
                   }

@@ -5,9 +5,7 @@ angular.module('theHomePassApp')
 		$scope.pos = pos;
         $scope.markers = [];
         $scope.marker = new google.maps.Marker();
-        $scope.selected = {
-            type: 'euro'
-        };
+        $scope.selected = {};
         $scope.uploader = new FileUploader({
             url: '/api/uploads/',
             autoUpload: true
@@ -27,6 +25,13 @@ angular.module('theHomePassApp')
             }
         };
 
+        $scope.confirmation = Modal.confirm.delete(function () {
+            $scope.selected.remove().then(function () {
+                $scope.pos = _.without($scope.pos, $scope.selected);
+                $scope.marker.setMap(null);
+            });
+        });
+
         var basePos = Restangular.all('pos');
         $scope.send = function (form) {
             if (form.$valid) {
@@ -35,23 +40,22 @@ angular.module('theHomePassApp')
                 }
                 else {
                     basePos.post($scope.selected).then(function (res) {
-                        $scope.marker.setMap(null);
+                        $scope.resetMarkers();
                         var marker = new google.maps.Marker({
                             position: new google.maps.LatLng(res.lat, res.lng),
                             map: map,
                         });
 
-                        $scope.markers.push(marker);
-
                         google.maps.event.addListener(marker, 'click', function (event) {
-                            $scope.marker.setMap(null);
-                            for (var i = 0; i < $scope.markers.length; i++) {
-                                $scope.markers[i].setIcon(null);
-                            }
-                            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                            $scope.resetMarkers();
+                            $scope.marker = marker;
+                            $scope.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+
                             $scope.selected = res;
                             $scope.$apply();
                         });
+
+                        $scope.markers.push(marker);
                     });
                 }
             }
@@ -78,8 +82,9 @@ angular.module('theHomePassApp')
 
                 google.maps.event.addListener(marker, 'click', function (event) {
                     $scope.resetMarkers();
+                    $scope.marker = marker;
+                    $scope.marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 
-                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
                     $scope.selected = item;
                     $scope.$apply();
                 });

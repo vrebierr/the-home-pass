@@ -19,7 +19,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					textarea.form-control(ng-model='selected.info', rows='5', required='')
 					
 				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
-				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='Modal.open()') Supprimer
+				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
 		.col-md-6
 			br
 			br
