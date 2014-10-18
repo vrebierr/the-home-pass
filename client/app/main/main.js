@@ -8,8 +8,8 @@ angular.module('theHomePassApp')
                 templateUrl: 'app/main/main.html',
                 controller: 'MainCtrl',
                 resolve: {
-                    ads: function (Restangular) {
-                        return Restangular.all('ads').getList();
+                    pos: function (Restangular) {
+                        return Restangular.all('pos').getList();
                     }
                 }
             });
