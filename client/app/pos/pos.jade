@@ -13,7 +13,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					input.form-control#search(type='text', ng-model='selected.address', required='')
 				.form-group
 					label Image
-					input(type='file', nv-file-select='', uploader='uploader', onchange='angular.element(this).scope().fileNameChanged()')
+					input(type='file', nv-file-select='', uploader='uploader')
 				.form-group
 					label Informations
 					textarea.form-control(ng-model='selected.info', rows='5', required='')

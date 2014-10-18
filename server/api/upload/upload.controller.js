@@ -6,10 +6,10 @@ var fs = require('fs');
 var uuid = require('node-uuid');
 
 exports.upload = function (req, res) {
-    fs.readFile(req,flies.file.path, function (err, data) {
+    fs.readFile(req.files.file.path, function (err, data) {
         if (err) {res.send(500, res);}
 
-        console.log(data);
+        console.log(req.files.file.path);
     })
 }
 
@@ -27,14 +27,6 @@ exports.show = function(req, res) {
         if(err) { return handleError(res, err); }
         if(!upload) { return res.send(404); }
         return res.json(upload);
-    });
-};
-
-// Creates a new upload in the DB.
-exports.create = function(req, res) {
-    Upload.create(req.body, function(err, upload) {
-        if(err) { return handleError(res, err); }
-        return res.json(201, upload);
     });
 };
 
