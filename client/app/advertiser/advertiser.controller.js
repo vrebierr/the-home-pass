@@ -3,6 +3,7 @@
 angular.module('theHomePassApp')
     .controller('AdvertiserCtrl', function ($scope, ads, Restangular, FileUploader) {
         $scope.ads = ads;
+        $scope.markers = [];
         $scope.marker = new google.maps.Marker();
         $scope.ad = {
             type: 'euro'
@@ -18,6 +19,13 @@ angular.module('theHomePassApp')
             }
         });
 
+        $scope.resetMarkers = function () {
+            $scope.marker.setMap(null);
+            for (var i = 0; i < $scope.markers.length; i++) {
+                $scope.markers[i].setIcon(null);
+            }
+        }
+
         $scope.uploader.onAfterAddingFile = function(fileItem) {
             $scope.uploader.uploadAll();
         };
@@ -25,12 +33,22 @@ angular.module('theHomePassApp')
         var baseAds = Restangular.all('ads');
         $scope.send = function () {
             baseAds.post($scope.ad).then(function (ad) {
-                console.log('ok');
-
                 $scope.marker.setMap(null);
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(ad.lat, ad.lng),
                     map: map,
+                });
+
+                $scope.markers.push(marker);
+
+                google.maps.event.addListener(marker, 'click', function (event) {
+                    $scope.marker.setMap(null);
+                    for (var i = 0; i < $scope.markers.length; i++) {
+                        $scope.markers[i].setIcon(null);
+                    }
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                    $scope.ad = ad;
+                    $scope.$apply();
                 });
             });
         };
@@ -53,6 +71,15 @@ angular.module('theHomePassApp')
                     position: new google.maps.LatLng(ad.lat, ad.lng),
                     map: map,
                 });
+
+                google.maps.event.addListener(marker, 'click', function (event) {
+                    $scope.resetMarkers();
+
+                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                    $scope.ad = ad;
+                    $scope.$apply();
+                });
+                $scope.markers.push(marker);
             });
 
             google.maps.event.addListener(search, 'places_changed', function () {
@@ -61,7 +88,8 @@ angular.module('theHomePassApp')
                 if (place === undefined)
                     return;
 
-                $scope.marker.setMap(null);
+                $scope.resetMarkers();
+
                 $scope.marker = new google.maps.Marker({
                     position: place.geometry.location,
                     map: map,
@@ -69,8 +97,11 @@ angular.module('theHomePassApp')
                     icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                 });
                 map.setCenter(place.geometry.location);
-
-                $scope.ad.address = place.formatted_address;
+                $scope.ad = {
+                    address: place.formatted_address,
+                    lat: place.geometry.location.k,
+                    lng: place.geometry.location.B
+                };
                 $scope.$apply();
             });
 
@@ -78,7 +109,8 @@ angular.module('theHomePassApp')
                 geocoder.geocode({latLng: event.latLng}, function (results, status) {
                     if (status == google.maps.GeocoderStatus.OK) {
                         if (results[0]) {
-                            $scope.marker.setMap(null);
+                            $scope.resetMarkers();
+
                             $scope.marker = new google.maps.Marker({
                                 position: event.latLng,
                                 map: map,
@@ -86,15 +118,18 @@ angular.module('theHomePassApp')
                                 icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
                             });
 
-                            console.log(event);
-                            $scope.ad.address = results[0].formatted_address;
-                            $scope.ad.lat = event.latLng.k;
-                            $scope.ad.lng = event.latLng.B;
+                            $scope.ad = {
+                                address: results[0].formatted_address,
+                                lat: event.latLng.k,
+                                lng: event.latLng.B
+                            };
                             $scope.$apply();
                         }
                     }
                 });
             });
+
+            
         };
 
         google.maps.event.addDomListener(window, 'load', $scope.initialize());
