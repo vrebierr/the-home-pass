@@ -26,13 +26,16 @@ angular.module('theHomePassApp')
             }
         };
 
+        $scope.fileNameChanged = function () {
+        };
+
         $scope.uploader.onAfterAddingFile = function(fileItem) {
+            console.log(fileItem);
             $scope.uploader.uploadAll();
         };
 
         var baseAds = Restangular.all('ads');
         $scope.send = function (form) {
-            console.log(form);
             if (form.$valid) {
                 if ($scope.ad._id) {
                     $scope.ad.put();
