@@ -6,10 +6,28 @@ var fs = require('fs');
 var uuid = require('node-uuid');
 
 exports.upload = function (req, res) {
-    fs.readFile(req.files.file.path, function (err, data) {
-        if (err) {res.send(500, res);}
+    var tmp = req.files.file.path.split('.');
+    var extension = tmp[tmp.length - 1];
+    var available_extensions = ['jpg', 'png', 'jpeg', 'bmp', 'gif'];
 
-        console.log(req.files.file.path);
+    if (!_.contains(available_extensions, extension))
+        return res.send(500, 'Invalid file extension.');
+
+    fs.readFile(req.files.file.path, function (err, data) {
+        if (err) {return res.send(500, err);}
+
+        var path = 'client/uploads/' + uuid.v1() + '.' + extension;
+
+        fs.writeFile(path, data, function (err) {
+            if (err) {return res.send(500, err);}
+            Upload.create({
+                path: path
+            }, function (err, upload) {
+                if (err) {return res.send(500, err);}
+
+                return res.json(201, upload);
+            })
+        })
     })
 }
 

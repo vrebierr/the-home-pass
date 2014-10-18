@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-	.controller('PosCtrl', function ($scope, pos, Restangular, FileUploader) {
+	.controller('PosCtrl', function ($scope, pos, Restangular, FileUploader, Modal) {
 		$scope.pos = pos;
         $scope.markers = [];
         $scope.marker = new google.maps.Marker();
@@ -9,7 +9,8 @@ angular.module('theHomePassApp')
             type: 'euro'
         };
         $scope.uploader = new FileUploader({
-            url: '/api/uploads/'
+            url: '/api/uploads/',
+            autoUpload: true
         });
         $scope.uploader.filters.push({
             name: 'imageFilter',
@@ -26,52 +27,17 @@ angular.module('theHomePassApp')
             }
         };
 
-        $scope.uploader.onAfterAddingFile = function(fileItem) {
-            console.log(fileItem);
-            $scope.uploader.uploadAll();
-        };
-        $scope.uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
-            console.info('onWhenAddingFileFailed', item, filter, options);
-        };
-        $scope.uploader.onAfterAddingAll = function(addedFileItems) {
-            console.info('onAfterAddingAll', addedFileItems);
-        };
-        $scope.uploader.onBeforeUploadItem = function(item) {
-            console.info('onBeforeUploadItem', item);
-        };
-        $scope.uploader.onProgressItem = function(fileItem, progress) {
-            console.info('onProgressItem', fileItem, progress);
-        };
-        $scope.uploader.onProgressAll = function(progress) {
-            console.info('onProgressAll', progress);
-        };
-        $scope.uploader.onSuccessItem = function(fileItem, response, status, headers) {
-            console.info('onSuccessItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onErrorItem = function(fileItem, response, status, headers) {
-            console.info('onErrorItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCancelItem = function(fileItem, response, status, headers) {
-            console.info('onCancelItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteItem = function(fileItem, response, status, headers) {
-            console.info('onCompleteItem', fileItem, response, status, headers);
-        };
-        $scope.uploader.onCompleteAll = function() {
-            console.info('onCompleteAll');
-        };
-
-        var baseAds = Restangular.all('ads');
+        var basePos = Restangular.all('pos');
         $scope.send = function (form) {
             if (form.$valid) {
-                if ($scope.ad._id) {
-                    $scope.ad.put();
+                if ($scope.selected._id) {
+                    $scope.selected.put();
                 }
                 else {
-                    baseAds.post($scope.ad).then(function (ad) {
+                    basePos.post($scope.selected).then(function (res) {
                         $scope.marker.setMap(null);
                         var marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(ad.lat, ad.lng),
+                            position: new google.maps.LatLng(res.lat, res.lng),
                             map: map,
                         });
 
@@ -83,7 +49,7 @@ angular.module('theHomePassApp')
                                 $scope.markers[i].setIcon(null);
                             }
                             marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-                            $scope.ad = ad;
+                            $scope.selected = res;
                             $scope.$apply();
                         });
                     });
@@ -104,9 +70,9 @@ angular.module('theHomePassApp')
             var input = document.getElementById('search');
             var search = new google.maps.places.SearchBox(input);
 
-            _.forEach(pos, function (ad) {
+            _.forEach(pos, function (item) {
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(ad.lat, ad.lng),
+                    position: new google.maps.LatLng(item.lat, item.lng),
                     map: map,
                 });
 
@@ -114,7 +80,7 @@ angular.module('theHomePassApp')
                     $scope.resetMarkers();
 
                     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-                    $scope.ad = ad;
+                    $scope.selected = item;
                     $scope.$apply();
                 });
                 $scope.markers.push(marker);

@@ -4,7 +4,7 @@ div(ng-include='"components/navbar/navbar.html"')
 	.row
 		.col-md-6
 			h3 Ajouter un point de vente
-			form(name='form')
+			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Nom
 					input.form-control(type='text', ng-model='selected.name', required='')
@@ -19,7 +19,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					textarea.form-control(ng-model='selected.info', rows='5', required='')
 					
 				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
-				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='$modal.openModal($scope)') Supprimer
+				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='Modal.open()') Supprimer
 		.col-md-6
 			br
 			br
@@ -30,5 +30,5 @@ div(ng-include='"components/navbar/navbar.html"')
 	.modal-dialog
 		.modal-content
 			.modal-header
-				button.close(type='button')
+				button.close(type='button', data-dismiss='modal')
 			.modal-content
