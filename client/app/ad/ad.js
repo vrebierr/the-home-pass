@@ -3,9 +3,9 @@
 angular.module('theHomePassApp')
 	.config(function ($stateProvider) {
 		$stateProvider
-			.state('advertiser', {
-				url: '/advertiser',
-				templateUrl: 'app/advertiser/advertiser.html',
+			.state('ad', {
+				url: '/ad',
+				templateUrl: 'app/ad/ad.html',
 				controller: 'AdvertiserCtrl',
 				resolve: {
 					ads: function (Restangular) {

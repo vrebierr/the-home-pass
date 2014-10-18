@@ -1,2 +1,34 @@
-.col-md-12
-    | This is the pos view.
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+	.row
+		.col-md-6
+			h3 Ajouter un point de vente
+			form(enctype='multipart/form-data', name='form')
+				.form-group
+					label Nom
+					input.form-control(type='text', ng-model='selected.name', required='')
+				.form-group
+					label Adresse
+					input.form-control#search(type='text', ng-model='selected.address', required='')
+				.form-group
+					label Image
+					input(type='file', nv-file-select='', uploader='uploader')
+				.form-group
+					label Informations
+					textarea.form-control(ng-model='selected.info', rows='5', required='')
+					
+				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
+				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='$modal.openModal($scope)') Supprimer
+		.col-md-6
+			br
+			br
+			br
+			br
+			#map
+.modal.fade#confirmation
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type='button')
+			.modal-content

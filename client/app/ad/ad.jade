@@ -3,9 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
 	.row
 		.col-md-6
-			#map
-		.col-md-6
-			h2 Ajouter un point de vente
+			h3 Ajouter un point de vente
 			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Adresse
@@ -35,7 +33,10 @@ div(ng-include='"components/navbar/navbar.html"')
 					
 				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
 				span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
-
+		.col-md-6
+			br
+			br
+			#map
 .modal.fade#confirmation
 	.modal-dialog
 		.modal-content

@@ -6,6 +6,11 @@ angular.module('theHomePassApp')
       .state('pos', {
         url: '/pos',
         templateUrl: 'app/pos/pos.html',
-        controller: 'PosCtrl'
+        controller: 'PosCtrl',
+        resolve: {
+        	pos: function (Restangular) {
+        		return Restangular.all('pos').getList();
+        	}
+        }
       });
   });
