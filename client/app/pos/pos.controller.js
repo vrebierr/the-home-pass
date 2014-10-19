@@ -14,6 +14,7 @@ angular.module('theHomePassApp')
 				$scope.$apply();
 			})
 		};
+
 		$scope.clickMarker = function (item) {
 			$scope.selected = item;
 			$scope.$apply();

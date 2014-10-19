@@ -22,21 +22,27 @@ exports.show = function(req, res) {
 
 // Creates a new ad in the DB.
 exports.create = function(req, res) {
-    if (req.body.type !== 'percent' && req.body.type !== 'euro')
+    console.log(req.body);
+    if (req.body.type != 'percent' && req.body.type != 'euro')
         return res.send(500, 'Bad type.');
 
-    var ad = {
-        address: req.body.address,
-        lat: req.body.lat,
-        lng: req.body.lng,
-        info: req.body.info,
-        type: req.body.type,
-        value: req.body.value
-    };
+    Pos.findById(req.body.pos, function (err, pos) {
+        if (err) {return res.send(500, err);}
+        if (!pos) {return res.send(404);}
+        if (pos.author != req.user._id) {return res.send(403);}
 
-    Ad.create(ad, function(err, ad) {
-        if(err) { return handleError(res, err); }
-        return res.json(201, ad);
+        var ad = {
+            pos: pos._id,
+            image: req.body.image,
+            info: req.body.info,
+            type: req.body.type,
+            value: req.body.value
+        };
+
+        Ad.create(ad, function(err, ad) {
+            if(err) { return handleError(res, err); }
+            return res.json(201, ad);
+        });
     });
 };
 

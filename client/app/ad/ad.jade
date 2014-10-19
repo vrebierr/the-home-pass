@@ -10,7 +10,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					input(type='text', ng-model='ad.pos', required='')
 				.form-group
 					label Image
-					input(type='file', nv-file-select='', uploader='uploader')
+					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
 
 				.form-group
 					label Distance
@@ -34,7 +34,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				.form-group
 					label Annonce
 					textarea.form-control(ng-model='ad.info', rows='5', required='')
-					
+
 				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
 				span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
 		.col-md-6
