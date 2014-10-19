@@ -17,7 +17,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				.form-group
 					label Informations
 					textarea.form-control(ng-model='selected.info', rows='5', required='')
-					
+
 				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
 				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
 		.col-md-6
@@ -32,3 +32,5 @@ div(ng-include='"components/navbar/navbar.html"')
 			.modal-header
 				button.close(type='button', data-dismiss='modal')
 			.modal-content
+
+marker(ng-repeat='item in pos', map='map', pos='[item.lat, item.lng]', click='clickMarker(item)')
