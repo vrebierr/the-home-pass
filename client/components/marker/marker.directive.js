@@ -20,6 +20,7 @@ angular.module('theHomePassApp')
                     marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
                     scope.click();
                 });
+
                 $rootScope.$on('selected', function () {
                     marker.setIcon(null);
                 });

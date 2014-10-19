@@ -1,21 +1,19 @@
 'use strict';
 
 angular.module('theHomePassApp')
-	.controller('PosCtrl', function ($scope, pos, Restangular, FileUploader, Modal, $rootScope) {
+	.controller('PosCtrl', function ($scope, pos, Restangular, Modal, $rootScope, $upload) {
 		$scope.pos = pos;
         $scope.selected = {};
-        $scope.uploader = new FileUploader({
-            url: '/api/uploads/',
-            autoUpload: true
-        });
-        $scope.uploader.filters.push({
-            name: 'imageFilter',
-            fn: function(item, options) {
-                var type = '|' + item.type.slice(item.type.lastIndexOf('/') + 1) + '|';
-                return '|jpg|png|jpeg|bmp|gif|'.indexOf(type) !== -1;
-            }
-        });
 
+		$scope.onFileSelect = function ($files) {
+			$scope.upload = $upload.upload({
+				url: 'api/uploads/',
+				file: $files[0]
+			}).success(function (res) {
+				$scope.selected.image = res.path;
+				$scope.$apply();
+			})
+		};
 		$scope.clickMarker = function (item) {
 			$scope.selected = item;
 			$scope.$apply();
