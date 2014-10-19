@@ -48,6 +48,7 @@ angular.module('theHomePassApp')
                             $scope.$apply();
                         });
 
+                        console.log(res);
                         $scope.markers.push(marker);
                     });
                 }
