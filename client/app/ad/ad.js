@@ -10,6 +10,9 @@ angular.module('theHomePassApp')
 				resolve: {
 					ads: function (Restangular) {
 						return Restangular.all('ads').getList();
+					},
+					pos: function (Restangular) {
+						return Restangular.all('pos').getList();
 					}
 				}
 			});

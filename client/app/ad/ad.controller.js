@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdvertiserCtrl', function ($scope, ads, Restangular, $modal, $upload) {
+    .controller('AdvertiserCtrl', function ($scope, ads, pos, Restangular, $modal, $upload) {
         $scope.ads = ads;
         $scope.ad = {};
+        $scope.pos = pos;
 
         $scope.onFileSelect = function ($files) {
             $scope.upload = $upload.upload({

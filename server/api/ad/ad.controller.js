@@ -2,6 +2,8 @@
 
 var _ = require('lodash');
 var Ad = require('./ad.model');
+var mongoose = require('mongoose');
+var Pos = mongoose.model('Pos');
 
 // Get list of ads
 exports.index = function(req, res) {
@@ -29,10 +31,11 @@ exports.create = function(req, res) {
     Pos.findById(req.body.pos, function (err, pos) {
         if (err) {return res.send(500, err);}
         if (!pos) {return res.send(404);}
-        if (pos.author != req.user._id) {return res.send(403);}
+        // if (pos.author != req.user._id) {return res.send(403);}
 
         var ad = {
             pos: pos._id,
+            author: req.user._id,
             image: req.body.image,
             info: req.body.info,
             type: req.body.type,
