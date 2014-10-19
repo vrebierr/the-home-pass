@@ -23,6 +23,9 @@ angular.module('theHomePassApp')
                 $rootScope.$on('selected', function () {
                     marker.setIcon(null);
                 });
+                scope.$on('$destroy', function () {
+                    marker.setMap(null);
+                })
             }
         };
 });

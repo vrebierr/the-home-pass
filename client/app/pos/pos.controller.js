@@ -36,6 +36,7 @@ angular.module('theHomePassApp')
                 else {
                     basePos.post($scope.selected).then(function (res) {
                         $scope.selected = {};
+						current.setMap(null);
 						$scope.pos.push(res);
                     });
                 }
