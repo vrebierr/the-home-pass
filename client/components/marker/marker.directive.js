@@ -9,24 +9,33 @@ angular.module('theHomePassApp')
                 pos: '=',
                 map: '=',
                 click: '&',
+                type: '@'
             },
             link: function (scope, element, attrs) {
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(scope.pos[0], scope.pos[1]),
-                    map: scope.map,
-                });
-                google.maps.event.addListener(marker, 'click', function (event) {
-                    $rootScope.$emit('selected');
-                    marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
-                    scope.click();
-                });
+                if (scope.type != 'openstreetmap') {
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(scope.pos[0], scope.pos[1]),
+                        map: scope.map,
+                    });
+                    google.maps.event.addListener(marker, 'click', function (event) {
+                        $rootScope.$emit('selected');
+                        marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                        scope.click();
+                    });
 
-                $rootScope.$on('selected', function () {
-                    marker.setIcon(null);
-                });
-                scope.$on('$destroy', function () {
-                    marker.setMap(null);
-                })
+                    $rootScope.$on('selected', function () {
+                        marker.setIcon(null);
+                    });
+                    scope.$on('$destroy', function () {
+                        marker.setMap(null);
+                    });
+                }
+                else {
+                    var marker = L.marker(scope.pos).addTo(scope.map);
+                    marker.on('click', function (e) {
+                        scope.click();
+                    });
+                }
             }
         };
 });

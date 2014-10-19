@@ -10,4 +10,6 @@ div(ng-include='"components/navbar/navbar.html"')
         .col-lg-12
             h1.page-header Annonces:
             ul
-                li(ng-repeat='ad in ads') {{ad.icon}} {{ad.name}}
+                li(ng-repeat='ad in ads') {{ad.icon}} {{ad.type}}
+
+marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)')

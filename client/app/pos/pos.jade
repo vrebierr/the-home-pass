@@ -26,11 +26,5 @@ div(ng-include='"components/navbar/navbar.html"')
 			br
 			br
 			#map
-.modal.fade#confirmation
-	.modal-dialog
-		.modal-content
-			.modal-header
-				button.close(type='button', data-dismiss='modal')
-			.modal-content
 
-marker(ng-repeat='item in pos', map='map', pos='[item.lat, item.lng]', click='clickMarker(item)')
+marker(ng-repeat='item in pos', map='map', pos='[item.lat, item.lng]', click='clickMarker(item)', type='google-maps')
