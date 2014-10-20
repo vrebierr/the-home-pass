@@ -136,6 +136,10 @@ angular.module('theHomePassApp')
         return currentUser.role === 'admin';
       },
 
+      hasRole: function (role) {
+          return currentUser.role === role;
+      },
+
       /**
        * Get auth token
        */
