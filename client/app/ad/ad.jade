@@ -28,7 +28,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
 					span.input-group-addon %
 				.input-group(ng-if='ad.type == "euro"')
-					input.form-control(type='number', ng-model='ad.value', min='1', required='')
+					input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
 					span.input-group-addon €
 
 				.form-group

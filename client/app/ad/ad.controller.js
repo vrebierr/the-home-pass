@@ -25,12 +25,6 @@ angular.module('theHomePassApp')
             });
         };
 
-        $scope.confirmation = Modal.confirm.delete(function () {
-            $scope.selected.remove().then(function () {
-                $scope.pos = _.without($scope.pos, $scope.selected);
-            });
-        });
-
         var baseAds = Restangular.all('ads');
         $scope.send = function (form) {
             if (form.$valid) {
@@ -54,7 +48,9 @@ angular.module('theHomePassApp')
         };
 
         $scope.posChanged = function () {
-            $scope.$emit('select', $scope.ad.pos);
+            var pos = _.findWhere($scope.pos, {_id: $scope.ad.pos});
+            $scope.$emit('select', pos._id);
+            $scope.map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
         };
 
         $scope.initialize = function () {
