@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var AdSchema = new Schema({
 	pos: { type: Schema.Types.ObjectId, ref: 'Pos' },
+	author: { type: Schema.Types.ObjectId, ref: 'User' },
 	image: String,
 	type: String,
 	value: Number,

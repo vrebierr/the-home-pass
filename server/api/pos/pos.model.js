@@ -11,6 +11,7 @@ var PosSchema = new Schema({
 	lat: Number,
 	lng: Number,
 	image: String,
+	author: { type: Schema.Types.ObjectId, ref: 'User' },
 });
 
 module.exports = mongoose.model('Pos', PosSchema);

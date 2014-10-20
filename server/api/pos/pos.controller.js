@@ -22,10 +22,24 @@ exports.show = function(req, res) {
 
 // Creates a new pos in the DB.
 exports.create = function(req, res) {
-  Pos.create(req.body, function(err, pos) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, pos);
-  });
+    if (!_.isNumber(req.body.lat) || !_.isNumber(req.body.lng))
+        return res.send(500, 'Bad coordinates.');
+
+    var pos = {
+        author: req.user._id,
+        lat: req.body.lat,
+        lng: req.body.lng,
+        image: req.body.image,
+        name: req.body.name,
+        info: req.body.info,
+        address: req.body.address
+    };
+
+    Pos.create(pos, function(err, pos) {
+        if(err) { return handleError(res, err); }
+        console.log(pos)
+        return res.json(201, pos);
+    });
 };
 
 // Updates an existing pos in the DB.

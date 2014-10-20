@@ -44,8 +44,7 @@ angular.module('theHomePassApp')
                         scope.click();
                     });
 
-                    var template = '<h3>' + scope.item.name + '</h3><p>' + scope.item.info + '</p>';
-                    console.log(template);
+                    var template = '<h3>' + scope.item.name + '</h3><em>' + scope.item.address + '</em><p>' + scope.item.info + '</p>';
                     marker.bindPopup(template);
                 }
             }
