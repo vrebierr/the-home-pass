@@ -17,7 +17,7 @@ angular.module('theHomePassApp')
             })
         };
 
-        $scope.confim = function () {
+        $scope.confirm = function () {
             Modal.confirm.delete(function () {
                 $scope.selected.remove().then(function () {
                     $scope.pos = _.without($scope.pos, $scope.selected);
