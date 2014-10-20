@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdvertiserCtrl', function ($scope, ads, pos, Restangular, $modal, $upload) {
+    .controller('AdvertiserCtrl', function ($scope, ads, pos, Restangular, Modal, $upload) {
         $scope.ads = ads;
         $scope.ad = {};
         $scope.pos = pos;
@@ -23,6 +23,12 @@ angular.module('theHomePassApp')
             });
         };
 
+        $scope.confirmation = Modal.confirm.delete(function () {
+            $scope.selected.remove().then(function () {
+                $scope.pos = _.without($scope.pos, $scope.selected);
+            });
+        });
+
         var baseAds = Restangular.all('ads');
         $scope.send = function (form) {
             if (form.$valid) {
@@ -35,8 +41,25 @@ angular.module('theHomePassApp')
                         $scope.ad = {};
                     });
                 }
-            }
+            };
         };
 
+        $scope.markerSelected = function (item) {
+            $scope.ad.pos = item._id;
+            $scope.$apply();
+        };
 
+        $scope.posChanged = function () {
+            $scope.$emit('select', $scope.ad.pos);
+        };
+
+        $scope.initialize = function () {
+            var mapOptions = {
+                zoom: 12,
+                center: new google.maps.LatLng(48.89670230000001, 2.3183781999999997)
+            };
+            $scope.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+        };
+
+        google.maps.event.addDomListener(window, 'load', $scope.initialize());
     });

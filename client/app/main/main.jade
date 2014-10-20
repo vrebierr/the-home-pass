@@ -12,4 +12,4 @@ div(ng-include='"components/navbar/navbar.html"')
             ul
                 li(ng-repeat='ad in ads') {{ad.icon}} {{ad.type}}
 
-marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)')
+marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')

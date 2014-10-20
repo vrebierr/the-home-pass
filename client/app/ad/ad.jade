@@ -7,7 +7,7 @@ div(ng-include='"components/navbar/navbar.html"')
 			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Point de vente
-					select.form-control(ng-model='ad.pos', ng-options='item._id as item.name for item in pos', required='')
+					select.form-control(ng-model='ad.pos', ng-options='item._id as item.name for item in pos', ng-change='posChanged()', required='')
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
@@ -40,10 +40,7 @@ div(ng-include='"components/navbar/navbar.html"')
 		.col-md-6
 			br
 			br
+			br
 			#map
-.modal.fade#confirmation
-	.modal-dialog
-		.modal-content
-			.modal-header
-				button.close(type='button')
-			.mo
+
+marker(ng-repeat='item in pos', map='map', click='markerSelected(item)', item='item', pos='[item.lat, item.lng]')

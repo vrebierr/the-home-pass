@@ -9,7 +9,8 @@ angular.module('theHomePassApp')
                 pos: '=',
                 map: '=',
                 click: '&',
-                type: '@'
+                type: '@',
+                item: '='
             },
             link: function (scope, element, attrs) {
                 if (scope.type != 'openstreetmap') {
@@ -29,12 +30,23 @@ angular.module('theHomePassApp')
                     scope.$on('$destroy', function () {
                         marker.setMap(null);
                     });
+
+                    $rootScope.$on('select', function (event, data) {
+                        if (data === scope.item._id) {
+                            $rootScope.$emit('selected');
+                            marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+                        }
+                    });
                 }
                 else {
                     var marker = L.marker(scope.pos).addTo(scope.map);
                     marker.on('click', function (e) {
                         scope.click();
                     });
+
+                    var template = '<h3>' + scope.item.name + '</h3><p>' + scope.item.info + '</p>';
+                    console.log(template);
+                    marker.bindPopup(template);
                 }
             }
         };
