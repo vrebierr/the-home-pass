@@ -25,11 +25,24 @@ div(ng-include='"components/navbar/navbar.html"')
                 .form-group
                     label Adresse
                     input.form-control#search(type='text', ng-model='user.address')
-                input.btn.btn-primary(ng-click='add(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
+                input.btn.btn-primary(ng-click='add(form)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
     br
     .row
         .col-md-12
-            .list-group#accordion
-                a.list-group-item(ng-repeat='user in users | filter:search', data-toggle="collapse", data-parent="#accordion", href="#{{user._id}}", ng-click='select(user)') {{user.name}}
+            .list-group
+                a.list-group-item(ng-repeat='user in users | filter:search', href="#{{user._id}}", ng-click='select(user)') {{user.name}}
                     span.btn.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm()')
-                    .panel-collapse.collapse(id='{{user._id}}') {{user.name}}
+                    form(ng-if='selected._id === user._id')
+                        .form-group
+                            label Nom
+                            input.form-control(type='text', ng-model='user.name')
+                        .form-group
+                            label Numéro
+                            input.form-control(type='text', ng-model='user.phone')
+                        .form-group
+                            label Adresse email
+                            input.form-control(type='email', ng-model='user.email')
+                        .form-group
+                            label Adresse
+                            input.form-control#search(type='text', ng-model='user.address')
+                        input.btn.btn-primary(ng-click='update(form)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
