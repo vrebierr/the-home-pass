@@ -75,7 +75,7 @@ angular.module('theHomePassApp')
                 });
 
                 $scope.map.setCenter(place.geometry.location);
-                $scope.ad = {
+                $scope.selected = {
                     address: place.formatted_address,
                     lat: place.geometry.location.k,
                     lng: place.geometry.location.B
