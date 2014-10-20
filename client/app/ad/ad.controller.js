@@ -3,7 +3,9 @@
 angular.module('theHomePassApp')
     .controller('AdvertiserCtrl', function ($scope, ads, pos, Restangular, Modal, $upload) {
         $scope.ads = ads;
-        $scope.ad = {};
+        $scope.ad = {
+            type: 'euro'
+        };
         $scope.pos = pos;
 
         $scope.onFileSelect = function ($files) {
@@ -38,7 +40,9 @@ angular.module('theHomePassApp')
                 else {
                     baseAds.post($scope.ad).then(function (ad) {
                         $scope.ads.push(ad);
-                        $scope.ad = {};
+                        $scope.ad = {
+                            type: 'euro'
+                        };
                     });
                 }
             };
