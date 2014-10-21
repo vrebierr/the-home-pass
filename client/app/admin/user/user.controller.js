@@ -5,6 +5,10 @@ angular.module('theHomePassApp')
         $scope.users = users;
         $scope.user = {};
 
+        $scope.generatePass = function () {
+            
+        };
+
         $scope.select = function (user) {
             $scope.selected = user;
         };
@@ -32,5 +36,5 @@ angular.module('theHomePassApp')
                     $scope.selected.put();
                 }
             }
-        }
+        };
     });

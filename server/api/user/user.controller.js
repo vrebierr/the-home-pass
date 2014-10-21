@@ -47,6 +47,23 @@ exports.show = function (req, res, next) {
   });
 };
 
+exports.update = function (req, res) {
+    User.findById(req.params.id, function (err, user) {
+        if (err) {return res.send(500, err);}
+
+        user.name = req.body.name;
+        user.phone = req.body.phone;
+        user.email = req.body.email;
+        user.address = req.body.address;
+
+        user.save(function (err, user) {
+            if (err) {return res.send(500, err);}
+
+            return res.send(200, user);
+        })
+    });
+}
+
 /**
  * Deletes a user
  * restriction: 'admin'

@@ -32,10 +32,10 @@ div(ng-include='"components/navbar/navbar.html"')
             .list-group
                 a.list-group-item(ng-repeat='user in users | filter:search', href="#{{user._id}}", ng-click='select(user)') {{user.name}}
                     span.btn.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm()')
-                    form(ng-if='selected._id === user._id')
+                    form(name='edit', ng-if='selected._id === user._id')
                         .form-group
                             label Nom
-                            input.form-control(type='text', ng-model='user.name')
+                            input.form-control(type='text', ng-model='user.name', required='')
                         .form-group
                             label Numéro
                             input.form-control(type='text', ng-model='user.phone')
@@ -44,5 +44,5 @@ div(ng-include='"components/navbar/navbar.html"')
                             input.form-control(type='email', ng-model='user.email')
                         .form-group
                             label Adresse
-                            input.form-control#search(type='text', ng-model='user.address')
-                        input.btn.btn-primary(ng-click='update(form)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
+                            input.form-control#search(type='text', ng-model='user.address', required='')
+                        input.btn.btn-primary(ng-click='update(edit)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
