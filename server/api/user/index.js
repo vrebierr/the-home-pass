@@ -15,6 +15,8 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 
 
-router.put('/:id', auth.hasRole('admin'), controller.update);
+router.post('/admin', auth.hasRole('admin'), controller.createAdmin);
+router.put('/admin/:id', auth.hasRole('admin'), controller.updateAdmin);
+
 
 module.exports = router;

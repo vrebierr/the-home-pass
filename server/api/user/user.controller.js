@@ -47,7 +47,28 @@ exports.show = function (req, res, next) {
   });
 };
 
-exports.update = function (req, res) {
+
+exports.createAdmin = function (req, res) {
+    var user = {
+        name: req.body.name,
+        email: req.body.email,
+        phone: req.body.phone,
+        address: req.body.address,
+        lat: req.body.lat,
+        lng: req.body.lng,
+        role: 'user',
+        provider: 'local',
+        password: req.body.password
+    };
+
+    User.create(user, function (err, user) {
+        if (err) {return res.send(500, err);}
+
+        return res.send(200, user);
+    })
+};
+
+exports.updateAdmin = function (req, res) {
     User.findById(req.params.id, function (err, user) {
         if (err) {return res.send(500, err);}
 
@@ -62,7 +83,7 @@ exports.update = function (req, res) {
             return res.send(200, user);
         })
     });
-}
+};
 
 /**
  * Deletes a user
