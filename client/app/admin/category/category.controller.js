@@ -6,18 +6,32 @@ angular.module('theHomePassApp')
         $scope.category = {};
 
         $scope.create = function () {
+            $scope.category = {};
             $modal.open({
-                templateUrl: 'components/modal/category.html',
-            }).result.then(function (res) {
-                categories.post(res).then(function (res) {
+                templateUrl: 'modal.html',
+                scope: $scope
+            }).result.then(function () {
+                categories.post($scope.category).then(function (res) {
                     $scope.categories.push(res);
                 });
             });
         };
 
-        $scope.confirm = function (category) {
+        $scope.update = function (category) {
+            $scope.category = category;
             $modal.open({
-                templateUrl: 'components/modal/confirm.html'
+                templateUrl: 'modal.html',
+                scope: $scope
+            }).result.then(function () {
+                category.put();
+            });
+        };
+
+        $scope.confirm = function (category) {
+            $scope.category = category;
+            $modal.open({
+                templateUrl: 'confirm.html',
+                scope: $scope
             }).result.then(function () {
                 category.remove().then(function () {
                     $scope.categories = _.without($scope.categories, category);

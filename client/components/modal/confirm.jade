@@ -1,8 +1,11 @@
-.modal-header
-    button.close(type='button', ng-click='$dismiss()') &times;
-    h4.modal-title Confirmation
-.modal-body
-    p(ng-if='modal.text', ng-bind='modal.text')
-    div(ng-if='modal.html', ng-bind-html='modal.html')
-.modal-footer
-    button.btn(ng-repeat='button in modal.buttons', ng-class='button.classes', ng-click='button.click($event)', ng-bind='button.text')
+.modal-danger
+    .modal-header
+        button.close(type='button', ng-click='$dismiss()') &times;
+        h4.modal-title Confirmation
+    .modal-body
+        p Êtes vous certain de vouloir supprimer
+            strong {{name}}
+            | ?
+    .modal-footer
+        button.btn.btn-danger(ng-click='$close()') Supprimer
+        button.btn.btn-default(ng-click='$dismiss()') Annuler
