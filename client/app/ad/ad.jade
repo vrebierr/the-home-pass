@@ -12,6 +12,9 @@ div(ng-include='"components/navbar/navbar.html"')
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
+				.form-group
+					label Categorie
+					select.form-control(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='')
 
 				label Montant
 				.form-group

@@ -28,25 +28,32 @@ exports.create = function(req, res) {
     if (req.body.type != 'percent' && req.body.type != 'euro')
         return res.send(500, 'Bad type.');
 
-    Pos.findById(req.body.pos, function (err, pos) {
+    Category.findById(req.body.category, function (err, category) {
         if (err) {return res.send(500, err);}
-        if (!pos) {return res.send(404);}
-        // if (pos.author != req.user._id) {return res.send(403);}
+        if (!category) {return res.sent(404);}
 
-        var ad = {
-            pos: pos._id,
-            author: req.user._id,
-            image: req.body.image,
-            info: req.body.info,
-            type: req.body.type,
-            value: req.body.value
-        };
+        Pos.findById(req.body.pos, function (err, pos) {
+            if (err) {return res.send(500, err);}
+            if (!pos) {return res.send(404);}
+            // if (pos.author != req.user._id) {return res.send(403);}
 
-        Ad.create(ad, function(err, ad) {
-            if(err) { return handleError(res, err); }
-            return res.json(201, ad);
+            var ad = {
+                pos: pos._id,
+                author: req.user._id,
+                image: req.body.image,
+                info: req.body.info,
+                type: req.body.type,
+                value: req.body.value,
+                category: category._id,
+            };
+
+            Ad.create(ad, function(err, ad) {
+                if(err) { return handleError(res, err); }
+                return res.json(201, ad);
+            });
         });
     });
+
 };
 
 // Updates an existing ad in the DB.

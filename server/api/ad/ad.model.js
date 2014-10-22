@@ -9,6 +9,7 @@ var AdSchema = new Schema({
 	image: String,
 	type: String,
 	value: Number,
+	category: { type: Schema.Types.ObjectId, ref: 'Category' }
 });
 
 module.exports = mongoose.model('Ad', AdSchema);
