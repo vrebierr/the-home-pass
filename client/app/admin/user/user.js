@@ -9,7 +9,7 @@ angular.module('theHomePassApp')
         controller: 'AdminUserCtrl',
         resolve: {
             users: function (Restangular) {
-                return Restangular.all('users').getList();
+                return Restangular.all('users').all('admin').getList();
             }
         }
       });

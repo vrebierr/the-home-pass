@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdminUserCtrl', function ($scope, users, Modal, Restangular) {
+    .controller('AdminUserCtrl', function ($scope, users, $modal, Restangular) {
         $scope.users = users;
         $scope.user = {};
         $scope.map = L.map('map').setView([48.89670230000001, 2.3183781999999997], 13);
@@ -11,33 +11,47 @@ angular.module('theHomePassApp')
 
         };
 
-        $scope.select = function (user) {
-            $scope.selected = user;
-        };
-
-        $scope.confirm = Modal.confirm.delete(function () {
-            $scope.selected.remove().then(function () {
-                $scope.users = _.without($scope.users, $scope.user);
-                $scope.selected = {};
-            });
-        });
-
-        var baseUser = Restangular.all('users').all('admin');
-        $scope.add = function (form) {
-            if (form.$valid) {
-                baseUser.post($scope.user).then(function (res) {
-                    $scope.user = {};
+        $scope.create = function () {
+            $scope.user = {};
+            $modal.open({
+                templateUrl: 'modal.html',
+                scope: $scope
+            }).result.then(function () {
+                users.post($scope.user).then(function (res) {
                     $scope.users.push(res);
                 });
-            }
+            });
         };
 
-        $scope.update = function (form) {
-            if (form.$valid) {
-                if ($scope.selected._id) {
-                    $scope.selected.put();
-                }
-            }
+        $scope.update = function (user) {
+            $scope.user = Restangular.copy(user);
+            $modal.open({
+                templateUrl: 'modal.html',
+                scope: $scope
+            }).result.then(function () {
+                $scope.user.put().then(function (res) {
+                    $scope.users = _.map($scope.users, function (item) {
+                        if (item._id === res._id) {
+                            return res;
+                        }
+                        else {
+                            return item;
+                        }
+                    });
+                });
+            });
+        };
+
+        $scope.confirm = function (user) {
+            $scope.user = user;
+            $modal.open({
+                templateUrl: 'confirm.html',
+                scope: $scope
+            }).result.then(function () {
+                user.remove().then(function () {
+                    $scope.users = _.without($scope.users, user);
+                });
+            })
         };
 
         $scope.initialize = function () {

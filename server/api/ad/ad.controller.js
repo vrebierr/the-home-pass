@@ -4,6 +4,7 @@ var _ = require('lodash');
 var Ad = require('./ad.model');
 var mongoose = require('mongoose');
 var Pos = mongoose.model('Pos');
+var Category = mongoose.model('Category');
 
 // Get list of ads
 exports.index = function(req, res) {
@@ -24,7 +25,6 @@ exports.show = function(req, res) {
 
 // Creates a new ad in the DB.
 exports.create = function(req, res) {
-    console.log(req.body);
     if (req.body.type != 'percent' && req.body.type != 'euro')
         return res.send(500, 'Bad type.');
 
@@ -32,13 +32,13 @@ exports.create = function(req, res) {
         if (err) {return res.send(500, err);}
         if (!category) {return res.sent(404);}
 
-        Pos.findById(req.body.pos, function (err, pos) {
+        Pos.find(req.body.pos, function (err, pos) {
             if (err) {return res.send(500, err);}
             if (!pos) {return res.send(404);}
             // if (pos.author != req.user._id) {return res.send(403);}
 
             var ad = {
-                pos: pos._id,
+                pos: pos,
                 author: req.user._id,
                 image: req.body.image,
                 info: req.body.info,

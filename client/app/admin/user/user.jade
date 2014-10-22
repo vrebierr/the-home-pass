@@ -8,10 +8,31 @@ div(ng-include='"components/navbar/navbar.html"')
                 span.input-group-addon
                     span.glyphicon.glyphicon-search
         .col-md-2
-            span.btn.btn-primary.pull-right(ng-click='action = "new"') Ajouter
-    .row(ng-show='action == "new"')
-        .col-md-6
-            h3 Ajouter un nouvel utilisateur
+            span.btn.btn-primary.pull-right(ng-click='create()') Ajouter
+    br
+    .row
+        .col-md-12
+            .panel.panel-default
+                .panel-heading Utilisateurs
+                table.table
+                    tr
+                        th Nom
+                        th Email
+                        th Téléphone
+                    tr(ng-repeat='user in users | filter:search')
+                        td {{user.name}}
+                        td {{user.email}}
+                        td {{user.phone}}
+                        td
+                            button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(user)')
+                            button.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(user)')
+#map
+script(type='text/ng-template', id='modal.html')
+    .modal-primary
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Ajouter un nouvel utilisateur
+        .modal-body
             form(name='form')
                 .form-group
                     label Nom
@@ -25,27 +46,19 @@ div(ng-include='"components/navbar/navbar.html"')
                 .form-group
                     label Adresse
                     input.form-control#search(type='text', ng-model='user.address')
-                input.btn.btn-primary(ng-click='add(form)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
-        .col-md-6
-            br
-            #map
-    br
-    .row
-        .col-md-12
-            .list-group
-                a.list-group-item(ng-repeat='user in users | filter:search', href="#{{user._id}}", ng-click='select(user)') {{user.name}}
-                    span.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm()')
-                    form(name='edit', ng-if='selected._id === user._id')
-                        .form-group
-                            label Nom
-                            input.form-control(type='text', ng-model='user.name', required='')
-                        .form-group
-                            label Numéro
-                            input.form-control(type='text', ng-model='user.phone')
-                        .form-group
-                            label Adresse email
-                            input.form-control(type='email', ng-model='user.email')
-                        .form-group
-                            label Adresse
-                            input.form-control(type='text', ng-model='user.address', required='')
-                        input.btn.btn-primary(ng-click='update(edit)', type='submit', value="{{ user._id && 'Modifier' || 'Ajouter'}}")
+
+        .modal-footer
+            button.btn.btn-primary(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
+            button.btn.btn-default(ng-click='$dismiss()') Annuler
+
+script(type='text/ng-template', id='confirm.html')
+    .modal-danger
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Confirmation
+        .modal-body
+            p Êtes vous certain de vouloir supprimer
+                strong  {{user.name}} ?
+        .modal-footer
+            button.btn.btn-danger(ng-click='$close()') Supprimer
+            button.btn.btn-default(ng-click='$dismiss()') Annuler

@@ -68,6 +68,13 @@ exports.createAdmin = function (req, res) {
     })
 };
 
+exports.listAdmin = function (req, res) {
+    User.find({}, '-salt -hashedPassword', function (err, users) {
+        if(err) return res.send(500, err);
+        res.json(200, users);
+    });
+};
+
 exports.updateAdmin = function (req, res) {
     User.findById(req.params.id, function (err, user) {
         if (err) {return res.send(500, err);}
@@ -82,6 +89,13 @@ exports.updateAdmin = function (req, res) {
 
             return res.send(200, user);
         })
+    });
+};
+
+exports.deleteAdmin = function (req, res) {
+    User.findByIdAndRemove(req.params.id, function(err, user) {
+        if(err) return res.send(500, err);
+        return res.send(204);
     });
 };
 

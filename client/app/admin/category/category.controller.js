@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('CategoryCtrl', function ($scope, categories, $modal, Modal, Restangular) {
+    .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular) {
         $scope.categories = categories;
         $scope.category = {};
 

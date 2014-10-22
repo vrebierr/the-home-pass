@@ -11,6 +11,6 @@ div(ng-include='"components/navbar/navbar.html"')
             input.form-control(type='text', ng-model='search')
             .row(ng-repeat='ad in ads | filter:search')
                 h3 {{ad.name}}
-                p {{ad.info}}
+                p {{ad}}
 
 marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')
