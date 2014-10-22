@@ -17,21 +17,22 @@ div(ng-include='"components/navbar/navbar.html"')
                 table.table
                     tr(ng-repeat='category in categories | filter:search')
                         td {{category.name}}
-                            span.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(category)')
-                            span.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(category)')
+                            button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(category)')
+                            button.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(category)')
 
 script(type='text/ng-template', id='modal.html')
-    .modal-header
-        button.close(type='button', ng-click='$dismiss()') &times;
-        h4.modal-title Ajouter une nouvelle categorie
-    .modal-body
-        form.form
-            .input-form
-                label Nom
-                input.form-control(type='text', ng-model='category.name')
-    .modal-footer
-        button.btn.btn-primary(ng-click='$close()') Ajouter
-        button.btn.btn-default(ng-click='$dismiss()') Annuler
+    .modal-primary
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Ajouter une nouvelle categorie
+        .modal-body
+            form.form
+                .input-form
+                    label Nom
+                    input.form-control(type='text', ng-model='category.name')
+        .modal-footer
+            button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
+            button.btn.btn-default(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='confirm.html')
     .modal-danger

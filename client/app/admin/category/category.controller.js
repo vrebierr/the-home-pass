@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('CategoryCtrl', function ($scope, categories, $modal, Modal) {
+    .controller('CategoryCtrl', function ($scope, categories, $modal, Modal, Restangular) {
         $scope.categories = categories;
         $scope.category = {};
 
@@ -18,12 +18,21 @@ angular.module('theHomePassApp')
         };
 
         $scope.update = function (category) {
-            $scope.category = category;
+            $scope.category = Restangular.copy(category);
             $modal.open({
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
-                category.put();
+                $scope.category.put().then(function (res) {
+                    $scope.categories = _.map($scope.categories, function (item) {
+                        if (item._id === res._id) {
+                            return res;
+                        }
+                        else {
+                            return item;
+                        }
+                    });
+                });
             });
         };
 
