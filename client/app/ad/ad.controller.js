@@ -49,8 +49,9 @@ angular.module('theHomePassApp')
 
         $scope.posSelected = function () {
             $scope.ad.pos = $scope.ad.pos.split(',');
-            var pos = _.findWhere($scope.pos, {_id: $scope.ad.pos});
-            $scope.$emit('select', pos.ad.pos);
+            $scope.ad.pos.map(function (item) {
+                $scope.$emit('select', item._id);
+            });
             $scope.map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
         };
 
