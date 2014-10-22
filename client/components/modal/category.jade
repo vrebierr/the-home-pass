@@ -1,0 +1,11 @@
+.modal-header
+    button.close(type='button', ng-click='$dismiss()') &times;
+    h4.modal-title Ajouter une nouvelle categorie
+.modal-body
+    form.form
+        .input-form
+            label Nom
+            input.form-control(type='text', ng-model='category.name')
+.modal-footer
+    button.btn.btn-primary(ng-click='$close(category)') Ajouter
+    button.btn.btn-default(ng-click='$dismiss()') Annuler

@@ -6,6 +6,11 @@ angular.module('theHomePassApp')
       .state('category', {
         url: '/admin/categories',
         templateUrl: 'app/admin/category/category.html',
-        controller: 'CategoryCtrl'
+        controller: 'CategoryCtrl',
+        resolve: {
+            categories : function (Restangular) {
+                return Restangular.all('categories').getList();
+            }
+        }
       });
   });

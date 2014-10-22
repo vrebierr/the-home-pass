@@ -34,7 +34,7 @@ div(ng-include='"components/navbar/navbar.html"')
         .col-md-12
             .list-group
                 a.list-group-item(ng-repeat='user in users | filter:search', href="#{{user._id}}", ng-click='select(user)') {{user.name}}
-                    span.btn.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm()')
+                    span.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm()')
                     form(name='edit', ng-if='selected._id === user._id')
                         .form-group
                             label Nom
