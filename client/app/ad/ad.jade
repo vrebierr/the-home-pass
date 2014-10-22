@@ -7,14 +7,10 @@ div(ng-include='"components/navbar/navbar.html"')
 			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Point de vente
-					select.form-control(ng-model='ad.pos', ng-options='item._id as item.name for item in pos', ng-change='posChanged()', required='')
+					input.form-control(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos')
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
-
-				.form-group
-					label Distance
-					input.form-control(type='number', ng-model='ad.area')
 
 				label Montant
 				.form-group
