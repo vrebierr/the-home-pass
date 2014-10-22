@@ -47,9 +47,10 @@ angular.module('theHomePassApp')
             $scope.$apply();
         };
 
-        $scope.posChanged = function () {
+        $scope.posSelected = function () {
+            $scope.ad.pos = $scope.ad.pos.split(',');
             var pos = _.findWhere($scope.pos, {_id: $scope.ad.pos});
-            $scope.$emit('select', pos._id);
+            $scope.$emit('select', pos.ad.pos);
             $scope.map.setCenter(new google.maps.LatLng(pos.lat, pos.lng));
         };
 
@@ -62,4 +63,18 @@ angular.module('theHomePassApp')
         };
 
         google.maps.event.addDomListener(window, 'load', $scope.initialize());
+
+        $scope.config = {
+            plugins: ['remove_button'],
+            labelField: 'name',
+            searchField: ['name', 'address'],
+            valueField: '_id',
+            create: false,
+            render: {
+                option: function (item) {
+                    console.log(item);
+                    return '<div><p><strong>' + item.name + '</strong><br><em>' + item.address + '</em></p></div>';
+                }
+            }
+        };
     });

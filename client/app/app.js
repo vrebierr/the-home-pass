@@ -8,7 +8,8 @@ angular.module('theHomePassApp', [
   'ui.router',
   'ui.bootstrap',
   'restangular',
-  'angularFileUpload'
+  'angularFileUpload',
+  'selectize-ng'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider

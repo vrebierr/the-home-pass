@@ -13,5 +13,4 @@ div(ng-include='"components/navbar/navbar.html"')
                 h3 {{ad.name}}
                 p {{ad.info}}
 
-
 marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')

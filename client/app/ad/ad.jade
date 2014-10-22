@@ -7,7 +7,8 @@ div(ng-include='"components/navbar/navbar.html"')
 			form(enctype='multipart/form-data', name='form')
 				.form-group
 					label Point de vente
-					input.form-control(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos')
+					input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
+					// .alert.alert-danger(ng-show='form.pos.$error.required') Vous devez choisir au moins 1 point de vente.
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
