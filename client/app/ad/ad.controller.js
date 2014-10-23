@@ -75,7 +75,7 @@ angular.module('theHomePassApp')
             render: {
                 option: function (item) {
                     console.log(item);
-                    return '<div><p><strong>' + item.name + '</strong><br><em>' + item.address + '</em></p></div>';
+                    return '<div><strong>' + item.name + '</strong><br><em>' + item.address + '</em></div>';
                 }
             }
         };

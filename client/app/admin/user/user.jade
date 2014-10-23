@@ -26,7 +26,7 @@ div(ng-include='"components/navbar/navbar.html"')
                         td
                             button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(user)')
                             button.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(user)')
-#map
+
 script(type='text/ng-template', id='modal.html')
     .modal-primary
         .modal-header
@@ -45,7 +45,9 @@ script(type='text/ng-template', id='modal.html')
                     input.form-control(type='email', ng-model='user.email')
                 .form-group
                     label Adresse
-                    input.form-control#search(type='text', ng-model='user.address')
+                    geo-search(model='user.address')
+                    br
+                    leaflet(defaults='map.defaults', center='map.center', height='200px', width='555px')
 
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
