@@ -16,6 +16,12 @@ angular.module('theHomePassApp')
             }
         }
 
+        $scope.geoSearch = function () {
+            $scope.map.center.lat = $scope.user.lat;
+            $scope.map.center.lng = $scope.user.lng;
+            $scope.$apply();
+        };
+
         $scope.create = function () {
             $scope.user = {};
             $modal.open({
@@ -61,5 +67,5 @@ angular.module('theHomePassApp')
             })
         };
 
-    
+
     });

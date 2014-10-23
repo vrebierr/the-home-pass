@@ -45,7 +45,7 @@ script(type='text/ng-template', id='modal.html')
                     input.form-control(type='email', ng-model='user.email')
                 .form-group
                     label Adresse
-                    geo-search(model='user.address')
+                    geo-search(model='user', event='geoSearch()')
                     br
                     leaflet(defaults='map.defaults', center='map.center', height='200px', width='555px')
 

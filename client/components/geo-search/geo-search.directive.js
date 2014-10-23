@@ -7,7 +7,7 @@ angular.module('theHomePassApp')
             restrict: 'EA',
             scope: {
                 model: '=',
-                pos: '='
+                event: '&'
             },
             link: function (scope, element, attrs) {
                 scope.initialize = function () {
@@ -21,19 +21,11 @@ angular.module('theHomePassApp')
                         if (place === undefined)
                             return;
 
-                        scope.user = {
-                            address: place.formatted_address,
-                            lat: place.geometry.location.k,
-                            lng: place.geometry.location.B
-                        };
+                        scope.model.address = place.formatted_address;
+                        scope.model.lat = place.geometry.location.k;
+                        scope.model.lng = place.geometry.location.B;
 
-                        scope.map.panTo(new L.LatLng(scope.user.lat, scope.user.lng));
-                        var marker = L.marker(new L.LatLng(scope.user.lat, scope.user.lng)).addTo(scope.map);
-                        marker.on('click', function (e) {
-
-                        });
-
-                        scope.$apply();
+                        scope.event();
                     });
                 };
 
