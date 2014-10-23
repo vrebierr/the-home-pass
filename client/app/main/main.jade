@@ -3,14 +3,20 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
     .row
         .col-md-6
-            br
-            br
-            #map
+            .row
+                br
+                br
+                #map
+            .row
+                br
+                #open
         .col-md-6
             h3.page-header Annonces:
             input.form-control(type='text', ng-model='search')
             .row(ng-repeat='ad in ads | filter:search')
                 h3 {{ad.name}}
-                p {{ad}}
+                em {{ad.address}}
+                p {{ad.info}}
 
-marker(ng-repeat='item in pos', map='map', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')
+marker(ng-repeat='item in pos', map='open', type='openstreetmap', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')
+marker(ng-repeat='item in pos', map='map', type='google', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')
