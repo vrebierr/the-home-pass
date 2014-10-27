@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular) {
+    .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular, DTColumnDefBuilder, DTOptionsBuilder) {
         $scope.categories = categories;
         $scope.category = {};
-        $scope.length = categories.length;
 
-        $scope.$watch('currentPage', function () {
-            $scope.categories = categories.splice(10 * ($scope.currentPage - 1), 10);
-        });
+        $scope.dtColumnDefs = [
+            DTColumnDefBuilder.newColumnDef(0),
+            DTColumnDefBuilder.newColumnDef(1).notSortable()
+        ];
+        $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
 
         $scope.create = function () {
             $scope.category = {};

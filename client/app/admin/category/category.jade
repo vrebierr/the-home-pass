@@ -23,24 +23,21 @@ div(ng-include='"components/navbar/navbar.html"')
                                             button.btn.btn-sm.btn-default
                                                 i.fa.fa-search
                         .box-body.table-responsible.no-padding
-                            table.table.table-hover
+                            table.table.table-hover(datatable='', dt-column-defs='dtColumnDefs', dt-options='dtOptions')
                                 thead
                                     tr
-                                        th.sort(ng-click='predicate = "name"; reverse=!reverse', ng-class='{desc: reverse, asc: !reverse}')
-                                            | Nom
-                                            i.fa.fa-sort-asc.pull-right(ng-if='reverse')
-                                            i.fa.fa-sort-desc.pull-right(ng-if='!reverse')
+                                        th Nom
                                         th Actions
                                 tbody
                                     tr(ng-repeat='category in categories | filter:search | orderBy:predicate:reverse')
                                         td {{category.name}}
                                         td
-                                            button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(category)')
+                                            button.btn.btn-sm.btn-danger.btn-flat(type='button', ng-click='confirm(category)')
                                                 i.fa.fa-trash
-                                            button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(category)')
+                                            button.btn.btn-sm.btn-primary.btn-flat(type='button', ng-click='update(category)')
                                                 i.fa.fa-pencil
                         .box-footer.clearfix
-                            pagination.pagination.pagination-sm.pull-right.no-margin(total-items='length', ng-model='currentPage', max-size='5')
+                            pagination.pagination.pagination-sm.pull-right.no-margin(total-items='categories.length', ng-model='currentPage', max-size='5')
 
 script(type='text/ng-template', id='modal.html')
     .modal-primary
