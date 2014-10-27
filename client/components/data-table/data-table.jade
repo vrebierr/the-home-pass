@@ -12,10 +12,13 @@
         table.table.table-hover
             thead
                 tr
-                    th(ng-repeat='col in cols') {{col}}
+                    th(ng-repeat='col in cols', ng-click='predicate = col; reverse = !reverse') {{col}}
+                        i.fa.fa-sort-desc.pull-right(ng-if='!reverse && predicate')
+                        i.fa.fa-sort-asc.pull-right(ng-if='reverse')
+                        i.fa.fa-sort.pull-right(ng-if='!reverse && !predicate')
                     th.text-right Actions
             tbody
-                tr(ng-repeat='item in current | orderBy:order')
+                tr(ng-repeat='item in current | filter:search')
                     td {{item.name}}
                     td
                         button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(item)')
