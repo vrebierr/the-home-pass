@@ -1,0 +1,13 @@
+table.table.table-hover
+    thead
+        tr
+            th Nom
+            th Actions
+    tbody
+        tr(ng-repeat='item in model | filter:search | orderBy:order')
+            td {{item.name}}
+            td
+                button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(item)')
+                    i.fa.fa-trash
+                button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(item)')
+                    i.fa.fa-pencil

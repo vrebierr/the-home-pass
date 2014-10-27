@@ -4,6 +4,11 @@ angular.module('theHomePassApp')
     .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular) {
         $scope.categories = categories;
         $scope.category = {};
+        $scope.length = categories.length;
+
+        $scope.$watch('currentPage', function () {
+            $scope.categories = categories.splice(10 * ($scope.currentPage - 1), 10);
+        });
 
         $scope.create = function () {
             $scope.category = {};

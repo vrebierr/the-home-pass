@@ -17,6 +17,8 @@
       <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
       <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css" />
       <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css" />
+      <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css" />
+      <link rel="stylesheet" href="bower_components/ng-table/ng-table.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -31,6 +33,7 @@
       <link rel="stylesheet" href="app/app.css">
       <link rel="stylesheet" href="app/main/main.css">
       <link rel="stylesheet" href="app/pos/pos.css">
+      <link rel="stylesheet" href="components/data-table/data-table.css">
       <link rel="stylesheet" href="components/geo-search/geo-search.css">
       <link rel="stylesheet" href="components/modal/modal.css">
       <!-- endinjector -->
@@ -81,6 +84,9 @@
       <script src="bower_components/selectize/dist/js/selectize.js"></script>
       <script src="bower_components/selectize-ng/selectize-ng.js"></script>
       <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+      <script src="bower_components/datatables/media/js/jquery.dataTables.js"></script>
+      <script src="bower_components/angular-datatables/dist/angular-datatables.js"></script>
+      <script src="bower_components/ng-table/ng-table.js"></script>
       <!-- endbower -->
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
@@ -108,6 +114,7 @@
           <script src="app/pos/pos.js"></script>
           <script src="components/auth/auth.service.js"></script>
           <script src="components/auth/user.service.js"></script>
+          <script src="components/data-table/data-table.directive.js"></script>
           <script src="components/geo-search/geo-search.directive.js"></script>
           <script src="components/marker/marker.directive.js"></script>
           <script src="components/modal/modal.service.js"></script>

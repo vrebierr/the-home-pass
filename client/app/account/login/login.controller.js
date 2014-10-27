@@ -23,7 +23,4 @@ angular.module('theHomePassApp')
       }
     };
 
-    angular.element('html').addClass('bg-black');
-    angular.element('body').addClass('bg-black');
-
   });

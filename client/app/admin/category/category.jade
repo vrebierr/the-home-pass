@@ -16,19 +16,23 @@ div(ng-include='"components/navbar/navbar.html"')
                         .box-header
                             h3.box-title Liste des catégorie
                             .box-tools
-                                .col-xs-5
+                                .col-xs-4.pull-right
                                     .input-group
                                         input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
                                         .input-group-btn
                                             button.btn.btn-sm.btn-default
                                                 i.fa.fa-search
-                                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='users', ng-model='page', max-size='5')
                         .box-body.table-responsible.no-padding
                             table.table.table-hover
-                                tbody
+                                thead
                                     tr
-                                        th Nom
-                                    tr(ng-repeat='category in categories | filter:search')
+                                        th.sort(ng-click='predicate = "name"; reverse=!reverse', ng-class='{desc: reverse, asc: !reverse}')
+                                            | Nom
+                                            i.fa.fa-sort-asc.pull-right(ng-if='reverse')
+                                            i.fa.fa-sort-desc.pull-right(ng-if='!reverse')
+                                        th Actions
+                                tbody
+                                    tr(ng-repeat='category in categories | filter:search | orderBy:predicate:reverse')
                                         td {{category.name}}
                                         td
                                             button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(category)')
@@ -36,7 +40,7 @@ div(ng-include='"components/navbar/navbar.html"')
                                             button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(category)')
                                                 i.fa.fa-pencil
                         .box-footer.clearfix
-                            pagination.pagination.pagination-sm.pull-right.no-margin(ng-model='currentPage', max-size='5')
+                            pagination.pagination.pagination-sm.pull-right.no-margin(total-items='length', ng-model='currentPage', max-size='5')
 
 script(type='text/ng-template', id='modal.html')
     .modal-primary
