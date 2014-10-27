@@ -10,9 +10,7 @@ angular.module('theHomePassApp', [
   'restangular',
   'angularFileUpload',
   'selectize-ng',
-  'leaflet-directive',
-  'ngTable',
-  'datatables'
+  'leaflet-directive'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider

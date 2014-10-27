@@ -1,15 +1,9 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular, DTColumnDefBuilder, DTOptionsBuilder) {
+    .controller('CategoryCtrl', function ($scope, categories, $modal, Restangular) {
         $scope.categories = categories;
         $scope.category = {};
-
-        $scope.dtColumnDefs = [
-            DTColumnDefBuilder.newColumnDef(0),
-            DTColumnDefBuilder.newColumnDef(1).notSortable()
-        ];
-        $scope.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
 
         $scope.create = function () {
             $scope.category = {};
