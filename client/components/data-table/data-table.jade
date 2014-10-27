@@ -12,9 +12,10 @@
         table.table.table-hover
             thead
                 tr
-                    th(ng-repeat='col in cols') {{col.name}}
+                    th(ng-repeat='col in cols') {{col}}
+                    th.text-right Actions
             tbody
-                tr(ng-repeat='item in items | filter:search | orderBy:order')
+                tr(ng-repeat='item in current | orderBy:order')
                     td {{item.name}}
                     td
                         button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(item)')
@@ -24,6 +25,6 @@
     .box-footer.clearfix
         .row
             .col-xs-6
-                span.tab-info Affichage {{currentStart}} à {{currentEnd}} sur {{model.length}}
+                span.tab-info Affichage {{currentStart}} à {{currentEnd}} sur {{items.length}} éléments
             .col-xs-6
-                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='model.length', ng-model='currentPage', max-size='5', ng-change='pageChanged()')
+                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='items.length', ng-model='currentPage', max-size='5', ng-change='pageChanged()')

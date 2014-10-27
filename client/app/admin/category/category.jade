@@ -12,7 +12,7 @@ div(ng-include='"components/navbar/navbar.html"')
         section.content
             .row
                 .col-xs-12
-                    ng-table(model='categories')
+                    ng-table(model='categories', cols='["name"]')
 
 
 script(type='text/ng-template', id='modal.html')
