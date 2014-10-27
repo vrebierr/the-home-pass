@@ -3,22 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .wrapper.row-offcanvas.row-offcanvas-left
     aside.left-side.sidebar-offcanvas
         div(ng-include='"components/sidebar/sidebar.html"')
-        section.sidebar
-            ul.sidebar-menu
-                li(ui-sref-active='active')
-                    a(ui-sref='admin')
-                        i.fa.fa-dashboard
-                        span Dashboard
-                li(ui-sref-active='active')
-                    a(ui-sref='userAdmin')
-                        i.fa.fa-users
-                        span Utilisateurs
-                li(ui-sref-active='active')
-                    a(ui-sref='adAdmin')
-                        i.fa.fa
-                        span Annonces
-                li(ui-sref-active='active')
-                    a(ui-sref='categoryAdmin') Categories
     aside.right-side
         section.content-header
             h1 Dashboard
+            

@@ -1,24 +1,42 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-    .row
-        .col-md-10
-            .input-group
-                input.form-control(type='text', ng-model='search')
-                span.input-group-addon
-                    span.glyphicon.glyphicon-search
-        .col-md-2
-            span.btn.btn-primary.pull-right(ng-click='create()') Ajouter
-    br
-    .row
-        .col-md-12
-            .panel.panel-default
-                .panel-heading Categories
-                table.table
-                    tr(ng-repeat='category in categories | filter:search')
-                        td {{category.name}}
-                            button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(category)')
-                            button.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(category)')
+.wrapper.row-offcanvas.row-offcanvas-left
+    aside.left-side.sidebar-offcanvas
+        div(ng-include='"components/sidebar/sidebar.html"')
+    aside.right-side
+        section.content-header
+            h1 Catégories
+                button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='create()')
+                    i.fa.fa-plus
+                    span  Ajouter
+        section.content
+            .row
+                .col-xs-12
+                    .box
+                        .box-header
+                            h3.box-title Liste des catégorie
+                            .box-tools
+                                .col-xs-5
+                                    .input-group
+                                        input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
+                                        .input-group-btn
+                                            button.btn.btn-sm.btn-default
+                                                i.fa.fa-search
+                                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='users', ng-model='page', max-size='5')
+                        .box-body.table-responsible.no-padding
+                            table.table.table-hover
+                                tbody
+                                    tr
+                                        th Nom
+                                    tr(ng-repeat='category in categories | filter:search')
+                                        td {{category.name}}
+                                        td
+                                            button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(category)')
+                                                i.fa.fa-trash
+                                            button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(category)')
+                                                i.fa.fa-pencil
+                        .box-footer.clearfix
+                            pagination.pagination.pagination-sm.pull-right.no-margin(ng-model='currentPage', max-size='5')
 
 script(type='text/ng-template', id='modal.html')
     .modal-primary
