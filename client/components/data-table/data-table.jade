@@ -4,6 +4,11 @@
         .box-tools
             .col-xs-4.pull-right
                 .input-group
+                    select(ng-model='numItems')
+                        option(value='10') 10
+                        option(value='25', selected='selected') 25
+                        option(value='50') 50
+                        option(value='100') 100
                     input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
                     .input-group-btn
                         button.btn.btn-sm.btn-default
