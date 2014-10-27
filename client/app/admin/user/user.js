@@ -3,7 +3,7 @@
 angular.module('theHomePassApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('user', {
+      .state('userAdmin', {
         url: '/admin/user',
         templateUrl: 'app/admin/user/user.html',
         controller: 'AdminUserCtrl',

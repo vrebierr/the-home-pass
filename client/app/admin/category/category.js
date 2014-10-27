@@ -3,7 +3,7 @@
 angular.module('theHomePassApp')
   .config(function ($stateProvider) {
     $stateProvider
-      .state('category', {
+      .state('categoryAdmin', {
         url: '/admin/categories',
         templateUrl: 'app/admin/category/category.html',
         controller: 'CategoryCtrl',

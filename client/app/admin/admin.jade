@@ -1,9 +1,20 @@
-div(ng-include='"components/navbar/navbar.html"')
+header.header
+    nav.navbar.navbar-static-top
+        a(href='#', class='navbar-btn sidebar-toggle' data-toggle='offcanvas' role='button')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
 
-.container
-    .row
-        a(ui-sref='user') Utilisateurs
-        br
-        a(ui-sref='category') Categories
-        br
-        a(ui-sref='adAdmin') Annonces
+.wrapper.row-offcanvas.row-offcanvas-left
+    aside.left-side.sidebar-offcanvas
+        section.sidebar
+            ul.sidebar-menu
+                li(ui-sref-active='active')
+                    a(ui-sref='admin') Dashboard
+                li(ui-sref-active='active')
+                    a(ui-sref='userAdmin') Utilisateurs
+                li(ui-sref-active='active')
+                    a(ui-sref='adAdmin') Annonces
+                li(ui-sref-active='active')
+                    a(ui-sref='categoryAdmin') Categories

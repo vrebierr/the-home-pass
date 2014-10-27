@@ -12,11 +12,12 @@ div(ng-include='"components/navbar/navbar.html"')
     br
     .row
         .col-md-12
+            a(ui-sref='') En attente
             .panel.panel-default
                 .panel-heading Annonces
                 table.table
                     tr
-                        th 
+                        th
                     tr(ng-repeat='ad in ads | filter:search')
                         td {{ad.type}}
                             button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(ad)')
