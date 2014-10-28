@@ -1,4 +1,4 @@
-header.header
+header.header(ng-controller='NavbarCtrl')
     nav.navbar.navbar-static-top
         ul.nav.navbar-nav
             li(ui-sref-active='active')
@@ -13,7 +13,7 @@ header.header
                 li.dropdown.user.user-menu
                     a.dropdown-toggle(href='#', data-toggle='dropdown')
                         i.glyphicon.glyphicon-user
-                        span  {{ getCurrentUser().name }}
+                        span  {{ Auth.getCurrentUser().name }}
                             i.caret
                     ul.dropdown-menu
                         li.user-footer

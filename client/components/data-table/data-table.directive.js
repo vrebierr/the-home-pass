@@ -39,6 +39,11 @@
                     scope.$watch('model', function () {
                         scope.reload();
                     });
+
+                    var orderBy = $filter('orderBy');
+                    scope.order = function (predicate, reverse) {
+                        scope.current = orderBy(scope.current, predicate, reverse);
+                    };
               }
           };
     });

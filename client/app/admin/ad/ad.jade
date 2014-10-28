@@ -1,24 +1,41 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-    .row
-        .col-md-10
-            .input-group
-                input.form-control(type='text', ng-model='search')
-                span.input-group-addon
-                    span.glyphicon.glyphicon-search
-        .col-md-2
-            span.btn.btn-primary.pull-right(ng-click='create()') Ajouter
-    br
-    .row
-        .col-md-12
-            a(ui-sref='') En attente
-            .panel.panel-default
-                .panel-heading Annonces
-                table.table
-                    tr
-                        th
-                    tr(ng-repeat='ad in ads | filter:search')
-                        td {{ad.type}}
-                            button.btn.btn-sm.btn-danger.glyphicon.glyphicon-trash.pull-right(ng-click='confirm(ad)')
-                            button.btn.btn-sm.btn-primary.glyphicon.glyphicon-pencil.pull-right(ng-click='update(ad)')
+.wrapper.row-offcanvas.row-offcanvas-left
+    aside.left-side.sidebar-offcanvas
+        div(ng-include='"components/sidebar/sidebar.html"')
+    aside.right-side
+        section.content-header
+            h1 Catégories
+                button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='create()')
+                    i.fa.fa-plus
+                    span  Ajouter
+        section.content
+            .row
+                .col-xs-12
+                    ng-table(model='ads', cols='{enable: "Activée", name: "Nom"}')
+
+script(type='text/ng-template', id='modal.html')
+    .modal-primary
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Ajouter une nouvelle categorie
+        .modal-body
+            form.form
+                .input-form
+                    label Nom
+                    input.form-control(type='text', ng-model='category.name')
+        .modal-footer
+            button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
+            button.btn.btn-default(ng-click='$dismiss()') Annuler
+
+script(type='text/ng-template', id='confirm.html')
+    .modal-danger
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Confirmation
+        .modal-body
+            p Êtes vous certain de vouloir supprimer
+                strong  {{category.name}} ?
+        .modal-footer
+            button.btn.btn-danger(ng-click='$close()') Supprimer
+            button.btn.btn-default(ng-click='$dismiss()') Annuler
