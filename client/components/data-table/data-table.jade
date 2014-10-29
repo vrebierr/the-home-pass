@@ -9,7 +9,7 @@
                     option(value='25') 25
                     option(value='50') 50
                     option(value='100') 100
-                |  éléments par page {{predicate}} {{reverse}}
+                |  éléments par page
             .col-xs-6
                 .input-group
                     input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
@@ -19,10 +19,10 @@
         table.table.table-hover
             thead
                 tr
-                    th.col(ng-repeat='col in cols', ng-click='reverse=!reverse; order("name", reverse)') {{col}}
-                        i.fa.fa-sort-desc.pull-right(ng-if='!reverse && predicate')
-                        i.fa.fa-sort-asc.pull-right(ng-if='reverse')
-                        i.fa.fa-sort.pull-right(ng-if='!reverse && !predicate')
+                    th.col(ng-repeat='col in cols', ng-click='order("name")') {{col}}
+                        i.fa.fa-sort-desc.pull-right(ng-if='reverse && predicate === "name"')
+                        i.fa.fa-sort-asc.pull-right(ng-if='!reverse && predicate === "name"')
+                        i.fa.fa-sort.pull-right(ng-if='reverse != "name" && !predicate')
                     th.text-right Actions
             tbody
                 tr(ng-repeat='item in current | filter:search | orderBy:predicate:reverse')

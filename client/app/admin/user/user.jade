@@ -60,6 +60,12 @@ script(type='text/ng-template', id='modal.html')
                 .form-group
                     label Adresse email
                     input.form-control(type='email', ng-model='user.email')
+                label Mot de passe
+                .input-group
+                    input.form-control(type='text', ng-model='user.pass')
+                    span.input-group-btn
+                        button.btn.btn-default(type='button', ng-click='refresh()')
+                            i.fa.fa-refresh
                 .form-group
                     label Adresse
                     geo-search(model='user', event='geoSearch()')

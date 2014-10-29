@@ -41,8 +41,16 @@
                     });
 
                     var orderBy = $filter('orderBy');
-                    scope.order = function (predicate, reverse) {
-                        scope.current = orderBy(scope.current, predicate, reverse);
+                    scope.order = function (predicate) {
+                        if (scope.predicate === predicate) {
+                            scope.reverse = !scope.reverse;
+                            scope.current = orderBy(scope.current, predicate, scope.reverse);
+                        }
+                        else {
+                            scope.predicate = predicate;
+                            scope.reverse = false;
+                            scope.current = orderBy(scope.current, scope.predicate)
+                        }
                     };
               }
           };

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdminUserCtrl', function ($scope, users, $modal, Restangular) {
+    .controller('AdminUserCtrl', function ($scope, users, $modal, Restangular, uuid4) {
         $scope.users = users;
         $scope.user = {};
 
@@ -22,8 +22,13 @@ angular.module('theHomePassApp')
             $scope.$apply();
         };
 
+        $scope.refresh = function () {
+            $scope.user.pass = uuid4.generate().split('-')[1];
+        };
+
         $scope.create = function () {
             $scope.user = {};
+            $scope.refresh();
             $modal.open({
                 templateUrl: 'modal.html',
                 scope: $scope
