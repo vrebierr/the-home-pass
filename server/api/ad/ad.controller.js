@@ -25,7 +25,7 @@ exports.show = function(req, res) {
 
 // Creates a new ad in the DB.
 exports.create = function(req, res) {
-    if (req.body.type != 'percent' && req.body.type != 'euro')
+    if (req.body.type !== 'percent' && req.body.type !== 'euro')
         return res.send(500, 'Bad type.');
 
     Category.findById(req.body.category, function (err, category) {
