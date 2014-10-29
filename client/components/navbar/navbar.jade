@@ -8,6 +8,13 @@ header.header(ng-controller='NavbarCtrl')
             span.icon-bar
             span.icon-bar
             span.icon-bar
+        ul.nav.navbar-nav
+            li(ui-sref-active='active')
+                a(ui-sref='admin') Administration
+            li(ui-sref-active='active')
+                a(ui-sref='ad') Mes annonces
+            li(ui-sref-active='active')
+                a(ui-sref='pos') Mes points de vente
         .navbar-right
             ul.nav.navbar-nav
                 li.dropdown.user.user-menu

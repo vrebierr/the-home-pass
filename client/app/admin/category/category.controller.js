@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('CategoryCtrl', function ($scope, $rootScope, categories, $modal, Restangular) {
+    .controller('CategoryAdminCtrl', function ($scope, $rootScope, categories, $modal, Restangular) {
         $scope.categories = categories;
         $scope.category = {};
 
@@ -37,7 +37,6 @@ angular.module('theHomePassApp')
         };
 
         $scope.confirm = function (category) {
-            console.log(category);
             $scope.category = category;
             $modal.open({
                 templateUrl: 'confirm.html',

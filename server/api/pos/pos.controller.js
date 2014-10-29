@@ -37,7 +37,6 @@ exports.create = function(req, res) {
 
     Pos.create(pos, function(err, pos) {
         if(err) { return handleError(res, err); }
-        console.log(pos)
         return res.json(201, pos);
     });
 };

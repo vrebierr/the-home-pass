@@ -17,7 +17,7 @@ angular.module('theHomePassApp', [
     $urlRouterProvider
       .otherwise('/');
 
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false).hashPrefix('!');
     $httpProvider.interceptors.push('authInterceptor');
 
     // restangular - config
