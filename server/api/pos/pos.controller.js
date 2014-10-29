@@ -27,8 +27,8 @@ exports.create = function(req, res) {
 
     var pos = {
         author: req.user._id,
-        lat: req.body.lat,
-        lng: req.body.lng,
+        latitude: req.body.lat,
+        longitude: req.body.longitude,
         image: req.body.image,
         name: req.body.name,
         info: req.body.info,

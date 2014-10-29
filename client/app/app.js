@@ -10,10 +10,10 @@ angular.module('theHomePassApp', [
   'restangular',
   'angularFileUpload',
   'selectize-ng',
-  'leaflet-directive',
-  'uuid4'
+  'uuid4',
+  'uiGmapgoogle-maps'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -23,6 +23,10 @@ angular.module('theHomePassApp', [
     // restangular - config
     RestangularProvider.setBaseUrl('/api');
     RestangularProvider.setRestangularFields({id: '_id'});
+
+    uiGmapGoogleMapApiProvider.configure({
+
+    });
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

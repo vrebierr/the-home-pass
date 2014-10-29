@@ -8,8 +8,8 @@ var PosSchema = new Schema({
 	address: String,
 	info: String,
 	active: Boolean,
-	lat: Number,
-	lng: Number,
+	latitude: Number,
+	longitude: Number,
 	image: String,
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
 });

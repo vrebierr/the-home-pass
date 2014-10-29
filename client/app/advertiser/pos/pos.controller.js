@@ -5,6 +5,20 @@ angular.module('theHomePassApp')
 		$scope.pos = pos;
         $scope.selected = {};
 
+		$scope.map = {
+			center: {
+				latitude: 48.89670230000001,
+				longitude: 2.3183781999999997
+			},
+			zoom: 8
+		};
+
+		$scope.googleMap = {};
+
+		function getMapObject () {
+			$scope.googleMap.control.getGMap();
+		}
+
 		$scope.onFileSelect = function ($files) {
 			$scope.upload = $upload.upload({
 				url: 'api/uploads/',
@@ -110,5 +124,4 @@ angular.module('theHomePassApp')
             });
         };
 
-        google.maps.event.addDomListener(window, 'load', $scope.initialize());
 	});
