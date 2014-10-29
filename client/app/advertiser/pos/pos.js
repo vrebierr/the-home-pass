@@ -4,8 +4,8 @@ angular.module('theHomePassApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('pos', {
-        url: '/pos',
-        templateUrl: 'app/pos/pos.html',
+        url: '/advertiser/pos',
+        templateUrl: 'app/advertiser/pos/pos.html',
         controller: 'PosCtrl',
         resolve: {
         	pos: function (Restangular) {
