@@ -24,6 +24,7 @@ angular.module('theHomePassApp')
 				url: '/admin/categories',
 				templateUrl: 'app/admin/category/category.html',
 				controller: 'CategoryAdminCtrl',
+				authenticate: true,
 				resolve: {
 					categories : function (Restangular) {
 						return Restangular.all('categories').getList();
