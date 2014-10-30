@@ -22,12 +22,12 @@ exports.show = function(req, res) {
 
 // Creates a new pos in the DB.
 exports.create = function(req, res) {
-    if (!_.isNumber(req.body.lat) || !_.isNumber(req.body.lng))
+    if (!_.isNumber(req.body.latitude) || !_.isNumber(req.body.longitude))
         return res.send(500, 'Bad coordinates.');
 
     var pos = {
         author: req.user._id,
-        latitude: req.body.lat,
+        latitude: req.body.latitude,
         longitude: req.body.longitude,
         image: req.body.image,
         name: req.body.name,

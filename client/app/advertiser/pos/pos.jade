@@ -26,5 +26,5 @@ div(ng-include='"components/navbar/navbar.html"')
 			br
 			br
 			ui-gmap-google-map(center='map.center', zoom='map.zoom', control='googleMap', events='map.events')
-				ui-gmap-markers(models='pos', idKey='_id', coords='[lat, lng]')
-				ui-gmap-marker()
+				ui-gmap-markers(models='pos', idKey='_id', coords='"self"')
+				ui-gmap-marker(idKey='1', coords='selected')
