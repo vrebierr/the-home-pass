@@ -3,7 +3,7 @@
 angular.module('theHomePassApp')
 	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), 'IsReady'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi, IsReady) {
 		$scope.pos = pos;
-        $scope.selected = {};
+		$scope.selected = {};
 
 		GoogleMapApi.then(function (maps) {
 			var geocoder = new maps.Geocoder();
@@ -18,6 +18,10 @@ angular.module('theHomePassApp')
 						geocoder.geocode({latLng: args[0].latLng}, function (results, status) {
 							if (status == maps.GeocoderStatus.OK) {
 								if (results[0]) {
+									if ($scope.current) {
+										$scope.current.setIcon(null);
+									}
+
 									$scope.selected = {
 										latitude: results[0].geometry.location.k,
 										longitude: results[0].geometry.location.B,
@@ -28,6 +32,17 @@ angular.module('theHomePassApp')
 							}
 						});
 					}
+				}
+			};
+
+			$scope.events = {
+				click: function (marker, eventName, model, args) {
+					if ($scope.current) {
+						$scope.current.setIcon(null);
+					}
+					$scope.current = marker;
+					$scope.selected = model;
+					marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 				}
 			};
 		});
@@ -50,6 +65,7 @@ angular.module('theHomePassApp')
         $scope.confirmation = Modal.confirm.delete(function () {
             $scope.selected.remove().then(function () {
                 $scope.pos = _.without($scope.pos, $scope.selected);
+				$scope.selected = null;
             });
         });
 
@@ -62,7 +78,7 @@ angular.module('theHomePassApp')
                 else {
                     basePos.post($scope.selected).then(function (res) {
 						$scope.pos.push(res);
-						$scope.selected = {};
+						$scope.selected = null;
                     });
                 }
             }
