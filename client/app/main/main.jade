@@ -1,11 +1,18 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container-fluid.max-height
-    .row.max-height
-        .col-md-6.max-height
-            .max-height#map
+.container-fluid
+    .row
         .col-md-6
-            h3.page-header Annonces:
+            br
+            br
+            br
+            ui-gmap-google-map(center='map.center', zoom='map.zoom')
+                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
+        .col-md-6
+            br
+            br
+            br
+            h4.page-header Actuellement {{ads.length}} offres exclusives:
             .input-group.form-inline
                 input.form-control.input-sm(type='text', ng-model='search')
                 span.input-group-btn
@@ -17,5 +24,3 @@ div(ng-include='"components/navbar/navbar.html"')
                 h3 {{ad.name}}
                 em {{ad.address}}
                 p {{ad.info}}
-
-marker(ng-repeat='item in pos', map='map', type='google', pos='[item.lat, item.lng]', click='clickMarker(item)', item='item')

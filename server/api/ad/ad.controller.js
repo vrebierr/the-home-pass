@@ -27,12 +27,16 @@ exports.show = function(req, res) {
 exports.create = function(req, res) {
     if (req.body.type !== 'percent' && req.body.type !== 'euro')
         return res.send(500, 'Bad type.');
+    if (!_.isString(req.body.pos))
+        return res.send(500, 'Bad POS.');
 
     Category.findById(req.body.category, function (err, category) {
         if (err) {return res.send(500, err);}
         if (!category) {return res.sent(404);}
 
-        Pos.find(req.body.pos, function (err, pos) {
+        var tmp = req.body.pos.split(',');
+
+        Pos.find({_id: {$in: tmp}}, function (err, pos) {
             if (err) {return res.send(500, err);}
             if (!pos) {return res.send(404);}
             // if (pos.author != req.user._id) {return res.send(403);}
@@ -49,6 +53,7 @@ exports.create = function(req, res) {
 
             Ad.create(ad, function(err, ad) {
                 if(err) { return handleError(res, err); }
+                    console.log(ad);
                 return res.json(201, ad);
             });
         });
