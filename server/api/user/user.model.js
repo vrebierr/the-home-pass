@@ -18,7 +18,15 @@ var UserSchema = new Schema({
     lat: Number,
     lng: Number,
     phone: Number,
-    pass: String
+    pass: String,
+    form: {
+        latitude: Number,
+        longitude: Number
+    },
+    to: {
+        latitude: Number,
+        longitude: Number
+    }
 });
 
 /**

@@ -8,9 +8,10 @@ div(ng-include='"components/navbar/navbar.html"')
 				.form-group
 					label Nom
 					input.form-control(type='text', ng-model='selected.name', required='')
+
 				.form-group
 					label Adresse
-					input.form-control#search(type='text', ng-model='selected.address', required='')
+					#search
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
@@ -25,6 +26,10 @@ div(ng-include='"components/navbar/navbar.html"')
 			br
 			br
 			br
-			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='map.events')
-				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
+			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
+				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
+				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
 				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+
+script(type='text/ng-template', id='search-box.html')
+	input.form-control(type='text', required='', placeHolder='Entrez votre recherche')

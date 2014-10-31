@@ -1,20 +1,19 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('UserAdminCtrl', function ($scope, users, $modal, Restangular, uuid4) {
+    .controller('UserAdminCtrl', ['$scope', 'users', '$modal', 'Restangular', 'uuid4', 'GoogleMapApi'.ns(), function ($scope, users, $modal, Restangular, uuid4, GoogleMapApi) {
         $scope.users = users;
         $scope.user = {};
 
-        $scope.map = {
-            center: {
-                lat: 48.89670230000001,
-                lng: 2.3183781999999997,
-                zoom: 13
-            },
-            defaults: {
-                tileLayer: 'http://{s}.tiles.mapbox.com/v3/examples.map-i875mjb7/{z}/{x}/{y}.png'
-            }
-        }
+        GoogleMapApi.then(function (maps) {
+            $scope.map = {
+                center: {
+                    latitude: 48.89670230000001,
+                    longitude: 2.3183781999999997
+                },
+                zoom: 8,
+            };
+        });
 
         $scope.geoSearch = function () {
             $scope.map.center.lat = $scope.user.lat;
@@ -73,4 +72,4 @@ angular.module('theHomePassApp')
         };
 
 
-    });
+    }]);

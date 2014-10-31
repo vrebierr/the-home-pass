@@ -13,7 +13,10 @@ angular.module('theHomePassApp')
 					longitude: 2.3183781999999997
 				},
 				zoom: 8,
-				events: {
+			};
+
+			$scope.events = {
+				map: {
 					click: function (map, eventName, args) {
 						geocoder.geocode({latLng: args[0].latLng}, function (results, status) {
 							if (status == maps.GeocoderStatus.OK) {
@@ -32,19 +35,39 @@ angular.module('theHomePassApp')
 							}
 						});
 					}
-				}
-			};
-
-			$scope.events = {
-				click: function (marker, eventName, model, args) {
-					if ($scope.current) {
-						$scope.current.setIcon(null);
+				},
+				markers: {
+					click: function (marker, eventName, model, args) {
+						if ($scope.current) {
+							$scope.current.setIcon(null);
+						}
+						$scope.current = marker;
+						$scope.selected = model;
+						marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
 					}
-					$scope.current = marker;
-					$scope.selected = model;
-					marker.setIcon('http://maps.google.com/mapfiles/ms/icons/green-dot.png');
+				},
+				search: {
+					places_changed: function (search, eventName, c, d) {
+						var place = search.getPlaces()[0];
+
+						if (place === undefined)
+							return;
+
+						if ($scope.current) {
+							$scope.current.setIcon(null);
+						}
+
+						$scope.selected.address = place.formatted_address;
+						$scope.selected.latitude = place.geometry.location.k;
+						$scope.selected.longitude = place.geometry.location.B;
+
+						$scope.map.center = {
+							latitude: place.geometry.location.k,
+							longitude: place.geometry.location.B
+						};
+					}
 				}
-			};
+			}
 		});
 
 		$scope.onFileSelect = function ($files) {

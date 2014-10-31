@@ -68,9 +68,10 @@ script(type='text/ng-template', id='modal.html')
                             i.fa.fa-refresh
                 .form-group
                     label Adresse
-                    geo-search(model='user', event='geoSearch()')
+                    input.form-control(type='text', ng-model='user.address')
                     br
-                    leaflet(defaults='map.defaults', center='map.center', height='200px', width='555px')
+                    ui-gmap-google-map(center='map.center', zoom='map.zoom')
+                        ui-gmap-marker(idKey='1', coords='user.from')
 
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}

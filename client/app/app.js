@@ -25,7 +25,7 @@ angular.module('theHomePassApp', [
     RestangularProvider.setRestangularFields({id: '_id'});
 
     uiGmapGoogleMapApiProvider.configure({
-
+        libraries: 'places'
     });
   })
 
