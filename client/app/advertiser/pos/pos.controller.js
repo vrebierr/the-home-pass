@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), 'IsReady'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi, IsReady) {
+	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi, IsReady) {
 		$scope.pos = pos;
 		$scope.selected = {};
 

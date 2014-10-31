@@ -43,4 +43,4 @@ div(ng-include='"components/navbar/navbar.html"')
 			br
 			br
 			ui-gmap-google-map(center='map.center', zoom='map.zoom')
-				ui-gmap-marker(ng-repeat='item in pos', idKey='item._id', coords='item')
+				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
