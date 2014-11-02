@@ -12,7 +12,30 @@ div(ng-include='"components/navbar/navbar.html"')
         section.content
             .row
                 .col-xs-12
-                    ng-table(model='categories', cols='{name: "Nom"}')
+                    .box
+                        .box-header
+                            h3.box-title Liste des catégorie
+                        .box-body.table-responsible
+                            table.table.table-hover(ng-table='')
+                                thead
+                                    tr
+                                        th Nom
+                                        th Actions
+                                tbody
+                                    tr(ng-repeat='category in categories')
+                                        td {{category.name}}
+                                        td
+                                            button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='delete(category)')
+                                                i.fa.fa-trash
+                                            button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(category)')
+                                                i.fa.fa-pencil
+                        .box-footer.clearfix
+                            .row
+                                .col-xs-6
+                                    span.tab-info Affichage {{currentStart + 1}} à {{currentEnd}} sur {{items.length}} éléments
+                                .col-xs-6
+                                    pagination.pagination.pagination-sm.pull-right.no-margin(total-items='model.length', ng-model='currentPage', items-per-page='numItems', max-size='5', ng-change='reload()')
+
 
 
 script(type='text/ng-template', id='modal.html')
