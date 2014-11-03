@@ -44,7 +44,7 @@ script(type='text/ng-template', id='modal.html')
                 .form-group
                     label Emménage à l'adresse
                     #to
-                ui-gmap-google-map(center='map.center', zoom='map.zoom')
+                ui-gmap-google-map(center='map.center', zoom='map.zoom', pan='true')
                     ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
                     ui-gmap-search-box(template='"search-box-to.html"', parentdiv='"to"', events='events.to')
                     ui-gmap-marker(idKey='"from"', coords='user.from')

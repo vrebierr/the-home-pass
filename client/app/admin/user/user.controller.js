@@ -5,13 +5,32 @@ angular.module('theHomePassApp')
         $scope.users = users;
         $scope.user = {};
 
+        $scope.$watch('user.from.address', function () {
+            if ($scope.user.from) {
+                angular.element('#from_input').val($scope.user.from.address);
+            }
+            else {
+                angular.element('#from_input').val(null);
+            }
+        });
+
+        $scope.$watch('user.to.address', function () {
+            if ($scope.user.to) {
+                angular.element('#to_input').val($scope.user.to.address);
+            }
+            else {
+                angular.element('#to_input').val(null);
+            }
+        });
+
+
         GoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
                     latitude: 48.89670230000001,
                     longitude: 2.3183781999999997
                 },
-                zoom: 8,
+                zoom: 15
             };
 
             $scope.events = {
@@ -63,13 +82,9 @@ angular.module('theHomePassApp')
         $scope.create = function () {
             $scope.user = {};
             $scope.refresh();
-
-            $scope.map = {
-                center: {
-                    latitude: 48.89670230000001,
-                    longitude: 2.3183781999999997
-                },
-                zoom: 10,
+            $scope.map.center = {
+                latitude: 48.89670230000001,
+                longitude: 2.3183781999999997
             };
 
             $modal.open({
@@ -78,6 +93,7 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 $scope.user.password = $scope.user.pass;
                 users.post($scope.user).then(function (res) {
+                    console.log(res)
                     $scope.users.push(res);
                 });
             });
@@ -85,13 +101,13 @@ angular.module('theHomePassApp')
 
         $scope.update = function (user) {
             $scope.user = Restangular.copy(user);
-            if ($scope.map.from) {
+            if ($scope.user.from) {
                 $scope.map.center = {
                     latitude: $scope.user.from.latitude,
                     longitude: $scope.user.from.longitude
                 };
             }
-            else if ($scope.map.to) {
+            else if ($scope.user.to) {
                 $scope.map.center = {
                     latitude: $scope.user.to.latitude,
                     longitude: $scope.user.to.longitude
@@ -103,9 +119,6 @@ angular.module('theHomePassApp')
                     longitude: 2.3183781999999997
                 };
             }
-
-
-            console.log($scope.user)
 
             $modal.open({
                 templateUrl: 'modal.html',
