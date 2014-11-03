@@ -6,13 +6,10 @@ div(ng-include='"components/navbar/navbar.html"')
     aside.right-side
         section.content-header
             h1 Catégories
-                button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='create()')
-                    i.fa.fa-plus
-                    span  Ajouter
         section.content
             .row
                 .col-xs-12
-                    ng-table(model='categories', type='ad')
+                    ng-table(model='ads', type='ad')
 
 script(type='text/ng-template', id='modal.html')
     .modal-primary

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdCtrl', function ($scope, ads, $rootScope) {
+    .controller('AdCtrl', function ($scope, ads, $rootScope, $modal) {
         $scope.ads = ads;
         $scope.ad = {};
 

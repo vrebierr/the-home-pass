@@ -38,7 +38,7 @@
                         scope.items = filter(scope.model, scope.search);
                     });
 
-                    scope.$watch(function () {
+                    scope.$watch('model', function () {
                         scope.reload();
                     });
 

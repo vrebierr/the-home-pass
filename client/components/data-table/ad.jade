@@ -4,11 +4,13 @@
     .box-body.table-responsible
         .row
             .col-xs-6
-                a(href='', ng-click='status = "pending";') En attente
+                a(href='', ng-click='status = "pending"') En attente
                 |  -
-                a(href='', ng-click='status = "enabled";')  Activées
+                a(href='', ng-click='status = "enabled"')  Activées
                 |  -
-                a(href='', ng-click='status = "archived";')  Archives
+                a(href='', ng-click='status = "archived"')  Archives
+                |  -
+                a(href='', ng-click='status = ""')  Toutes
         .row
             .col-xs-6
                 select(ng-model='numItems', ng-change='reload()')
@@ -34,7 +36,8 @@
             tbody
                 tr(ng-repeat='item in current | filter:search | orderBy:predicate:reverse | filter:status:status')
                     td {{item.author}}
-                    td
+                    td {{item.category}}
+                    td {{item.end}}
                         button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='delete(item)')
                             i.fa.fa-trash
                         button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(item)')

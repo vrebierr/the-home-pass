@@ -24,7 +24,7 @@ script(type='text/ng-template', id='modal.html')
             form(name='form')
                 .form-group
                     label Nom
-                    input.form-control(type='text', ng-model='user.name')
+                    input.form-control(type='text', ng-model='user.name', required='')
                 .form-group
                     label Numéro
                     input.form-control(type='text', ng-model='user.phone')
@@ -34,7 +34,7 @@ script(type='text/ng-template', id='modal.html')
                 .form-group
                     label Mot de passe
                     .input-group
-                        input.form-control(type='text', ng-model='user.pass')
+                        input.form-control(type='text', ng-model='user.pass', required='')
                         span.input-group-btn
                             button.btn.btn-default(type='button', ng-click='refresh()')
                                 i.fa.fa-refresh
