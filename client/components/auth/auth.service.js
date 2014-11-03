@@ -1,13 +1,21 @@
 'use strict';
 
 angular.module('theHomePassApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Restangular) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
     }
 
     return {
+        pass: function (pass, callback) {
+            var cb = callback || angular.noop;
+            Restangular.one('user').one('pass', pass).get().then(function (user) {
+                $cookieStore.put('token', user.token);
+                currentUser = user;
+                return cb();
+            });
+        },
 
       /**
        * Authenticate user and save token
