@@ -9,6 +9,7 @@ var User = require('../api/user/user.model');
 var Pos = require('../api/pos/pos.model');
 var Ad = require('../api/ad/ad.model');
 
+/**
 User.find({}).remove(function() {
   User.create({
     provider: 'local',
@@ -29,3 +30,4 @@ User.find({}).remove(function() {
 
 // Pos.find({}).remove(function() {});
 // Ad.find({}).remove(function() {});
+*/

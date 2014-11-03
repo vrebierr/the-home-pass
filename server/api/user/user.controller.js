@@ -24,14 +24,11 @@ exports.index = function(req, res) {
  * Creates a new user
  */
 exports.create = function (req, res, next) {
-  var newUser = new User(req.body);
-  newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token });
-  });
+    user.save(function(err, user) {
+        if (err) return validationError(res, err);
+        var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+        res.json({ token: token });
+    });
 };
 
 /**
@@ -53,12 +50,12 @@ exports.createAdmin = function (req, res) {
         name: req.body.name,
         email: req.body.email,
         phone: req.body.phone,
-        address: req.body.address,
-        lat: req.body.lat,
-        lng: req.body.lng,
+        from: req.body.from,
+        to: req.body.to,
         role: 'user',
         provider: 'local',
-        password: req.body.password
+        password: req.body.pass,
+        pass: req.body.pass
     };
 
     User.create(user, function (err, user) {
@@ -82,7 +79,9 @@ exports.updateAdmin = function (req, res) {
         user.name = req.body.name;
         user.phone = req.body.phone;
         user.email = req.body.email;
-        user.address = req.body.address;
+        user.from = req.body.from;
+        user.to = req.body.to;
+        user.pass = req.body.pass;
 
         user.save(function (err, user) {
             if (err) {return res.send(500, err);}

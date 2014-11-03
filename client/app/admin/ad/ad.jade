@@ -20,7 +20,7 @@ script(type='text/ng-template', id='modal.html')
             form.form
                 .input-form
                     label Auteur
-                    input.form-control(type='text', ng-model='ad.author')
+                    p {{ad.author}}
                 .input-form
                     label Catégorie
                     input.form-control(type='text', ng-model='ad.category')
@@ -30,6 +30,9 @@ script(type='text/ng-template', id='modal.html')
                 .input-form
                     label Date de fin
                     input.form-control(type='text', ng-model='ad.end')
+                .input-form
+                    label Status
+                    select(ng-options='{en atte: "pending"}')
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
             button.btn.btn-default(ng-click='$dismiss()') Annuler
@@ -40,8 +43,7 @@ script(type='text/ng-template', id='confirm.html')
             button.close(type='button', ng-click='$dismiss()') &times;
             h4.modal-title Confirmation
         .modal-body
-            p Êtes vous certain de vouloir supprimer
-                strong  {{category.name}} ?
+            p Êtes vous certain de vouloir supprimer cette annonce ?
         .modal-footer
             button.btn.btn-danger(ng-click='$close()') Supprimer
             button.btn.btn-default(ng-click='$dismiss()') Annuler
