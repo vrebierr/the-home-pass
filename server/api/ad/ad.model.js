@@ -12,7 +12,8 @@ var AdSchema = new Schema({
 	info: String,
 	category: { type: Schema.Types.ObjectId, ref: 'Category' },
 	area: Number,
-	range: Date,
+	end: Date,
+	status: String
 });
 
 module.exports = mongoose.model('Ad', AdSchema);

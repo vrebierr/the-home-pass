@@ -12,7 +12,7 @@ div(ng-include='"components/navbar/navbar.html"')
 				.form-group
 					label Distance
 					.input-group
-						input.form-control(type='number', ng-model='ad.area')
+						input.form-control(type='number', ng-model='ad.area', required='')
 						span.input-group-addon km
 
 				.form-group
@@ -38,11 +38,11 @@ div(ng-include='"components/navbar/navbar.html"')
 						span.input-group-addon €
 
 				.form-group
-					label Durée
+					label Date de fin
 					.input-group
 						span.input-group-addon
 							i.fa.fa-calendar
-						input.form-control#daterange(type='text', ng-model='ad.range', required='')
+						input.form-control(type='date', ng-model='ad.end', required='')
 
 				.form-group
 					label Annonce

@@ -108,12 +108,15 @@ angular.module('theHomePassApp')
 
         var baseAds = Restangular.all('ads');
         $scope.send = function (form) {
+            console.log(form.$error)
             if (form.$valid) {
                 if ($scope.ad._id) {
                     $scope.ad.put();
                 }
                 else {
+                    console.log($scope.ad)
                     baseAds.post($scope.ad).then(function (ad) {
+                        console.log(ad)
                         $scope.ads.push(ad);
                         $scope.ad = {
                             type: 'euro'
@@ -136,11 +139,4 @@ angular.module('theHomePassApp')
                 }
             }
         };
-
-        $('#daterange').daterangepicker({
-
-        },
-        function(start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-        });
     }]);

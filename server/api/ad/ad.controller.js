@@ -50,7 +50,8 @@ exports.create = function(req, res) {
                 value: req.body.value,
                 category: category._id,
                 area: req.body.area,
-                range: req.body.range
+                end: req.body.end,
+                status: 'pending'
             };
 
             Ad.create(ad, function(err, ad) {

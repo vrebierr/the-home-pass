@@ -11,8 +11,7 @@ angular.module('theHomePassApp', [
   'angularFileUpload',
   'selectize-ng',
   'uuid4',
-  'uiGmapgoogle-maps',
-  'datatables'
+  'uiGmapgoogle-maps'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
     $urlRouterProvider
