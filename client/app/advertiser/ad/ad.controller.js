@@ -9,6 +9,23 @@ angular.module('theHomePassApp')
         $scope.pos = pos;
         $scope.categories = categories;
 
+        $scope.$watch('ad.pos', function () {
+            if (!$scope.ad.pos) {
+                $scope.circles = [];
+            }
+            else {
+                $scope.circles = [];
+
+                $scope.ad.pos.split(',').map(function (item) {
+                    _.forEach($scope.pos, function (pos) {
+                        if (pos._id === item) {
+                            $scope.circles.push(pos);
+                        }
+                    });
+                });
+            }
+        });
+
         $scope.posSelected = function () {
             if (!$scope.ad.pos) {
                 $scope.ad.pos = '';
@@ -38,6 +55,18 @@ angular.module('theHomePassApp')
                     longitude: 2.3183781999999997
                 },
                 zoom: 8,
+            };
+
+            $scope.circle = {
+                stroke: {
+                    color: '#ff',
+                    weight: 2,
+                    opacity: 0.5
+                },
+                fill: {
+                    color: '#ff',
+                    opacity: 0.25
+                }
             };
 
             $scope.events = {

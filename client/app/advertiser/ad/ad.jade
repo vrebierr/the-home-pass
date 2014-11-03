@@ -6,9 +6,15 @@ div(ng-include='"components/navbar/navbar.html"')
 			h3 Ajouter une annonce
 			form(enctype='multipart/form-data', name='form')
 				.form-group
-					label Point de vente
+					label Points de vente
 					input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
 					// .alert.alert-danger(ng-show='form.pos.$error.required') Vous devez choisir au moins 1 point de vente.
+				.form-group
+					label Distance
+					.input-group
+						input.form-control(type='number', ng-model='ad.area')
+						span.input-group-addon km
+
 				.form-group
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
@@ -36,7 +42,7 @@ div(ng-include='"components/navbar/navbar.html"')
 					.input-group
 						span.input-group-addon
 							i.fa.fa-calendar
-						input.form-control#daterange(type='text', ng-model='ad.period', required)
+						input.form-control#daterange(type='text', ng-model='ad.range', required='')
 
 				.form-group
 					label Annonce
@@ -51,3 +57,4 @@ div(ng-include='"components/navbar/navbar.html"')
 			br
 			ui-gmap-google-map(center='map.center', zoom='map.zoom')
 				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
+				ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.area * 1000', stroke='circle.stroke', fill='circle.fill')
