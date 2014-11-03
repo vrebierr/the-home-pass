@@ -1,0 +1,38 @@
+.box
+    .box-header
+        h3.box-title Liste des catégorie
+    .box-body.table-responsible
+        .row
+            .col-xs-6
+                select(ng-model='numItems', ng-change='reload()')
+                    option(value='10') 10
+                    option(value='25') 25
+                    option(value='50') 50
+                    option(value='100') 100
+                |  éléments par page
+            .col-xs-2
+            .col-xs-4
+                .input-group
+                    input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
+                    .input-group-btn
+                        button.btn.btn-sm.btn-default
+                            i.fa.fa-search
+        table.table.table-hover
+            thead
+                tr
+                    th Nom
+                    th.text-right Actions
+            tbody
+                tr(ng-repeat='item in current | filter:search | orderBy:predicate:reverse')
+                    td {{item.name}}
+                    td
+                        button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='delete(item)')
+                            i.fa.fa-trash
+                        button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(item)')
+                            i.fa.fa-pencil
+    .box-footer.clearfix
+        .row
+            .col-xs-6
+                span.tab-info Affichage {{currentStart + 1}} à {{currentEnd}} sur {{items.length}} éléments
+            .col-xs-6
+                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='model.length', ng-model='currentPage', items-per-page='numItems', max-size='5', ng-change='reload()')

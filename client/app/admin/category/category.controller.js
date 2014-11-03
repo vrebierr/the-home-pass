@@ -55,4 +55,5 @@ angular.module('theHomePassApp')
         $rootScope.$on('delete', function (event, data) {
             $scope.confirm(data);
         });
+
     });

@@ -12,36 +12,7 @@ div(ng-include='"components/navbar/navbar.html"')
         section.content
             .row
                 .col-xs-12
-                    .box
-                        .box-header
-                            h3.box-title Liste des utilisateurs
-                            .box-tools
-                                .col-xs-5
-                                    .input-group
-                                        input.form-control.input-sm.pull-right(type='text', ng-model='search', placeHolder='Recherche')
-                                        .input-group-btn
-                                            button.btn.btn-sm.btn-default
-                                                i.fa.fa-search
-                                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='users', ng-model='page', max-size='5')
-                        .box-body.table-responsible.no-padding
-                            table.table.table-hover
-                                tbody
-                                    tr
-                                        th Nom
-                                        th Email
-                                        th Téléphone
-                                        th Actions
-                                    tr(ng-repeat='user in users | filter:search')
-                                        td {{user.name}}
-                                        td {{user.email}}
-                                        td {{user.phone}}
-                                        td
-                                            button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='confirm(user)')
-                                                i.fa.fa-trash
-                                            button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(user)')
-                                                i.fa.fa-pencil
-                        .box-footer.clearfix
-                            pagination.pagination.pagination-sm.pull-right.no-margin(total-items='users', ng-model='page', max-size='5')
+                    ng-table(model='users', type='user')
 
 
 script(type='text/ng-template', id='modal.html')

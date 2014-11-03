@@ -3,7 +3,10 @@
     angular.module('theHomePassApp')
         .directive('ngTable', function ($filter, $rootScope) {
             return {
-                templateUrl: 'components/data-table/data-table.html',
+                templateUrl: function (elem, attr) {
+                    console.log(attr.type)
+                    return 'components/data-table/'+attr.type+'.html';
+                },
                 restrict: 'EA',
                 scope: {
                     model: '=',
@@ -37,6 +40,7 @@
                     });
 
                     scope.$watch('model', function () {
+                        console.log('debug');
                         scope.reload();
                     });
 
