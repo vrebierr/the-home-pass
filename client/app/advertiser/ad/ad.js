@@ -7,6 +7,7 @@ angular.module('theHomePassApp')
 				url: '/advertiser/ad',
 				templateUrl: 'app/advertiser/ad/ad.html',
 				controller: 'AdvertiserCtrl',
+				authenticate: true,
 				resolve: {
 					ads: function (Restangular) {
 						return Restangular.all('ads').getList();

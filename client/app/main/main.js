@@ -7,6 +7,7 @@ angular.module('theHomePassApp')
                 url: '/',
                 templateUrl: 'app/main/main.html',
                 controller: 'MainCtrl',
+                authenticate: true,
                 resolve: {
                     pos: function (Restangular) {
                         return Restangular.all('pos').getList();

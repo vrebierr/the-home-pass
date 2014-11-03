@@ -7,10 +7,8 @@ div(ng-include='"components/navbar/navbar.html"')
             .form-group(ng-class='{"has-error": form.$submitted && form.email.$error}')
                 label.control-label(ng-if='form.$submitted && form.email.$error', for='email')
                     i.fa.fa-times-circle-o
-                    |  Identifiants incorrects
-                input.form-control#email(type='text', name='email', ng-model='user.email', placeHolder='Email')
-            .form-group
-                input.form-control#pass(type='password', name='password', ng-model='user.password', placeHolder='Mot de passe')
+                    |  Pass incorrect
+                input.form-control#pass(type='password', name='password', ng-model='user.password', placeHolder='Entrez votre numéro de Pass')
         .footer
             button.btn.bg-olive.btn-block(type='submit') Connexion
             a(ui-sref='signup()') Inscription
