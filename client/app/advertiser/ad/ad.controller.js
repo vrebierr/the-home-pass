@@ -9,44 +9,38 @@ angular.module('theHomePassApp')
         $scope.pos = pos;
         $scope.categories = categories;
 
-        $scope.$watch('ad.pos', function () {
-            if (!$scope.ad.pos) {
-                $scope.circles = [];
-            }
-            else {
-                $scope.circles = [];
-
-                $scope.ad.pos.split(',').map(function (item) {
-                    _.forEach($scope.pos, function (pos) {
-                        if (pos._id === item) {
-                            $scope.circles.push(pos);
-                        }
-                    });
-                });
-            }
-        });
-
-        $scope.posSelected = function () {
+        $scope.$watch('ad.pos', function (oldValue, newValue) {
             if (!$scope.ad.pos) {
                 $scope.ad.pos = '';
+                $scope.circles = [];
 
                 _.forEach($scope.pos, function (item) {
                     item.icon = null;
                 });
             }
             else {
+                $scope.circles = [];
                 var tmp = $scope.ad.pos.split(',');
 
                 _.forEach($scope.pos, function (item) {
                     if (_.contains(tmp, item._id)) {
                         item.icon = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png';
+                        $scope.circles.push(item);
                     }
                     else {
                         item.icon = null;
                     }
                 });
+
+                var diff = _.difference(oldValue.split(','), newValue.split(','));
+                var pos = _.findWhere($scope.pos, {_id: diff[0]});
+
+                if (pos) {
+                    $scope.map.center.latitude = pos.latitude;
+                    $scope.map.center.longitude = pos.longitude;
+                }
             }
-        };
+        });
 
         GoogleMapApi.then(function (maps) {
             $scope.map = {
@@ -108,15 +102,12 @@ angular.module('theHomePassApp')
 
         var baseAds = Restangular.all('ads');
         $scope.send = function (form) {
-            console.log(form.$error)
             if (form.$valid) {
                 if ($scope.ad._id) {
                     $scope.ad.put();
                 }
                 else {
-                    console.log($scope.ad)
                     baseAds.post($scope.ad).then(function (ad) {
-                        console.log(ad)
                         $scope.ads.push(ad);
                         $scope.ad = {
                             type: 'euro'
