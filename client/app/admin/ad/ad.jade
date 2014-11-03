@@ -12,7 +12,7 @@ div(ng-include='"components/navbar/navbar.html"')
         section.content
             .row
                 .col-xs-12
-                    ng-table(model='ads', cols='{enable: "Activée", name: "Nom"}')
+                    ng-table(model='categories', type='ad')
 
 script(type='text/ng-template', id='modal.html')
     .modal-primary

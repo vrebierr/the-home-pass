@@ -24,12 +24,19 @@ div(ng-include='"components/navbar/navbar.html"')
 					label.radio-inline
 						input(type='radio', ng-model='ad.type', value='euro')
 						| Euro
-				.input-group(ng-if='ad.type == "percent"')
-					input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
-					span.input-group-addon %
-				.input-group(ng-if='ad.type == "euro"')
-					input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
-					span.input-group-addon €
+					.input-group(ng-if='ad.type == "percent"')
+						input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
+						span.input-group-addon %
+					.input-group(ng-if='ad.type == "euro"')
+						input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
+						span.input-group-addon €
+
+				.form-group
+					label Durée
+					.input-group
+						span.input-group-addon
+							i.fa.fa-calendar
+						input.form-control#daterange(type='text', ng-model='ad.period', required)
 
 				.form-group
 					label Annonce
