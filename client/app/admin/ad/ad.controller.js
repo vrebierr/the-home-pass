@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdCtrl', function ($scope, ads, $rootScope, $modal) {
+    .controller('AdCtrl', function ($scope, ads, $rootScope, $modal, Restangular) {
         $scope.ads = ads;
         $scope.ad = {};
 
@@ -17,7 +17,7 @@ angular.module('theHomePassApp')
             });
         };
 
-        $scope.update = function (category) {
+        $scope.update = function (ad) {
             $scope.ad = Restangular.copy(ad);
             $modal.open({
                 templateUrl: 'modal.html',

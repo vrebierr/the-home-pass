@@ -5,7 +5,7 @@ div(ng-include='"components/navbar/navbar.html"')
         div(ng-include='"components/sidebar/sidebar.html"')
     aside.right-side
         section.content-header
-            h1 Catégories
+            h1 Annonces
         section.content
             .row
                 .col-xs-12
@@ -15,12 +15,21 @@ script(type='text/ng-template', id='modal.html')
     .modal-primary
         .modal-header
             button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Ajouter une nouvelle categorie
+            h4.modal-title {{ ad._id && 'Modifier une annonce' || 'Ajouter une nouvelle annonce'}}
         .modal-body
             form.form
                 .input-form
-                    label Nom
-                    input.form-control(type='text', ng-model='category.name')
+                    label Auteur
+                    input.form-control(type='text', ng-model='ad.author')
+                .input-form
+                    label Catégorie
+                    input.form-control(type='text', ng-model='ad.category')
+                .input-form
+                    label Montant
+                    input.form-control(type='text', ng-model='ad.value')
+                .input-form
+                    label Date de fin
+                    input.form-control(type='text', ng-model='ad.end')
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
             button.btn.btn-default(ng-click='$dismiss()') Annuler

@@ -15,8 +15,13 @@ angular.module('theHomePassApp')
 				zoom: 8,
 			};
 
-			$scope.$watch('selected', function () {
-				angular.element('#address').val($scope.selected.address);
+			$scope.$watch('selected.address', function () {
+				if ($scope.selected) {
+					angular.element('#address').val($scope.selected.address);
+				}
+				else {
+					angular.element('#address').val(null);
+				}
 			});
 
 			$scope.events = {

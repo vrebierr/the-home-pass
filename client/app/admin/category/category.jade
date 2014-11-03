@@ -18,7 +18,7 @@ script(type='text/ng-template', id='modal.html')
     .modal-primary
         .modal-header
             button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Ajouter une nouvelle categorie
+            h4.modal-title {{ category._id && 'Modifier une catégorie' || 'Ajouter une nouvelle catégorie'}}
         .modal-body
             form.form
                 .input-form

@@ -112,7 +112,6 @@ angular.module('theHomePassApp')
                         $scope.ad = {
                             type: 'euro'
                         };
-                        $scope.posSelected();
                     });
                 }
             };
