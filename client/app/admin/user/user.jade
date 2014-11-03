@@ -31,18 +31,24 @@ script(type='text/ng-template', id='modal.html')
                 .form-group
                     label Adresse email
                     input.form-control(type='email', ng-model='user.email')
-                label Mot de passe
-                .input-group
-                    input.form-control(type='text', ng-model='user.pass')
-                    span.input-group-btn
-                        button.btn.btn-default(type='button', ng-click='refresh()')
-                            i.fa.fa-refresh
                 .form-group
-                    label Adresse
-                    input.form-control(type='text', ng-model='user.address')
-                    br
-                    ui-gmap-google-map(center='map.center', zoom='map.zoom')
-                        ui-gmap-marker(idKey='1', coords='user.from')
+                    label Mot de passe
+                    .input-group
+                        input.form-control(type='text', ng-model='user.pass')
+                        span.input-group-btn
+                            button.btn.btn-default(type='button', ng-click='refresh()')
+                                i.fa.fa-refresh
+                .form-group
+                    label Déménage de l'adresse
+                    #from
+                .form-group
+                    label Emménage à l'adresse
+                    #to
+                ui-gmap-google-map(center='map.center', zoom='map.zoom')
+                    ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
+                    ui-gmap-search-box(template='"search-box-to.html"', parentdiv='"to"', events='events.to')
+                    ui-gmap-marker(idKey='"from"', coords='user.from')
+                    ui-gmap-marker(idKey='"to"', coords='user.to')
 
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
@@ -59,3 +65,9 @@ script(type='text/ng-template', id='confirm.html')
         .modal-footer
             button.btn.btn-danger(ng-click='$close()') Supprimer
             button.btn.btn-default(ng-click='$dismiss()') Annuler
+
+script(type='text/ng-template', id='search-box-from.html')
+    input.form-control#from_input(type='text', required='', placeHolder='Entrez votre recherche')
+
+script(type='text/ng-template', id='search-box-to.html')
+    input.form-control#to_input(type='text', required='', placeHolder='Entrez votre recherche')

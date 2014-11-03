@@ -4,7 +4,6 @@
         .directive('ngTable', function ($filter, $rootScope) {
             return {
                 templateUrl: function (elem, attr) {
-                    console.log(attr.type)
                     return 'components/data-table/'+attr.type+'.html';
                 },
                 restrict: 'EA',
@@ -39,8 +38,7 @@
                         scope.items = filter(scope.model, scope.search);
                     });
 
-                    scope.$watch('model', function () {
-                        console.log('debug');
+                    scope.$watch(function () {
                         scope.reload();
                     });
 

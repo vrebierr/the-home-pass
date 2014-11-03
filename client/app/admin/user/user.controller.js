@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('UserAdminCtrl', ['$scope', 'users', '$modal', 'Restangular', 'uuid4', 'GoogleMapApi'.ns(), function ($scope, users, $modal, Restangular, uuid4, GoogleMapApi) {
+    .controller('UserAdminCtrl', ['$scope', 'users', '$modal', 'Restangular', 'uuid4', '$rootScope', 'GoogleMapApi'.ns(), function ($scope, users, $modal, Restangular, uuid4, $rootScope, GoogleMapApi) {
         $scope.users = users;
         $scope.user = {};
 
@@ -12,6 +12,47 @@ angular.module('theHomePassApp')
                     longitude: 2.3183781999999997
                 },
                 zoom: 8,
+            };
+
+            $scope.events = {
+                from: {
+                    places_changed: function (search, eventName) {
+                        var place = search.getPlaces()[0];
+
+                        if (place === undefined)
+                            return;
+
+                        $scope.user.from = {
+                            address: place.formatted_address,
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+
+                        $scope.map.center = {
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+                    }
+                },
+                to: {
+                    places_changed: function (search, eventName) {
+                        var place = search.getPlaces()[0];
+
+                        if (place === undefined)
+                            return;
+
+                        $scope.user.to = {
+                            address: place.formatted_address,
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+
+                        $scope.map.center = {
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+                    }
+                }
             };
         });
 
@@ -32,6 +73,7 @@ angular.module('theHomePassApp')
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
+                $scope.user.password = $scope.user.pass;
                 users.post($scope.user).then(function (res) {
                     $scope.users.push(res);
                 });
@@ -71,5 +113,11 @@ angular.module('theHomePassApp')
             })
         };
 
+        $rootScope.$on('update', function (event, data) {
+            $scope.update(data);
+        });
 
+        $rootScope.$on('delete', function (event, data) {
+            $scope.confirm(data);
+        });
     }]);
