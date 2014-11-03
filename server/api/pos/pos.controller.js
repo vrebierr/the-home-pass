@@ -27,12 +27,12 @@ exports.create = function(req, res) {
 
     var pos = {
         author: req.user._id,
+        address: req.body.address,
         latitude: req.body.latitude,
         longitude: req.body.longitude,
         image: req.body.image,
         name: req.body.name,
-        info: req.body.info,
-        address: req.body.address
+        info: req.body.info
     };
 
     Pos.create(pos, function(err, pos) {

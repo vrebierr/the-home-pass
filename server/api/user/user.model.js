@@ -14,16 +14,15 @@ var UserSchema = new Schema({
     hashedPassword: String,
     provider: String,
     salt: String,
-    address: String,
-    lat: Number,
-    lng: Number,
     phone: Number,
     pass: String,
     form: {
+        address: String,
         latitude: Number,
         longitude: Number
     },
     to: {
+        address: String,
         latitude: Number,
         longitude: Number
     }

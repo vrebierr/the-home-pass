@@ -49,6 +49,8 @@ exports.create = function(req, res) {
                 type: req.body.type,
                 value: req.body.value,
                 category: category._id,
+                area: req.body.area,
+                range: req.body.range
             };
 
             Ad.create(ad, function(err, ad) {
