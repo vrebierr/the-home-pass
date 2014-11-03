@@ -16,7 +16,7 @@ var UserSchema = new Schema({
     salt: String,
     phone: Number,
     pass: String,
-    form: {
+    from: {
         address: String,
         latitude: Number,
         longitude: Number

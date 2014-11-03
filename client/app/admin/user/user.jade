@@ -44,7 +44,7 @@ script(type='text/ng-template', id='modal.html')
                 .form-group
                     label Emménage à l'adresse
                     #to
-                ui-gmap-google-map(center='map.center', zoom='map.zoom', pan='true')
+                ui-gmap-google-map(center='map.center', zoom='map.zoom', events='map.events', refresh='true', style='z-index: -1000;')
                     ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
                     ui-gmap-search-box(template='"search-box-to.html"', parentdiv='"to"', events='events.to')
                     ui-gmap-marker(idKey='"from"', coords='user.from')
@@ -67,7 +67,7 @@ script(type='text/ng-template', id='confirm.html')
             button.btn.btn-default(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='search-box-from.html')
-    input.form-control#from_input(type='text', required='', placeHolder='Entrez votre recherche')
+    input.form-control#from_input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.to.address')
 
 script(type='text/ng-template', id='search-box-to.html')
     input.form-control#to_input(type='text', required='', placeHolder='Entrez votre recherche')

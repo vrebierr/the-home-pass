@@ -49,6 +49,8 @@ angular.module('theHomePassApp')
                             longitude: place.geometry.location.B
                         };
 
+                        console.log($scope.user.from)
+
                         $scope.map.center = {
                             latitude: place.geometry.location.k,
                             longitude: place.geometry.location.B
@@ -122,9 +124,10 @@ angular.module('theHomePassApp')
                 };
             }
 
-            console.log($scope.user.to)
+            console.log(user.to)
+            console.log(user.from)
             angular.element('#from_input').val($scope.user.from.address);
-            angular.element('#to_input').val($scope.user.from.address);
+            angular.element('#to_input').val($scope.user.to.address);
 
             $modal.open({
                 templateUrl: 'modal.html',
