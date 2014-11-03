@@ -32,7 +32,8 @@ script(type='text/ng-template', id='modal.html')
                     input.form-control(type='text', ng-model='ad.end')
                 .input-form
                     label Status
-                    select(ng-options='{en atte: "pending"}')
+                    select
+
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
             button.btn.btn-default(ng-click='$dismiss()') Annuler

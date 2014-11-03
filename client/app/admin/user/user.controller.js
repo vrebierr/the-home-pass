@@ -5,9 +5,11 @@ angular.module('theHomePassApp')
         $scope.users = users;
         $scope.user = {};
 
-        $scope.$watch('user.from.address', function () {
-            if ($scope.user.from) {
-                angular.element('#from_input').val($scope.user.from.address);
+        $scope.$watch('user.from', function () {
+            console.log($scope.user)
+            if ($scope.user.from != undefined) {
+                console.log($scope.user.from)
+
             }
             else {
                 angular.element('#from_input').val(null);
@@ -119,6 +121,10 @@ angular.module('theHomePassApp')
                     longitude: 2.3183781999999997
                 };
             }
+
+            console.log($scope.user.to)
+            angular.element('#from_input').val($scope.user.from.address);
+            angular.element('#to_input').val($scope.user.from.address);
 
             $modal.open({
                 templateUrl: 'modal.html',
