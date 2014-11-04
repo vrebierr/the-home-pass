@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $location, Auth, $state) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state) {
         $scope.menu = [{
             'title': 'Home',
               'link': '/'
@@ -11,7 +11,6 @@ angular.module('theHomePassApp')
         $scope.isCollapsed = true;
         $scope.isLoggedIn = Auth.isLoggedIn;
         $scope.getCurrentUser = Auth.getCurrentUser;
-
         $scope.user = {};
 
         $scope.login = function(form) {

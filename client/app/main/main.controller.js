@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', ['$scope', 'pos', 'ads', 'categories', 'Auth', 'GoogleMapApi'.ns(), function ($scope, pos, ads, categories, Auth, GoogleMapApi) {
+    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, GoogleMapApi) {
     	$scope.pos = pos;
         $scope.ads = ads;
         $scope.categories = categories;
@@ -11,10 +11,10 @@ angular.module('theHomePassApp')
         GoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
-                    latitude: 48.89670230000001,
-                    longitude: 2.3183781999999997
+                    latitude: Auth.getCurrentUser().from.latitude,
+                    longitude: Auth.getCurrentUser().from.longitude
                 },
-                zoom: 8,
+                zoom: 13,
             };
 
             $scope.events = {
@@ -23,6 +23,24 @@ angular.module('theHomePassApp')
                 }
             };
         });
+
+        console.log(Auth.getCurrentUser().from.address)
+
+        $scope.changeLocation = function () {
+            if ($scope.location) {
+                $scope.map.center = {
+                    latitude: Auth.getCurrentUser().from.latitude,
+                    longitude: Auth.getCurrentUser().from.longitude
+                }
+            }
+            else {
+                $scope.map.center = {
+                    latitude: Auth.getCurrentUser().to.latitude,
+                    longitude: Auth.getCurrentUser().to.longitude
+                }
+            }
+            $scope.location = !$scope.location;
+        }
 
         var distance;
         $('#range').ionRangeSlider({
@@ -44,8 +62,8 @@ angular.module('theHomePassApp')
                         opacity: 0.25
                     },
                     center: {
-                        latitude: Auth.getCurrentUser().from.latitude,
-                        longitude: Auth.getCurrentUser().from.longitude
+                        latitude: coords.latitude,
+                        longitude: coords.longitude
                     }
                 };
 

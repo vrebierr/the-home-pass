@@ -3,16 +3,15 @@ div(ng-include='"components/navbar/navbar.html"')
 .container-fluid
     .row
         .col-md-6
-            br
-            br
-            br
             ui-gmap-google-map(center='map.center', zoom='map.zoom')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
                 ui-gmap-circle(center='circle.center', radius='range * 1000', stroke='circle.stroke', fill='circle.fill')
         .col-md-6
-            br
-            br
-            br
+            button.btn.btn-default.btn-sm.btn-flat(ng-if='!location', ng-click='changeLocation()')
+                i.fa.fa-refresh  Voir les offres là où j'emménage
+            button.btn.btn-default.btn-sm.btn-flat(ng-if='location', ng-click='changeLocation()')
+                i.fa.fa-refresh  Voir les offres pour déménager
+
             h4.page-header Actuellement {{ads.length}} offres exclusives:
             .input-group.form-inline
                 input.form-control.input-sm(type='text', ng-model='search')
