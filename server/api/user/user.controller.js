@@ -81,7 +81,6 @@ exports.updateAdmin = function (req, res) {
         user.email = req.body.email;
         user.from = req.body.from;
         user.to = req.body.to;
-        user.pass = req.body.pass;
 
         user.save(function (err, user) {
             if (err) {return res.send(500, err);}
