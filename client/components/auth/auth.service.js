@@ -15,7 +15,7 @@ angular.module('theHomePassApp')
             $http.post('/auth/pass', {
                 pass: user.pass
             })
-            .success(function (data) {
+            .success(function (user) {
                 $cookieStore.put('token', user.token);
                 currentUser = user;
                 deferred.resolve(user);
