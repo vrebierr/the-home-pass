@@ -41,5 +41,5 @@ angular.module('theHomePassApp')
 						return Restangular.all('ads').getList();
 					}
 				}
-			})
+			});
 	});

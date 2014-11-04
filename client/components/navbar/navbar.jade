@@ -16,7 +16,7 @@ header.header(ng-controller='NavbarCtrl')
                 a(ui-sref='ad') Mes annonces
             li(ui-sref-active='active')
                 a(ui-sref='pos') Mes points de vente
-        .navbar-right
+        .navbar-right(ng-if='Auth.isLoggedIn()')
             ul.nav.navbar-nav
                 li.dropdown.user.user-menu
                     a.dropdown-toggle(href='#', data-toggle='dropdown')

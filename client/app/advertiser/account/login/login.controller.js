@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LoginCtrl', function ($scope, Auth, $state) {
+    .controller('LoginAdvertiserCtrl', function ($scope, Auth, $state) {
         $scope.user = {};
         $scope.errors = {};
 
         $scope.login = function(form) {
             if(form.$valid) {
-                Auth.pass({
-                    pass: $scope.user.pass
+                Auth.login({
+                    email: $scope.user.email,
+                    password: $scope.user.password
                 })
                 .then(function() {
                     $state.go('main');
