@@ -3,7 +3,7 @@ header.header(ng-controller='NavbarCtrl')
         ul.nav.navbar-nav
             li(ui-sref-active='active')
                 a(ui-sref='main') The Home Pass
-        a.navbar-btn.sidebar-toggle(href='#' data-toggle='offcanvas' role='button')
+        a.navbar-btn.sidebar-toggle(href='' data-toggle='offcanvas' role='button')
             span.sr-only Toggle navigation
             span.icon-bar
             span.icon-bar
@@ -23,7 +23,25 @@ header.header(ng-controller='NavbarCtrl')
                         i.glyphicon.glyphicon-user
                         span  {{ Auth.getCurrentUser().name }}
                             i.caret
-                    ul.dropdown-menu
+                    ul.dropdown-menu(ng-click="$event.stopPropagation()")
                         li.user-footer
                             .pull-right
-                                a.btn.btn-default.btn-flat(href='#' ng-click='logout()') Se déconnecter
+                                a.btn.btn-default.btn-flat(href='' ng-click='logout()') Se déconnecter
+        .navbar-right(ng-if='!Auth.isLoggedIn()')
+            ul.nav.navbar-nav
+                li.dropdown.user.user-menu
+                    a.dropdown-toggle(href='#', data-toggle='dropdown')
+                        span  Déjà inscrit ?
+                            i.caret
+                    ul.dropdown-menu(ng-click="$event.stopPropagation()")
+                        li.user-body
+                            form(name='form', ng-submit='login(form)', novalidate='')
+                                .form-group
+                                    label Adresse Email
+                                    input.form-control(type='email', ng-model='user.email', required='')
+                                .form-group
+                                    label Mot de passe
+                                    input.form-control(type='password', ng-model='user.password', required='')
+                        li.user-footer
+                            .pull-right
+                                a.btn.btn-default.btn-flat(href='' ng-click='login(form)') Se connecter
