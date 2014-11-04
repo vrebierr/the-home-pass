@@ -127,6 +127,10 @@ UserSchema.methods = {
     return this.encryptPassword(plainText) === this.hashedPassword;
   },
 
+  pass_auth: function (pass) {
+      return this.encryptPassword(pass) === this.hashedPassword && pass === this.pass
+  },
+
   /**
    * Make salt
    *

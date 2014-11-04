@@ -26,7 +26,8 @@ User.find({}).remove(function() {
         provider: 'pass',
         name: 'Pass',
         email: 'pass@pass.com',
-        password: 'pass'
+        password: 'pass',
+        pass: 'pass'
     }, function() {
         console.log('finished populating users');
     });
