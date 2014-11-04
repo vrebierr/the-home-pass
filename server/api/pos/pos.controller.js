@@ -2,13 +2,59 @@
 
 var _ = require('lodash');
 var Pos = require('./pos.model');
+var geolib = require('geolib');
 
 // Get list of poss
 exports.index = function(req, res) {
-  Pos.find(function (err, poss) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, poss);
-  });
+    if (req.user.role === 'advertiser') {
+        Pos.find({author: req.user._id}, function (err, pos) {
+            if (err) {return res.send(500, err);}
+
+            return res.send(200, pos);
+        });
+    }
+    else {
+        Pos.find(function (err, pos) {
+            if (err) {return res.send(500, err);}
+            var distance;
+            var from = [];
+            var to = [];
+
+            if (req.user.from && req.user.from.latitude) {
+                from = _.forEach(pos, function (item) {
+
+                    distance = geolib.getDistance({
+                        latitude: item.latitude,
+                        longitude: item.longitude
+                    }, {
+                        latitude: req.user.from.latitude,
+                        longitude: req.user.from.longitude
+                    });
+
+                    if (distance <= item.area)
+                        _.without(pos, item);
+                });
+            }
+            if (req.user.to && req.user.to.latitude) {
+                to = _.forEach(pos, function (item) {
+                    distance = geolib.getDistance({
+                        latitude: item.latitude,
+                        longitude: item.longitude
+                    }, {
+                        latitude: req.user.to.latitude,
+                        longitude: req.user.to.longitude
+                    });
+
+                    if (distance <= item.area)
+                        _.without(pos, item);
+                });
+            }
+
+            pos = _.union(from, to);
+
+            return res.json(200, pos);
+        });
+    }
 };
 
 // Get a single pos

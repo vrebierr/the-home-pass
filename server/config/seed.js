@@ -23,11 +23,27 @@ User.find({}).remove(function() {
         email: 'admin@admin.com',
         password: 'admin'
     }, {
+        provider: 'local',
+        role: 'advertiser',
+        name: 'Ad',
+        email: 'ad@ad.com',
+        password: 'ad'
+    }, {
         provider: 'pass',
         name: 'Pass',
         email: 'pass@pass.com',
         password: 'pass',
-        pass: 'pass'
+        pass: 'pass',
+        from: {
+            address: '50 Rue de Rivoli, 75004 Paris, France',
+            latitude: 48.8567484,
+            longitude: 2.35390469999993
+        },
+        to: {
+            address: 'London, UK',
+            latitude: 51.5073509,
+            longitude: -0.12775829999998223
+        }
     }, function() {
         console.log('finished populating users');
     });

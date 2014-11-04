@@ -7,9 +7,9 @@ var PosSchema = new Schema({
 	name: String,
 	address: String,
 	info: String,
-	active: Boolean,
-	latitude: Number,
-	longitude: Number,
+	active: { type: Boolean, default: false },
+	latitude: { type: Number, default: 0 },
+	longitude: { type: Number, default: 0 },
 	image: String,
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
 });

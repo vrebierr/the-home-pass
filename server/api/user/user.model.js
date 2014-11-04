@@ -15,16 +15,16 @@ var UserSchema = new Schema({
     provider: String,
     salt: String,
     phone: Number,
-    pass: String,
+    pass: { type: String, lowercase: true },
     from: {
         address: String,
-        latitude: Number,
-        longitude: Number
+        latitude: { type: Number, default: 0 },
+        longitude: { type: Number, default: 0 }
     },
     to: {
         address: String,
-        latitude: Number,
-        longitude: Number
+        latitude: { type: Number, default: 0 },
+        longitude: { type: Number, default: 0 }
     }
 });
 
