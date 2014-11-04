@@ -23,7 +23,7 @@ div(ng-include='"components/navbar/navbar.html"')
                     option(value='') Tous les univers
             .row
                 p Distance:
-                input#range(type='text', ng-model='range', ng-change='test()')
+                input#range(type='text')
             .row(ng-repeat='ad in ads | filter:search | filter:category')
                 h3 {{ad.name}}
                 em {{ad.address}}
