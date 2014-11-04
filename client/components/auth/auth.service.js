@@ -8,13 +8,23 @@ angular.module('theHomePassApp')
     }
 
     return {
-        pass: function (pass, callback) {
+        pass: function (user, callback) {
             var cb = callback || angular.noop;
-            Restangular.one('user').one('pass', pass).get().then(function (user) {
+            var deferred = $q.defer();
+
+            $http.post('/auth/pass', {
+                pass: user.pass
+            })
+            .success(function (data) {
                 $cookieStore.put('token', user.token);
                 currentUser = user;
-                return cb();
+                deferred.resolve(user);
+            })
+            .catch(function (err) {
+                deferred.reject();
             });
+
+            return deferred.promise;
         },
 
       /**

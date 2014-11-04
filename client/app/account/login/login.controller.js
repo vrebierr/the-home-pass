@@ -6,19 +6,16 @@ angular.module('theHomePassApp')
         $scope.errors = {};
 
         $scope.login = function(form) {
-            $scope.submitted = true;
-
             if(form.$valid) {
-                Auth.login({
-                    email: $scope.user.email,
-                    password: $scope.user.password
+                Auth.pass({
+                    pass: $scope.user.pass
                 })
-                .then( function() {
+                .then(function() {
                     // Logged in, redirect to home
                     $location.path('/');
                 })
-                .catch( function(err) {
-                    $scope.errors.other = err.message;
+                .catch(function() {
+                    $scope.error = true;
                 });
             }
         };
