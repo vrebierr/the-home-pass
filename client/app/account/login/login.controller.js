@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LoginCtrl', function ($scope, Auth, $location) {
+    .controller('LoginCtrl', function ($scope, Auth, $state) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -11,8 +11,7 @@ angular.module('theHomePassApp')
                     pass: $scope.user.pass
                 })
                 .then(function() {
-                    // Logged in, redirect to home
-                    $location.path('/');
+                    $state.go('main');
                 })
                 .catch(function() {
                     $scope.error = true;

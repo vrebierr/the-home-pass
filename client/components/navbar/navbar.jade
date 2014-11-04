@@ -8,9 +8,10 @@ header.header(ng-controller='NavbarCtrl')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-        ul.nav.navbar-nav
+        ul.nav.navbar-nav(ng-if='Auth.hasRole("admin")')
             li(ui-sref-active='active')
                 a(ui-sref='admin') Administration
+        ul.nav.navbar-nav(ng-if='Auth.hasRole("advertiser")')
             li(ui-sref-active='active')
                 a(ui-sref='ad') Mes annonces
             li(ui-sref-active='active')
