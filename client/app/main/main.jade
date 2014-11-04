@@ -8,6 +8,7 @@ div(ng-include='"components/navbar/navbar.html"')
             br
             ui-gmap-google-map(center='map.center', zoom='map.zoom')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
+                ui-gmap-circle(center='circle.center', radius='range * 1000', stroke='circle.stroke', fill='circle.fill')
         .col-md-6
             br
             br
@@ -20,6 +21,9 @@ div(ng-include='"components/navbar/navbar.html"')
                         i.fa.fa-search
                 select.form-control.input-sm(ng-model='category', ng-options='category._id as category.name for category in categories')
                     option(value='') Tous les univers
+            .row
+                p Distance:
+                input#range(type='text', ng-model='range', ng-change='test()')
             .row(ng-repeat='ad in ads | filter:search | filter:category')
                 h3 {{ad.name}}
                 em {{ad.address}}
