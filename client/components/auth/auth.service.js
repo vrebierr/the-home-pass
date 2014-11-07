@@ -3,6 +3,7 @@
 angular.module('theHomePassApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Restangular) {
     var currentUser = {};
+    var backUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
     }
@@ -57,15 +58,42 @@ angular.module('theHomePassApp')
         return deferred.promise;
       },
 
+      loginAs: function (user, callback) {
+          var cb = callback || angular.noop;
+          var deferred = $q.defer();
+
+          $http.post('/auth/autologin', {
+              id: user.id
+          })
+          .success(function (user) {
+              $cookieStore.put('token', user.token);
+              backUser = currentUser();
+              currentUser = User.get();
+              deferred.resolve(user);
+          })
+          .catch(function (err) {
+              deferred.reject();
+          });
+
+          return deferred.promise;
+      },
+
       /**
        * Delete access token and user info
        *
        * @param  {Function}
        */
-      logout: function() {
-        $cookieStore.remove('token');
-        currentUser = {};
-      },
+    logout: function() {
+        if (backUser._id) {
+            currentUser = backUser;
+            backUser = {};
+            $cookieStore.put('token', currentUser.token);
+        }
+        else {
+            $cookieStore.remove('token');
+            currentUser = {};
+        }
+    },
 
       /**
        * Create a new user

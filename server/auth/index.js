@@ -12,5 +12,6 @@ var router = express.Router();
 
 router.use('/local', require('./local'));
 router.use('/pass', require('./pass'));
+router.use('/autologin', require('./autologin'));
 
 module.exports = router;
