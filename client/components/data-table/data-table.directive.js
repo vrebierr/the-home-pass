@@ -33,6 +33,10 @@
                         $rootScope.$emit('delete', item);
                     };
 
+                    scope.logAs = function (item) {
+                        $rootScope.$emit('logAs', item);
+                    };
+
                     var filter = $filter('filter');
                     scope.$watch('search', function () {
                         scope.items = filter(scope.model, scope.search);

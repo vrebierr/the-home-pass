@@ -9,6 +9,7 @@ var User = mongoose.model('User');
 var router = express.Router();
 
 router.post('/', auth.hasRole('admin'), function(req, res) {
+    console.log(req.body);
     User.findOne({_id: req.body._id}, function (err, user) {
         if (err) {return res.send(500);}
         if (!user) {return res.send(404);}

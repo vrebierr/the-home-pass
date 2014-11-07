@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('UserAdminCtrl', ['$scope', 'users', '$modal', 'Restangular', 'uuid4', '$rootScope', 'GoogleMapApi'.ns(), function ($scope, users, $modal, Restangular, uuid4, $rootScope, GoogleMapApi) {
+    .controller('UserAdminCtrl', ['$scope', 'users', '$modal', 'Restangular', 'uuid4', '$rootScope', 'Auth', 'GoogleMapApi'.ns(), function ($scope, users, $modal, Restangular, uuid4, $rootScope, Auth, GoogleMapApi) {
         $scope.users = users;
         $scope.user = {};
 
@@ -164,5 +164,11 @@ angular.module('theHomePassApp')
 
         $rootScope.$on('delete', function (event, data) {
             $scope.confirm(data);
+        });
+
+        $rootScope.$on('logAs', function (event, data) {
+            Auth.loginAs(data).success(function () {
+                $state.go('main');
+            });
         });
     }]);

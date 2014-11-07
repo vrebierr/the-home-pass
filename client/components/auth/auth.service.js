@@ -63,16 +63,19 @@ angular.module('theHomePassApp')
           var deferred = $q.defer();
 
           $http.post('/auth/autologin', {
-              id: user.id
+              _id: user._id
           })
           .success(function (user) {
               $cookieStore.put('token', user.token);
-              backUser = currentUser();
+              backUser = currentUser;
               currentUser = User.get();
               deferred.resolve(user);
+              console.log(user);
+              return cb();
           })
           .catch(function (err) {
               deferred.reject();
+              return cb(err);
           });
 
           return deferred.promise;
@@ -84,10 +87,11 @@ angular.module('theHomePassApp')
        * @param  {Function}
        */
     logout: function() {
-        if (backUser._id) {
+        if (backUser) {
             currentUser = backUser;
             backUser = {};
-            $cookieStore.put('token', currentUser.token);
+            console.log(currentUser);
+            $cookieStore.put('token', currentUser);
         }
         else {
             $cookieStore.remove('token');

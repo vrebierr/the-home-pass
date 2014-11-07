@@ -30,6 +30,6 @@ angular.module('theHomePassApp')
 
         $scope.logout = function() {
             Auth.logout();
-            $location.path('/login');
+            $state.go('main');
         };
     });
