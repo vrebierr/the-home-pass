@@ -66,11 +66,12 @@ angular.module('theHomePassApp')
               _id: user._id
           })
           .success(function (user) {
+              $cookieStore.put('tokenBack', $cookieStore.get('token'));
               $cookieStore.put('token', user.token);
               backUser = currentUser;
               currentUser = User.get();
+
               deferred.resolve(user);
-              console.log(user);
               return cb();
           })
           .catch(function (err) {
@@ -89,9 +90,10 @@ angular.module('theHomePassApp')
     logout: function() {
         if (backUser) {
             currentUser = backUser;
+            $cookieStore.put('token', $cookieStore.get('tokenBack'));
+
             backUser = {};
-            console.log(currentUser);
-            $cookieStore.put('token', currentUser);
+            $cookieStore.remove('tokenBack');
         }
         else {
             $cookieStore.remove('token');
