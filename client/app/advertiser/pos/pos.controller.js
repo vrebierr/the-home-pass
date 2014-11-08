@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi, IsReady) {
+	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi) {
 		$scope.pos = pos;
 		$scope.selected = {};
 
@@ -26,9 +26,9 @@ angular.module('theHomePassApp')
 
 			$scope.events = {
 				map: {
-					click: function (map, eventName, args) {
+					click: function (map, eventName) {
 						geocoder.geocode({latLng: args[0].latLng}, function (results, status) {
-							if (status == maps.GeocoderStatus.OK) {
+							if (status === maps.GeocoderStatus.OK) {
 								if (results[0]) {
 									if ($scope.current) {
 										$scope.current.setIcon(null);
@@ -56,7 +56,7 @@ angular.module('theHomePassApp')
 					}
 				},
 				search: {
-					places_changed: function (search, eventName, c, d) {
+					places_changed: function (search) {
 						var place = search.getPlaces()[0];
 
 						if (place === undefined)
@@ -76,7 +76,7 @@ angular.module('theHomePassApp')
 						};
 					}
 				}
-			}
+			};
 		});
 
 		$scope.onFileSelect = function ($files) {
@@ -86,7 +86,7 @@ angular.module('theHomePassApp')
 			}).success(function (res) {
 				$scope.selected.image = res.path;
 				$scope.$apply();
-			})
+			});
 		};
 
 		$scope.clickMarker = function (item) {

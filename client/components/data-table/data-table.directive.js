@@ -11,7 +11,7 @@
                     model: '=',
                     cols: '='
                 },
-                link: function (scope, element, attrs) {
+                link: function (scope) {
                     scope.numItems = 10;
                     scope.currentStart = 1;
                     scope.currentEnd = scope.numItems;
@@ -20,8 +20,9 @@
                     scope.reload = function () {
                         scope.currentStart = (scope.currentPage - 1) * scope.numItems;
                         scope.currentEnd = scope.currentPage * scope.numItems;
-                        if (scope.currentEnd > scope.model.length)
+                        if (scope.currentEnd > scope.model.length) {
                             scope.currentEnd = scope.model.length;
+                        }
                         scope.current = scope.model.slice(scope.currentStart, scope.currentEnd);
                     };
 
@@ -55,7 +56,7 @@
                         else {
                             scope.predicate = predicate;
                             scope.reverse = false;
-                            scope.current = orderBy(scope.current, scope.predicate)
+                            scope.current = orderBy(scope.current, scope.predicate);
                         }
                     };
               }

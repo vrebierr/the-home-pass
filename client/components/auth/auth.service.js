@@ -19,9 +19,11 @@ angular.module('theHomePassApp')
                 $cookieStore.put('token', user.token);
                 currentUser = User.get();
                 deferred.resolve(user);
+                return cb();
             })
             .catch(function (err) {
-                deferred.reject();
+                deferred.reject(err);
+                return cb();
             });
 
             return deferred.promise;

@@ -6,9 +6,8 @@ angular.module('theHomePassApp')
         $scope.user = {};
 
         $scope.$watch('user.from', function () {
-            console.log($scope.user)
-            if ($scope.user.from != undefined) {
-                console.log($scope.user.from)
+            if ($scope.user.from !== undefined) {
+                console.log($scope.user.from);
 
             }
             else {
@@ -123,8 +122,6 @@ angular.module('theHomePassApp')
                 };
             }
 
-            console.log(user.to)
-            console.log(user.from)
             angular.element('#from_input').val($scope.user.from.address);
             angular.element('#to_input').val($scope.user.to.address);
 

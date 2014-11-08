@@ -8,7 +8,7 @@ angular.module('theHomePassApp')
         $scope.selected = {};
         $scope.range = 0;
 
-        GoogleMapApi.then(function (maps) {
+        GoogleMapApi.then(function () {
             $scope.map = {
                 center: {
                     latitude: Auth.getCurrentUser().from.latitude,
@@ -18,7 +18,7 @@ angular.module('theHomePassApp')
             };
 
             $scope.events = {
-                click: function (marker, eventName, model, args) {
+                click: function (marker, eventName, model) {
                     $scope.ads = _.where(ads, {pos: [model._id]});
                 }
             };
@@ -49,7 +49,7 @@ angular.module('theHomePassApp')
                     });
                 }
             }
-        }
+        };
 
         var distance;
         $('#range').ionRangeSlider({
@@ -60,21 +60,6 @@ angular.module('theHomePassApp')
             postfix: 'km',
             onChange: function (item) {
                 $scope.range = item.fromNumber;
-                $scope.circle = {
-                    stroke: {
-                        color: '#ff',
-                        weight: 2,
-                        opacity: 0.5
-                    },
-                    fill: {
-                        color: '#ff',
-                        opacity: 0.25
-                    },
-                    center: {
-                        latitude: coords.latitude,
-                        longitude: coords.longitude
-                    }
-                };
 
                 $scope.pos = _.filter(pos, function (item) {
                     distance = geolib.getDistance({
