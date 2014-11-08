@@ -47,6 +47,10 @@ exports.show = function (req, res, next) {
   });
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c422f9de6540d35a5d4cfa81281ac905c08f26b6
 exports.createAdmin = function (req, res) {
     var user = {
         name: req.body.name,
