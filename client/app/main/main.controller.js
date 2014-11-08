@@ -8,18 +8,47 @@ angular.module('theHomePassApp')
         $scope.selected = {};
         $scope.range = 0;
 
-        GoogleMapApi.then(function () {
+        GoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
                     latitude: Auth.getCurrentUser().from.latitude,
                     longitude: Auth.getCurrentUser().from.longitude
                 },
                 zoom: 13,
+                options: {
+                    scrollwheel: false,
+                    zoomControl: true
+                }
             };
 
             $scope.events = {
-                click: function (marker, eventName, model) {
-                    $scope.ads = _.where(ads, {pos: [model._id]});
+                map: {
+                    click: function (marker, eventName, model) {
+                        $scope.ads = _.where(ads, {pos: [model._id]});
+                    }
+                },
+                search: {
+                    places_changed: function (search) {
+                        var place = search.getPlaces()[0];
+
+                        if (place === undefined)
+                            return;
+
+                        if ($scope.current) {
+                            $scope.current.setIcon(null);
+                        }
+
+                        $scope.coords = {
+                            address: place.formatted_address,
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+
+                        $scope.map.center = {
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+                    }
                 }
             };
         });

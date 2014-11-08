@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container-fluid
     .row
         .col-md-6
-            ui-gmap-google-map(center='map.center', zoom='map.zoom')
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
         .col-md-6
             button.btn.btn-default.btn-sm.btn-flat(ng-if='!location', ng-click='changeLocation()')
@@ -42,7 +42,14 @@ script(type='text/ng-template', id='modal.html')
             form.form
                 .input-form
                     label Adresse
-                    input.form-control()
+                    #search
+            br
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', options='map.options')
+                ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
+                ui-gmap-marker(idKey='1', coords='coords')
         .modal-footer
             button.btn.btn-default.pull-left(ng-click='$dismiss()') Annuler
             button.btn.btn-primary.pull-right(ng-click='$close()') Valider
+
+script(type='text/ng-template', id='search-box.html')
+    input.form-control(type='text', placeHolder='Entrez votre recherche', required='')
