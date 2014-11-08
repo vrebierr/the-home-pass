@@ -16,7 +16,7 @@ angular.module('theHomePassApp')
                 },
                 zoom: 13,
                 options: {
-                    scrollwheel: false,
+                    scrollwheel: true,
                     zoomControl: true
                 }
             };
