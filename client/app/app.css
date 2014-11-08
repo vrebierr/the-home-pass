@@ -39,5 +39,5 @@
 }
 
 .angular-google-map img {
-max-width: none;
+    max-width: none !important;
 }
