@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, GoogleMapApi) {
+    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', '$modal', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, $modal, GoogleMapApi) {
     	$scope.pos = pos;
         $scope.ads = ads;
         $scope.categories = categories;
@@ -24,22 +24,31 @@ angular.module('theHomePassApp')
             };
         });
 
-        console.log(Auth.getCurrentUser().from.address)
-
         $scope.changeLocation = function () {
             if ($scope.location) {
                 $scope.map.center = {
                     latitude: Auth.getCurrentUser().from.latitude,
                     longitude: Auth.getCurrentUser().from.longitude
-                }
+                };
+                $scope.location = !$scope.location;
             }
             else {
-                $scope.map.center = {
-                    latitude: Auth.getCurrentUser().to.latitude,
-                    longitude: Auth.getCurrentUser().to.longitude
+                if (Auth.getCurrentUser().to.address) {
+                    $scope.map.center = {
+                        latitude: Auth.getCurrentUser().to.latitude,
+                        longitude: Auth.getCurrentUser().to.longitude
+                    };
+                    $scope.location = !$scope.location;
+                }
+                else {
+                    $modal.open({
+                        templateUrl: 'modal.html',
+                        scope: $scope
+                    }).result.then(function () {
+                        $scope.location = !$scope.location;
+                    });
                 }
             }
-            $scope.location = !$scope.location;
         }
 
         var distance;

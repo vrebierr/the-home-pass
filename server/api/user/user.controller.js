@@ -44,7 +44,6 @@ exports.show = function (req, res, next) {
   });
 };
 
-
 exports.createAdmin = function (req, res) {
     var user = {
         name: req.body.name,

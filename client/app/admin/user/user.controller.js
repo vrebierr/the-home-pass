@@ -97,7 +97,6 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 $scope.user.password = $scope.user.pass;
                 users.post($scope.user).then(function (res) {
-                    console.log(res)
                     $scope.users.push(res);
                 });
             });

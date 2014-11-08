@@ -42,7 +42,7 @@
                         scope.items = filter(scope.model, scope.search);
                     });
 
-                    scope.$watch('model', function () {
+                    scope.$watchCollection('model', function () {
                         scope.reload();
                     });
 
