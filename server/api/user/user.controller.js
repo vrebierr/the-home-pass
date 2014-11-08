@@ -4,6 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+var _ = require('lodash');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -48,6 +49,16 @@ exports.show = function (req, res, next) {
 };
 
 exports.createAdmin = function (req, res) {
+    if (!_.isString(req.body.email)) {
+        return res.send(500, 'Bad email address.');
+    }
+    if (!_.isString(req.body.name)) {
+        return res.send(500, 'Bad user name.');
+    }
+    if (!_.isString(req.body.pass)) {
+        return res.send(500, 'Bad pass.');
+    }
+
     var user = {
         name: req.body.name,
         email: req.body.email,

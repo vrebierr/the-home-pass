@@ -23,6 +23,11 @@ angular.module('theHomePassApp')
 
             $scope.events = {
                 map: {
+                    idle: function (map) {
+                        maps.event.trigger(map, 'resize');
+                    }
+                },
+                markers: {
                     click: function (marker, eventName, model) {
                         $scope.ads = _.where(ads, {pos: [model._id]});
                     }

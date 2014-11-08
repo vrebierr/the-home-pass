@@ -35,6 +35,11 @@ angular.module('theHomePassApp')
             };
 
             $scope.events = {
+                map: {
+                    idle: function (map) {
+                        maps.event.trigger(map, 'resize');
+                    }
+                },
                 from: {
                     places_changed: function (search, eventName) {
                         var place = search.getPlaces()[0];

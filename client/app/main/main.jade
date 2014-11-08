@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container-fluid
     .row
         .col-md-6
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map')
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events')
         .col-md-6
             button.btn.btn-default.btn-sm.btn-flat(ng-if='!location', ng-click='changeLocation()')
@@ -44,7 +44,7 @@ script(type='text/ng-template', id='modal.html')
                     label Adresse
                     #search
             br
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', options='map.options')
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', options='map.options', control='map.control', event='events.map')
                 ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
                 ui-gmap-marker(idKey='1', coords='coords')
         .modal-footer
