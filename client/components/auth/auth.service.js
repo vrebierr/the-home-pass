@@ -1,9 +1,8 @@
 'use strict';
 
 angular.module('theHomePassApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Restangular) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Restangular, $state) {
     var currentUser = {};
-    var backUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
     }
@@ -66,11 +65,8 @@ angular.module('theHomePassApp')
               _id: user._id
           })
           .success(function (user) {
-              $cookieStore.put('tokenBack', $cookieStore.get('token'));
               $cookieStore.put('token', user.token);
-              backUser = currentUser;
               currentUser = User.get();
-
               deferred.resolve(user);
               return cb();
           })
@@ -88,17 +84,9 @@ angular.module('theHomePassApp')
        * @param  {Function}
        */
     logout: function() {
-        if (backUser) {
-            currentUser = backUser;
-            $cookieStore.put('token', $cookieStore.get('tokenBack'));
-
-            backUser = {};
-            $cookieStore.remove('tokenBack');
-        }
-        else {
-            $cookieStore.remove('token');
-            currentUser = {};
-        }
+        $cookieStore.remove('token');
+        currentUser = {};
+        $state.go('login');
     },
 
       /**
