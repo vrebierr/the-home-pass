@@ -31,7 +31,7 @@ body {
 .irs-line-right,
 .irs-diapason,
 .irs-slider {
-    background: url(/assets/images/sprite-skin-nice.png) repeat-x;
+    background: url('/assets/images/sprite-skin-nice.png') repeat-x;
 }
 
 .irs {
