@@ -5,6 +5,8 @@ angular.module('theHomePassApp')
         $scope.ads = ads;
         $scope.ad = {};
 
+        console.log(ads);
+
         $scope.create = function () {
             $scope.ad = {};
             $modal.open({

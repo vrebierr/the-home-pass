@@ -26,7 +26,7 @@ angular.module('theHomePassApp')
 
 			$scope.events = {
 				map: {
-					click: function (map, eventName) {
+					click: function (map, eventName, args) {
 						geocoder.geocode({latLng: args[0].latLng}, function (results, status) {
 							if (status === maps.GeocoderStatus.OK) {
 								if (results[0]) {
