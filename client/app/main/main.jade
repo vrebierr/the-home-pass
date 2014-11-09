@@ -22,7 +22,9 @@ div(ng-include='"components/navbar/navbar.html"')
             .row
                 p Distance:
                 input#range(type='text')
-            .row(ng-repeat='ad in ads | filter:search | filter:category')
+            .row(ng-repeat='ad in ads | filter:s1earch | filter:category')
+                .img
+                    img(ng-src='/assets/images/{{ad.image}}')
                 h3 {{ad.name}}
                 em {{ad.address}}
                 p {{ad.info}}

@@ -85,7 +85,6 @@ angular.module('theHomePassApp')
 				file: $files[0]
 			}).success(function (res) {
 				$scope.selected.image = res.path;
-				$scope.$apply();
 			});
 		};
 
