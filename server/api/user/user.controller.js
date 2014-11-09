@@ -110,6 +110,19 @@ exports.deleteAdmin = function (req, res) {
     });
 };
 
+exports.updateTo = function (req, res) {
+    var user = req.user;
+
+    user.to.address = req.body.address;
+    user.to.latitude = req.body.latitude;
+    user.to.longitude = req.body.longitude;
+    user.save(function (err, user) {
+        if (err) {return res.send(500, err);}
+
+        return res.send(200, user);
+    });
+};
+
 /**
  * Deletes a user
  * restriction: 'admin'

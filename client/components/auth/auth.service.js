@@ -3,11 +3,17 @@
 angular.module('theHomePassApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, Restangular, $state) {
     var currentUser = {};
-    if($cookieStore.get('token')) {
+    if ($cookieStore.get('token')) {
       currentUser = User.get();
     }
 
     return {
+        refresh: function () {
+            if ($cookieStore.get('token')) {
+                currentUser = User.get();
+            }
+        },
+
         pass: function (user, callback) {
             var cb = callback || angular.noop;
             var deferred = $q.defer();

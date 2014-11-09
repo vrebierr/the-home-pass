@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', '$modal', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, $modal, GoogleMapApi) {
+    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', '$modal', '$http', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, GoogleMapApi) {
     	$scope.pos = pos;
         $scope.ads = ads;
         $scope.categories = categories;
@@ -79,7 +79,10 @@ angular.module('theHomePassApp')
                         templateUrl: 'modal.html',
                         scope: $scope
                     }).result.then(function () {
-                        $scope.location = !$scope.location;
+                        $http.put('/api/users/to', $scope.coords).success(function (res) {
+                            Auth.refresh();
+                            $scope.location = !$scope.location;
+                        });
                     });
                 }
             }
