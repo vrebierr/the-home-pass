@@ -8,6 +8,7 @@
 var User = require('../api/user/user.model');
 var Pos = require('../api/pos/pos.model');
 var Ad = require('../api/ad/ad.model');
+var Category = require('../api/category/category.model');
 
 
 User.find({}).remove(function() {
@@ -46,6 +47,14 @@ User.find({}).remove(function() {
         }
     }, function() {
         console.log('finished populating users');
+    });
+});
+
+Category.find({}).remove(function () {
+    Category.create({
+        name: 'Categorie de test'
+    }, function () {
+        console.log('finished populating categories');
     });
 });
 

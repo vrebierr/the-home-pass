@@ -9,7 +9,14 @@ var geolib = require('geolib');
 
 // Get list of ads
 exports.index = function(req, res) {
-    if (req.user.role === 'advertiser') {
+    if (req.user.role === 'admin') {
+        Ad.find(function (err, ads) {
+            if (err) {return res.send(500, err);}
+
+                return res.send(200, ads);
+        });
+    }
+    else if (req.user.role === 'advertiser') {
         Ad.find({author: req.user._id}, function (err, ads) {
             if (err) {return res.send(500, err);}
 
@@ -17,7 +24,7 @@ exports.index = function(req, res) {
         });
     }
     else {
-        Pos.find(function (err, pos) {
+        Pos.find({status: 'enabled'}, function (err, pos) {
             if (err) {return res.send(500, err);}
             var distance;
             var from = [];

@@ -16,18 +16,38 @@ exports.upload = function (req, res) {
     fs.readFile(req.files.file.path, function (err, data) {
         if (err) {return res.send(500, err);}
 
-        var path = 'client/uploads/' + uuid.v1() + '.' + extension;
+        var name = uuid.v1() + '.' + extension;
+        var path = 'client/uploads/' + name;
 
-        fs.writeFile(path, data, function (err) {
-            if (err) {return res.send(500, err);}
-            Upload.create({
-                path: path
-            }, function (err, upload) {
-                if (err) {return res.send(500, err);}
+        fs.exists('client/uploads/', function (exists) {
+            if (!exists) {
+                fs.mkdir('client/uploads/', '0755', function () {
+                    fs.writeFile(path, data, function (err) {
+                        if (err) {return res.send(500, err);}
+                        Upload.create({
+                            path: name
+                        }, function (err, upload) {
+                            if (err) {return res.send(500, err);}
 
-                return res.json(201, upload);
-            })
+                            return res.json(201, upload);
+                        });
+                    });
+                });
+            }
+            else {
+                fs.writeFile(path, data, function (err) {
+                    if (err) {return res.send(500, err);}
+                    Upload.create({
+                        path: name
+                    }, function (err, upload) {
+                        if (err) {return res.send(500, err);}
+
+                        return res.json(201, upload);
+                    });
+                });
+            }
         })
+
     })
 }
 
