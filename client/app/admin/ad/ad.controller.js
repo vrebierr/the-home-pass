@@ -43,7 +43,6 @@ angular.module('theHomePassApp')
                 scope: $scope
             }).result.then(function () {
                 $scope.ad.category = $scope.ad.category._id;
-                $scope.ad.author = $scope.ad.author._id;
                 $scope.ad.put().then(function (res) {
                     $scope.ads = _.map($scope.ads, function (item) {
                         if (item._id === res._id) {

@@ -123,16 +123,25 @@ exports.create = function(req, res) {
 
 // Updates an existing ad in the DB.
 exports.update = function(req, res) {
-    if(req.body._id) { delete req.body._id; }
-    Ad.findById(req.params.id, function (err, ad) {
-        if (err) { return handleError(res, err); }
-        if(!ad) { return res.send(404); }
-        var updated = _.merge(ad, req.body);
-        updated.save(function (err) {
-            if (err) { return handleError(res, err); }
-            return res.json(200, ad);
+    if (req.body._id) {delete req.body._id;}
+
+    if (req.user.role === 'admin') {
+        d.findById(req.params.id, function (err, ad) {
+            if (err) {return res.send(500, err);}
+            if (!ad) {return res.send(404, 'Not found.');}
+
+            var updated = {
+                category: req.body.category,
+                state: req.body.states
+            };
+
+            ad = _.merge(updated, ad);
+            ad.save(function (err) {
+                if (err) {return res.send(500, err);}
+                return res,json(200, ad);
+            });
         });
-    });
+    }
 };
 
 // Deletes a ad from the DB.
