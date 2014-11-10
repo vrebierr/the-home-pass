@@ -24,6 +24,12 @@ angular.module('theHomePassApp')
                 }
             };
 
+            $scope.markers = {
+                options: {
+                    labelContent: 'test'
+                }
+            };
+
             $scope.events = {
                 map: {
                     idle: function (map) {
