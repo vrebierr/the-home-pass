@@ -39,7 +39,13 @@ angular.module('theHomePassApp')
 				resolve: {
 					ads: function (Restangular) {
 						return Restangular.all('ads').getList();
-					}
+					},
+					categories: function (Restangular) {
+						return Restangular.all('categories').getList();
+					},
+					users: function (Restangular) {
+						return Restangular.all('users').all('admin').getList();
+					},
 				}
 			});
 	});

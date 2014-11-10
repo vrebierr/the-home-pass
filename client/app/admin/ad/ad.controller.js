@@ -1,11 +1,28 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdCtrl', function ($scope, ads, $rootScope, $modal, Restangular) {
+    .controller('AdCtrl', function ($scope, ads, $rootScope, $modal, Restangular, users, categories) {
         $scope.ads = ads;
+        $scope.categories = categories;
         $scope.ad = {};
+        $scope.status = [{
+            id: 'pending',
+            name: 'En attente',
+        }, {
+            id: 'archived',
+            name: 'Archivée'
+        }, {
+            id: 'enabled',
+            name: 'Activée'
+        }];
 
-        console.log(ads);
+        $scope.$watchCollection('ads', function () {
+            $scope.ads = _.map($scope.ads, function (item) {
+                item.author = _.findWhere(users, {_id: item.author});
+                item.category = _.findWhere(categories, {_id: item.category});
+                return item;
+            });
+        });
 
         $scope.create = function () {
             $scope.ad = {};
@@ -25,6 +42,8 @@ angular.module('theHomePassApp')
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
+                $scope.ad.category = $scope.ad.category._id;
+                $scope.ad.author = $scope.ad.author._id;
                 $scope.ad.put().then(function (res) {
                     $scope.ads = _.map($scope.ads, function (item) {
                         if (item._id === res._id) {

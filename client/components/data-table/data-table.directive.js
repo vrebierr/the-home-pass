@@ -20,12 +20,10 @@
                     scope.length = scope.items.length;
 
                     scope.reload = function (items) {
-                        if (scope.currentEnd > items.length) {
+                        scope.currentEnd = scope.currentPage * scope.numItems;
+                        if (items.length < scope.currentEnd) {
                             scope.currentEnd = items.length;
                             scope.currentPage = 1;
-                        }
-                        else {
-                            scope.currentEnd = scope.currentPage * scope.numItems;
                         }
                         scope.currentStart = (scope.currentPage - 1) * scope.numItems;
 
@@ -49,18 +47,22 @@
                     };
 
                     var filter = $filter('filter');
-                    scope.$watch('search', function () {
+                    var searchFilter = function () {
                         scope.items = filter(scope.model, scope.search);
                         scope.reload(scope.items);
-                    });
+                    };
+                    var statusFilter = function () {
+                        scope.items = filter(scope.model, scope.status);
+                        scope.reload(scope.items);
+                    };
 
-                    scope.$watch('status', function () {
-                        scope.items = filter(scope.model, scope.search);
-                        scope.reload(scope.items);
-                    });
+                    scope.$watch('search', searchFilter);
+                    scope.$watch('status', statusFilter);
 
                     scope.$watchCollection('model', function () {
                         scope.reload(scope.model);
+                        searchFilter();
+                        statusFilter();
                     });
 
                     scope.$watchCollection('items', function () {

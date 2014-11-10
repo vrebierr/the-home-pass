@@ -35,8 +35,8 @@
                     th.text-right Actions
             tbody
                 tr(ng-repeat='item in current')
-                    td {{item.author}}
-                    td {{item.category}}
+                    td {{item.author.name}}
+                    td {{item.category.name}}
                     td {{item.end}}
                     td
                         .btn-group.pull-right

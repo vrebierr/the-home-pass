@@ -20,19 +20,19 @@ script(type='text/ng-template', id='modal.html')
             form.form
                 .input-form
                     label Auteur
-                    p {{ad.author}}
+                    p {{ad.author.name}}
                 .input-form
                     label Catégorie
-                    input.form-control(type='text', ng-model='ad.category')
+                    select.form-control(ng-model='ad.category._id', ng-options='item._id as item.name for item in categories', required='')
                 .input-form
                     label Montant
-                    input.form-control(type='text', ng-model='ad.value')
+                    input.form-control(type='text', ng-model='ad.value', required='')
                 .input-form
-                    label Date de fin
-                    input.form-control(type='text', ng-model='ad.end')
+                    label Dates
+                    input.form-control(type='text', ng-model='ad.dateRange', required='')
                 .input-form
                     label Status
-                    select
+                    select.form-control(ng-model='ad.status', ng-options='item.id as item.name for item in status', required='')
 
         .modal-footer
             button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
