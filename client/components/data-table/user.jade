@@ -26,21 +26,22 @@
                     th Téléphone
                     th.text-right Actions
             tbody
-                tr(ng-repeat='item in current | filter:search | orderBy:predicate:reverse')
+                tr(ng-repeat='item in current')
                     td {{item.name}}
                     td {{item.email}}
                     td {{item.address}}
                     td {{item.phone}}
                     td
-                        button.btn.btn-sm.btn-danger.pull-right.btn-flat(ng-click='delete(item)')
-                            i.fa.fa-trash
-                        button.btn.btn-sm.btn-primary.pull-right.btn-flat(ng-click='update(item)')
-                            i.fa.fa-pencil
-                        button.btn.btn-sm.btn-success.pull-right.btn-flat(ng-click='logAs(item)')
-                            i.fa.fa-user
+                        .btn-group.pull-right
+                            button.btn.btn-sm.btn-success.btn-flat(ng-click='logAs(item)')
+                                i.fa.fa-user
+                            button.btn.btn-sm.btn-primary.btn-flat(ng-click='update(item)')
+                                i.fa.fa-pencil
+                            button.btn.btn-sm.btn-danger.btn-flat(ng-click='delete(item)')
+                                i.fa.fa-trash
     .box-footer.clearfix
         .row
             .col-xs-6
                 span.tab-info Affichage {{currentStart + 1}} à {{currentEnd}} sur {{items.length}} éléments
             .col-xs-6
-                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='model.length', ng-model='currentPage', items-per-page='numItems', max-size='5', ng-change='reload()')
+                pagination.pagination.pagination-sm.pull-right.no-margin(total-items='length', ng-model='currentPage', items-per-page='numItems', max-size='5', boundary-links='true', ng-change='reload(items)')

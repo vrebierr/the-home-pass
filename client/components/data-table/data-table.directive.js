@@ -16,14 +16,20 @@
                     scope.currentStart = 1;
                     scope.currentEnd = scope.numItems;
                     scope.currentPage = 1;
+                    scope.items = scope.model;
+                    scope.length = scope.items.length;
 
-                    scope.reload = function () {
-                        scope.currentStart = (scope.currentPage - 1) * scope.numItems;
-                        scope.currentEnd = scope.currentPage * scope.numItems;
-                        if (scope.currentEnd > scope.model.length) {
-                            scope.currentEnd = scope.model.length;
+                    scope.reload = function (items) {
+                        if (scope.currentEnd > items.length) {
+                            scope.currentEnd = items.length;
+                            scope.currentPage = 1;
                         }
-                        scope.current = scope.model.slice(scope.currentStart, scope.currentEnd);
+                        else {
+                            scope.currentEnd = scope.currentPage * scope.numItems;
+                        }
+                        scope.currentStart = (scope.currentPage - 1) * scope.numItems;
+
+                        scope.current = items.slice(scope.currentStart, scope.currentEnd);
                     };
 
                     scope.update = function (item) {
@@ -38,13 +44,27 @@
                         $rootScope.$emit('logAs', item);
                     };
 
+                    scope.validate = function (item) {
+                        $rootScope.$emit('validate', item);
+                    };
+
                     var filter = $filter('filter');
                     scope.$watch('search', function () {
                         scope.items = filter(scope.model, scope.search);
+                        scope.reload(scope.items);
+                    });
+
+                    scope.$watch('status', function () {
+                        scope.items = filter(scope.model, scope.search);
+                        scope.reload(scope.items);
                     });
 
                     scope.$watchCollection('model', function () {
-                        scope.reload();
+                        scope.reload(scope.model);
+                    });
+
+                    scope.$watchCollection('items', function () {
+                        scope.length = scope.items.length;
                     });
 
                     var orderBy = $filter('orderBy');

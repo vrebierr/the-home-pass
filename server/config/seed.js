@@ -51,9 +51,14 @@ User.find({}).remove(function() {
 });
 
 Category.find({}).remove(function () {
-    Category.create({
-        name: 'Categorie de test'
-    }, function () {
+    var categories = [];
+    for (var i = 0; i < 20; i++) {
+        categories.push({
+            name: 'Categorie de test ' + i
+        });
+    }
+
+    Category.create(categories, function () {
         console.log('finished populating categories');
     });
 });
