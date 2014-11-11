@@ -5,11 +5,11 @@ div(ng-include='"components/navbar/navbar.html"')
     form(name='form', ng-submit='login(form)', novalidate='')
         .body.bg-gray
             .form-group
-                input.form-control(type='text', name='last_name', ng-model='user.email', placeHolder='Nom', required='')
+                input.form-control(type='text', name='last_name', ng-model='user.last_name', placeHolder='Nom', required='')
             .form-group
-                input.form-control(type='text', name='first_name', ng-model='user.email', placeHolder='Prénom', required='')
+                input.form-control(type='text', name='first_name', ng-model='user.first_name', placeHolder='Prénom', required='')
             .form-group
-                input.form-control(type='text', name='', ng-model='user.email', placeHolder='No. Siret', required='')
+                input.form-control(type='text', name='', ng-model='user.siret', placeHolder='No. Siret', required='')
             .form-group
                 input.form-control(type='email', name='email', ng-model='user.email', placeHolder='Adresse Email', required='')
             .form-group
