@@ -7,7 +7,7 @@ angular.module('theHomePassApp')
         $scope.ad = {};
         $scope.status = [{
             id: 'pending',
-            name: 'En attente',
+            name: 'En attente'
         }, {
             id: 'archived',
             name: 'Archivée'

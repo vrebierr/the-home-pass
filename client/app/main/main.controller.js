@@ -26,9 +26,11 @@ angular.module('theHomePassApp')
 
             $scope.markers = {
                 options: {
-                    labelContent: 'test'
+                    labelContent: 'test',
+                    labelVisible: true
                 }
             };
+            console.log($scope.markers);
 
             $scope.events = {
                 map: {
