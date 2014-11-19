@@ -5,9 +5,29 @@ var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var _ = require('lodash');
+var nodemailer = require('nodemailer');
 
 var validationError = function(res, err) {
   return res.json(422, err);
+};
+
+exports.newsletter = function (req, res) {
+    var transporter = nodemailer.createTransport();
+    
+    User.find({}, function (err, users) {
+        if (err) {return res.send(500, err);}
+        if (!users) {return res.send(404);}
+
+        _.forEach(users, function (item) {
+            transporter.sendMail({
+                from: 'test@test.com',
+                to: item.email,
+                subject: req.body.subject,
+                text: req.body.content
+            });
+        });
+    });
+
 };
 
 /**
