@@ -1,9 +1,34 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.input-form
-    label Objet
-    input.form-control(type='text', ng-model='newsletter.object')
-        
-.input-form
-    label Message
-    textarea.form-control(ng-model='newsletter.message')
+.wrapper.row-offcanvas.row-offcanvas-left
+    aside.left-side.sidebar-offcanvas
+        div(ng-include='"components/sidebar/sidebar.html"')
+    aside.right-side
+        section.content-header
+            h1 Newsletter
+        section.content
+            .row
+                .col-xs-12
+                    .box
+                        .box-header
+                            h3.box-title Envoyer une newsletter
+                        .box-body.table-responsible
+                            .input-form
+                                label Objet
+                                input.form-control(type='text', ng-model='newsletter.object', required='')
+                            .input-form
+                                label Message
+                                textarea.form-control(type='text', ng-model='newsletter.message', required='')
+                        .box-footer.clearfix
+                            button.btn.btn-primary.pull-right(ng-click='send()') Envoyer
+
+script(type='text/ng-template', id='confirm.html')
+    .modal-primary
+        .modal-header
+            button.close(type='button', ng-click='$dismiss()') &times;
+            h4.modal-title Confirmation
+        .modal-body
+            p Êtes vous certain de vouloir envoyer cette newsletter ?
+        .modal-footer
+            button.btn.btn-primary(ng-click='$close()') Envoyer
+            button.btn.btn-default(ng-click='$dismiss()') Annuler

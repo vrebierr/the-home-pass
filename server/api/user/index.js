@@ -23,7 +23,4 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 
 
-
-
-
 module.exports = router;

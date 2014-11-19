@@ -5,7 +5,7 @@ angular.module('theHomePassApp')
 		$stateProvider
 			.state('newsletter', {
 				url: '/admin/newsletter',
-				templateUrl: 'app/newsletter/newsletter.html',
+				templateUrl: 'app/admin/newsletter/newsletter.html',
 				controller: 'NewsletterCtrl',
 				authenticate: true
 			})

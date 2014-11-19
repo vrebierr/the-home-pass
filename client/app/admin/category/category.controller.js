@@ -45,7 +45,7 @@ angular.module('theHomePassApp')
                 category.remove().then(function () {
                     $scope.categories = _.without($scope.categories, category);
                 });
-            })
+            });
         };
 
         $rootScope.$on('update', function (event, data) {
