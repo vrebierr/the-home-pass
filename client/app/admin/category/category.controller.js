@@ -13,6 +13,7 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 categories.post($scope.category).then(function (res) {
                     $scope.categories.push(res);
+                    toastr.success('Catégorie crée !');
                 });
             });
         };
@@ -32,6 +33,7 @@ angular.module('theHomePassApp')
                             return item;
                         }
                     });
+                    toastr.success('Catégorie modifiée !');
                 });
             });
         };
@@ -44,6 +46,7 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 category.remove().then(function () {
                     $scope.categories = _.without($scope.categories, category);
+                    toastr.success('Catégorie supprimée !');
                 });
             });
         };

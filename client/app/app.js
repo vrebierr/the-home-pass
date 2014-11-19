@@ -27,6 +27,12 @@ angular.module('theHomePassApp', [
     uiGmapGoogleMapApiProvider.configure({
         libraries: 'places'
     });
+
+    toastr.options = {
+        progressBar: true,
+        closeButton: true,
+        timeout: 3000
+    };
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

@@ -52,6 +52,7 @@ angular.module('theHomePassApp')
                             return item;
                         }
                     });
+                    toastr.success('Annonce modifiée !');
                 });
             });
         };
@@ -64,6 +65,7 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 ad.remove().then(function () {
                     $scope.ads = _.without($scope.ads, ad);
+                    toastr.success('Annonce supprimée !');
                 });
             })
         };

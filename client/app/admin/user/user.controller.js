@@ -102,6 +102,8 @@ angular.module('theHomePassApp')
                 $scope.user.password = $scope.user.pass;
                 users.post($scope.user).then(function (res) {
                     $scope.users.push(res);
+
+                    toastr.success('Utilisateur ajouté !');
                 });
             });
         };
@@ -143,6 +145,8 @@ angular.module('theHomePassApp')
                             return item;
                         }
                     });
+
+                    toastr.success('Utilisateur modifié !');
                 });
             });
         };
@@ -155,6 +159,8 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 user.remove().then(function () {
                     $scope.users = _.without($scope.users, user);
+
+                    toastr.success('Utilisateur supprimé !');
                 });
             })
         };
