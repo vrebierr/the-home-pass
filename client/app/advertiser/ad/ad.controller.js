@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdvertiserCtrl', function ($scope, ads, pos, categories, Restangular, Modal, $upload, uiGmapGoogleMapApi) {
+    .controller('AdvertiserCtrl', function ($scope, ads, pos, categories, Restangular, Modal, $upload, uiGmapGoogleMapApi, users) {
         $scope.ads = ads;
         $scope.ad = {
             type: 'euro'
         };
+
         $scope.pos = pos;
         $scope.categories = categories;
 

@@ -45,7 +45,7 @@ exports.index = function(req, res) {
                         _.without(pos, item);
                 });
             }
-            if (req.user.to && req.user.to.latitude) {
+            else if (req.user.to && req.user.to.latitude) {
                 to = _.forEach(pos, function (item) {
                     distance = geolib.getDistance({
                         latitude: item.latitude,
