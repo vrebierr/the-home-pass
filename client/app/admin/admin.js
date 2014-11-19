@@ -3,6 +3,12 @@
 angular.module('theHomePassApp')
 	.config(function ($stateProvider) {
 		$stateProvider
+			.state('newsletter', {
+				url: '/admin/newsletter',
+				templateUrl: 'app/newsletter/newsletter.html',
+				controller: 'NewsletterCtrl',
+				authenticate: true
+			})
 			.state('admin', {
 				url: '/admin',
 				templateUrl: 'app/admin/admin.html',

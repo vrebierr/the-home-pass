@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', ['$scope', '$rootScope', 'pos', 'ads', 'categories', 'Auth', '$modal', '$http', 'uploads', 'GoogleMapApi'.ns(), function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, uploads, GoogleMapApi) {
+    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, uploads, GoogleMapApi) {
     	$scope.pos = _.map(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
             return item;
         });
+
+
         $scope.ads = ads;
         $scope.categories = categories;
         $scope.selected = {};
@@ -123,4 +125,4 @@ angular.module('theHomePassApp')
                 $scope.$apply();
             }
         });
-    }]);
+    });

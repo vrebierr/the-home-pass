@@ -9,11 +9,11 @@ var router = express.Router();
 
 router.put('/to', auth.isAuthenticated(), controller.updateTo);
 
+router.post('/admin/newsletter', auth.hasRole('admin'), controller.newsletter)
 router.get('/admin', auth.hasRole('admin'), controller.listAdmin);
 router.delete('/admin/:id', auth.hasRole('admin'), controller.deleteAdmin);
 router.post('/admin', auth.hasRole('admin'), controller.createAdmin);
 router.put('/admin/:id', auth.hasRole('admin'), controller.updateAdmin);
-router.post('/admin/newsletter', auth.hasRole('admin'), controller.newsletter)
 
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);

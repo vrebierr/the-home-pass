@@ -23,7 +23,7 @@
     "angular-datatables": "~0.2.1",
     "ng-table": "~0.3.3",
     "angular-uuid4": "~0.2.0",
-    "angular-google-maps": "~2.0.6",
+    "angular-google-maps": ">=2.*",
     "geolib": "~2.0.9",
     "ionrangeslider": "~1.9.3"
   },
