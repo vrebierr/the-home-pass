@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdvertiserCtrl', ['$scope', 'ads', 'pos', 'categories', 'Restangular', 'Modal', '$upload', 'GoogleMapApi'.ns(), function ($scope, ads, pos, categories, Restangular, Modal, $upload, GoogleMapApi) {
+    .controller('AdvertiserCtrl', function ($scope, ads, pos, categories, Restangular, Modal, $upload, uiGmapGoogleMapApi) {
         $scope.ads = ads;
         $scope.ad = {
             type: 'euro'
@@ -42,7 +42,7 @@ angular.module('theHomePassApp')
             }
         });
 
-        GoogleMapApi.then(function (maps) {
+        uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
                     latitude: 48.89670230000001,
@@ -129,4 +129,4 @@ angular.module('theHomePassApp')
                 }
             }
         };
-    }]);
+    });

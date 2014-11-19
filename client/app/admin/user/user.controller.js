@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('UserAdminCtrl', ['$scope', '$state', 'users', '$modal', 'Restangular', 'uuid4', '$rootScope', 'Auth', 'GoogleMapApi'.ns(), function ($scope, $state, users, $modal, Restangular, uuid4, $rootScope, Auth, GoogleMapApi) {
+    .controller('UserAdminCtrl', function ($scope, $state, users, $modal, Restangular, uuid4, $rootScope, Auth, uiGmapGoogleMapApi) {
         $scope.users = users;
         $scope.user = {};
 
@@ -25,7 +25,7 @@ angular.module('theHomePassApp')
         });
 
 
-        GoogleMapApi.then(function (maps) {
+        uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
                     latitude: 48.89670230000001,
@@ -172,4 +172,4 @@ angular.module('theHomePassApp')
                 $state.go('main');
             });
         });
-    }]);
+    });

@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('theHomePassApp')
-	.controller('PosCtrl', ['$scope', 'pos', 'Restangular', 'Modal', '$rootScope', '$upload', 'GoogleMapApi'.ns(), function ($scope, pos, Restangular, Modal, $rootScope, $upload, GoogleMapApi) {
+	.controller('PosCtrl', function ($scope, pos, Restangular, Modal, $rootScope, $upload, uiGmapGoogleMapApi) {
 		$scope.pos = pos;
 		$scope.selected = {};
 
-		GoogleMapApi.then(function (maps) {
+		uiGmapGoogleMapApi.then(function (maps) {
 			var geocoder = new maps.Geocoder();
 			$scope.map = {
 				center: {
@@ -114,4 +114,4 @@ angular.module('theHomePassApp')
                 }
             }
         };
-	}]);
+	});

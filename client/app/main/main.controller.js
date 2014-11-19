@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, uploads, GoogleMapApi) {
+    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, uploads, uiGmapGoogleMapApi) {
     	$scope.pos = _.map(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
             return item;
@@ -13,7 +13,7 @@ angular.module('theHomePassApp')
         $scope.selected = {};
         $scope.range = 0;
 
-        GoogleMapApi.then(function (maps) {
+        uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
                 center: {
                     latitude: Auth.getCurrentUser().from.latitude,
