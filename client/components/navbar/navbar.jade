@@ -8,7 +8,7 @@ header
         li
             a(href='') test
 
-header.header(ng-controller='NavbarCtrl')
+header.header(ng-controller='NavbarCtrl', ng-if='Auth.hasRole("admin")')
     nav.navbar.navbar-static-top
         ul.nav.navbar-nav
             li(ui-sref-active='active')

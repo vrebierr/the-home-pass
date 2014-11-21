@@ -41,3 +41,7 @@
 .angular-google-map img {
     max-width: none !important;
 }
+
+::selection {
+    background-color: #999;
+}

@@ -1,8 +1,9 @@
+div(ng-include='"components/navbar/navbar.html"')
+
 .max-height
-    a(ui-sref='main')
-        img.logo(ng-src='assets/images/logo.png')
     .vertical-center
         form.login-form(name='form', ng-submit='login(form)', novalidate='')
             input.input-login#pass(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
+            .hr
             button.btn.btn-login OK
         h2 Emménagez dans un monde d'avantages...
