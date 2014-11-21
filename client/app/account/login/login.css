@@ -9,3 +9,63 @@
     -o-background-size: cover; /* pour Opera */
     background-size: cover; /* version standardisée */
 }
+
+.logo {
+    height: 115px;
+    width: 115px;
+    margin-top: 30px;
+    margin-left: 15px;
+}
+
+.vertical-center {
+    position: absolute;
+    top: 50%;
+    /* adjust top up half the height of a single line */
+    margin-top: -0.5em;
+}
+
+.login-form {
+    margin-left: 175px;
+    width: 340px;
+    background-color: black;
+    color: white;
+    display: inline-block;
+}
+
+.login-form > input {
+    width: 280px;
+    border: none;
+    background-color: #000;
+}
+
+.login-form > input:focus {
+    outline: none;
+}
+
+.login-form > button {
+    width: 60px;
+    height: 40px;
+    background-color: black;
+}
+
+.vertical-center > h2 {
+    display: inline;
+    color: white;
+    margin-left: 20px;
+}
+
+.max-height {
+    height: 100%;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+form {
+    height: 100%;
+}

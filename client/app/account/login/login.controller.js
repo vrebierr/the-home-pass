@@ -12,6 +12,7 @@ angular.module('theHomePassApp')
                 })
                 .then(function() {
                     $state.go('main');
+                    angular.element('body').removeClass('bg');
                 })
                 .catch(function() {
                     $scope.error = true;
