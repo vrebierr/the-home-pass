@@ -40,6 +40,21 @@ button.refresh {
     border: none;
 }
 
+
+.profile {
+    float: right;
+    color: black;
+}
+
+.profile:hover {
+    color: black;
+}
+
+.profile > img {
+    width: 35px;
+    height: 35px;
+}
+
 .add-on {
     height: 100%;
 }
