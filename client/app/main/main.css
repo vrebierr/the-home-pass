@@ -18,6 +18,37 @@ body {
     height: 100%;
 }
 
+.logo-75 {
+    height: 75px;
+    width: 75px;
+}
+
+header {
+    padding: 30px;
+}
+.container {
+    height: 100%;
+    width: 100%;
+    padding: 30px;
+}
+
+button.refresh {
+    width: 270px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+
+.add-on {
+    height: 100%;
+}
+
+.col-6 {
+    width: 50%;
+    display: inline-block;
+}
+
 /* Ion.RangeSlider, Nice Skin
 // css version 1.9.2
 // © 2013-2014 Denis Ineshin | IonDen.com

@@ -1,10 +1,27 @@
-div(ng-include='"components/navbar/navbar.html"')
+header
+    a(ui-sref='main')
+        img.logo-75(ng-src='assets/images/logo.png')
+
+.container
+    .col-6
+        ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+            ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
+    .col-6
+        button.refresh(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
+            .fa.fa-refresh
+        button.refresh(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
+            .fa.fa-refresh
+        h2 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
+        
+        .search
+            
+
+
 
 .container-fluid
     .row
         .col-md-6
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
+            
         .col-md-6
             button.btn.btn-default.btn-sm.btn-flat(ng-if='!location', ng-click='changeLocation()')
                 i.fa.fa-refresh  Voir les offres là où j'emménage
