@@ -18,4 +18,6 @@ angular.module('theHomePassApp')
                 });
             }
         };
+
+        angular.element('body').addClass('bg');
     });

@@ -1,15 +1,15 @@
 div(ng-include='"components/navbar/navbar.html"')
-.bg
-    .form-box
-        .header Se connecter
-        form(name='form', ng-submit='login(form)', novalidate='')
-            .body.bg-gray
-                .form-group(ng-class='{"has-error": error}')
-                    label.control-label(ng-if='error', for='pass')
-                        i.fa.fa-times-circle-o
-                        |  Pass incorrect
-                    input.form-control#pass(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
-                    p Emménagez dans un monde d'avantages...
-            .footer
-                button.btn.bg-olive.btn-block(type='submit') Connexion
-                a(ui-sref='signupAdvertiser()') Inscription
+
+.form-box
+    .header Se connecter
+    form(name='form', ng-submit='login(form)', novalidate='')
+        .body.bg-gray
+            .form-group(ng-class='{"has-error": error}')
+                label.control-label(ng-if='error', for='pass')
+                    i.fa.fa-times-circle-o
+                    |  Pass incorrect
+                input.form-control#pass(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
+                p Emménagez dans un monde d'avantages...
+        .footer
+            button.btn.bg-olive.btn-block(type='submit') Connexion
+            a(ui-sref='signupAdvertiser()') Inscription
