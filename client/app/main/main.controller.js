@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $modal, $http, uploads, uiGmapGoogleMapApi) {
+    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $http, uploads, uiGmapGoogleMapApi) {
     	$scope.pos = _.map(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
             return item;

@@ -11,7 +11,6 @@ angular.module('theHomePassApp', [
   'selectize-ng',
   'uuid4',
   'uiGmapgoogle-maps',
-  'mm.foundation',
   'ngMorph'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
