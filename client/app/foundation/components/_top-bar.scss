@@ -17,8 +17,9 @@ $topbar-bg-color: $white !default;
 $topbar-bg: $topbar-bg-color !default;
 
 // Height and margin
-$topbar-height: 75px !default;
-$topbar-margin-bottom: 0 !default;
+$topbar-height: 175px !default;
+$topbar-margin-bottom: 10px !default;
+$topbar-margin-top: 10px !default;
 
 // Controlling the styles for the title in the top bar
 $topbar-title-weight: $font-weight-normal !default;

@@ -90,6 +90,11 @@ button.refresh {
     display: inline-block;
 }
 
+.vertical-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+
 /* Ion.RangeSlider, Nice Skin
 // css version 1.9.2
 // © 2013-2014 Denis Ineshin | IonDen.com
