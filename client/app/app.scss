@@ -1,1 +1,14 @@
 @import "foundation";
+
+$navbarHeight: 90px;
+$navbarMargin: 35px;
+
+nav {
+    height: $navbarHeight;
+    margin: $navbarMargin;
+}
+
+.logo {
+    height: 75px;
+    width: 75px;
+}
