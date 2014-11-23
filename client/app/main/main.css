@@ -46,6 +46,9 @@ button.refresh {
     color: black;
     padding: 4px;
     cursor: pointer;
+
+    -webkit-transition: width 2s, height 2s,-webkit-transform 2s;  /* For Safari 3.1 to 6.0 */
+    transition: width 2s, height 2s, transform 2s;
 }
 
 .profile > ul {
@@ -55,9 +58,6 @@ button.refresh {
     width: 100%;
 }
 
-.profile:hover > ul {
-    display: block;
-}
 
 .profile > ul > li {
     height: 100%;
@@ -74,22 +74,6 @@ button.refresh {
     line-height: 1.42857143;
     color: #333;
     white-space: nowrap;
-}
-.profile > ul > li > a:hover,
-.profile > ul > li > a:focus {
-  color: #262626;
-  text-decoration: none;
-  background-color: #f5f5f5;
-}
-
-.profile:hover {
-    color: black;
-    background-color: white;
-    border: 1px solid rgba(0, 0, 0, .15);
-    border-radius: 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-    z-index: 1000;
 }
 
 .profile > img {

@@ -11,8 +11,9 @@ div(ng-include='"components/navbar/navbar.html"')
             .fa.fa-refresh
         h2 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
         
-        .search
-            
+        ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
+            li
+                img(ng-src='/uploads/{{ad.image}}')
 
 
 

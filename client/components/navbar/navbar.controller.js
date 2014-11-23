@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal) {
         $scope.menu = [{
             'title': 'Home',
               'link': '/'
@@ -25,6 +25,13 @@ angular.module('theHomePassApp')
                 .catch(function() {
 
                 });
+            }
+        };
+
+        $scope.settings = {
+            closeEl: '.close',
+            modal: {
+                templateUrl: 'loginModal.html'
             }
         };
 
