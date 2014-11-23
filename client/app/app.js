@@ -6,7 +6,6 @@ angular.module('theHomePassApp', [
   'ngSanitize',
   'btford.socket-io',
   'ui.router',
-  'ui.bootstrap',
   'restangular',
   'angularFileUpload',
   'selectize-ng',

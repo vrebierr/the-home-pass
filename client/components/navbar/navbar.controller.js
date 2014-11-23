@@ -28,12 +28,17 @@ angular.module('theHomePassApp')
             }
         };
 
-        $scope.settings = {
-            closeEl: '.close',
-            modal: {
-                templateUrl: 'loginModal.html'
-            }
-        };
+        $scope.loginModal = function () {
+            $modal.open({
+                templateUrl: 'loginModal.html',
+                scope: $scope
+            }).result.then(function () {
+                $http.put('/api/users/to', $scope.coords).success(function (res) {
+                    Auth.refresh();
+                    $scope.location = !$scope.location;
+                });
+            });
+        }
 
         $scope.logout = function() {
             Auth.logout();

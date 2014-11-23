@@ -1,6 +1,12 @@
-nav
-    a(ui-sref='main')
-        img.logo-75(ng-src='assets/images/logo.png')
+nav.top-bar(ng-controller='NavbarCtrl')
+    ul.title-area
+        li.name
+            a(ui-sref='main')
+                img.logo-75(ng-src='assets/images/logo.png')
+    section.top-bar-section
+        ul.right
+            li
+                a Connexion
     .profile(ng-if='!Auth.isLoggedIn()')
         img(ng-src='assets/images/user.png')
         |  Valentin
@@ -9,12 +15,20 @@ nav
                 a(href='#', ng-click='logout()')
                     i.fa.fa-sign-out
                     |  Déconnexion
-    button.button.small.pull-right(ng-morph-modal='settings') Déjà inscrit ?
+    button.button(ng-click='loginModal()') Déjà inscrit ?
 
 script(type='text/ng-template' id='loginModal.html')
-    h2 test
+    h2 Connexion
+    form(name='form', ng-submit='login(form)', novalidate='')
+        .form-group
+            label Adresse Email
+            input.form-control(type='email', ng-model='user.email', required='')
+        .form-group
+            label Mot de passe
+            input.form-control(type='password', ng-model='user.password', required='')
+        a.btn.btn-default.btn-flat(href='' ng-click='login(form)') Se connecter
     
-header.header(ng-controller='NavbarCtrl', ng-if='Auth.hasRole("admin")')
+header.header(, ng-if='Auth.hasRole("admin")')
     nav.navbar.navbar-static-top
         ul.nav.navbar-nav
             li(ui-sref-active='active')
@@ -51,13 +65,7 @@ header.header(ng-controller='NavbarCtrl', ng-if='Auth.hasRole("admin")')
                             i.caret
                     ul.dropdown-menu(ng-click="$event.stopPropagation()")
                         li.user-body
-                            form(name='form', ng-submit='login(form)', novalidate='')
-                                .form-group
-                                    label Adresse Email
-                                    input.form-control(type='email', ng-model='user.email', required='')
-                                .form-group
-                                    label Mot de passe
-                                    input.form-control(type='password', ng-model='user.password', required='')
+                            
                         li.user-footer
                             .pull-right
-                                a.btn.btn-default.btn-flat(href='' ng-click='login(form)') Se connecter
+                                
