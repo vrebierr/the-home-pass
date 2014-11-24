@@ -1,7 +1,10 @@
-@import "foundation";
-
 $navbarHeight: 90px;
 $navbarMargin: 35px;
+
+html {
+    height: 100%;
+    width: 100%;
+}
 
 nav {
     height: $navbarHeight;
@@ -9,6 +12,25 @@ nav {
 }
 
 .logo {
-    height: 75px;
-    width: 75px;
+    height: 90px;
+    width: 90px;
+    background: url('/assets/images/logo.png') no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: inline-block;
+}
+
+
+.bg {
+    margin:0;
+    padding:0;
+    height: 100%;
+    width: 100%;
+    background: url('/assets/images/bg.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

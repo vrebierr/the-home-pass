@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state) {
         $scope.menu = [{
             'title': 'Home',
               'link': '/'

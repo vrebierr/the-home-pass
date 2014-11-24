@@ -1,21 +1,19 @@
 nav(ng-controller='NavbarCtrl')
-    ul.title-area
-        li.name.vertical-center
-            a(ui-sref='main')
-                img.logo-75(ng-src='assets/images/logo.png')
-    section.top-bar-section
-        ul.right
-            li
-                a Connexion
-    .profile(ng-if='!Auth.isLoggedIn()')
-        img(ng-src='assets/images/user.png')
-        |  Valentin
-        ul.dropdown
-            li
-                a(href='#', ng-click='logout()')
-                    i.fa.fa-sign-out
-                    |  Déconnexion
-    button.button(ng-click='loginModal()') Déjà inscrit ?
+    a.logo(ui-sref='main')
+
+section.top-bar-section
+    ul.right
+        li
+            a Connexion
+.profile(ng-if='!Auth.isLoggedIn()')
+    img(ng-src='assets/images/user.png')
+    |  Valentin
+    ul.dropdown
+        li
+            a(href='#', ng-click='logout()')
+                i.fa.fa-sign-out
+                |  Déconnexion
+button.button(ng-click='loginModal()') Déjà inscrit ?
 
 script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
@@ -28,7 +26,7 @@ script(type='text/ng-template' id='loginModal.html')
             input.form-control(type='password', ng-model='user.password', required='')
         a.btn.btn-default.btn-flat(href='' ng-click='login(form)') Se connecter
     
-header.header(, ng-if='Auth.hasRole("admin")')
+header.header(ng-if='Auth.hasRole("admin")')
     nav.navbar.navbar-static-top
         ul.nav.navbar-nav
             li(ui-sref-active='active')

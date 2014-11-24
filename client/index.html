@@ -27,7 +27,6 @@
     <!-- build:css({.tmp,client}) app/app.css -->
     <link rel="stylesheet" href="app/app.css">
         <!-- injector:css -->
-        <link rel="stylesheet" href="app/account/login/login.css">
         <link rel="stylesheet" href="app/admin/ad/ad.css">
         <link rel="stylesheet" href="app/admin/admin.css">
         <link rel="stylesheet" href="app/admin/category/category.css">
@@ -35,19 +34,18 @@
         <link rel="stylesheet" href="app/admin/user/user.css">
         <link rel="stylesheet" href="app/advertiser/ad/ad.css">
         <link rel="stylesheet" href="app/advertiser/pos/pos.css">
-        <link rel="stylesheet" href="app/main/main.css">
         <link rel="stylesheet" href="components/data-table/data-table.css">
         <link rel="stylesheet" href="components/modal/modal.css">
         <!-- endinjector -->
     <!-- endbuild -->
 </head>
-<body ng-app="theHomePassApp" class="skin-black">
+<body ng-app="theHomePassApp">
     <!--[if lt IE 7]>
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class='max-height' ui-view=""></div>
+    <div ui-view=""></div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
