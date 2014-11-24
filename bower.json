@@ -28,7 +28,8 @@
     "ionrangeslider": "~1.9.3",
     "toastr": "~2.1.0",
     "animate.css": "~3.2.0",
-    "angular-morph": "~0.1.0"
+    "angular-morph": "~0.1.0",
+    "angular-foundation": "~0.5.0"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
