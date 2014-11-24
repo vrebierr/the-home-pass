@@ -19,6 +19,7 @@ angular.module('theHomePassApp')
                 });
             }
         };
-
+        $(document).foundation();
+        $('#loginModal').foundation('reveal', 'open');
         angular.element('body').addClass('bg');
     });

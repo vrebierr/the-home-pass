@@ -1,7 +1,7 @@
 nav(ng-controller='NavbarCtrl')
     a.logo(ui-sref='main')
     .logbox(ng-if='!Auth.isLoggedIn()')
-        a(data-reveal-id='loginModal') Connexion
+        a#test(data-reveal-id='loginModal') Connexion
     a.logbox(ng-if='Auth.isLoggedIn()')
         img(ng-src='assets/images/user.png')
         span  {{ Auth.getCurrentUser().name }}
@@ -11,7 +11,7 @@ ul#profile.f-dropdown
     li
         a(href='') test
         
-.reveal-modal#loginModal
+.reveal-modal#loginModal(data-reveal='')
     h2 test
 
 script(type='text/ng-template' id='loginModal.html')
