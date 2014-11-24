@@ -34,6 +34,10 @@ nav {
     background-size: cover;
 }
 
+.bg > div {
+    height: 100%;
+}
+
 .logbox {
     float: right;
     height: 90px;
@@ -52,19 +56,30 @@ nav {
     vertical-align: middle;
 }
 
-nav > a:hover {
+nav > div > a {
     color: black;
-    vertical-align: middle;
 }
 
 .pass-form {
-    height: 100% !important;
+    color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    min-margin-top: 150px;
+
+}
+
+.pass-form > div > div > h2 {
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .pass-form > div > input {
     background-color: black !important;
     border: solid 1px;
     border-right: solid 1px white;
+    transition: all 0.3s linear 0;
+    box-shadow: 0 0 5px black;
 }
 
 .pass-form > div > input:focus {
@@ -74,4 +89,13 @@ nav > a:hover {
 .pass-form > div > button {
     background-color: black;
     color: white;
+    box-shadow: 0 0 5px black;
+}
+
+.pass-form > div > button:focus {
+    outline: 0;
+}
+
+.container {
+    margin: 35px;
 }
