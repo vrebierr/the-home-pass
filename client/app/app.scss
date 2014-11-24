@@ -22,7 +22,6 @@ nav {
     display: inline-block;
 }
 
-
 .bg {
     margin:0;
     padding:0;
@@ -33,4 +32,27 @@ nav {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.logbox {
+    float: right;
+    height: 90px;
+    line-height: 90px;
+    color: black;
+}
+
+.logbox > img {
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.logbox > span {
+    vertical-align: middle;
+}
+
+nav > a:hover {
+    color: black;
+    cursor: pointer;
 }

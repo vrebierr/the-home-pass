@@ -1,10 +1,13 @@
 nav(ng-controller='NavbarCtrl')
     a.logo(ui-sref='main')
-
+    a.logbox(ng-if='!Auth.isLoggedIn()') Connexion
+    a.logbox(ng-if='Auth.isLoggedIn()')
+        img(ng-src='assets/images/user.png')
+        span {{ Auth.getCurrentUser().name }}
 section.top-bar-section
     ul.right
         li
-            a Connexion
+            a(href='#') Connexion
 .profile(ng-if='!Auth.isLoggedIn()')
     img(ng-src='assets/images/user.png')
     |  Valentin
