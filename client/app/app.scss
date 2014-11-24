@@ -54,5 +54,24 @@ nav {
 
 nav > a:hover {
     color: black;
-    cursor: pointer;
+    vertical-align: middle;
+}
+
+.pass-form {
+    height: 100% !important;
+}
+
+.pass-form > div > input {
+    background-color: black !important;
+    border: solid 1px;
+    border-right: solid 1px white;
+}
+
+.pass-form > div > input:focus {
+    background-color: white !important;
+}
+
+.pass-form > div > button {
+    background-color: black;
+    color: white;
 }

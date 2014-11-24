@@ -1,12 +1,8 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.max-height
-    .vertical-center
-        form.login-form(name='form', ng-submit='login(form)', novalidate='')
-            .row.collapse
-                .small-9.large-10.columns
-                    input(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
-                .small-3.large-2.columns
-                    button OK
-            
-        h2 Emménagez dans un monde d'avantages...
+form.row.collapse.pass-form(name='form', ng-submit='login(form)', novalidate='')
+    .small-3.columns
+        input.as(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
+    .small-1.columns
+        button.button.postfix OK
+    h2 Emménagez dans un monde d'avantages...
