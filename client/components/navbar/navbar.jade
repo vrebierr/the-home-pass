@@ -1,22 +1,12 @@
 nav(ng-controller='NavbarCtrl')
     a.logo(ui-sref='main')
     a.logbox(ng-if='!Auth.isLoggedIn()') Connexion
+        | 
+        i.fa.fa-angle-down
     a.logbox(ng-if='Auth.isLoggedIn()')
         img(ng-src='assets/images/user.png')
-        span {{ Auth.getCurrentUser().name }}
-section.top-bar-section
-    ul.right
-        li
-            a(href='#') Connexion
-.profile(ng-if='!Auth.isLoggedIn()')
-    img(ng-src='assets/images/user.png')
-    |  Valentin
-    ul.dropdown
-        li
-            a(href='#', ng-click='logout()')
-                i.fa.fa-sign-out
-                |  Déconnexion
-button.button(ng-click='loginModal()') Déjà inscrit ?
+        span  {{ Auth.getCurrentUser().name }}
+            i.fa.fa-angle-down
 
 script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
