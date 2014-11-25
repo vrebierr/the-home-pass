@@ -88,14 +88,13 @@ nav > div > a {
 .pass-form > div > button {
     background-color: black;
     color: white;
-    box-shadow: 0 0 4px black;
+    box-shadow: 0 0 3px black;
 }
 
-input.black,
-button.black {
+.black {
     background-color: black;
     color: white;
-    box-shadow: 0 0 4px black;
+    box-shadow: 0 0 3px black;
 }
 
 button.alert {
