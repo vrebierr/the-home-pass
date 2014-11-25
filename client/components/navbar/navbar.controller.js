@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular) {
         $scope.menu = [{
             'title': 'Home',
               'link': '/'
@@ -20,7 +20,17 @@ angular.module('theHomePassApp')
                 windowClass: 'tiny',
                 controller: 'loginModalCtrl'
             }).result.then(function () {
-                $state.go('main');
+                Restangular.one('users', 'me').get().then(function (user) {
+                    if(user.role === 'advertiser') {
+                        $state.go('advertiser');
+                    }
+                    else if (user.role === 'admin') {
+                        $state.go('admin');
+                    }
+                    else {
+                        $state.go('main');
+                    }
+                });
             });
         }
 
@@ -39,9 +49,6 @@ angular.module('theHomePassApp')
                 })
                 .then(function() {
                     $modalInstance.close(form);
-                })
-                .catch(function() {
-
                 });
             }
         };

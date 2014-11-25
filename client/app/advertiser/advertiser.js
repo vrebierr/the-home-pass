@@ -3,7 +3,12 @@
 angular.module('theHomePassApp')
     .config(function ($stateProvider) {
         $stateProvider
-            .state('signupAdvertiser', {
+            .state('advertiser', {
+                url: '/advertiser',
+                templateUrl: 'app/advertiser/advertiser.html',
+                controller: 'AdvertiserCtrl'
+            })
+                .state('signupAdvertiser', {
                 url: '/advertiser/signup',
                 templateUrl: 'app/advertiser/account/signup/signup.html',
                 controller: 'SignupAdvertiserCtrl'

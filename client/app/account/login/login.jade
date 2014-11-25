@@ -1,6 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
+    .bg
     form.row.collapse.pass-form(name='form', ng-submit='login(form)', novalidate='')
         .small-8.medium-4.medium-offset-1.large-3.large-offset-1.columns
             input(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')

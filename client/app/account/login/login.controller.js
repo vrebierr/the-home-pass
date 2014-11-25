@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LoginCtrl', function ($scope, Auth, $state) {
+    .controller('LoginCtrl', function ($scope, Auth, $state, $rootScope) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -12,12 +12,16 @@ angular.module('theHomePassApp')
                 })
                 .then(function() {
                     $state.go('main');
-                    angular.element('body').removeClass('bg');
                 })
                 .catch(function() {
                     $scope.error = true;
                 });
             }
         };
+
         angular.element('body').addClass('bg');
+
+        $rootScope.$on('$stateChangeStart', function () {
+            angular.element('body').removeClass('bg');
+        });
     });

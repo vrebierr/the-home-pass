@@ -26,7 +26,7 @@ exports.newsletter = function (req, res) {
                 subject: req.body.subject,
                 text: req.body.content
             }, function (err, info) {
-                
+
             });
         });
 

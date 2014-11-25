@@ -24,7 +24,7 @@ angular.module('theHomePassApp')
             .success(function (user) {
                 $cookieStore.put('token', user.token);
                 currentUser = User.get();
-                deferred.resolve(user);
+                deferred.resolve(currentUser);
                 return cb();
             })
             .catch(function (err) {
@@ -53,7 +53,7 @@ angular.module('theHomePassApp')
         success(function(data) {
           $cookieStore.put('token', data.token);
           currentUser = User.get();
-          deferred.resolve(data);
+          deferred.resolve(currentUser);
           return cb();
         }).
         error(function(err) {

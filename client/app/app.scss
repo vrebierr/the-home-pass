@@ -63,18 +63,6 @@ nav {
     display: inline-block;
 }
 
-.bg {
-    margin:0;
-    padding:0;
-    height: 100%;
-    width: 100%;
-    background: url('/assets/images/bg.jpg') no-repeat center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
-
 .logbox {
     float: right;
     height: 30px;
@@ -173,4 +161,16 @@ button.alert {
 .postfix.addon {
     background-color: black !important;
     color: white !important;
+}
+
+.bg {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: url('/assets/images/bg.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
