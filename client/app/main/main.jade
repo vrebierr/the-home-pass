@@ -1,19 +1,37 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-    .col-6
-        ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-            ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
-    .col-6
-        button.refresh(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
-            .fa.fa-refresh
-        button.refresh(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
-            .fa.fa-refresh
-        h2 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
-        
-        ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
-            li
-                img(ng-src='/uploads/{{ad.image}}')
+    .row
+        .columns.medium-12.large-5.show-for-medium-up
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
+        .columns.small-12.medium-12.large-7
+            .row
+                .columns.large-12
+                    button.refresh(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
+                        .fa.fa-refresh
+                    button.refresh(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
+                        .fa.fa-refresh
+
+            .row
+                .columns.large-12
+                    h3 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
+                
+            .row.collapse
+                .columns.large-4
+                    select(ng-model='categories', ng-options='category._id as category.name for category in categories')
+                        option(value='') Filtrer par univers
+                .columns.large-4
+                    select(ng-model='types', ng-options='category._id as category.name for category in categories')
+                        option(value='') Filtrer par types d'offres
+                .columns.large-3
+                    input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+                .columns.large-1
+                    span.postfix
+                        i.fa.fa-search
+            ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
+                li
+                    img(ng-src='/uploads/{{ad.image}}')
 
 
 

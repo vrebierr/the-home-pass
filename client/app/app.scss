@@ -9,6 +9,8 @@ html {
 nav {
     height: $navbarHeight;
     margin: $navbarMargin;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .logo {
@@ -99,9 +101,6 @@ button {
     outline: 0;
 }
 
-.container {
-    margin: 35px;
-}
 
 .reveal-modal:focus {
     outline: 0;
@@ -111,4 +110,13 @@ button {
     position: absolute;
     top: 40px;
     right: 55px;
+}
+
+.container {
+    margin: 35px;
+}
+
+.row {
+    margin: 35px;
+    width: 100%;
 }

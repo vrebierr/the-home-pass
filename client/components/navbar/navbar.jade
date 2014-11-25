@@ -19,47 +19,5 @@ script.tiny(type='text/ng-template' id='loginModal.html')
         input(type='email', ng-model='user.email', required='')
         label Mot de passe
         input(type='password', ng-model='user.password', required='')
-        button.black(href='' ng-click='login(form)') Se connecter
+        button.black.expand(href='' ng-click='login(form)') Se connecter
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
-    
-header.header(ng-if='Auth.hasRole("admin")')
-    nav.navbar.navbar-static-top
-        ul.nav.navbar-nav
-            li(ui-sref-active='active')
-                a(ui-sref='main') The Home Pass
-        a.navbar-btn.sidebar-toggle(href='' data-toggle='offcanvas' role='button')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-        ul.nav.navbar-nav(ng-if='Auth.hasRole("admin")')
-            li(ui-sref-active='active')
-                a(ui-sref='admin') Administration
-        ul.nav.navbar-nav(ng-if='Auth.hasRole("advertiser")')
-            li(ui-sref-active='active')
-                a(ui-sref='ad') Mes annonces
-            li(ui-sref-active='active')
-                a(ui-sref='pos') Mes points de vente
-        .navbar-right(ng-if='Auth.isLoggedIn()')
-            ul.nav.navbar-nav
-                li.dropdown.user.user-menu
-                    a.dropdown-toggle(href='#', data-toggle='dropdown')
-                        i.glyphicon.glyphicon-user
-                        span  {{ Auth.getCurrentUser().name }}
-                            i.caret
-                    ul.dropdown-menu(ng-click="$event.stopPropagation()")
-                        li.user-footer
-                            .pull-right
-                                a.btn.btn-default.btn-flat(href='', ng-click='logout()') Se déconnecter
-        .navbar-right(ng-if='!Auth.isLoggedIn()')
-            ul.nav.navbar-nav
-                li.dropdown.user.user-menu
-                    a.dropdown-toggle(href='#', data-toggle='dropdown')
-                        span  Déjà inscrit ?
-                            i.caret
-                    ul.dropdown-menu(ng-click="$event.stopPropagation()")
-                        li.user-body
-                            
-                        li.user-footer
-                            .pull-right
-                                

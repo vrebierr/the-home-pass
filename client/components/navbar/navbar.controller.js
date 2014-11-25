@@ -13,27 +13,12 @@ angular.module('theHomePassApp')
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.user = {};
 
-        $scope.login = function(form) {
-            if(form.$valid) {
-                Auth.login({
-                    email: $scope.user.email,
-                    password: $scope.user.password
-                })
-                .then(function() {
-                    console.log($modal);
-                    $modal.close('asd');
-                })
-                .catch(function() {
-
-                });
-            }
-        };
-
         $scope.loginModal = function () {
-            $modal.open({
+            $scope.modal = $modal.open({
                 templateUrl: 'loginModal.html',
                 scope: $scope,
-                windowClass: 'tiny'
+                windowClass: 'tiny',
+                controller: 'loginModalCtrl'
             }).result.then(function () {
                 $state.go('main');
             });
@@ -41,5 +26,23 @@ angular.module('theHomePassApp')
 
         $scope.logout = function() {
             Auth.logout();
+        };
+    });
+
+angular.module('theHomePassApp')
+    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth) {
+        $scope.login = function(form) {
+            if(form.$valid) {
+                Auth.login({
+                    email: $scope.user.email,
+                    password: $scope.user.password
+                })
+                .then(function() {
+                    $modalInstance.close(form);
+                })
+                .catch(function() {
+
+                });
+            }
         };
     });
