@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal) {
         $scope.menu = [{
             'title': 'Home',
               'link': '/'
@@ -20,7 +20,8 @@ angular.module('theHomePassApp')
                     password: $scope.user.password
                 })
                 .then(function() {
-                    $state.go('main');
+                    console.log($modal);
+                    $modal.close('asd');
                 })
                 .catch(function() {
 
@@ -31,12 +32,10 @@ angular.module('theHomePassApp')
         $scope.loginModal = function () {
             $modal.open({
                 templateUrl: 'loginModal.html',
-                scope: $scope
+                scope: $scope,
+                windowClass: 'tiny'
             }).result.then(function () {
-                $http.put('/api/users/to', $scope.coords).success(function (res) {
-                    Auth.refresh();
-                    $scope.location = !$scope.location;
-                });
+                $state.go('main');
             });
         }
 

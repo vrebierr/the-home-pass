@@ -34,14 +34,11 @@ nav {
     background-size: cover;
 }
 
-.bg > div {
-    height: 100%;
-}
-
 .logbox {
     float: right;
-    height: 90px;
+    height: 30px;
     line-height: 90px;
+    vertical-align: middle;
     color: black;
 }
 
@@ -66,12 +63,12 @@ nav > div > a {
     top: 50%;
     transform: translateY(-50%);
     min-margin-top: 150px;
-
 }
 
-.pass-form > div > div > h2 {
-    top: 50%;
-    transform: translateY(-50%);
+.pass-form > div > h2 {
+    margin-left: 10px;
+    color: white;
+    font-size: 25px;
 }
 
 .pass-form > div > input {
@@ -92,10 +89,26 @@ nav > div > a {
     box-shadow: 0 0 5px black;
 }
 
+button {
+    background-color: black;
+    color: white;
+    box-shadow: 0 0 5px black;
+}
+
 .pass-form > div > button:focus {
     outline: 0;
 }
 
 .container {
     margin: 35px;
+}
+
+.reveal-modal:focus {
+    outline: 0;
+}
+
+#profile {
+    position: absolute;
+    top: 40px;
+    right: 55px;
 }
