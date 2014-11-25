@@ -12,7 +12,6 @@ div(ng-include='"components/navbar/navbar.html"')
 		.columns.small-12.medium-12.large-7
 			h3 Ajouter un point de vente
 			form(enctype='multipart/form-data', name='form')
-
 				label Nom
 				input(type='text', ng-model='selected.name', required='')
 
@@ -34,8 +33,8 @@ div(ng-include='"components/navbar/navbar.html"')
 				label Ouverture
 				input(type='text', ng-model='pos.opening')
 
-				input.button.black(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
-				button.button.black.right.alert(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
+				button.black(ng-click='send(form)') {{ selected._id && 'Modifier' || 'Ajouter'}}
+				button.button.right.alert(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
 
 script(type='text/ng-template', id='search-box.html')
 	input.form-control#address(type='text', required='', placeHolder='Entrez votre recherche')
