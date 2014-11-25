@@ -2,7 +2,17 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
 	.row
-		.col-md-6
+		.columns.medium-12.show-for-medium-only
+			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
+				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
+				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
+				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+		.columns.large-5.show-for-large-up.gm
+			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
+				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
+				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
+				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+		.columns.small-12.medium-12.large-7
 			h3 Ajouter un point de vente
 			form(enctype='multipart/form-data', name='form')
 				.form-group
@@ -26,19 +36,10 @@ div(ng-include='"components/navbar/navbar.html"')
 					input.form-control(type='email', ng-model='pos.email')
 				.form-group
 					label Ouverture
-					input.form-control(type='text', ng-model='pos.opening')
+					input(type='text', ng-model='pos.opening')
 
-				input.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
-				span.btn.btn-danger.pull-right(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
-		.col-md-6
-			br
-			br
-			br
-			br
-			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
-				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
-				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
-				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+				input.button.black(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
+				button.button.black.right.alert(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
 
 script(type='text/ng-template', id='search-box.html')
 	input.form-control#address(type='text', required='', placeHolder='Entrez votre recherche')

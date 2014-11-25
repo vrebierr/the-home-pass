@@ -2,7 +2,10 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
     .row
-        .columns.medium-12.large-5.show-for-medium-up
+        .columns.medium-12.show-for-medium-only
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
+        .columns.large-5.show-for-large-up.gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
         .columns.small-12.medium-12.large-7
@@ -32,62 +35,3 @@ div(ng-include='"components/navbar/navbar.html"')
             ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
                 li
                     img(ng-src='/uploads/{{ad.image}}')
-
-
-
-.container-fluid
-    .row
-        .col-md-6
-            
-        .col-md-6
-            button.btn.btn-default.btn-sm.btn-flat(ng-if='!location', ng-click='changeLocation()')
-                i.fa.fa-refresh  Voir les offres là où j'emménage
-            button.btn.btn-default.btn-sm.btn-flat(ng-if='location', ng-click='changeLocation()')
-                i.fa.fa-refresh  Voir les offres pour déménager
-
-            h4.page-header Actuellement {{ads.length}} offres exclusives:
-            .input-group.form-inline
-                input.form-control.input-sm(type='text', ng-model='search')
-                span.input-group-btn
-                    button.btn.btn-sm.btn-default
-                        i.fa.fa-search
-                select.form-control.input-sm(ng-model='category', ng-options='category._id as category.name for category in categories')
-                    option(value='') Tous les univers
-            .row
-                p Distance:
-                input#range(type='text')
-            .row(ng-repeat='ad in ads | filter:search | filter:category')
-                img.img-rounded(style='width: 200px;', ng-src='/uploads/{{ad.image}}')
-                h3 {{ad.name}}
-                em {{ad.address}}
-                p {{ad.info}}
-
-
-script(type='text/ng-template', id='modal.html')
-    .modal-primary
-        .modal-header
-            button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Mon emménagement
-        .modal-body
-            .alert.alert-warning
-                i.fa.fa-warning
-                strong Attention
-                |  une fois validées, ces informations ne pourront plus être modifiées.
-            p Indiquez l'adresse de votre futur emménagement et profitez des offres à proximité.
-            form.form
-                .input-form
-                    label Adresse
-                    #search
-            br
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', options='map.options', control='map.control', event='events.map')
-                ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
-                ui-gmap-marker(idKey='1', coords='coords')
-        .modal-footer
-            button.btn.btn-default.pull-left(ng-click='$dismiss()') Annuler
-            button.btn.btn-primary.pull-right(ng-click='$close()') Valider
-
-script(type='text/ng-template', id='search-box.html')
-    input.form-control(type='text', placeHolder='Entrez votre recherche', required='')
-        
-script(type='text/ng-template', id='label.html')
-    p test

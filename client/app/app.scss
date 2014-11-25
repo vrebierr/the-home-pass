@@ -88,13 +88,18 @@ nav > div > a {
 .pass-form > div > button {
     background-color: black;
     color: white;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 4px black;
 }
 
-button {
+input.black,
+button.black {
     background-color: black;
     color: white;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 0 4px black;
+}
+
+button.alert {
+    box-shadow: none;
 }
 
 .pass-form > div > button:focus {
@@ -115,6 +120,16 @@ button {
 .container {
     margin: 35px;
 }
+
 .row {
     max-width: 100%;
+}
+.gm {
+    position: absolute;
+    height: calc(100% - 190px) !important;
+    padding-right: 45px;
+}
+.gm > .angular-google-map > .angular-google-map,
+.gm > .angular-google-map > .angular-google-map > .angular-google-map-container {
+    height: 100% !important;
 }
