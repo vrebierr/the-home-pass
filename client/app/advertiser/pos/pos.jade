@@ -18,23 +18,26 @@ div(ng-include='"components/navbar/navbar.html"')
 				label Adresse
 				#search
 
-				label Image
+				label Logo
 				input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
-
-				label Informations
-				textarea(ng-model='selected.info', rows='5', required='')
-
-				label Téléphone
-				input(type='number', ng-model='pos.phone')		
 
 				label Email
 				input(type='email', ng-model='pos.email')
 
+				label Téléphone
+				input(type='text', ng-model='pos.phone')
+					
+				label Fax
+				input(type='text', ng-model='pos.fax')
+
 				label Ouverture
-				input(type='text', ng-model='pos.opening')
+				input(type='text', ng-model='pos.opening', placeHolder='Du lundi au samedi de 9h à 20h')
+					
+				label Informations
+				textarea(ng-model='selected.info', rows='5', required='')
 
 				button.black(ng-click='send(form)') {{ selected._id && 'Modifier' || 'Ajouter'}}
 				button.button.right.alert(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer
 
 script(type='text/ng-template', id='search-box.html')
-	input.form-control#address(type='text', required='', placeHolder='Entrez votre recherche')
+	input#address(type='text', required='', placeHolder='Entrez votre recherche')

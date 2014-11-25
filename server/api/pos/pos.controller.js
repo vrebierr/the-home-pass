@@ -78,7 +78,11 @@ exports.create = function(req, res) {
         longitude: req.body.longitude,
         image: req.body.image,
         name: req.body.name,
-        info: req.body.info
+        info: req.body.info,
+        email: req.body.email,
+        phone: req.body.phone,
+        fax: req.body.fax,
+        opening: req.body.opening,
     };
 
     Pos.create(pos, function(err, pos) {

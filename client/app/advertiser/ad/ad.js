@@ -6,7 +6,7 @@ angular.module('theHomePassApp')
 			.state('ad', {
 				url: '/advertiser/ad',
 				templateUrl: 'app/advertiser/ad/ad.html',
-				controller: 'AdvertiserCtrl',
+				controller: 'AdvertiserAdCtrl',
 				authenticate: true,
 				resolve: {
 					ads: function (Restangular) {

@@ -121,7 +121,7 @@ nav > div > a {
 }
 
 .black {
-    background-color: black !important;
+    background-color: black;
     color: white !important;
     box-shadow: 0 0 3px black;
 }
@@ -179,4 +179,13 @@ button.alert {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.selectize-input {
+    height: 2.3125rem;
+    line-height: 25px;
+}
+
+.selectize-dropdown {
+    margin-top: 0px;
 }

@@ -12,6 +12,10 @@ var PosSchema = new Schema({
 	longitude: { type: Number, default: 0 },
 	image: String,
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
+	email: String,
+	phone: String,
+	fax: String,
+	opening: String,
 });
 
 module.exports = mongoose.model('Pos', PosSchema);
