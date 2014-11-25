@@ -126,7 +126,7 @@ exports.update = function(req, res) {
     if (req.body._id) {delete req.body._id;}
 
     if (req.user.role === 'admin') {
-        d.findById(req.params.id, function (err, ad) {
+        Ad.findById(req.params.id, function (err, ad) {
             if (err) {return res.send(500, err);}
             if (!ad) {return res.send(404, 'Not found.');}
 
@@ -138,7 +138,7 @@ exports.update = function(req, res) {
             ad = _.merge(updated, ad);
             ad.save(function (err) {
                 if (err) {return res.send(500, err);}
-                return res,json(200, ad);
+                return res.json(200, ad);
             });
         });
     }
