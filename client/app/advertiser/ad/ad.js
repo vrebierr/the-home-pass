@@ -17,6 +17,9 @@ angular.module('theHomePassApp')
 					},
 					categories: function (Restangular) {
 						return Restangular.all('categories').getList();
+					},
+					users: function (Restangular) {
+						return null;
 					}
 				}
 			});

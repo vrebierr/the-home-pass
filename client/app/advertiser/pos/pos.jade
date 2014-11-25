@@ -2,41 +2,37 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
 	.row
-		.columns.medium-12.show-for-medium-only
+		.columns.medium-12.large-5.show-for-medium-up.gm
 			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
 				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
 				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
 				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
-		.columns.large-5.show-for-large-up.gm
-			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
-				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
-				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
-				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+				
+
 		.columns.small-12.medium-12.large-7
 			h3 Ajouter un point de vente
 			form(enctype='multipart/form-data', name='form')
-				.form-group
-					label Nom
-					input.form-control(type='text', ng-model='selected.name', required='')
 
-				.form-group
-					label Adresse
-					#search
-				.form-group
-					label Image
-					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
-				.form-group
-					label Informations
-					textarea.form-control(ng-model='selected.info', rows='5', required='')
-				.form-group
-					label Téléphone
-					input.form-control(type='number', ng-model='pos.phone')		
-				.form-group
-					label Email
-					input.form-control(type='email', ng-model='pos.email')
-				.form-group
-					label Ouverture
-					input(type='text', ng-model='pos.opening')
+				label Nom
+				input(type='text', ng-model='selected.name', required='')
+
+				label Adresse
+				#search
+
+				label Image
+				input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
+
+				label Informations
+				textarea(ng-model='selected.info', rows='5', required='')
+
+				label Téléphone
+				input(type='number', ng-model='pos.phone')		
+
+				label Email
+				input(type='email', ng-model='pos.email')
+
+				label Ouverture
+				input(type='text', ng-model='pos.opening')
 
 				input.button.black(ng-click='send(form)', type='submit', value="{{ selected._id && 'Modifier' || 'Ajouter'}}")
 				button.button.black.right.alert(ng-if='selected._id', ng-click='confirmation(selected.name)') Supprimer

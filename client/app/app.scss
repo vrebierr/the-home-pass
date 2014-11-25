@@ -124,12 +124,20 @@ button.alert {
 .row {
     max-width: 100%;
 }
-.gm {
-    position: absolute;
-    height: calc(100% - 190px) !important;
-    padding-right: 45px;
+
+@media only screen and (min-width: 1025px) {
+    .gm {
+        position: absolute;
+        height: calc(100% - 190px) !important;
+        padding-right: 45px;
+    }
+
+    .gm > .angular-google-map > .angular-google-map,
+    .gm > .angular-google-map > .angular-google-map > .angular-google-map-container {
+        height: 100% !important;
+    }
 }
-.gm > .angular-google-map > .angular-google-map,
-.gm > .angular-google-map > .angular-google-map > .angular-google-map-container {
-    height: 100% !important;
+
+.angular-google-map img {
+    max-width: none !important;
 }
