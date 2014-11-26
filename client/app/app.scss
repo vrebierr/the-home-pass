@@ -313,3 +313,14 @@ a.expand {
   margin-top: -30px;
   opacity: 1;
 }
+
+
+@-webkit-keyframes bgscroll {
+    from {background-position:0 0;}
+    to {background-position:0 -520px;}
+}
+
+.postfix.addon {
+    float: left;
+    width: 40px;
+}
