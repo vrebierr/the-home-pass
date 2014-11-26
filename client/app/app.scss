@@ -190,3 +190,126 @@ button.alert {
 .selectize-dropdown {
     margin-top: 0px;
 }
+
+.offer img {
+    width: 100% !important;
+    height: 235px !important;
+    transition: all 0.3s linear 0;
+}
+
+.offer:hover img {
+    background-color: black !important;
+}
+
+.offer span {
+    width: 100% !important;
+    height: 235px !important;
+    margin-top: 235px;
+    transition: all 0.3s linear 0;
+}
+
+.offer:hover span {
+
+}
+
+.effects {
+  padding-left: 15px;
+}
+.effects .img {
+  position: relative;
+  float: left;
+  margin-bottom: 5px;
+  width: 25%;
+  overflow: hidden;
+}
+.effects .img:nth-child(n) {
+  margin-right: 5px;
+}
+.effects .img:first-child {
+  margin-left: -15px;
+}
+.effects .img:last-child {
+  margin-right: 0;
+}
+.effects .img img {
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.overlay {
+  display: block;
+  position: absolute;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+a.close-overlay {
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  width: 45px;
+  height: 45px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 45px;
+  text-align: center;
+  background-color: #000;
+  cursor: pointer;
+}
+a.close-overlay.hidden {
+  display: none;
+}
+
+a.expand {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  color: #fff;
+  line-height: 50px;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.overlay {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.overlay a.expand {
+  left: 0;
+  right: 0;
+  top: 0;
+  margin: 0 auto;
+  opacity: 0;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.img:hover .overlay {
+  opacity: 1;
+}
+
+.img:hover .overlay a.expand {
+  top: 50%;
+  margin-top: -30px;
+  opacity: 1;
+}

@@ -66,9 +66,8 @@ div(ng-include='"components/navbar/navbar.html"')
 						label Offre exclusive Home Pass : 
 							input(type='checkbox', ng-model='ad.exclu')
 						
-						.form-group
-							label Annonce
-							textarea.form-control(ng-model='ad.info', rows='5', required='')
+						label Annonce
+						textarea(ng-model='ad.info', rows='5', required='')
 
 						button.black(ng-click='send(form)') {{ ad._id && 'Modifier' || 'Ajouter'}}
 						button.black(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
