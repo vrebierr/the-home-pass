@@ -19,7 +19,7 @@ div(ng-include='"components/navbar/navbar.html"')
 						label Distance
 						.row.collapse
 							.columns.small-11
-								input(type='number', ng-model='ad.area', required='')
+								input(type='number', ng-model='ad.range', required='')
 							.columns.small-1
 								span.postfix.addon km
 
@@ -46,7 +46,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
 						label.row.collapse Réduction
 							.columns.small-11
-								input(type='number', ng-model='ad.area', required='')
+								input(type='number', ng-model='ad.value', required='')
 							.columns.small-1
 								span.postfix.addon(ng-if='ad.type == "percent"') %
 								span.postfix.addon(ng-if='ad.type == "euro"') €

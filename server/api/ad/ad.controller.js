@@ -12,7 +12,7 @@ exports.index = function(req, res) {
     if (req.user.role === 'admin') {
         Ad.find(function (err, ads) {
             if (err) {return res.send(500, err);}
-console.log(ads)
+
                 return res.send(200, ads);
         });
     }
@@ -24,51 +24,10 @@ console.log(ads)
         });
     }
     else {
-        Pos.find({status: 'enabled'}, function (err, pos) {
+        Ad.find({status: 'enabled', start: {$gt: new Date()}, end: {$lte: new Date()}}, function (err, ads) {
             if (err) {return res.send(500, err);}
-            var distance;
-            var from = [];
-            var to = [];
 
-            if (req.user.from && req.user.from.latitude) {
-                from = _.forEach(pos, function (item) {
-
-                    distance = geolib.getDistance({
-                        latitude: item.latitude,
-                        longitude: item.longitude
-                    }, {
-                        latitude: req.user.from.latitude,
-                        longitude: req.user.from.longitude
-                    });
-
-                    if (distance <= item.area)
-                        _.without(pos, item);
-                });
-            }
-            else if (req.user.to && req.user.to.latitude) {
-                to = _.forEach(pos, function (item) {
-                    distance = geolib.getDistance({
-                        latitude: item.latitude,
-                        longitude: item.longitude
-                    }, {
-                        latitude: req.user.to.latitude,
-                        longitude: req.user.to.longitude
-                    });
-
-                    if (distance <= item.area)
-                        _.without(pos, item);
-                });
-            }
-
-            pos = _.union(from, to);
-
-
-
-            Ad.find({pos: {$in: pos}}, function (err, ads) {
-                if(err) {return res.send(500, err);}
-console.log(ads)
-                return res.json(200, ads);
-            });
+            return res.json(200, ads);
         });
     }
 };
@@ -109,10 +68,10 @@ exports.create = function(req, res) {
                 valueType: req.body.valueType,
                 value: req.body.value,
                 category: category._id,
-                area: req.body.area,
+                range: req.body.range,
                 start: req.body.start,
                 end: req.body.end,
-                exclu: req.body.exclu,
+                exclu: req.body.exclu || false,
                 status: 'pending'
             };
 

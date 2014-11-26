@@ -12,7 +12,7 @@ var AdSchema = new Schema({
 	value: {type: Number, default: 0},
 	info: {type: String, default: ''},
 	category: { type: Schema.Types.ObjectId, ref: 'Category' },
-	area: {type: Number, default: 0},
+	range: {type: Number, default: 0},
 	start: Date,
 	end: Date,
 	exclu: {type: Boolean, default: false},
