@@ -4,7 +4,7 @@ angular.module('theHomePassApp')
     .controller('AdvertiserAdCtrl', function ($scope, ads, pos, categories, Restangular, Modal, $upload, uiGmapGoogleMapApi, users) {
         $scope.ads = ads;
         $scope.ad = {
-            type: 'euro'
+            valueType: 'euro'
         };
 
         $scope.pos = pos;

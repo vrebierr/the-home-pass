@@ -37,6 +37,7 @@ div(ng-include='"components/navbar/navbar.html"')
 						input#3(name='type', type='radio', ng-modal='ad.type', value='2')
 						label(for='3') Vente privée
 
+						label Réduction
 						.row
 							.columns.small-12
 								input#type1(type='radio', ng-model='ad.valueType', value='percent')
@@ -44,12 +45,12 @@ div(ng-include='"components/navbar/navbar.html"')
 								input#type2(type='radio', ng-model='ad.valueType', value='euro')
 								label(for='type2') Euro
 
-						label.row.collapse Réduction
+						.row.collapse
 							.columns.small-11
 								input(type='number', ng-model='ad.value', required='')
 							.columns.small-1
-								span.postfix.addon(ng-if='ad.type == "percent"') %
-								span.postfix.addon(ng-if='ad.type == "euro"') €
+								span.postfix.addon(ng-if='ad.valueType == "percent"') %
+								span.postfix.addon(ng-if='ad.valueType == "euro"') €
 
 						label.row.collapse Date de lancement
 							.columns.small-11
