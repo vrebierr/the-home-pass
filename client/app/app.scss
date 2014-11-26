@@ -6,7 +6,7 @@ html {
     width: 100%;
 }
 
-input {
+input[type='text'] {
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
     background-color: #fff;
@@ -112,6 +112,7 @@ nav > div > a {
 .pass-form > div > input:focus {
     background-color: white !important;
     color: rgba(0, 0, 0, 0.74902) !important;
+    border: none;
 }
 
 .pass-form > div > button {

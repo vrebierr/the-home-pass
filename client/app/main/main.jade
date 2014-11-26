@@ -4,7 +4,8 @@ div(ng-include='"components/navbar/navbar.html"')
     .row
         .columns.medium-12.large-5.show-for-medium-up.gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='markers.options')
+                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
+                    ui-gmap-windows(templateUrl='"window.html"', show='"show"')
         .columns.small-12.medium-12.large-7
             .row
                 .columns.large-6
@@ -34,3 +35,7 @@ div(ng-include='"components/navbar/navbar.html"')
             ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
                 li
                     img(ng-src='/uploads/{{ad.image}}')
+
+
+script(type='text/ng-template', id='window.html')
+    h2 test

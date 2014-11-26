@@ -26,13 +26,10 @@ angular.module('theHomePassApp')
                 }
             };
 
-            $scope.markers = {
-                options: {
-                    labelContent: 'test',
-                    labelVisible: true
-                }
-            };
-            console.log($scope.markers);
+            _.forEach($scope.pos, function (item) {
+                item.icon = '/assets/images/marker.png';
+                item.show = false;
+            });
 
             $scope.events = {
                 map: {

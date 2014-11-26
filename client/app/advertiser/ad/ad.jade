@@ -8,46 +8,57 @@ div(ng-include='"components/navbar/navbar.html"')
 				ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.area * 1000', stroke='circle.stroke', fill='circle.fill')
 
 		.columns.small-12.medium-12.large-7
-			h3 Ajouter une annonce
-			form(enctype='multipart/form-data', name='form')
+			.row
+				.columns.small-12
+					h3 Ajouter une annonce
+					form(enctype='multipart/form-data', name='form')
+						label Points de vente
+						input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
 
-					label Points de vente
-					input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
+				
+						label.row.collapse Distance
+							.columns.small-11
+								input(type='number', ng-model='ad.area', required='')
+							.columns.small-1
+								span.postfix.addon km
 
-					label Distance
-						input(type='number', ng-model='ad.area', required='')
-						span km
+						label Image
+						input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
 
-					label Image
-					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
+						label Categorie
+						select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='')
 
-					label Categorie
-					select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='')
+						label Type d'offre
+						input#1(name='type', type='radio', ng-modal='ad.type', value='0')
+						label(for='1') Offre de remboursement
+						input#2(name='type', type='radio', ng-modal='ad.type', value='1')
+						label(for='2') Remise immédiate
+						input#3(name='type', type='radio', ng-modal='ad.type', value='2')
+						label(for='3') Vente privée
+						label Montant
+							label
+								input(type='radio', ng-model='ad.type', value='percent')
+								| Pourcentage
+							label
+								input(type='radio', ng-model='ad.type', value='euro')
+								| Euro
+							.input-group(ng-if='ad.type == "percent"')
+								input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
+								span.input-group-addon %
+							.input-group(ng-if='ad.type == "euro"')
+								input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
+								span.input-group-addon €
 
-				label Montant
-					label.radio-inline
-						input(type='radio', ng-model='ad.type', value='percent')
-						| Pourcentage
-					label.radio-inline
-						input(type='radio', ng-model='ad.type', value='euro')
-						| Euro
-					.input-group(ng-if='ad.type == "percent"')
-						input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
-						span.input-group-addon %
-					.input-group(ng-if='ad.type == "euro"')
-						input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
-						span.input-group-addon €
+						.form-group
+							label Date de fin
+							.input-group
+								span.input-group-addon
+									i.fa.fa-calendar
+								input.form-control(type='date', ng-model='ad.end', required='')
 
-				.form-group
-					label Date de fin
-					.input-group
-						span.input-group-addon
-							i.fa.fa-calendar
-						input.form-control(type='date', ng-model='ad.end', required='')
+						.form-group
+							label Annonce
+							textarea.form-control(ng-model='ad.info', rows='5', required='')
 
-				.form-group
-					label Annonce
-					textarea.form-control(ng-model='ad.info', rows='5', required='')
-
-				button.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
-				span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
+						button.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
+						span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
