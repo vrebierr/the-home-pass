@@ -6,7 +6,7 @@ html {
     width: 100%;
 }
 
-input[type=''] {
+input:not([type]) {
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
     background-color: #fff;
