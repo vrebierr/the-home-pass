@@ -67,7 +67,7 @@ angular.module('theHomePassApp')
                     $scope.ads = _.without($scope.ads, ad);
                     toastr.success('Annonce supprimée !');
                 });
-            })
+            });
         };
 
         $rootScope.$on('update', function (event, data) {
