@@ -8,11 +8,14 @@ var AdSchema = new Schema({
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
 	image: String,
 	type: String,
+	valueType: String,
 	value: Number,
 	info: String,
 	category: { type: Schema.Types.ObjectId, ref: 'Category' },
 	area: Number,
+	start: Date,
 	end: Date,
+	exclu: Boolean,
 	status: String
 });
 

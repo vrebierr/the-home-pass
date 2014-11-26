@@ -104,10 +104,13 @@ exports.create = function(req, res) {
                 image: req.body.image,
                 info: req.body.info,
                 type: req.body.type,
+                valueType: req.body.valueType,
                 value: req.body.value,
                 category: category._id,
                 area: req.body.area,
+                start: req.body.start,
                 end: req.body.end,
+                exclu: req.body.exclu,
                 status: 'pending'
             };
 
