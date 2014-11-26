@@ -7,11 +7,40 @@ angular.module('theHomePassApp')
             return item;
         });
 
-        $scope.ads = ads;
+        $scope.ads = [
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+            {image: 'bg.jpg'},
+        ];
+
         console.log(ads)
         $scope.categories = categories;
         $scope.selected = {};
         $scope.range = 0;
+
+        $scope.scroll = function () {
+            for (var i = 0; i < 4; i++) {
+                var index = $scope.ads.length - 1 + i
+                if (ads[index]) {
+                    $scope.ads.push(ads[index]);
+                }
+            }
+            console.log($scope.ads);
+        }
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {

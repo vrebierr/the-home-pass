@@ -43,7 +43,7 @@ exports.show = function(req, res) {
 
 // Creates a new ad in the DB.
 exports.create = function(req, res) {
-    if (req.body.type !== 'percent' && req.body.type !== 'euro')
+    if (req.body.valueType !== 'percent' && req.body.valueType !== 'euro')
         return res.send(500, 'Bad type.');
     if (!_.isString(req.body.pos))
         return res.send(500, 'Bad POS.');

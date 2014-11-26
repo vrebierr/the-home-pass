@@ -1,6 +1,6 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container.fixed
+.container
     .row
         .columns.medium-12.large-5.show-for-medium-up.gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
@@ -30,18 +30,20 @@ div(ng-include='"components/navbar/navbar.html"')
                         option(value='1') Offre de remboursement
                         option(value='2') Remise immédiate
                         option(value='3') Vente privée
-                .columns.large-11.medium-11.small-11
+                .columns.large-11.medium-11.small-10
                     input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+                .columns.large-1.medium-1.small-2
                     span.postfix.addon
                         i.fa.fa-search
-            .row
-                .small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4.effects(infinite-scroll='')
-                    .img(ng-repeat='ad in ads')
-                        img(ng-src='http://placehold.it/100x100}')
-                        .overlay
-                            a.expand 20 %
-                            a.close-overlay.hidden x
 
+            .row.collapse.ads
+                .shadow
+                ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='true')
+                    li.offer.trans(ng-repeat='ad in ads')
+                        img(ng-src='http://placehold.it/100x100}')
+                        span 20 %
+                .shadow
+            span test
 
 script(type='text/ng-template', id='window.html')
     h2 test
