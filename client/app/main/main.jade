@@ -32,8 +32,8 @@ div(ng-include='"components/navbar/navbar.html"')
                 .columns.large-1.medium-1
                     span.postfix.addon
                         i.fa.fa-search
-            ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3(ng-repeat='ad in ads')
-                li
+            ul.small-block-grid-1.medium-block-grid-3.large-block-grid-3
+                li(ng-repeat='ad in ads')
                     img(ng-src='/uploads/{{ad.image}}')
 
 

@@ -8,6 +8,7 @@ angular.module('theHomePassApp')
         });
 
         $scope.ads = ads;
+        console.log(ads)
         $scope.categories = categories;
         $scope.selected = {};
         $scope.range = 0;

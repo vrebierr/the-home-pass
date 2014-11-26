@@ -63,5 +63,5 @@ Category.find({}).remove(function () {
     });
 });
 
-// Pos.find({}).remove(function() {});
-// Ad.find({}).remove(function() {});
+Pos.find({}).remove(function() {});
+Ad.find({}).remove(function() {});

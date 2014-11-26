@@ -8,15 +8,15 @@ var AdSchema = new Schema({
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
 	image: String,
 	type: String,
-	valueType: String,
-	value: Number,
-	info: String,
+	valueType: {type: String, default: 'percent'},
+	value: {type: Number, default: 0},
+	info: {type: String, default: ''},
 	category: { type: Schema.Types.ObjectId, ref: 'Category' },
-	area: Number,
+	area: {type: Number, default: 0},
 	start: Date,
 	end: Date,
-	exclu: Boolean,
-	status: String
+	exclu: {type: Boolean, default: false},
+	status: {type: String, default: 'pending'}
 });
 
 module.exports = mongoose.model('Ad', AdSchema);

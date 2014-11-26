@@ -12,7 +12,7 @@ exports.index = function(req, res) {
     if (req.user.role === 'admin') {
         Ad.find(function (err, ads) {
             if (err) {return res.send(500, err);}
-
+console.log(ads)
                 return res.send(200, ads);
         });
     }
@@ -62,9 +62,11 @@ exports.index = function(req, res) {
 
             pos = _.union(from, to);
 
+
+
             Ad.find({pos: {$in: pos}}, function (err, ads) {
                 if(err) {return res.send(500, err);}
-
+console.log(ads)
                 return res.json(200, ads);
             });
         });
