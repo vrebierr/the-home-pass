@@ -16,7 +16,8 @@ div(ng-include='"components/navbar/navbar.html"')
 						input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
 
 				
-						label.row.collapse Distance
+						label Distance
+						.row.collapse
 							.columns.small-11
 								input(type='number', ng-model='ad.area', required='')
 							.columns.small-1
@@ -35,30 +36,39 @@ div(ng-include='"components/navbar/navbar.html"')
 						label(for='2') Remise immédiate
 						input#3(name='type', type='radio', ng-modal='ad.type', value='2')
 						label(for='3') Vente privée
-						label Montant
-							label
-								input(type='radio', ng-model='ad.type', value='percent')
-								| Pourcentage
-							label
-								input(type='radio', ng-model='ad.type', value='euro')
-								| Euro
-							.input-group(ng-if='ad.type == "percent"')
-								input.form-control(type='number', ng-model='ad.value', max='100', min='1', required='')
-								span.input-group-addon %
-							.input-group(ng-if='ad.type == "euro"')
-								input.form-control(type='number', ng-model='ad.value', min='1', required='', placeHolder='50')
-								span.input-group-addon €
 
-						.form-group
-							label Date de fin
-							.input-group
-								span.input-group-addon
-									i.fa.fa-calendar
-								input.form-control(type='date', ng-model='ad.end', required='')
+						.row
+							.columns.small-12
+								input#type1(type='radio', ng-model='ad.type', value='percent')
+								label(for='type1') Pourcentage
+								input#type2(type='radio', ng-model='ad.type', value='euro')
+								label(for='type2') Euro
 
+						label.row.collapse Réduction
+							.columns.small-11
+								input(type='number', ng-model='ad.area', required='')
+							.columns.small-1
+								span.postfix.addon(ng-if='ad.type == "percent"') %
+								span.postfix.addon(ng-if='ad.type == "euro"') €
+
+						label.row.collapse Date de lancement
+							.columns.small-11
+								input(type='date', ng-model='ad.start', required='')
+							.columns.small-1
+								i.postfix.addon.fa.fa-calendar
+						
+						label.row.collapse Date de fin
+							.columns.small-11
+								input(type='date', ng-model='ad.end', required='')
+							.columns.small-1
+								i.postfix.addon.fa.fa-calendar
+
+						label Offre exclusive Home Pass : 
+							input(type='checkbox', ng-model='ad.exclu')
+						
 						.form-group
 							label Annonce
 							textarea.form-control(ng-model='ad.info', rows='5', required='')
 
-						button.btn.btn-primary(ng-click='send(form)', type='submit', value="{{ ad._id && 'Modifier' || 'Ajouter'}}")
-						span.btn.btn-danger.pull-right(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
+						button.black(ng-click='send(form)') {{ ad._id && 'Modifier' || 'Ajouter'}}
+						button.black(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
