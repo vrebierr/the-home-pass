@@ -207,6 +207,7 @@ button.alert {
     -moz-transition: opacity 0.3s ease-in-out;
     -o-transition: opacity 0.3s ease-in-out;
     transition: opacity 0.3s ease-in-out;
+    z-index: -10 !important;
 }
 
 .offer span {
@@ -221,24 +222,24 @@ button.alert {
     color: white !important;
 }
 
-.offer span:hover {
+.offer:hover span {
     opacity: 1;
+    z-index: -5 !important;
+}
+
+.offer {
+    cursor: pointer !important;
 }
 
 .ads {
-    height: calc(100vh - 395px) !important;
+    height: calc(100vh - 435px) !important;
     overflow: scroll;
+    box-shadow: inset 0 20px 20px -20px white,
+                inset 0 -15px 15px -15px black;
+    z-index: 1000 !important;
+    padding-top: 10px;
 }
 
 .ads::-webkit-scrollbar{
     display: none;
-}
-
-.ads ul li img{
-    position: relative;
-    z-index: -100;
-}
-
-html {
-    box-shadow: 50px;
 }

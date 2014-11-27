@@ -37,7 +37,7 @@ div(ng-include='"components/navbar/navbar.html"')
                         i.fa.fa-search
 
             ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='true')
-                li.offer.trans(ng-repeat='ad in ads')
+                li.offer(ng-repeat='ad in ads', ui-sref='showAd({id: ad._id})')
                     img(ng-src='http://placehold.it/200x200}')
                     span
                         h4 Habitat

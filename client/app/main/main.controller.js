@@ -1,33 +1,32 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $http, uploads, uiGmapGoogleMapApi) {
+    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $http, uploads, uiGmapGoogleMapApi, $state) {
     	$scope.pos = _.map(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
             return item;
         });
 
         $scope.ads = [
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
-            {image: 'bg.jpg'},
+            {image: 'bg.jpg', _id: 1},
+            {image: 'bg.jpg', _id: 2},
+            {image: 'bg.jpg', _id: 3},
+            {image: 'bg.jpg', _id: 4},
+            {image: 'bg.jpg', _id: 5},
+            {image: 'bg.jpg', _id: 6},
+            {image: 'bg.jpg', _id: 7},
+            {image: 'bg.jpg', _id: 8},
+            {image: 'bg.jpg', _id: 9},
+            {image: 'bg.jpg', _id: 10},
+            {image: 'bg.jpg', _id: 11},
+            {image: 'bg.jpg', _id: 12},
+            {image: 'bg.jpg', _id: 13},
+            {image: 'bg.jpg', _id: 14},
+            {image: 'bg.jpg', _id: 15},
+            {image: 'bg.jpg', _id: 16},
+            {image: 'bg.jpg', _id: 17},
         ];
 
-        console.log(ads)
         $scope.categories = categories;
         $scope.selected = {};
         $scope.range = 0;
@@ -39,8 +38,7 @@ angular.module('theHomePassApp')
                     $scope.ads.push(ads[index]);
                 }
             }
-            console.log($scope.ads);
-        }
+        };
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
