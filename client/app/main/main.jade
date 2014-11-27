@@ -36,14 +36,12 @@ div(ng-include='"components/navbar/navbar.html"')
                     span.postfix.addon
                         i.fa.fa-search
 
-            .row.collapse.ads
-                .shadow
-                ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='true')
-                    li.offer.trans(ng-repeat='ad in ads')
-                        img(ng-src='http://placehold.it/100x100}')
-                        span 20 %
-                .shadow
-            span test
+            ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='true')
+                li.offer.trans(ng-repeat='ad in ads')
+                    img(ng-src='http://placehold.it/200x200}')
+                    span
+                        h4 Habitat
+                        p -20 % sur votre produit préféré
 
 script(type='text/ng-template', id='window.html')
     h2 test
