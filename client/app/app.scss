@@ -193,44 +193,46 @@ button.alert {
 
 
 .offer {
-    position: relative;
     text-align: center;
 }
 
-.offer img, .offer span {
-    display: block;
+.img-layer {
+    cursor: pointer !important;
     width: 100% !important;
-    height: 100% !important;
-    position: relative;
-    left: 10px;
+    height: auto !important;
+}
+
+.img-layer img, .layer {
     -webkit-transition: opacity 0.3s ease-in-out;
     -moz-transition: opacity 0.3s ease-in-out;
     -o-transition: opacity 0.3s ease-in-out;
     transition: opacity 0.3s ease-in-out;
-    z-index: -10 !important;
-    margin-bottom: 20px !important;
 }
 
-.offer span {
-    opacity: 0;
-    background-color: black;
+.img-layer img {
+    display: inline-block;
+    width: 100% !important;
+    height: auto !important;
+    position: relative;
+}
+
+figcaption {
+    display: none;
+    margin-top: calc(-100% + 10px);
+}
+
+.layer, .layer h4 {
     color: white;
-    text-align: center;
-    padding-top: 40px;
-    margin-top: -200px;
+    background-color: black;
 }
 
-.offer span h4 {
-    color: white !important;
-}
-
-.offer:hover span {
+.img-layer:hover .layer {
     opacity: 1;
-    z-index: -5 !important;
+    display: block;
 }
 
-.offer {
-    cursor: pointer !important;
+.offer img:hover {
+    opacity: 0;
 }
 
 .ads {
