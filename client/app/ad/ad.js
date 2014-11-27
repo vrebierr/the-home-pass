@@ -7,13 +7,14 @@ angular.module('theHomePassApp')
                 url: '/ad/:id',
                 templateUrl: 'app/ad/ad.html',
                 controller: 'AdCtrl',
-                resole: {
+                authenticate: true,
+                resolve: {
                     ad: function (Restangular, $stateParams) {
-                        return Restangular.one('ads', $stateParams.id).get();
+                        return Restangular;
                     },
-                    pos: function (Restangular) {
-                        return .one('pos').get();
+                    pos: function (Restangular, $stateProvider) {
+                        return Restangular;
                     }
                 }
-        });
+            });
     });
