@@ -4,3 +4,44 @@ div(ng-include='"components/navbar/navbar.html"')
     .row
         .columns.large-12
             hr
+    .row
+        .columns.large-12
+            h1 Habitat
+
+    .row
+        .columns.large-4
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+                ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
+                    ui-gmap-windows(templateUrl='"window.html"', show='"show"')
+            p
+                strong Habitat
+                |  - {{pos.address}}
+                br
+                strong Email :
+                | {{pos.email}}
+                br
+                strong Tel. :
+                | {{pos.phone}}
+                br
+                strong Fax :
+                | {{pos.fax}}
+                br
+                strong Ouverture :
+                | {{pos.opening}}
+                br
+        .columns.large-8
+            .ad
+                .row
+                    .columns.small-5
+                        img(ng-src='http://placehold.it/400x400}')
+            
+                    .columns.small-7
+                        h4 -20%
+            .row
+                .columns.large-12
+                    h5 Présentation
+                    p
+    .row
+        .columns.large-12
+            h4 Toutes les offres de la même enseigne
+            hr.no-margin-top

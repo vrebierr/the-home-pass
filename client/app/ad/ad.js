@@ -9,11 +9,11 @@ angular.module('theHomePassApp')
                 controller: 'AdCtrl',
                 authenticate: true,
                 resolve: {
-                    ad: function (Restangular, $stateParams) {
-                        return Restangular;
+                    ad: function () {
+                        return [];
                     },
-                    pos: function (Restangular, $stateProvider) {
-                        return Restangular;
+                    pos: function () {
+                        return [];
                     }
                 }
             });

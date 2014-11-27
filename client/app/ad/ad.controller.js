@@ -4,5 +4,5 @@ angular.module('theHomePassApp')
     .controller('AdCtrl', function ($scope, ad, pos) {
         $scope.ad = ad;
         $scope.pos = pos;
-        console.log(pos)
+        console.log(ad)
     });
