@@ -40,7 +40,7 @@ angular.module('theHomePassApp')
 			.state('adAdmin', {
 				url: '/admin/ad',
 				templateUrl: 'app/admin/ad/ad.html',
-				controller: 'AdCtrl',
+				controller: 'AdAdminCtrl',
 				authenticate: true,
 				resolve: {
 					ads: function (Restangular) {

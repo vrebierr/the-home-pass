@@ -11,8 +11,8 @@ angular.module('theHomePassApp')
                     ad: function (Restangular, $stateParams) {
                         return Restangular.one('ads', $stateParams.id).get();
                     },
-                    pos: function (Restangular, ad) {
-                        return ad.one('pos').get();
+                    pos: function (Restangular) {
+                        return .one('pos').get();
                     }
                 }
         });
