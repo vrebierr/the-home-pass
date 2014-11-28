@@ -47,10 +47,10 @@ User.find({}).remove(function() {
         }
     }, {
         provider: 'local',
-        name: 'SURESNES',
+        name: 'Demo 2 Test',
         email: 'asd@ad.com',
-        password: 'SURESNES',
-        pass: 'SURESNES',
+        password: 'DEMO2TEST',
+        pass: 'DEMO2TEST',
         from: {
             address: 'Suresnes, France',
             latitude: 48.869798,
