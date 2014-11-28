@@ -6,7 +6,6 @@ angular.module('theHomePassApp')
         $scope.ad = {
             valueType: 'euro'
         };
-
         $scope.pos = pos;
         $scope.categories = categories;
 

@@ -26,7 +26,7 @@ exports.index = function(req, res) {
     else {
         Ad.find({status: 'enabled', start: {$lt: new Date()}, end: {$gte: new Date()}}, function (err, ads) {
             if (err) {return res.send(500, err);}
-
+            console.log(ads)
             return res.json(200, ads);
         });
     }
@@ -68,11 +68,10 @@ exports.create = function(req, res) {
                 valueType: req.body.valueType,
                 value: req.body.value,
                 category: category._id,
-                range: req.body.range,
+                range: req.body.range * 1000,
                 start: req.body.start,
                 end: req.body.end,
-                exclu: req.body.exclu || false,
-                status: 'pending'
+                exclu: req.body.exclu || false
             };
 
             Ad.create(ad, function(err, ad) {
