@@ -16,7 +16,7 @@ div(ng-include='"components/navbar/navbar.html"')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
                     ui-gmap-windows(templateUrl='"window.html"', show='"show"')
             p
-                strong Habitat
+                strong {{pos.name}}
                 |  - {{pos.address}}
                 br
                 strong Email :
@@ -42,7 +42,7 @@ div(ng-include='"components/navbar/navbar.html"')
             .row
                 .columns.large-12
                     h5 Présentation
-                    p
+                    p {{pos.info}}
     .row
         .columns.large-12
             h4 Toutes les offres de la même enseigne

@@ -147,7 +147,7 @@ button.alert {
 @media only screen and (min-width: 1025px) {
     .gm {
         position: absolute;
-        height: calc(100% - 190px) !important;
+        height: calc(100% - 160px) !important;
         padding-right: 45px;
     }
 
@@ -227,7 +227,7 @@ figure figcaption h4 {
 }
 
 .ads {
-    height: calc(100vh - 435px) !important;
+    height: calc(100vh - 397px) !important;
     overflow: scroll;
     box-shadow: inset 0 20px 20px -20px white,
                 inset 0 -15px 15px -15px black;
@@ -254,4 +254,9 @@ hr {
 
 .no-margin-top {
     margin-top: 0;
+}
+
+body {
+    width: calc(100% - 35px) !important;
+    height: calc(100% - 35px) !important;
 }
