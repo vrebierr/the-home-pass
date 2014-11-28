@@ -213,17 +213,33 @@ figure figcaption {
     height: 100%;
     background-color: black;
     color: white;
-    text-align: center;
-    padding: 30px;
     transition: opacity 0.4s ease;
     -webkit-transition: opacity 0.4s ease;
     -moz-transition: opacity 0.4s ease;
     -o-transition: opacity 0.4s ease;
     opacity: 0;
+    text-align: center;
+    padding: 5px;
 }
 
-figure figcaption h4 {
+.floater {
+    float: left;
+    height: 50%;
+    width: 100%;
+    margin-bottom: -50px;
+}
+
+.child {
+    clear: both;
+}
+
+figure figcaption h5 {
     color: white;
+}
+
+em.exclu {
+    vertical-align: bottom;
+    font-size: 12px;
 }
 
 .ads {
@@ -260,9 +276,4 @@ html {
     max-width: 1600px;
     margin: auto;
     overflow-x: hidden;
-}
-
-em.exclu {
-    vertical-align: bottom;
-    font-size: 12px;
 }

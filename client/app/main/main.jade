@@ -18,7 +18,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
             .row
                 .columns.large-12
-                    h4 Actuellement {{itms.length}} offres exclusives à proximité de ma ville
+                    h4 Actuellement {{items.length}} offres exclusives à proximité de ma ville
                 
             .row.collapse
                 .columns.large-3.medium-6
@@ -42,10 +42,12 @@ div(ng-include='"components/navbar/navbar.html"')
                         figure
                             img(ng-src='http://placehold.it/200x200}')
                             figcaption
-                                h4 {{ad.authorName}} {{}}
-                                p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+                                .floater
+                                .child
+                                    h5 {{ad.currentPos.name}}
+                                    p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
 
-                                em.exclu Offre exclusive The Home Pass
+                                    em.exclu Offre exclusive The Home Pass
 
 script(type='text/ng-template', id='window.html')
     h2 test
