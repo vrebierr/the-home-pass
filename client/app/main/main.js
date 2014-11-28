@@ -13,7 +13,7 @@ angular.module('theHomePassApp')
                         return Restangular.all('pos').getList();
                     },
                     ads: function (Restangular) {
-                        return Restangular.all('ads').getList();
+                        return Restangular.all('items').getList();
                     },
                     categories: function (Restangular) {
                         return Restangular.all('categories').getList();

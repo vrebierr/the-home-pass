@@ -100,7 +100,7 @@ angular.module('theHomePassApp')
             });
         };
 
-        var baseAds = Restangular.all('ads');
+        var baseAds = Restangular.all('items');
         $scope.send = function (form) {
             if (form.$valid) {
                 if ($scope.ad._id) {
