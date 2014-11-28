@@ -11,7 +11,7 @@ var AdSchema = new Schema({
 	valueType: {type: String, default: 'percent'},
 	value: {type: Number, default: 0},
 	info: {type: String, default: ''},
-	category: { type: Schema.Types.ObjectId, ref: 'Category' },
+	category: {type: Schema.Types.ObjectId, ref: 'Category'},
 	range: {type: Number, default: 0},
 	start: Date,
 	end: Date,

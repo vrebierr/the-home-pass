@@ -25,9 +25,8 @@ exports.index = function(req, res) {
     }
     else {
         Ad.find({status: 'enabled', start: {$lt: new Date()}, end: {$gte: new Date()}}, function (err, ads) {
-            console.log(ads);
             if (err) {return res.send(500, err);}
-
+                console.log(ads)
             return res.json(200, ads);
         });
     }

@@ -21,16 +21,16 @@ div(ng-include='"components/navbar/navbar.html"')
                     h4 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
                 
             .row.collapse
-                .columns.large-6.medium-6
+                .columns.large-3.medium-6
                     select(ng-model='categories', ng-options='category._id as category.name for category in categories')
                         option(value='') Filtrer par univers
-                .columns.large-6.medium-6
+                .columns.large-4.medium-6
                     select(ng-model='type')
                         option(value='') Filtrer par types d'offres
                         option(value='1') Offre de remboursement
                         option(value='2') Remise immédiate
                         option(value='3') Vente privée
-                .columns.large-11.medium-11.small-10
+                .columns.large-4.medium-11.small-10
                     input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
                 .columns.large-1.medium-1.small-2
                     span.postfix.addon

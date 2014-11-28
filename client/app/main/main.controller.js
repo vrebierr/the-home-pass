@@ -1,15 +1,35 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $http, uploads, uiGmapGoogleMapApi, $state) {
-        $scope.pos = _.map(pos, function (item) {
+    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, Restangular, $http, uploads, uiGmapGoogleMapApi, $state) {
+        $scope.currentUser = Auth.getCurrentUser();
+        $scope.ads = [];
+        $scope.pos = _.filter(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
-            return item;
+            item.dist = geolib.getDistance({
+                latitude: item.latitude,
+                longitude: item.longitude
+            }, {
+                latitude: location && $scope.currentUser.from.latitude || $scope.currentUser.to.latitude,
+                longitude: location && $scope.currentUser.from.longitude || $scope.currentUser.to.longitude
+            });
+
+            var tmp = _.filter(ads, function (ad) { return _.contains(ad.pos, item._id) });
+
+            var flag = 0;
+            console.log(item.dist)
+            _.forEach(tmp, function (ad) {
+                console.log(ad.range)
+                if (item.dist < ad.range) {
+                    $scope.ads.push(ad);
+                    flag = 1;
+                }
+            });
+
+            return flag;
         });
 
-
-        $scope.pos
-        console.log(ads)
+        console.log($scope.pos)
 
         $scope.ads = [
             {image: 'bg.jpg', _id: 1},
@@ -128,29 +148,4 @@ angular.module('theHomePassApp')
                 }
             }
         };
-
-        var distance;
-        $('#range').ionRangeSlider({
-            min: 2,
-            max: 50,
-            type: 'single',
-            step: 2,
-            postfix: 'km',
-            onChange: function (item) {
-                $scope.range = item.fromNumber;
-
-                $scope.pos = _.filter(pos, function (item) {
-                    distance = geolib.getDistance({
-                        latitude: item.latitude,
-                        longitude: item.longitude
-                    }, {
-                        latitude: Auth.getCurrentUser().from.latitude,
-                        longitude: Auth.getCurrentUser().from.longitude
-                    });
-
-                    return $scope.range * 1000 - distance >= 0;
-                });
-                $scope.$apply();
-            }
-        });
     });

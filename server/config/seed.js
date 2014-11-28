@@ -57,9 +57,9 @@ User.find({}).remove(function() {
             longitude: 2.2190329999999676
         },
         to: {
-            address: '50 Rue de Rivoli, 75004 Paris, France',
-            latitude: 48.8567484,
-            longitude: 2.35390469999993
+            address: 'Senlis, France',
+            latitude: 49.205164,
+            longitude: 2.583212000000003
         }
     }, function () {
         Pos.find({}).remove(function() {
@@ -76,21 +76,34 @@ User.find({}).remove(function() {
                     latitude: 48.88,
                     longitude: 2.217,
                     author: user._id
-                }, function (err, pos) {
-                    Ad.find({}).remove(function() {
-                        Ad.create({
-                            pos: pos._id,
-                            author: user._id,
-                            start: new Date(),
-                            end: new Date().setDate(new Date().getDate() + 1),
-                            range: 5000,
-                            info: '',
-                            value: 20,
-                            valueType: 'percent',
-                            status: 'enabled'
-                        }, function (err, ad) {
-                            console.log(ad);
-                            console.log('finished populating pos & ads');
+                }, function () {
+                    console.log('finished populating pos');
+
+                    Ad.find({}).remove(function () {
+                        Pos.find({}, function (err, pos) {
+                            Ad.create({
+                                pos: pos[0]._id,
+                                author: user._id,
+                                start: new Date(),
+                                end: new Date().setDate(new Date().getDate() + 1),
+                                range: 5000,
+                                info: '',
+                                value: 20,
+                                valueType: 'percent',
+                                status: 'enabled'
+                            }, {
+                                pos: pos[1]._id,
+                                author: user._id,
+                                start: new Date(),
+                                end: new Date().setDate(new Date().getDate() + 1),
+                                range: 5000,
+                                info: '',
+                                value: 50,
+                                valueType: 'euro',
+                                status: 'enabled'
+                            }, function () {
+                                console.log('finished populating ads');
+                            });
                         });
                     });
                 });
