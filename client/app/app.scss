@@ -256,7 +256,9 @@ hr {
     margin-top: 0;
 }
 
-body {
-    width: calc(100% - 35px) !important;
+html {
     height: calc(100% - 35px) !important;
+    max-width: 1600px;
+    margin: auto;
+    overflow-x: hidden;
 }

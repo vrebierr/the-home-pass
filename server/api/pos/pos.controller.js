@@ -85,6 +85,8 @@ exports.create = function(req, res) {
         opening: req.body.opening,
     };
 
+    console.log(pos)
+
     Pos.create(pos, function(err, pos) {
         if(err) { return handleError(res, err); }
         return res.json(201, pos);

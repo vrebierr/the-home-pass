@@ -45,7 +45,23 @@ User.find({}).remove(function() {
             latitude: 51.5073509,
             longitude: -0.12775829999998223
         }
-    }, function() {
+    }, {
+        provider: 'pass',
+        name: 'SURESNES',
+        email: '',
+        password: 'SURESNES',
+        pass: 'SURESNES',
+        from: {
+            address: 'Suresnes, France',
+            latitude: 48.869798,
+            longitude: 2.2190329999999676
+        },
+        to: {
+            address: '50 Rue de Rivoli, 75004 Paris, France',
+            latitude: 48.8567484,
+            longitude: 2.35390469999993
+        }
+    }, function () {
         console.log('finished populating users');
     });
 });
@@ -63,5 +79,13 @@ Category.find({}).remove(function () {
     });
 });
 
-Pos.find({}).remove(function() {});
+Pos.find({}).remove(function() {
+    User.findOne({name: 'ad'}, function (err, user) {
+        Pos.create({
+            name: 'Habitat'
+        }, function () {
+            console.log('finished populating pos');
+        })
+    })
+});
 Ad.find({}).remove(function() {});
