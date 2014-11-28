@@ -18,7 +18,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
             .row
                 .columns.large-12
-                    h4 Actuellement {{ads.length}} offres exclusives à proximité de ma ville
+                    h4 Actuellement {{itms.length}} offres exclusives à proximité de ma ville
                 
             .row.collapse
                 .columns.large-3.medium-6
@@ -36,16 +36,16 @@ div(ng-include='"components/navbar/navbar.html"')
                     span.postfix.addon
                         i.fa.fa-search
 
-            ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='true')
-                li(ng-repeat='ad in ads')
+            ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', nfinite-scroll-immediate-check='true')
+                li(ng-repeat='ad in items')
                     a(ui-sref='showAd({id: ad._id})')
                         figure
                             img(ng-src='http://placehold.it/200x200}')
                             figcaption
-                                h4 Habitat
-                                p -20 % sur votre produit préféré
-                                    br
-                                    strong Offre exclusive The Home Pass
+                                h4 {{ad.authorName}} {{}}
+                                p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+
+                                em.exclu Offre exclusive The Home Pass
 
 script(type='text/ng-template', id='window.html')
     h2 test

@@ -7,8 +7,6 @@ angular.module('theHomePassApp')
         $scope.location = 0;
 
         $scope.refresh = function () {
-            $scope.ads = [];
-
             $scope.pos = _.filter(pos, function (item) {
                 item.image = _.findWhere(uploads, {_id: item.image});
                 item.icon = '/assets/images/marker.png';
@@ -23,24 +21,17 @@ angular.module('theHomePassApp')
                 var tmp = _.filter(ads, function (ad) { return _.contains(ad.pos, item._id) });
                 var flag = 0;
 
-                _.forEach(ads, function (ad) {
+                _.forEach(tmp, function (ad) {
                     if (item.dist < ad.range) {
+                        if (!_.contains($scope.ads, ad)) {
+                            $scope.ads.push(ad);
+                        }
                         flag = 1;
                     }
                 });
 
                 return flag;
             });
-
-            $scope.ads = _.filter(ads, function (item) {
-                var tmp = _.filter(ads, function (ad) { return _.contains(ad.pos, item._id) });
-                _.forEach(tmp, function (data) {
-
-                })
-            });
-
-            console.log(_.pluck($scope.ads, '_id'))
-            console.log($scope.ads)
         }
         $scope.refresh();
 
@@ -48,11 +39,12 @@ angular.module('theHomePassApp')
         $scope.selected = {};
         $scope.range = 0;
 
+        $scope.items = [];
         $scope.scroll = function () {
-            for (var i = 0; i < 4; i++) {
-                var index = $scope.ads.length - 1 + i
-                if (ads[index]) {
-                    $scope.ads.push(ads[index]);
+            for (var i = 0; i < 15; i++) {
+                var index = $scope.items.length;
+                if ($scope.ads[index]) {
+                    $scope.items.push($scope.ads[index]);
                 }
             }
         };
