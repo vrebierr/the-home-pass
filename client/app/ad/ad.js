@@ -4,7 +4,7 @@ angular.module('theHomePassApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('showAd', {
-                url: '/ad/:ad/:pos',
+                url: '/show/:ad/:pos',
                 templateUrl: 'app/ad/ad.html',
                 controller: 'AdCtrl',
                 authenticate: true,
