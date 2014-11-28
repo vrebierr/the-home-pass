@@ -15,7 +15,7 @@ var UserSchema = new Schema({
     provider: String,
     salt: String,
     phone: Number,
-    pass: { type: String, lowercase: true },
+    pass: { type: String, default: '' },
     from: {
         address: String,
         latitude: { type: Number, default: 0 },

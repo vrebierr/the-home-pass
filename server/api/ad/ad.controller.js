@@ -13,7 +13,7 @@ exports.index = function(req, res) {
         Ad.find(function (err, ads) {
             if (err) {return res.send(500, err);}
 
-                return res.send(200, ads);
+            return res.send(200, ads);
         });
     }
     else if (req.user.role === 'advertiser') {
@@ -24,7 +24,8 @@ exports.index = function(req, res) {
         });
     }
     else {
-        Ad.find({status: 'enabled', start: {$gt: new Date()}, end: {$lte: new Date()}}, function (err, ads) {
+        Ad.find({status: 'enabled', start: {$lt: new Date()}, end: {$gte: new Date()}}, function (err, ads) {
+            console.log(ads);
             if (err) {return res.send(500, err);}
 
             return res.json(200, ads);

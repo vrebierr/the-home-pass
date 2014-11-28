@@ -46,9 +46,9 @@ User.find({}).remove(function() {
             longitude: -0.12775829999998223
         }
     }, {
-        provider: 'pass',
+        provider: 'local',
         name: 'SURESNES',
-        email: '',
+        email: 'asd@ad.com',
         password: 'SURESNES',
         pass: 'SURESNES',
         from: {
@@ -62,6 +62,40 @@ User.find({}).remove(function() {
             longitude: 2.35390469999993
         }
     }, function () {
+        Pos.find({}).remove(function() {
+            User.findOne({email: 'ad@ad.com'}, function (err, user) {
+                Pos.create({
+                    name: 'Habitat SURESNES',
+                    address: 'Suresnes, France',
+                    latitude: 48.85,
+                    longitude: 2.2187,
+                    author: user._id
+                }, {
+                    name: 'Ikea SURESNES',
+                    address: 'Suresnes, France',
+                    latitude: 48.88,
+                    longitude: 2.217,
+                    author: user._id
+                }, function (err, pos) {
+                    Ad.find({}).remove(function() {
+                        Ad.create({
+                            pos: pos._id,
+                            author: user._id,
+                            start: new Date(),
+                            end: new Date().setDate(new Date().getDate() + 1),
+                            range: 5000,
+                            info: '',
+                            value: 20,
+                            valueType: 'percent',
+                            status: 'enabled'
+                        }, function (err, ad) {
+                            console.log(ad);
+                            console.log('finished populating pos & ads');
+                        });
+                    });
+                });
+            })
+        });
         console.log('finished populating users');
     });
 });
@@ -78,14 +112,3 @@ Category.find({}).remove(function () {
         console.log('finished populating categories');
     });
 });
-
-Pos.find({}).remove(function() {
-    User.findOne({name: 'ad'}, function (err, user) {
-        Pos.create({
-            name: 'Habitat'
-        }, function () {
-            console.log('finished populating pos');
-        })
-    })
-});
-Ad.find({}).remove(function() {});

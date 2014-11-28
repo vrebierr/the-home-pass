@@ -2,10 +2,14 @@
 
 angular.module('theHomePassApp')
     .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, Auth, $http, uploads, uiGmapGoogleMapApi, $state) {
-    	$scope.pos = _.map(pos, function (item) {
+        $scope.pos = _.map(pos, function (item) {
             item.image = _.findWhere(uploads, {_id: item.image});
             return item;
         });
+
+
+        $scope.pos
+        console.log(ads)
 
         $scope.ads = [
             {image: 'bg.jpg', _id: 1},
