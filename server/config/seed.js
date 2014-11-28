@@ -69,19 +69,34 @@ User.find({}).remove(function() {
                     address: 'Suresnes, France',
                     latitude: 48.85,
                     longitude: 2.2187,
-                    author: user._id
+                    author: user._id,
+                    email: 'contact@ikea.com',
+                    phone: '01 46 95 14 56',
+                    fax: '01 46 95 14 56',
+                    opening: 'Du lundi au vendredi de 9h à 20h',
+                    info: 'Habitat Suresnes est le le leader de la région en matière d\'ameublement'
                 }, {
                     name: 'Ikea SURESNES',
                     address: 'Suresnes, France',
                     latitude: 48.88,
                     longitude: 2.217,
-                    author: user._id
+                    author: user._id,
+                    email: 'contact@ikea.com',
+                    phone: '01 46 95 14 56',
+                    fax: '01 46 95 14 56',
+                    opening: 'Du lundi au vendredi de 9h à 20h',
+                    info: 'Ikea Suresnes est le le leader de la région en matière d\'ameublement'
                 }, {
                     name: 'Ikea SENLIS',
                     address: 'Senlis, France',
                     latitude: 49.205164,
                     longitude: 2.583212,
-                    author: user._id
+                    author: user._id,
+                    email: 'contact@ikea.com',
+                    phone: '01 46 95 14 56',
+                    fax: '01 46 95 14 56',
+                    opening: 'Du lundi au vendredi de 9h à 20h',
+                    info: 'Ikea Senlis est le le leader de la région en matière d\'ameublement'
                 }, function () {
                     console.log('finished populating pos');
 
@@ -93,30 +108,30 @@ User.find({}).remove(function() {
                                 start: new Date(),
                                 end: new Date().setDate(new Date().getDate() + 1),
                                 range: 5000,
-                                info: '',
                                 value: 20,
                                 valueType: 'percent',
-                                status: 'enabled'
+                                status: 'enabled',
+                                info: 'Habitat vous propose une réduction exclusive The Home Pass. -20% sur l\'ensemble de nos produits.'
                             }, {
                                 pos: [pos[1]._id, pos[2]._id],
                                 author: user._id,
                                 start: new Date(),
                                 end: new Date().setDate(new Date().getDate() + 1),
                                 range: 5000,
-                                info: '',
                                 value: 50,
                                 valueType: 'euro',
-                                status: 'enabled'
+                                status: 'enabled',
+                                info: 'Ikea vous propose une réduction exclusive The Home Pass. -50 euros sur l\'ensemble de nos produits.'
                             }, {
                                 pos: pos[0]._id,
                                 author: user._id,
                                 start: new Date(),
                                 end: new Date().setDate(new Date().getDate() + 1),
                                 range: 5000,
-                                info: '',
                                 value: 30,
                                 valueType: 'euro',
-                                status: 'enabled'
+                                status: 'enabled',
+                                info: 'Habitat vous propose une réduction exclusive The Home Pass. -20% sur l\'ensemble de nos produits.'
                             }, function () {
                                 console.log('finished populating ads');
                             });

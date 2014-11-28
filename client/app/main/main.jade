@@ -38,7 +38,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
             ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', nfinite-scroll-immediate-check='true')
                 li(ng-repeat='ad in items | filter:search')
-                    a(ui-sref='showAd({id: ad._id})')
+                    a(ui-sref='showAd({ad: ad._id, pos: ad.currentPos._id})')
                         figure
                             img(ng-src='http://placehold.it/200x200}')
                             figcaption

@@ -4,16 +4,16 @@ angular.module('theHomePassApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('showAd', {
-                url: '/ad/:id',
+                url: '/ad/:ad/:pos',
                 templateUrl: 'app/ad/ad.html',
                 controller: 'AdCtrl',
                 authenticate: true,
                 resolve: {
-                    ad: function () {
-                        return [];
+                    ad: function (Restangular, $stateParams) {
+                        return Restangular.one('ads', $stateParams.ad).get();
                     },
-                    pos: function () {
-                        return [];
+                    pos: function (Restangular, $stateParams) {
+                        return Restangular.one('pos', $stateParams.pos).get();
                     }
                 }
             });
