@@ -227,11 +227,10 @@ figure figcaption h4 {
 }
 
 .ads {
-    height: calc(100vh - 397px) !important;
+    height: calc(100vh - 345px) !important;
     overflow: scroll;
     box-shadow: inset 0 20px 20px -20px white,
                 inset 0 -15px 15px -15px black;
-    z-index: 1000 !important;
     padding-top: 10px;
 }
 

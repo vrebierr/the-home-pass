@@ -76,6 +76,12 @@ User.find({}).remove(function() {
                     latitude: 48.88,
                     longitude: 2.217,
                     author: user._id
+                }, {
+                    name: 'Ikea SENLIS',
+                    address: 'Senlis, France',
+                    latitude: 49.205164,
+                    longitude: 2.583212,
+                    author: user._id
                 }, function () {
                     console.log('finished populating pos');
 
@@ -92,13 +98,23 @@ User.find({}).remove(function() {
                                 valueType: 'percent',
                                 status: 'enabled'
                             }, {
-                                pos: pos[1]._id,
+                                pos: [pos[1]._id, pos[2]._id],
                                 author: user._id,
                                 start: new Date(),
                                 end: new Date().setDate(new Date().getDate() + 1),
                                 range: 5000,
                                 info: '',
                                 value: 50,
+                                valueType: 'euro',
+                                status: 'enabled'
+                            }, {
+                                pos: pos[0]._id,
+                                author: user._id,
+                                start: new Date(),
+                                end: new Date().setDate(new Date().getDate() + 1),
+                                range: 5000,
+                                info: '',
+                                value: 30,
                                 valueType: 'euro',
                                 status: 'enabled'
                             }, function () {
