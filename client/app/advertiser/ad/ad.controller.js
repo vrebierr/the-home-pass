@@ -102,6 +102,7 @@ angular.module('theHomePassApp')
 
         var baseAds = Restangular.all('items');
         $scope.send = function (form) {
+            console.log(form)
             if (form.$valid) {
                 if ($scope.ad._id) {
                     $scope.ad.put();
@@ -112,6 +113,7 @@ angular.module('theHomePassApp')
                         $scope.ad = {
                             type: 'euro'
                         };
+                        $scope.submitted = false;
                     });
                 }
             };
