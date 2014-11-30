@@ -6,8 +6,9 @@ div(ng-include='"components/navbar/navbar.html"')
 .row
     .columns.large-12
         h1
-            i.fa.fa-angle-left(ui-sref='main()')
+            i.fa.fa-angle-left.pointer(ui-sref='main()')
             |  {{pos.name}}
+            i.right.fa.fa-print.pointer(ng-click='print()')
 
 .row
     .columns.large-4

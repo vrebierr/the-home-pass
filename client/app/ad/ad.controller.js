@@ -16,4 +16,8 @@ angular.module('theHomePassApp')
                 zoom: 12,
             };
         });
+
+        $scope.print = function () {
+            window.print();
+        };
     });
