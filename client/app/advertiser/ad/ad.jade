@@ -1,83 +1,82 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-	.row
-		.columns.medium-12.large-5.show-for-medium-up.gm
-			ui-gmap-google-map(center='map.center', zoom='map.zoom')
-				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
-				ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.range * 1000', stroke='circle.stroke', fill='circle.fill')
+.row
+	.columns.medium-12.large-5.show-for-medium-up.gm
+		ui-gmap-google-map(center='map.center', zoom='map.zoom')
+			ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
+			ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.range * 1000', stroke='circle.stroke', fill='circle.fill')
 
-		.columns.small-12.medium-12.large-7
-			.row
-				.columns.small-12
-					h3 Ajouter une annonce
-					form(enctype='multipart/form-data', name='form')
-						label(ng-class='{true: "error"}[submitted && form.pos.$invalid]') Points de vente
-							input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
-						small.error(ng-show='submitted && form.pos.$invalid')  Veuillez séléctionner au moins 1 point de vente.
+	.columns.small-12.medium-12.large-7
+		.row
+			.columns.small-12
+				h3 Ajouter une annonce
+				form(enctype='multipart/form-data', name='form')
+					label(ng-class='{true: "error"}[submitted && form.pos.$invalid]') Points de vente
+						input(type='text', ng-model='ad.pos', selectize='config', options='pos', required='', name='pos', ng-change='posSelected()')
+					small.error(ng-show='submitted && form.pos.$invalid')  Veuillez séléctionner au moins 1 point de vente.
 
-				
-						label Distance
-						.row.collapse
-							.columns.small-12(ng-class='{true: "error"}[submitted && form.range.$invalid]')
-								.row.collapse
-									.columns.small-11
-										input(type='text', ng-model='ad.range', required='')
-									.columns.small-1
-										span.postfix.addon km
-								small.error(ng-show='submitted && form.range.$error.required') Veuillez indiquer une portée à votre annonce
-								small.error(ng-show='submitted && form.range.$error.number') Cette distance n'est pas valide.
+			
+					label Distance
+					.row.collapse
+						.columns.small-12(ng-class='{true: "error"}[submitted && form.range.$invalid]')
+							.row.collapse
+								.columns.small-11
+									input(type='text', ng-model='ad.range', required='')
+								.columns.small-1
+									span.postfix.addon km
+							small.error(ng-show='submitted && form.range.$error.required') Veuillez indiquer une portée à votre annonce
+							small.error(ng-show='submitted && form.range.$error.number') Cette distance n'est pas valide.
 
-						label Image
-						input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
+					label Image
+					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')
 
-						label(ng-class='{true: "error"}[submitted && form.category.$invalid]') Categorie
-							select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='', name='category')
-						small.error(ng-show='submitted && form.category.$error.required') Veuillez sélétionner une categorie.
+					label(ng-class='{true: "error"}[submitted && form.category.$invalid]') Categorie
+						select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='', name='category')
+					small.error(ng-show='submitted && form.category.$error.required') Veuillez sélétionner une categorie.
 
-						.row
-							.columns.small-12(ng-class='{true: "error"}[submitted && form.type.$invalid]')
-								label Type d'offre
-								input#1(name='type', type='radio', ng-modal='ad.type', value='0', required='')
-								label(for='1') Offre de remboursement
-								input#2(name='type', type='radio', ng-modal='ad.type', value='1', required='')
-								label(for='2') Remise immédiate
-								input#3(name='type', type='radio', ng-modal='ad.type', value='2', required='')
-								label(for='3') Vente privée
+					.row
+						.columns.small-12(ng-class='{true: "error"}[submitted && form.type.$invalid]')
+							label Type d'offre
+							input#1(name='type', type='radio', ng-modal='ad.type', value='0', required='')
+							label(for='1') Offre de remboursement
+							input#2(name='type', type='radio', ng-modal='ad.type', value='1', required='')
+							label(for='2') Remise immédiate
+							input#3(name='type', type='radio', ng-modal='ad.type', value='2', required='')
+							label(for='3') Vente privée
 
-						label Réduction
-						.row
-							.columns.small-12
-								input#valueType(type='radio', ng-model='ad.valueType', value='percent')
-								label(for='valueType') Pourcentage
-								input#valueType(type='radio', ng-model='ad.valueType', value='euro')
-								label(for='valueType') Euro
+					label Réduction
+					.row
+						.columns.small-12
+							input#valueType(type='radio', ng-model='ad.valueType', value='percent')
+							label(for='valueType') Pourcentage
+							input#valueType(type='radio', ng-model='ad.valueType', value='euro')
+							label(for='valueType') Euro
 
-						.row.collapse
-							.columns.small-11
-								input(type='number', ng-model='ad.value', required='')
-							.columns.small-1
-								span.postfix.addon(ng-if='ad.valueType == "percent"') %
-								span.postfix.addon(ng-if='ad.valueType == "euro"') €
+					.row.collapse
+						.columns.small-11
+							input(type='number', ng-model='ad.value', required='')
+						.columns.small-1
+							span.postfix.addon(ng-if='ad.valueType == "percent"') %
+							span.postfix.addon(ng-if='ad.valueType == "euro"') €
 
-						label.row.collapse Date de lancement
-							.columns.small-11
-								input(type='date', ng-model='ad.start', required='')
-							.columns.small-1
-								i.postfix.addon.fa.fa-calendar
-						
-						label.row.collapse Date de fin
-							.columns.small-11
-								input(type='date', ng-model='ad.end', required='')
-							.columns.small-1
-								i.postfix.addon.fa.fa-calendar
+					label.row.collapse Date de lancement
+						.columns.small-11
+							input(type='date', ng-model='ad.start', required='')
+						.columns.small-1
+							i.postfix.addon.fa.fa-calendar
+					
+					label.row.collapse Date de fin
+						.columns.small-11
+							input(type='date', ng-model='ad.end', required='')
+						.columns.small-1
+							i.postfix.addon.fa.fa-calendar
 
-						label Offre exclusive Home Pass : 
-							input(type='checkbox', ng-model='ad.exclu')
-						
-						label(ng-class='{true: "error"}[submitted && form.info.$invalid]') Annonce
-							textarea(ng-model='ad.info', rows='5', required='')
-						small.error(ng-show='submitted && form.info.$error.required') Veuillez entrer votre annonce
+					label Offre exclusive Home Pass : 
+						input(type='checkbox', ng-model='ad.exclu')
+					
+					label(ng-class='{true: "error"}[submitted && form.info.$invalid]') Annonce
+						textarea(ng-model='ad.info', rows='5', required='')
+					small.error(ng-show='submitted && form.info.$error.required') Veuillez entrer votre annonce
 
-						button.black(ng-click='send(form); submitted = true;') {{ ad._id && 'Modifier' || 'Ajouter'}}
-						button.black(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer
+					button.black(ng-click='send(form); submitted = true;') {{ ad._id && 'Modifier' || 'Ajouter'}}
+					button.black(ng-if='ad._id', ng-click='$modal.openModal($scope)') Supprimer

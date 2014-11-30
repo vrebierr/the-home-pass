@@ -105,6 +105,10 @@ angular.module('theHomePassApp')
             };
         });
 
+        for (var i = 0; i < 100; i++) {
+            $scope.items.push({id: i})
+        }
+
         $scope.changeLocation = function () {
             if ($scope.location) {
                 $scope.map.center = {

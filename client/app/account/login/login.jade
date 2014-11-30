@@ -1,11 +1,10 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-    .bg
-    form.row.collapse.pass-form(name='form', ng-submit='login(form)', novalidate='')
-        .small-8.medium-4.medium-offset-1.large-3.large-offset-1.columns
-            input(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
-        .small-2.medium-1.columns
-            button.button.postfix OK
-        .show-for-large-up.large-7.columns
-            h4.white(style='margin-left: 50px;') Emménagez dans un monde d'avantages...
+.bg
+form.row.collapse.pass-form(name='form', ng-submit='login(form)', novalidate='', style='')
+    .small-8.medium-4.large-3.columns
+        input(type='text', name='pass', ng-model='user.pass', placeHolder='Entrez votre numéro de Pass', required='')
+    .small-2.medium-1.columns
+        button.button.postfix OK
+    .show-for-large-up.large-7.columns
+        h2.white Emménagez dans un monde d'avantages...

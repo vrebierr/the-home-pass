@@ -1,53 +1,53 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-    .row
-        .columns.medium-12.large-5.show-for-medium-up.gm
+.row
+    .columns.medium-12.large-5.show-for-medium-up
+        .gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
                     ui-gmap-windows(templateUrl='"window.html"', show='"show"')
-        .columns.small-12.medium-12.large-7
-            .row
-                .columns.large-6
-                    button.button.black.tiny.expand(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
-                        |  
-                        .fa.fa-refresh
-                    button.button.black.tiny.expand(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
-                        |  
-                        .fa.fa-refresh
+    .columns.small-12.medium-12.large-7
+        .row
+            .columns.large-6
+                button.button.black.tiny.expand(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
+                    |  
+                    .fa.fa-refresh
+                button.button.black.tiny.expand(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
+                    |  
+                    .fa.fa-refresh
 
-            .row
-                .columns.large-12
-                    h4 Actuellement {{items.length}} offres exclusives à proximité de ma ville
-                
-            .row.collapse
-                .columns.large-3.medium-6
-                    select(ng-model='categories', ng-options='category._id as category.name for category in categories')
-                        option(value='') Filtrer par univers
-                .columns.large-4.medium-6
-                    select(ng-model='type')
-                        option(value='') Filtrer par types d'offres
-                        option(value='1') Offre de remboursement
-                        option(value='2') Remise immédiate
-                        option(value='3') Vente privée
-                .columns.large-4.medium-11.small-10
-                    input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
-                .columns.large-1.medium-1.small-2
-                    span.postfix.addon
-                        i.fa.fa-search
+        .row
+            .columns.large-12
+                h4 Actuellement {{items.length}} offres exclusives à proximité de ma ville
+            
+        .row.collapse
+            .columns.large-3.medium-6
+                select(ng-model='categories', ng-options='category._id as category.name for category in categories')
+                    option(value='') Filtrer par univers
+            .columns.large-4.medium-6
+                select(ng-model='type')
+                    option(value='') Filtrer par types d'offres
+                    option(value='1') Offre de remboursement
+                    option(value='2') Remise immédiate
+                    option(value='3') Vente privée
+            .columns.large-4.medium-11.small-10
+                input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+            .columns.large-1.medium-1.small-2
+                span.postfix.addon
+                    i.fa.fa-search
 
-            ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', nfinite-scroll-immediate-check='true')
-                li(ng-repeat='ad in items | filter:search')
-                    a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
-                        figure
-                            img(ng-src='http://placehold.it/200x200}')
-                            figcaption
-                                .floater
-                                .child
-                                    h5 {{ad.currentPos.name}}
-                                    p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+        ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', nfinite-scroll-immediate-check='true')
+            li(ng-repeat='ad in items | filter:search')
+                a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
+                    figure
+                        img(ng-src='http://placehold.it/200x200}')
+                        figcaption
+                            .floater
+                            .child
+                                h5 {{ad.currentPos.name}}
+                                p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
 
-                                    em.exclu Offre exclusive The Home Pass
+                                em.exclu Offre exclusive The Home Pass
 
 script(type='text/ng-template', id='window.html')
     h2 test

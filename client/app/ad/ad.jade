@@ -1,53 +1,52 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.container
-    .row
-        .columns.large-12
-            hr
-    .row
-        .columns.large-12
-            h1
-                i.fa.fa-angle-left(ui-sref='main()')
-                |  {{pos.name}}
+.row
+    .columns.large-12
+        hr
+.row
+    .columns.large-12
+        h1
+            i.fa.fa-angle-left(ui-sref='main()')
+            |  {{pos.name}}
 
-    .row
-        .columns.large-4
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-                ui-gmap-marker(model='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
-            p
-                strong {{pos.name}}
-                |  - {{pos.address}}
-                br
-                strong Email : 
-                | {{pos.email}}
-                br
-                strong Tel. : 
-                | {{pos.phone}}
-                br
-                strong Fax : 
-                | {{pos.fax}}
-                br
-                strong Ouverture : 
-                | {{pos.opening}}
-                br
-        .columns.large-8
-            .ad
-                .row
-                    .columns.small-5
-                        img(ng-src='http://placehold.it/400x400}')
-            
-                    .columns.small-7
-                        p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'d/mm yyyy'}}
-                        h3 {{pos.name}}
-                        h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
-                        p {{ad.info}}
+.row
+    .columns.large-4
+        ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+            ui-gmap-marker(model='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
+        p
+            strong {{pos.name}}
+            |  - {{pos.address}}
+            br
+            strong Email : 
+            | {{pos.email}}
+            br
+            strong Tel. : 
+            | {{pos.phone}}
+            br
+            strong Fax : 
+            | {{pos.fax}}
+            br
+            strong Ouverture : 
+            | {{pos.opening}}
+            br
+    .columns.large-8
+        .ad
             .row
-                .columns.large-12
-                    h5 Présentation
-                    p {{pos.info}}
-    .row
-        .columns.large-12
-            h4 Toutes les offres de la même enseigne
-            hr.no-margin-top
-            .same-offers(ng-repeat='item in ads')
-                img(ng-src='http://placehold.it/400x400}')
+                .columns.small-5
+                    img(ng-src='http://placehold.it/400x400}')
+        
+                .columns.small-7
+                    p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'d/mm yyyy'}}
+                    h3 {{pos.name}}
+                    h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+                    p {{ad.info}}
+        .row
+            .columns.large-12
+                h5 Présentation
+                p {{pos.info}}
+.row
+    .columns.large-12
+        h4 Toutes les offres de la même enseigne
+        hr.no-margin-top
+        .same-offers(ng-repeat='item in ads')
+            img(ng-src='http://placehold.it/400x400}')

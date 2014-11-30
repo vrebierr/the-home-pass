@@ -1,29 +1,30 @@
-nav(ng-controller='NavbarCtrl')
-    a.logo(ui-sref='main')
-    .logbox(ng-if='!Auth.isLoggedIn()')
-        a(href='', ng-click='loginModal()') Connexion
-    a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
-        img(ng-src='assets/images/user.png')
-        span  {{ Auth.getCurrentUser().name }}
-            |  
-            i.fa.fa-angle-down
-        ul#profile.f-dropdown(ng-if='Auth.hasRole("user")')
-            li
-                a(href='#') Mes favoris
-            li
-                a(href='#') Mon compte
-            li
-                a(href='#', ng-click='logout()') Se déconnecter
-        ul#profile.f-dropdown(ng-if='Auth.hasRole("advertiser")')
-            li
-                a(ui-sref='ad') Mes annonces
-            li
-                a(ui-sref='pos') Mes points de vente
-            li
-                a(href='#', ng-click='logout()') Se déconnecter
+nav.row(ng-controller='NavbarCtrl')
+    .columns.small-12
+        a.logo(ui-sref='main')
+        .logbox(ng-if='!Auth.isLoggedIn()')
+            a(href='', ng-click='loginModal()') Connexion
+        a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
+            img(ng-src='assets/images/user.png')
+            span  {{ Auth.getCurrentUser().name }}
+                |  
+                i.fa.fa-angle-down
+            ul#profile.f-dropdown(ng-if='Auth.hasRole("user")')
+                li
+                    a(href='#') Mes favoris
+                li
+                    a(href='#') Mon compte
+                li
+                    a(href='#', ng-click='logout()') Se déconnecter
+            ul#profile.f-dropdown(ng-if='Auth.hasRole("advertiser")')
+                li
+                    a(ui-sref='ad') Mes annonces
+                li
+                    a(ui-sref='pos') Mes points de vente
+                li
+                    a(href='#', ng-click='logout()') Se déconnecter
 
 
-script.tiny(type='text/ng-template' id='loginModal.html')
+script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
     form(name='form', ng-submit='login(form)', novalidate='')
         label Adresse Email
