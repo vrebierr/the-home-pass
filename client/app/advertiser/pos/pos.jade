@@ -2,11 +2,12 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
 	.row
-		.columns.medium-12.large-5.show-for-medium-up.gm
-			ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
-				ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
-				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
-				ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
+		.columns.medium-12.large-5.show-for-medium-up
+			.gm
+				ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
+					ui-gmap-search-box(template='"search-box.html"', parentdiv='"search"', events='events.search')
+					ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events.markers')
+					ui-gmap-marker(idKey='1', coords='selected', icon='"http://maps.google.com/mapfiles/ms/icons/green-dot.png"')
 				
 
 		.columns.small-12.medium-12.large-7

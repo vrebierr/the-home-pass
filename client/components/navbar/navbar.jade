@@ -3,19 +3,19 @@ nav.row(ng-controller='NavbarCtrl')
         a.logo(ui-sref='main')
         .logbox(ng-if='!Auth.isLoggedIn()')
             a(href='', ng-click='loginModal()') Connexion
-        a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
+        a.logbox(ng-if='Auth.isLoggedIn()', data-dropdown="profile")
             img(ng-src='assets/images/user.png')
             span  {{ Auth.getCurrentUser().name }}
                 |  
                 i.fa.fa-angle-down
-            ul#profile.f-dropdown(ng-if='Auth.hasRole("user")')
+            ul#profile.left.tiny.f-dropdown(ng-if='Auth.hasRole("user")', class="f-dropdown", data-dropdown-content='', aria-hidden="true", tabindex="-1")
                 li
                     a(href='#') Mes favoris
                 li
                     a(href='#') Mon compte
                 li
                     a(href='#', ng-click='logout()') Se déconnecter
-            ul#profile.f-dropdown(ng-if='Auth.hasRole("advertiser")')
+            ul#profile.tiny.f-dropdown(ng-if='Auth.hasRole("advertiser")')
                 li
                     a(ui-sref='ad') Mes annonces
                 li

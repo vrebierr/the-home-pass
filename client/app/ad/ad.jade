@@ -36,7 +36,7 @@ div(ng-include='"components/navbar/navbar.html"')
                     img(ng-src='http://placehold.it/400x400}')
         
                 .columns.small-7
-                    p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'d/mm yyyy'}}
+                    p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
                     h3 {{pos.name}}
                     h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
                     p {{ad.info}}

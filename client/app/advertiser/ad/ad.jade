@@ -1,10 +1,11 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .row
-	.columns.medium-12.large-5.show-for-medium-up.gm
-		ui-gmap-google-map(center='map.center', zoom='map.zoom')
-			ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
-			ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.range * 1000', stroke='circle.stroke', fill='circle.fill')
+	.columns.medium-12.large-5.show-for-medium-up
+		.gm
+			ui-gmap-google-map(center='map.center', zoom='map.zoom')
+				ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', icon='"icon"')
+				ui-gmap-circle(ng-repeat='item in circles', center='item', radius='ad.range * 1000', stroke='circle.stroke', fill='circle.fill')
 
 	.columns.small-12.medium-12.large-7
 		.row
