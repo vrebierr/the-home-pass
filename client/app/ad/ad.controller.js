@@ -1,12 +1,11 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdCtrl', function ($scope, ad, pos, uiGmapGoogleMapApi) {
+    .controller('AdCtrl', function ($scope, ad, pos, ads, uiGmapGoogleMapApi) {
         $scope.ad = ad;
         $scope.pos = pos;
-        console.log(ad)
-
-        console.log(pos)
+        $scope.ads = ads;
+        console.log(ads)
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {

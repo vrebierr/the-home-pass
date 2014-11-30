@@ -11,24 +11,29 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .row
     .columns.large-4
-        ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-            ui-gmap-marker(model='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
-        p
-            strong {{pos.name}}
-            |  - {{pos.address}}
-            br
-            strong Email : 
-            | {{pos.email}}
-            br
-            strong Tel. : 
-            | {{pos.phone}}
-            br
-            strong Fax : 
-            | {{pos.fax}}
-            br
-            strong Ouverture : 
-            | {{pos.opening}}
-            br
+        .row
+            .columns.large-12
+                .show
+                    ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
+                        ui-gmap-marker(model='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
+        .row
+            .columns.large-12
+                p
+                    strong {{pos.name}}
+                    |  - {{pos.address}}
+                    br
+                    strong Email : 
+                    | {{pos.email}}
+                    br
+                    strong Tel. : 
+                    | {{pos.phone}}
+                    br
+                    strong Fax : 
+                    | {{pos.fax}}
+                    br
+                    strong Ouverture : 
+                    | {{pos.opening}}
+                    br
     .columns.large-8
         .ad
             .row
@@ -48,5 +53,15 @@ div(ng-include='"components/navbar/navbar.html"')
     .columns.large-12
         h4 Toutes les offres de la même enseigne
         hr.no-margin-top
-        .same-offers(ng-repeat='item in ads')
-            img(ng-src='http://placehold.it/400x400}')
+        ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4
+            li(ng-repeat='item in ads')
+                a(ui-sref='show({ad: item._id, pos: pos._id})')
+                    figure
+                        img(ng-src='http://placehold.it/200x200}')
+                        figcaption
+                            .floater
+                            .child
+                                h5 {{pos.name}}
+                                p -{{item.value}}{{item.valueType === 'euro' ? '€' : '%'}}
+
+                                em.exclu Offre exclusive The Home Pass

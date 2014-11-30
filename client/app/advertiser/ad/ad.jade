@@ -22,7 +22,7 @@ div(ng-include='"components/navbar/navbar.html"')
 						.columns.small-12(ng-class='{true: "error"}[submitted && form.range.$invalid]')
 							.row.collapse
 								.columns.small-11
-									input(type='text', ng-model='ad.range', required='')
+									input(type='number', ng-model='ad.range', required='')
 								.columns.small-1
 									span.postfix.addon km
 							small.error(ng-show='submitted && form.range.$error.required') Veuillez indiquer une portée à votre annonce

@@ -7,6 +7,14 @@ var Pos = mongoose.model('Pos');
 var Category = mongoose.model('Category');
 var geolib = require('geolib');
 
+exports.findByPos = function (req, res) {
+    Ad.find({status: 'enabled', start: {$lt: new Date()}, end: {$gte: new Date()}, pos: req.params.id}, function (err, ads) {
+        if (err) {return res.send(500, err);}
+
+        return res.json(200, ads);
+    });
+}
+
 // Get list of ads
 exports.index = function(req, res) {
     if (req.user.role === 'admin') {
@@ -26,7 +34,7 @@ exports.index = function(req, res) {
     else {
         Ad.find({status: 'enabled', start: {$lt: new Date()}, end: {$gte: new Date()}}, function (err, ads) {
             if (err) {return res.send(500, err);}
-            console.log(ads)
+
             return res.json(200, ads);
         });
     }
