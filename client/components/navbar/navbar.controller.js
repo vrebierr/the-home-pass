@@ -80,8 +80,8 @@ angular.module('theHomePassApp')
         $scope.register = function(form) {
             $scope.submitted = true;
             console.log(form)
-            if (user.password !== user.retype) {
-                form
+            if ($scope.user.password !== $scope.user.retype) {
+                $scope.form.$valid = false;
             }
 
             if(form.$valid) {
@@ -92,9 +92,10 @@ angular.module('theHomePassApp')
                         password: $scope.user.password
                     }).then( function() {
                         // Account created, redirect to home
-                        $location.path('/');
+                        $state.go('main');
                     }).catch(function(err) {
                         err = err.data;
+                        console.log(err)
                         $scope.errors = {};
 
                         // Update validity of form fields that match the mongoose errors
