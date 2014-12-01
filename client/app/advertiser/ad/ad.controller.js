@@ -114,6 +114,7 @@ angular.module('theHomePassApp')
                             type: 'euro'
                         };
                         $scope.submitted = false;
+                        toastr.success('Votre annonce a été crée ! Elle est maintenant en attente de validation.');
                     });
                 }
             };

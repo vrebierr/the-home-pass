@@ -1,5 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 
+.bg-white
+
 .row
     .columns.medium-12.large-5.show-for-medium-up
         .gm
@@ -48,6 +50,3 @@ div(ng-include='"components/navbar/navbar.html"')
                                 p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
 
                                 em.exclu Offre exclusive The Home Pass
-
-script(type='text/ng-template', id='window.html')
-    h2 test

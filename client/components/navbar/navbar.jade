@@ -2,6 +2,7 @@ nav.row(ng-controller='NavbarCtrl')
     .columns.small-12
         a.logo(ui-sref='main')
         .logbox(ng-if='!Auth.isLoggedIn()')
+            a(href='', ng-click='registerModal()') Inscription
             a(href='', ng-click='loginModal()') Connexion
         a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
             img(ng-src='assets/images/user.png')
@@ -17,9 +18,16 @@ nav.row(ng-controller='NavbarCtrl')
                     a(href='#', ng-click='logout()') Se déconnecter
             ul#profile.f-dropdown(ng-if='Auth.hasRole("advertiser")')
                 li
+                    a(href='#') Mon compte
+                li
                     a(ui-sref='ad') Mes annonces
                 li
                     a(ui-sref='pos') Mes points de vente
+                li
+                    a(href='#', ng-click='logout()') Se déconnecter
+            ul#profile.f-dropdown(ng-if='Auth.hasRole("admin")')
+                li
+                    a(href='#') Mon compte
                 li
                     a(href='#', ng-click='logout()') Se déconnecter
 
@@ -31,5 +39,17 @@ script(type='text/ng-template' id='loginModal.html')
         input(type='email', ng-model='user.email', required='')
         label Mot de passe
         input(type='password', ng-model='user.password', required='')
+        button.black.expand(href='' ng-click='login(form)') Se connecter
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+
+script(type='text/ng-template' id='registerModal.html')
+    h2 Inscription
+    form(name='form', ng-submit='register(form)', novalidate='')
+        label Adresse Email
+        input(type='email', ng-model='user.email', required='')
+        label Mot de passe
+        input(type='password', ng-model='user.password', required='')
+        label Retapez votre mot de passe
+        input(type='password', ng-model='user.retype', required='')
         button.black.expand(href='' ng-click='login(form)') Se connecter
     a.close-reveal-modal(ng-click='$dismiss()') &#215;

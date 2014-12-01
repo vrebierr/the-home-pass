@@ -3,11 +3,17 @@ div(ng-include='"components/navbar/navbar.html"')
 .wrapper.row-offcanvas.row-offcanvas-left
     aside.left-side.sidebar-offcanvas
         div(ng-include='"components/sidebar/sidebar.html"')
-    aside.right-side
-        section.content-header
-            h1 Dashboard
-        section.content
+    aside.columns.large-10
+        section.row
+            .page-name
+                h3 Dashboard
+        section#dashboard
             .row
+                .columns.large-3.medium-6.small-12
+                    .stats.border
+                        .left Utilisateurs
+                            h3 100
+                        .fa.fa-user.right.fi-torso.useer
                 .col-xs-8
                     .box
                         .box-header

@@ -110,6 +110,7 @@ angular.module('theHomePassApp')
                     basePos.post($scope.selected).then(function (res) {
 						$scope.pos.push(res);
 						$scope.selected = null;
+						toastr.success('Votre Point de vente a été crée.');
                     });
                 }
             }

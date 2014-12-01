@@ -32,7 +32,28 @@ angular.module('theHomePassApp')
                     }
                 });
             });
-        }
+        };
+
+        $scope.registerModal = function () {
+            $scope.modal = $modal.open({
+                templateUrl: 'registerModal.html',
+                scope: $scope,
+                windowClass: 'tiny',
+                controller: 'loginModalCtrl'
+            }).result.then(function () {
+                Restangular.one('users', 'me').get().then(function (user) {
+                    if(user.role === 'advertiser') {
+                        $state.go('advertiser');
+                    }
+                    else if (user.role === 'admin') {
+                        $state.go('admin');
+                    }
+                    else {
+                        $state.go('main');
+                    }
+                });
+            });
+        };
 
         $scope.logout = function() {
             Auth.logout();
@@ -41,8 +62,11 @@ angular.module('theHomePassApp')
 
 angular.module('theHomePassApp')
     .controller('loginModalCtrl', function ($scope, $modalInstance, Auth) {
-        $scope.login = function(form) {
-            if(form.$valid) {
+        $scope.user = {};
+        $scope.errors = {};
+
+        $scope.login = function (form) {
+            if (form.$valid) {
                 Auth.login({
                     email: $scope.user.email,
                     password: $scope.user.password
@@ -50,6 +74,32 @@ angular.module('theHomePassApp')
                 .then(function() {
                     $modalInstance.close(form);
                 });
+            }
+        };
+
+        $scope.register = function(form) {
+            $scope.submitted = true;
+
+            if(form.$valid) {
+                if ($scope.user.password === $scope.user.retype) {
+                    Auth.createUser({
+                        name: $scope.user.name,
+                        email: $scope.user.email,
+                        password: $scope.user.password
+                    }).then( function() {
+                        // Account created, redirect to home
+                        $location.path('/');
+                    }).catch(function(err) {
+                        err = err.data;
+                        $scope.errors = {};
+
+                        // Update validity of form fields that match the mongoose errors
+                        angular.forEach(err.errors, function(error, field) {
+                            form[field].$setValidity('mongoose', false);
+                            $scope.errors[field] = error.message;
+                        });
+                    });
+                }
             }
         };
     });

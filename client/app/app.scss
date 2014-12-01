@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', 'sans-serif';
     color: #656C70;
-    background-color: #f3f3f3;
+    background-color: white !important;
 }
 
 a {
@@ -799,6 +799,10 @@ button:focus {
     color: black;
 }
 
+.logbox > a {
+    margin-left: 20px !important;
+}
+
 .logbox > img {
     height: 30px;
     width: 30px;
@@ -910,6 +914,10 @@ button.alert {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.bg-white {
+    background-color: white;
 }
 
 .selectize-input {
@@ -1033,9 +1041,4 @@ html {
 
 .pointer {
     cursor: pointer;
-}
-
-.print {
-    display: inline-block;
-    height: 100%;
 }
