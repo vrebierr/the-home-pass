@@ -79,6 +79,10 @@ angular.module('theHomePassApp')
 
         $scope.register = function(form) {
             $scope.submitted = true;
+            console.log(form)
+            if (user.password !== user.retype) {
+                form
+            }
 
             if(form.$valid) {
                 if ($scope.user.password === $scope.user.retype) {
