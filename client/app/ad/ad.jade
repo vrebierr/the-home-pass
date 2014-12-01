@@ -54,7 +54,7 @@ div(ng-include='"components/navbar/navbar.html"')
     .columns.large-12
         h4 Toutes les offres de la même enseigne
         hr.no-margin-top
-        ul.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4
+        ul.small-block-grid-3.medium-block-grid-4.large-block-grid-5
             li(ng-repeat='item in ads')
                 a(ui-sref='show({ad: item._id, pos: pos._id})')
                     figure
