@@ -15,7 +15,7 @@ router.delete('/admin/:id', auth.hasRole('admin'), controller.deleteAdmin);
 router.post('/admin', auth.hasRole('admin'), controller.createAdmin);
 router.put('/admin/:id', auth.hasRole('admin'), controller.updateAdmin);
 
-router.get('/', auth.hasRole('admin'), controller.index);
+router.get('/', auth.hasRole('advertiser'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);

@@ -27,6 +27,7 @@ div(ng-include='"components/navbar/navbar.html"')
 									span.postfix.addon km
 							small.error(ng-show='submitted && form.range.$error.required') Veuillez indiquer une portée à votre annonce
 							small.error(ng-show='submitted && form.range.$error.number') Cette distance n'est pas valide.
+					small Actuellement {{scope}} utilisateurs touchés par votre annonce.
 
 					label Image
 					input(type='file', ng-file-select='onFileSelect($files)', accept='image/*')

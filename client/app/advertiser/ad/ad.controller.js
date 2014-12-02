@@ -8,6 +8,40 @@ angular.module('theHomePassApp')
         };
         $scope.pos = pos;
         $scope.categories = categories;
+        $scope.users = users;
+        $scope.scope = 0;
+
+        $scope.refresh = function () {
+            if ($scope.ad.pos && $scope.ad.range) {
+                var tmp = $scope.ad.pos.split(',');
+                $scope.scope = [];
+
+                _.forEach(tmp, function (item) {
+                    item = _.findWhere($scope.pos, {_id: item})
+
+                    _.forEach(users, function (user) {
+                        if (user.to || user.from) {
+                            var dist = geolib.getDistance({
+                                latitude: item.latitude,
+                                longitude: item.longitude
+                            }, {
+                                latitude: $scope.location &&  user.to.latitude || user.from.latitude,
+                                longitude: $scope.location && user.to.longitude || user.from.longitude
+                            });
+
+                            if (dist < $scope.ad.range * 1000) {
+                                $scope.scope.push(user);
+                            }
+                        }
+                    });
+                });
+                $scope.scope = _.uniq($scope.scope).length;
+            }
+        };
+
+        $scope.$watch('ad.range', function () {
+            $scope.refresh();
+        });
 
         $scope.$watch('ad.pos', function (oldValue, newValue) {
             if (!$scope.ad.pos) {
@@ -40,6 +74,7 @@ angular.module('theHomePassApp')
                     $scope.map.center.longitude = pos.longitude;
                 }
             }
+            $scope.refresh();
         });
 
         uiGmapGoogleMapApi.then(function (maps) {
