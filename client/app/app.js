@@ -13,7 +13,8 @@ angular.module('theHomePassApp', [
   'uiGmapgoogle-maps',
   'ngMorph',
   'mm.foundation',
-  'infinite-scroll'
+  'infinite-scroll',
+  'LocalStorageModule'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
     $urlRouterProvider

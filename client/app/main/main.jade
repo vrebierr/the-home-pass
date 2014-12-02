@@ -7,7 +7,12 @@ div(ng-include='"components/navbar/navbar.html"')
         .gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
-                    ui-gmap-windows(templateUrl='"window.html"', show='"show"')
+                    ui-gmap-windows(show='"show"')
+                        .window(ng-non-bindable='')
+                            img(src='http://placehold.it/200x200')
+                            h4 {{name}}
+                            p {{address}}
+
     .columns.small-12.medium-12.large-7
         .row
             .columns.large-5
@@ -50,3 +55,8 @@ div(ng-include='"components/navbar/navbar.html"')
                                 p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
 
                                 em.exclu Offre exclusive The Home Pass
+
+
+script(type='text/ng-template' id='window.html')
+    img(ng-src='http://placehold.it/200x200}')
+    h4 {{name}}

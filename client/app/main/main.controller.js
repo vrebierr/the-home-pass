@@ -22,6 +22,8 @@ angular.module('theHomePassApp')
             $scope.pos = _.filter(pos, function (item) {
                 item.image = _.findWhere(uploads, {_id: item.image});
                 item.icon = '/assets/images/marker.png';
+                item.window = 'window.html';
+                item.show = false;
                 item.dist = geolib.getDistance({
                     latitude: item.latitude,
                     longitude: item.longitude
