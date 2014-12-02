@@ -14,28 +14,43 @@ angular.module('theHomePassApp')
         $scope.refresh = function () {
             if ($scope.ad.pos && $scope.ad.range) {
                 var tmp = $scope.ad.pos.split(',');
-                $scope.scope = [];
+                var users_tmp = [];
 
                 _.forEach(tmp, function (item) {
                     item = _.findWhere($scope.pos, {_id: item})
 
                     _.forEach(users, function (user) {
                         if (user.to || user.from) {
-                            var dist = geolib.getDistance({
-                                latitude: item.latitude,
-                                longitude: item.longitude
-                            }, {
-                                latitude: $scope.location &&  user.to.latitude || user.from.latitude,
-                                longitude: $scope.location && user.to.longitude || user.from.longitude
-                            });
+                            if (user.to) {
+                                var dist_to = geolib.getDistance({
+                                    latitude: item.latitude,
+                                    longitude: item.longitude
+                                }, {
+                                    latitude: user.to.latitude,
+                                    longitude: user.to.longitude
+                                });
+                            }
+                            if (user.from) {
+                                var dist_from = geolib.getDistance({
+                                    latitude: item.latitude,
+                                    longitude: item.longitude
+                                }, {
+                                    latitude: user.from.latitude,
+                                    longitude: user.from.longitude
+                                });
+                            }
 
-                            if (dist < $scope.ad.range * 1000) {
-                                $scope.scope.push(user);
+                            if (dist_from < $scope.ad.range * 1000 || dist_to < $scope.ad.range * 1000) {
+                                users_tmp.push(user);
                             }
                         }
                     });
                 });
-                $scope.scope = _.uniq($scope.scope).length;
+                $scope.scope = _.uniq(users_tmp).length;
+                console.log(users_tmp);
+            }
+            else {
+                $scope.scope = 0;
             }
         };
 
