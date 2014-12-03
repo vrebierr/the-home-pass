@@ -28,9 +28,9 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
                         a(ui-sref='adAdmin({state: "pending"})') En attente 
                             | 
                             span.label.round 0
-                    li
+                    li(ui-sref-active='active')
                         a(ui-sref='adAdmin({state: "enabled"})') Activées
-                    li
+                    li(ui-sref-active='active')
                         a(ui-sref='adAdmin({state: "archived"})') Archives
             
             li(ui-sref-active='active')

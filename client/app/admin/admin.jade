@@ -1,5 +1,11 @@
 div(ng-include='"components/navbar/admin.html"')
 
-button.button.secondary.tiny
+.row
+    .columns.large-12
+        h3 Statistiques
+.row
+    .columns.large-6
+        highchart(config='config.ads')
+a.button.secondary.tiny(href='https://www.google.com/analytics/web/?hl=fr&pli=1#report/visitors-overview/a56226176w89625148p93143694/', target='_blank')
     i.fa.fa-bar-chart
     |  Google Analytics

@@ -16,11 +16,14 @@ div(ng-include='"components/navbar/admin.html"')
             thead
                 tr
                     th Auteur
-                    
+                    th Date de lancement
+                    th Date de Fin
                     th.right Actions
             tbody
                 tr(ng-repeat='ad in ads | filter:search')
                     td {{ad.author.name}}
+                    td {{ad.start | date:'dd/MM/yyyy'}}
+                    td {{ad.end | date:'dd/MM/yyyy'}}
                     td.right
                         button.button.tiny.fa.fa-pencil(ng-click='update(ad)')
                         button.button.tiny.alert.fa.fa-trash(ng-click='confirm(ad)')
@@ -38,7 +41,6 @@ script(type='text/ng-template', id='modal.html')
 script(type='text/ng-template', id='confirm.html')
     h2 Confirmation
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
-    p Êtes vous certain de vouloir supprimer
-        strong  {{user.name}} ?
+    p Êtes vous certain de vouloir supprimer cette annonce ?
     button.button.alert.right(ng-click='$close()') Supprimer
     button.button.secondary(ng-click='$dismiss()') Annuler

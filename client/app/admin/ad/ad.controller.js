@@ -24,6 +24,7 @@ angular.module('theHomePassApp')
             });
         });
 
+        var baseAds = Restangular.all('items');
         $scope.create = function () {
             $scope.ad = {};
             $modal.open({
@@ -32,7 +33,9 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 ads.post($scope.ads).then(function (res) {
                     $scope.ads.push(res);
-                });
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
+                });;
             });
         };
 
@@ -53,7 +56,9 @@ angular.module('theHomePassApp')
                         }
                     });
                     toastr.success('Annonce modifiée !');
-                });
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
+                });;
             });
         };
 
@@ -63,18 +68,12 @@ angular.module('theHomePassApp')
                 templateUrl: 'confirm.html',
                 scope: $scope
             }).result.then(function () {
-                ad.remove().then(function () {
+                Restangular.one('items', ad._id).remove().then(function () {
                     $scope.ads = _.without($scope.ads, ad);
                     toastr.success('Annonce supprimée !');
-                });
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
+                });;
             });
         };
-
-        $rootScope.$on('update', function (event, data) {
-            $scope.update(data);
-        });
-
-        $rootScope.$on('delete', function (event, data) {
-            $scope.confirm(data);
-        });
     });

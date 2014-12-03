@@ -77,7 +77,7 @@ angular.module('theHomePassApp')
             $scope.modal = $modal.open({
                 templateUrl: 'registerModal.html',
                 scope: $scope,
-                windowClass: '',
+                windowClass: 'tiny',
                 controller: 'loginModalCtrl'
             }).result.then(function () {
                 Restangular.one('users', 'me').get().then(function (user) {
