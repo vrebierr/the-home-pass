@@ -97,11 +97,11 @@ angular.module('theHomePassApp')
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
-                $scope.user.password = $scope.user.pass;
-                users.post($scope.user).then(function (res) {
-                    $scope.users.push(res);
-
-                    toastr.success('Utilisateur ajouté !');
+                baseUser.post($scope.user).then(function (data) {
+                    $scope.users.push(data);
+                    $scope.user = {};
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             });
         };
@@ -132,7 +132,7 @@ angular.module('theHomePassApp')
 
             $modal.open({
                 templateUrl: 'modal.html',
-                controller: 'ModalCtrl',
+                controller: 'UserModalCtrl',
                 scope: $scope
             }).result.then(function () {
                 $scope.user.put().then(function (res) {
@@ -145,7 +145,9 @@ angular.module('theHomePassApp')
                         }
                     });
 
-                    toastr.success('Utilisateur modifié !');
+                    toastr.info('Utilisateur modifié !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             });
         };
@@ -159,19 +161,30 @@ angular.module('theHomePassApp')
                 user.remove().then(function () {
                     $scope.users = _.without($scope.users, user);
 
-                    toastr.success('Utilisateur supprimé !');
+                    toastr.error('Utilisateur supprimé !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             })
         };
 
-        $rootScope.$on('logAs', function (event, data) {
-            Auth.loginAs(data).then(function () {
+        $scope.impersonate = function (user) {
+            Auth.loginAs(user).then(function () {
                 $state.go('main');
             });
-        });
+        };
     });
 
 angular.module('theHomePassApp')
-    .controller('ModalCtrl', function ($scope, $modalInstance, Auth) {
+    .controller('UserModalCtrl', function ($scope, $modalInstance, Auth) {
+        $scope.create = function (form) {
+            if (form.$valid) {
+                $scope.user.password = $scope.user.pass;
+                users.post($scope.user).then(function (res) {
+                    $scope.users.push(res);
 
+                    toastr.success('Utilisateur ajouté !');
+                });
+            }
+        }
     });

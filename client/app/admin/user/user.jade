@@ -11,7 +11,7 @@ div(ng-include='"components/navbar/admin.html"')
             button.button.tiny.radius.success(ng-click='create()')
                 i.fa.fa-plus
                 |  Ajouter
-        .columns.large-2
+        .columns.large-3
             input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
 
     .row
@@ -19,23 +19,21 @@ div(ng-include='"components/navbar/admin.html"')
             table.custom-table.responsive
                 thead
                     tr
+                        th Nom
                         th Adresse email
                         th Numéro
                         th Role
+                        th Actions
                 tbody
                     tr(ng-repeat='user in users | filter:search')
+                        td {{user.name}}
                         td {{user.email}}
                         td {{user.phone}}
                         td {{user.role}}
-
-script(type='text/ng-template' id='mod.html')
-    form(name='form', novalidate='')
-        label Adresse Email
-        input(type='email', ng-model='user.email', required='')
-        label Mot de passe
-        input(type='password', ng-model='user.password', required='')
-        button.black.expand(href='' ng-click='login(form)') Se connecter
-        a.close-reveal-modal(ng-click='$dismiss()') &#215;
+                        td
+                            button.button.tiny.success.fa.fa-user(ng-click='impersonate(user)')
+                            button.button.tiny.fa.fa-pencil(ng-click='update(user)')
+                            button.button.tiny.alert.fa.fa-trash(ng-click='confirm(user)')
 
 script(type='text/ng-template', id='modal.html')
     h2 {{user._id && 'Modifier' || 'Ajouter'}} un utilisateur
@@ -56,7 +54,7 @@ script(type='text/ng-template', id='modal.html')
             input(type='email', ng-model='user.email')
                 
             label pass
-            input(type='text', ng-model='user.pass', required='true')
+            input(type='text', ng-model='user.pass', required='')
 
             label Adresse
             #address
@@ -64,22 +62,39 @@ script(type='text/ng-template', id='modal.html')
                 ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
                     ui-gmap-search-box(template='"search-box.html"', parentdiv='"address"', events='events.from')
                     ui-gmap-marker(idKey='"address"', coords='user.from')
+
+        .row(ng-if='user.role === "admin"')
+            label Nom
+            input(type='text', ng-model='user.name')
+
+            label Adresse email
+            input(type='email', ng-model='user.email', required='')
+
+            label Numéro
+            input(type='text', ng-model='user.phone')
+        
+        .row(ng-if='user.role === "advertiser"')
+            label Nom
+            input(type='text', ng-model='user.name')
+                
+            label Adresse email
+            input(type='email', ng-model='user.email', required='')
+                
+            label Numéro
+            input(type='text', ng-model='user.phone')
+
     br
     .row
         button.button.right(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='confirm.html')
-    .modal-danger
-        .modal-header
-            button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Confirmation
-        .modal-body
-            p Êtes vous certain de vouloir supprimer
-                strong  {{user.name}} ?
-        .modal-footer
-            button.btn.btn-danger(ng-click='$close()') Supprimer
-            button.btn.btn-default(ng-click='$dismiss()') Annuler
+    h2 Confirmation
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    p Êtes vous certain de vouloir supprimer
+        strong  {{user.name}} ?
+    button.button.alert.right(ng-click='$close()') Supprimer
+    button.button.secondary(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='search-box.html')
     input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')

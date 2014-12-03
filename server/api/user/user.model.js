@@ -66,13 +66,6 @@ UserSchema
  * Validations
  */
 
-// Validate empty email
-UserSchema
-  .path('email')
-  .validate(function(email) {
-    return email.length;
-  }, 'Email cannot be blank');
-
 // Validate empty password
 UserSchema
   .path('hashedPassword')
