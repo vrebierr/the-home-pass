@@ -45,8 +45,8 @@ angular.module('theHomePassApp')
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
-                $scope.ad.category = $scope.ad.category._id;
-                $scope.ad.put().then(function (res) {
+                console.log($scope.ad);
+                Restangular.one('items', $scope.ad._id).customPUT($scope.ad).then(function (res) {
                     $scope.ads = _.map($scope.ads, function (item) {
                         if (item._id === res._id) {
                             return res;

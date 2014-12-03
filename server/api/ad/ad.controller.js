@@ -66,7 +66,7 @@ exports.create = function(req, res) {
 
     Category.findById(req.body.category, function (err, category) {
         if (err) {return res.send(500, err);}
-        if (!category) {return res.sent(404);}
+        if (!category) {return res.send(404);}
 
         var tmp = req.body.pos.split(',');
 
@@ -105,19 +105,34 @@ exports.update = function(req, res) {
     if (req.body._id) {delete req.body._id;}
 
     if (req.user.role === 'admin') {
-        Ad.findById(req.params.id, function (err, ad) {
+        console.log(req.body)
+        Category.findById(req.body.category, function (err, category) {
             if (err) {return res.send(500, err);}
-            if (!ad) {return res.send(404, 'Not found.');}
+            if (!category) {return res.send(404);}
 
-            var updated = {
-                category: req.body.category,
-                state: req.body.states
-            };
-
-            ad = _.merge(updated, ad);
-            ad.save(function (err) {
+            Ad.findById(req.params.id, function (err, ad) {
                 if (err) {return res.send(500, err);}
-                return res.json(200, ad);
+                if (!ad) {return res.send(404, 'Not found.');}
+
+                var updated = {
+                    category: category._id,
+                    status: req.body.status,
+                    image: req.body.image,
+                    info: req.body.info,
+                    type: req.body.type,
+                    valueType: req.body.valueType,
+                    value: req.body.value,
+                    range: req.body.range * 1000,
+                    start: req.body.start,
+                    end: req.body.end,
+                    exclu: req.body.exclu || false
+                };
+
+                ad = _.merge(updated, ad);
+                ad.save(function (err) {
+                    if (err) {return res.send(500, err);}
+                    return res.json(200, ad);
+                });
             });
         });
     }

@@ -85,6 +85,7 @@ angular.module('theHomePassApp')
             $scope.user.pass = Math.random().toString(36).substr(2, 8);
         };
 
+        var baseUser = Restangular.all('users');
         $scope.create = function () {
             $scope.user = {};
             $scope.refresh();

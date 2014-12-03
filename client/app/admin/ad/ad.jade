@@ -25,6 +25,7 @@ div(ng-include='"components/navbar/admin.html"')
                     td {{ad.start | date:'dd/MM/yyyy'}}
                     td {{ad.end | date:'dd/MM/yyyy'}}
                     td.right
+                        button.button.tiny.secondary.fa.fa-search(ui-sref='show({ad: ad._id, pos: ad.pos[0]})')
                         button.button.tiny.fa.fa-pencil(ng-click='update(ad)')
                         button.button.tiny.alert.fa.fa-trash(ng-click='confirm(ad)')
 
@@ -32,8 +33,11 @@ script(type='text/ng-template', id='modal.html')
     h2 Modifier une annonce
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     form(name='form', novalidate='')
-        label Nom
-        input(type='text', ng-model='category.name', required='')
+        label Status
+        select(ng-model='ad.status', ng-options='role._id as role.name for role in [{_id: "pending", name: "En attente de confirmation"}, {_id: "enabled", name: "Activée"}, {_id: "archived", name: "Archivée"}]', required='')
+            
+        label Categorie
+        select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='')
             
         button.button.right(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
