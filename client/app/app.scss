@@ -1042,3 +1042,13 @@ html {
 .pointer {
     cursor: pointer;
 }
+
+div.pac-container {
+    z-index: 1051 !important;
+    margin-top: -14px !important;
+    margin-left: -14px !important;
+}
+
+.search {
+    margin: 0 !important;
+}

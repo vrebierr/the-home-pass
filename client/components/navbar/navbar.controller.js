@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular, uiGmapGoogleMapApi) {
         $scope.menu = [{
             'title': 'Home',
             'link': '/'
@@ -12,6 +12,45 @@ angular.module('theHomePassApp')
         $scope.isLoggedIn = Auth.isLoggedIn;
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.user = {};
+
+        uiGmapGoogleMapApi.then(function (maps) {
+            $scope.map = {
+                center: {
+                    latitude: 48.89670230000001,
+                    longitude: 2.3183781999999997
+                },
+                zoom: 15
+            };
+
+            $scope.events = {
+                map: {
+                    idle: function (map) {
+                        maps.event.trigger(map, 'resize');
+                    }
+                },
+                from: {
+                    places_changed: function (search, eventName) {
+                        var place = search.getPlaces()[0];
+
+                        if (place === undefined)
+                            return;
+
+                        $scope.user.from = {
+                            address: place.formatted_address,
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+
+                        console.log($scope.user)
+
+                        $scope.map.center = {
+                            latitude: place.geometry.location.k,
+                            longitude: place.geometry.location.B
+                        };
+                    }
+                }
+            };
+        });
 
         $scope.loginModal = function () {
             $scope.modal = $modal.open({

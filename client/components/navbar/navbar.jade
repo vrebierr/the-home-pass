@@ -50,14 +50,17 @@ script(type='text/ng-template' id='registerModal.html')
         label Mot de passe
         input(type='password', ng-model='user.password', required='')
         label Retapez votre mot de passe
+        
         input(type='password', ng-model='user.retype', required='')
         label Votre adresse
         #from
-        ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', refresh='true', style='z-index: -1000;')
-            ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
-            ui-gmap-marker(idKey='"from"', coords='user.from')
+        .modal-map
+            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', refresh='true', style='z-index: -1000;')
+                ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
+                ui-gmap-marker(idKey='"from"', coords='user.from')
+        
         button.black.expand(href='' ng-click='register(form)') S'inscrire
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
 
 script(type='text/ng-template', id='search-box-from.html')
-    input#from_input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')
+    input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')

@@ -53,8 +53,6 @@ angular.module('theHomePassApp')
                             longitude: place.geometry.location.B
                         };
 
-                        console.log($scope.user.from)
-
                         $scope.map.center = {
                             latitude: place.geometry.location.k,
                             longitude: place.geometry.location.B
