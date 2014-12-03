@@ -1,20 +1,10 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdAdminCtrl', function ($scope, ads, $rootScope, $modal, Restangular, users, categories) {
+    .controller('AdAdminCtrl', function ($scope, ads, $rootScope, $modal, Restangular, users, categories, $stateParams) {
         $scope.ads = ads;
         $scope.categories = categories;
         $scope.ad = {};
-        $scope.status = [{
-            id: 'pending',
-            name: 'En attente'
-        }, {
-            id: 'archived',
-            name: 'Archivée'
-        }, {
-            id: 'enabled',
-            name: 'Activée'
-        }];
 
         $scope.$watchCollection('ads', function () {
             $scope.ads = _.map($scope.ads, function (item) {
@@ -41,20 +31,18 @@ angular.module('theHomePassApp')
 
         $scope.update = function (ad) {
             $scope.ad = Restangular.copy(ad);
+            console.log($scope.ad);
             $modal.open({
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
                 console.log($scope.ad);
-                Restangular.one('items', $scope.ad._id).customPUT($scope.ad).then(function (res) {
-                    $scope.ads = _.map($scope.ads, function (item) {
-                        if (item._id === res._id) {
-                            return res;
-                        }
-                        else {
-                            return item;
-                        }
-                    });
+                $scope.ad.category = $scope.ad.category._id;
+                Restangular.one('items', $scope.ad._id).customPUT($scope.ad).then(function (data) {
+
+                    if (data.status != $stateParams.state) {
+                        $scope.ads = _.without($scope.ads, $scope.ad);
+                    }
                     toastr.success('Annonce modifiée !');
                 }).catch(function () {
                     toastr.error('Une erreure s\'est produite.');

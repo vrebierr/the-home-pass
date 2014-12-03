@@ -110,6 +110,8 @@ exports.update = function(req, res) {
             if (err) {return res.send(500, err);}
             if (!category) {return res.send(404);}
 
+            console.log(category)
+
             Ad.findById(req.params.id, function (err, ad) {
                 if (err) {return res.send(500, err);}
                 if (!ad) {return res.send(404, 'Not found.');}
@@ -128,7 +130,8 @@ exports.update = function(req, res) {
                     exclu: req.body.exclu || false
                 };
 
-                ad = _.merge(updated, ad);
+                ad = _.merge(ad, updated);
+                console.log(ad)
                 ad.save(function (err) {
                     if (err) {return res.send(500, err);}
                     return res.json(200, ad);

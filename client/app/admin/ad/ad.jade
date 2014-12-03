@@ -16,12 +16,14 @@ div(ng-include='"components/navbar/admin.html"')
             thead
                 tr
                     th Auteur
+                    th Catégorie
                     th Date de lancement
                     th Date de Fin
                     th.right Actions
             tbody
                 tr(ng-repeat='ad in ads | filter:search')
                     td {{ad.author.name}}
+                    td {{ad.category.name}}
                     td {{ad.start | date:'dd/MM/yyyy'}}
                     td {{ad.end | date:'dd/MM/yyyy'}}
                     td.right
@@ -34,10 +36,10 @@ script(type='text/ng-template', id='modal.html')
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     form(name='form', novalidate='')
         label Status
-        select(ng-model='ad.status', ng-options='role._id as role.name for role in [{_id: "pending", name: "En attente de confirmation"}, {_id: "enabled", name: "Activée"}, {_id: "archived", name: "Archivée"}]', required='')
+        select(ng-model='ad.status', ng-options='status._id as status.name for status in [{_id: "pending", name: "En attente de confirmation"}, {_id: "enabled", name: "Activée"}, {_id: "archived", name: "Archivée"}]', required='')
             
         label Categorie
-        select(ng-model='ad.category', ng-options='category._id as category.name for category in categories', required='')
+        select(ng-model='ad.category._id', ng-options='category._id as category.name for category in categories', required='')
             
         button.button.right(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
