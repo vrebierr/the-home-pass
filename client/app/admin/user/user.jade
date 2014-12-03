@@ -1,18 +1,22 @@
-div(ng-include='"components/navbar/navbar.html"')
+div(ng-include='"components/navbar/admin.html"')
 
-.wrapper.row-offcanvas.row-offcanvas-left
-    aside.left-side.sidebar-offcanvas
-        div(ng-include='"components/sidebar/sidebar.html"')
-    aside.right-side
-        section.content-header
-            h1 Utilisateurs
-                button.btn.btn-sm.btn-primary.pull-right(ng-click='create()')
-                    i.fa.fa-plus
-                    span  Ajouter
-        section.content
-            .row
-                .col-xs-12
-                    ng-table(model='users', type='user')
+.row
+    .columns.large-10
+        .page-name
+            h3 Utilisateurs
+
+.custom-panel-body
+    table.custom-table.responsive
+        thead
+            tr
+                th Adresse email
+                th Numéro
+                th Role
+        tbody
+            tr(ng-repeat='user in users')
+                td {{user.email}}
+                td {{user.phone}}
+                td {{user.role}}
 
 
 script(type='text/ng-template', id='modal.html')

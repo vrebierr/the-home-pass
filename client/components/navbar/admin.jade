@@ -1,0 +1,47 @@
+nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
+    ul.title-area
+        li.name
+            h1
+                a(ui-sref='admin') Administration
+        li.toggle-topbar.menu-icon
+            a(href='#')
+                span Menu
+                
+    section.top-bar-section
+        ul
+            li(ui-sref-active='active')
+                a(ui-sref='admin()')
+                    i.fa.fa-dashboard
+                        |  Dashboard
+                        
+            li.has-dropdown(ui-sref-active='active')
+                a(ui-sref='userAdmin()')
+                    i.fa.fa-users
+                        |  Utilisateurs
+                ul.dropdown
+                    li(ui-sref-active='active')
+                        a(ui-sref='userAdmin({action: "create"})')
+                            i.fa.fa-plus
+                            |  Ajouter
+                    li(ui-sref-active='active')
+                        a(ui-sref='userAdmin()')
+                            i.fa.fa-list
+                            |  Liste
+                                
+            li.has-dropdown(ui-sref-active='active')
+                a(ui-sref='adAdmin()')
+                    i.fa.fa-map-marker
+                        |  Annonce
+                ul.dropdown
+                    li(ui-sref-active='active')
+                        a(ui-sref='adAdmin()') En attente 
+                            | 
+                            span.label.round 0
+                    li
+                        a(ui-sref='adAdmin()') Activées
+                    li
+                        a(ui-sref='adAdmin()') Archives
+
+        ul.right
+            li
+                a(href='#', ng-click='logout()') Se déconnecter

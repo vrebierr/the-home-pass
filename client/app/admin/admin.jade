@@ -1,26 +1,3 @@
-div(ng-include='"components/navbar/navbar.html"')
+div(ng-include='"components/navbar/admin.html"')
 
-.wrapper.row-offcanvas.row-offcanvas-left
-    aside.left-side.sidebar-offcanvas
-        div(ng-include='"components/sidebar/sidebar.html"')
-    aside.columns.large-10
-        section.row
-            .page-name
-                h3 Dashboard
-        section#dashboard
-            .row
-                .columns.large-3.medium-6.small-12
-                    .stats.border
-                        .left Utilisateurs
-                            h3 100
-                        .fa.fa-user.right.fi-torso.useer
-                .col-xs-8
-                    .box
-                        .box-header
-                            h3.box-title Timeline
-                .col-xs-4
-                    .box
-                        .box-header
-                            h3.box-title Évolution
-                        .box-body.table-responsible
-                            a(href='https://www.google.com/analytics/web/?hl=fr&pli=1#report/visitors-overview/a56226176w89625148p93143694/', target='_blank') Google Analytics
+#inbox
