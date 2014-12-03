@@ -1,50 +1,44 @@
-div(ng-include='"components/navbar/navbar.html"')
+div(ng-include='"components/navbar/admin.html"')
 
-.wrapper.row-offcanvas.row-offcanvas-left
-    aside.left-side.sidebar-offcanvas
-        div(ng-include='"components/sidebar/sidebar.html"')
-    aside.right-side
-        section.content-header
-            h1 Annonces
-        section.content
-            .row
-                .col-xs-12
-                    ng-table(model='ads', type='ad')
+
+.row
+    .columns.large-10
+        .page-name
+            h3 Annonces
+            
+.row
+    .columns.large-3
+        input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+                        
+.row
+    .columns.large-12
+        table.responsive
+            thead
+                tr
+                    th Auteur
+                    
+                    th.right Actions
+            tbody
+                tr(ng-repeat='ad in ads | filter:search')
+                    td {{ad.author.name}}
+                    td.right
+                        button.button.tiny.fa.fa-pencil(ng-click='update(ad)')
+                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(ad)')
 
 script(type='text/ng-template', id='modal.html')
-    .modal-primary
-        .modal-header
-            button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title {{ ad._id && 'Modifier une annonce' || 'Ajouter une nouvelle annonce'}}
-        .modal-body
-            form.form
-                .input-form
-                    label Auteur
-                    p {{ad.author.name}}
-                .input-form
-                    label Catégorie
-                    select.form-control(ng-model='ad.category._id', ng-options='item._id as item.name for item in categories', required='')
-                .input-form
-                    label Montant
-                    input.form-control(type='text', ng-model='ad.value', required='')
-                .input-form
-                    label Dates
-                    input.form-control(type='text', ng-model='ad.dateRange', required='')
-                .input-form
-                    label Status
-                    select.form-control(ng-model='ad.status', ng-options='item.id as item.name for item in status', required='')
-
-        .modal-footer
-            button.btn.btn-primary(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
-            button.btn.btn-default(ng-click='$dismiss()') Annuler
+    h2 Modifier une annonce
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    form(name='form', novalidate='')
+        label Nom
+        input(type='text', ng-model='category.name', required='')
+            
+        button.button.right(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
+        button.button.secondary(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='confirm.html')
-    .modal-danger
-        .modal-header
-            button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Confirmation
-        .modal-body
-            p Êtes vous certain de vouloir supprimer cette annonce ?
-        .modal-footer
-            button.btn.btn-danger(ng-click='$close()') Supprimer
-            button.btn.btn-default(ng-click='$dismiss()') Annuler
+    h2 Confirmation
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    p Êtes vous certain de vouloir supprimer
+        strong  {{user.name}} ?
+    button.button.alert.right(ng-click='$close()') Supprimer
+    button.button.secondary(ng-click='$dismiss()') Annuler

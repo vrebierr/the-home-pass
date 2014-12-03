@@ -1063,3 +1063,19 @@ i.postfix.addon {
     height: 45px;
     width: 45px;
 }
+
+table {
+    border: 0;
+    width: 100%;
+}
+
+table button {
+    width: 40px;
+    padding: 10px !important;
+    margin: 0 !important;
+}
+
+table th.right, table td.right {
+    width: 140px !important;
+
+}

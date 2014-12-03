@@ -14,6 +14,8 @@ angular.module('theHomePassApp')
                 categories.post($scope.category).then(function (res) {
                     $scope.categories.push(res);
                     toastr.success('Catégorie crée !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             });
         };
@@ -33,7 +35,9 @@ angular.module('theHomePassApp')
                             return item;
                         }
                     });
-                    toastr.success('Catégorie modifiée !');
+                    toastr.info('Catégorie modifiée !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             });
         };
@@ -46,16 +50,10 @@ angular.module('theHomePassApp')
             }).result.then(function () {
                 category.remove().then(function () {
                     $scope.categories = _.without($scope.categories, category);
-                    toastr.success('Catégorie supprimée !');
+                    toastr.error('Catégorie supprimée !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
                 });
             });
         };
-
-        $rootScope.$on('update', function (event, data) {
-            $scope.update(data);
-        });
-
-        $rootScope.$on('delete', function (event, data) {
-            $scope.confirm(data);
-        });
     });

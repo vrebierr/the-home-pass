@@ -15,6 +15,14 @@ exports.findByPos = function (req, res) {
     });
 }
 
+exports.findByState = function (req, res) {
+    Ad.find({status: req.params.state}, function (err, ads) {
+        if (err) {return res.send(500, err);}
+
+        return res.json(200, ads);
+    });
+};
+
 // Get list of ads
 exports.index = function(req, res) {
     if (req.user.role === 'admin') {

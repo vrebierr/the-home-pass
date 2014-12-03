@@ -5,35 +5,34 @@ div(ng-include='"components/navbar/admin.html"')
         .page-name
             h3 Utilisateurs
 
-.custom-panel-body
-    .row
-        .columns.large-2.medium-6.small-12
-            button.button.tiny.radius.success(ng-click='create()')
-                i.fa.fa-plus
-                |  Ajouter
-        .columns.large-3
-            input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+.row
+    .columns.large-2.medium-6.small-12
+        button.button.tiny.radius.success(ng-click='create()')
+            i.fa.fa-plus
+            |  Ajouter
+    .columns.large-3
+        input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
 
-    .row
-        .columns.large-12
-            table.custom-table.responsive
-                thead
-                    tr
-                        th Nom
-                        th Adresse email
-                        th Numéro
-                        th Role
-                        th Actions
-                tbody
-                    tr(ng-repeat='user in users | filter:search')
-                        td {{user.name}}
-                        td {{user.email}}
-                        td {{user.phone}}
-                        td {{user.role}}
-                        td
-                            button.button.tiny.success.fa.fa-user(ng-click='impersonate(user)')
-                            button.button.tiny.fa.fa-pencil(ng-click='update(user)')
-                            button.button.tiny.alert.fa.fa-trash(ng-click='confirm(user)')
+.row
+    .columns.large-12
+        table.responsive
+            thead
+                tr
+                    th Nom
+                    th Adresse email
+                    th Numéro
+                    th Role
+                    th.right Actions
+            tbody
+                tr(ng-repeat='user in users | filter:search')
+                    td {{user.name}}
+                    td {{user.email}}
+                    td {{user.phone}}
+                    td {{user.role}}
+                    td.right
+                        button.button.tiny.success.fa.fa-user(ng-click='impersonate(user)')
+                        button.button.tiny.fa.fa-pencil(ng-click='update(user)')
+                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(user)')
 
 script(type='text/ng-template', id='modal.html')
     h2 {{user._id && 'Modifier' || 'Ajouter'}} un utilisateur

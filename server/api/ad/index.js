@@ -6,6 +6,8 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
+router.get('/state/:state', auth.hasRole('admin'), controller.findByState);
+
 router.get('/pos/:id', auth.hasRole('user'), controller.findByPos);
 
 router.get('/', auth.hasRole('user'), controller.index);

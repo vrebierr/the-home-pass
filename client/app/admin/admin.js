@@ -38,13 +38,14 @@ angular.module('theHomePassApp')
 				}
 			})
 			.state('adAdmin', {
-				url: '/admin/ad',
+				url: '/admin/ad/:state',
 				templateUrl: 'app/admin/ad/ad.html',
 				controller: 'AdAdminCtrl',
 				authenticate: true,
 				resolve: {
-					ads: function (Restangular) {
-						return Restangular.all('items').getList();
+					ads: function (Restangular, $stateParams) {
+						console.log($stateParams)
+						return Restangular.all('items').one('state', $stateParams.state).getList();
 					},
 					categories: function (Restangular) {
 						return Restangular.all('categories').getList();

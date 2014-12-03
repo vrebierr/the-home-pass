@@ -12,21 +12,12 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
             li(ui-sref-active='active')
                 a(ui-sref='admin()')
                     i.fa.fa-dashboard
-                        |  Dashboard
+                    |  Dashboard
                         
-            li.has-dropdown(ui-sref-active='active')
+            li(ui-sref-active='active')
                 a(ui-sref='userAdmin()')
                     i.fa.fa-users
-                        |  Utilisateurs
-                ul.dropdown
-                    li(ui-sref-active='active')
-                        a(ui-sref='userAdmin({action: "create"})')
-                            i.fa.fa-plus
-                            |  Ajouter
-                    li(ui-sref-active='active')
-                        a(ui-sref='userAdmin()')
-                            i.fa.fa-list
-                            |  Liste
+                    |  Utilisateurs
                                 
             li.has-dropdown(ui-sref-active='active')
                 a(ui-sref='adAdmin()')
@@ -34,13 +25,18 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
                         |  Annonce
                 ul.dropdown
                     li(ui-sref-active='active')
-                        a(ui-sref='adAdmin()') En attente 
+                        a(ui-sref='adAdmin({state: "pending"})') En attente 
                             | 
                             span.label.round 0
                     li
-                        a(ui-sref='adAdmin()') Activées
+                        a(ui-sref='adAdmin({state: "enabled"})') Activées
                     li
-                        a(ui-sref='adAdmin()') Archives
+                        a(ui-sref='adAdmin({state: "archived"})') Archives
+            
+            li(ui-sref-active='active')
+                a(ui-sref='categoryAdmin()')
+                    i.fa.fa-paperclip
+                    |  Catégories
 
         ul.right
             li
