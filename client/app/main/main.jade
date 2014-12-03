@@ -25,7 +25,9 @@ div(ng-include='"components/navbar/navbar.html"')
 
         .row
             .columns.large-12
-                h5 Actuellement {{items.length}} offres exclusives à proximité de ma ville
+                h5 Actuellement
+                    strong {{items.length}}
+                    |  offres exclusives à proximité de ma ville
             
         .row.collapse
             .columns.large-3.medium-6
@@ -51,15 +53,14 @@ div(ng-include='"components/navbar/navbar.html"')
             li(ng-repeat='ad in items | filter:search')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
                     figure
-                        img(ng-src='http://placehold.it/200x200}')
+                        img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')
+                        img(ng-if='!ad.image', ng-src='http://placehold.it/200x200')
                         figcaption
                             .floater
                             .child
                                 h5 {{ad.currentPos.name}}
                                 p -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
-
                                 em.exclu Offre exclusive The Home Pass
-
 
 script(type='text/ng-template' id='window.html')
     img(ng-src='http://placehold.it/200x200}')

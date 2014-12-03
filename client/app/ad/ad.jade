@@ -42,7 +42,7 @@ div(ng-include='"components/navbar/navbar.html"')
         .ad
             .row
                 .columns.small-5
-                    img(ng-src='http://placehold.it/400x400}')
+                    img(ng-src='uploads/{{ad.image}}')
         
                 .columns.small-7
                     p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
@@ -61,7 +61,8 @@ div(ng-include='"components/navbar/navbar.html"')
             li(ng-repeat='item in ads')
                 a(ui-sref='show({ad: item._id, pos: pos._id})')
                     figure
-                        img(ng-src='http://placehold.it/200x200}')
+                        img(ng-if='item.image', ng-src='uploads/{{item.image}}')
+                        img(ng-if='!item.image', ng-src='http://placehold.it/200x200')
                         figcaption
                             .floater
                             .child

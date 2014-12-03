@@ -3,7 +3,11 @@
 angular.module('theHomePassApp')
     .controller('AdminCtrl', function ($scope, ads, users) {
         var data_ads = [];
-        var data_users = [];
+        var data_users = {
+            users: [],
+            advertisers: [],
+            total: []
+        };
 
         for (var i = 0; i < 12; i++) {
             var tmp = _.filter(ads, function (item) {
@@ -18,17 +22,25 @@ angular.module('theHomePassApp')
                 }
             });
 
-            var tmp_user = _.filter(users, function (item) {
+            var advertisers_tmp = 0;
+            var users_tmp = 0;
+            var total = 0;
+            _.forEach(users, function (item) {
                 var m = moment().startOf('year').add(i, 'month');
                 if (moment(item.createdAt).month() === m.month()) {
-                    return true
-                }
-                else {
-                    return false
+                    if (item.role === 'advertiser') {
+                        advertisers_tmp++;
+                    }
+                    else if (item.role === 'user') {
+                        users_tmp++;
+                    }
+                    total++;
                 }
             });
             data_ads.push(tmp.length);
-            data_users.push(tmp_user.length)
+            data_users.users.push(users_tmp);
+            data_users.advertisers.push(advertisers_tmp);
+            data_users.total.push(total);
         }
 
         $scope.config = {
@@ -53,7 +65,7 @@ angular.module('theHomePassApp')
             },
             users: {
                 title: {text: 'Utilisateurs'},
-                subtitle: {text: 'Actuellement ' + data_users[data_ads.length - 1] + ' utilisateurs inscris.'},
+                subtitle: {text: 'Actuellement ' + data_users.total[data_ads.length - 1] + ' utilisateurs inscris.'},
                 options: {
                     char: {
                         type: 'line'
@@ -67,7 +79,9 @@ angular.module('theHomePassApp')
                     title: {text: 'Utilisateurs'},
                 },
                 series: [
-                    {name: 'Utilisateurs inscris', data: data_users}
+                    {name: 'Utilisateurs', data: data_users.users},
+                    {name: 'Annonceurs', data: data_users.advertisers},
+                    {name: 'Total', data: data_users.total},
                 ]
             }
         };
