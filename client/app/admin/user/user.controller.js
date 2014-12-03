@@ -82,7 +82,7 @@ angular.module('theHomePassApp')
         });
 
         $scope.refresh = function () {
-            $scope.user.pass = uuid4.generate().split('-')[1];
+            $scope.user.pass = Math.random().toString(36).substr(2, 8);
         };
 
         $scope.create = function () {
@@ -132,6 +132,7 @@ angular.module('theHomePassApp')
 
             $modal.open({
                 templateUrl: 'modal.html',
+                controller: 'ModalCtrl',
                 scope: $scope
             }).result.then(function () {
                 $scope.user.put().then(function (res) {
@@ -163,17 +164,14 @@ angular.module('theHomePassApp')
             })
         };
 
-        $rootScope.$on('update', function (event, data) {
-            $scope.update(data);
-        });
-
-        $rootScope.$on('delete', function (event, data) {
-            $scope.confirm(data);
-        });
-
         $rootScope.$on('logAs', function (event, data) {
             Auth.loginAs(data).then(function () {
                 $state.go('main');
             });
         });
+    });
+
+angular.module('theHomePassApp')
+    .controller('ModalCtrl', function ($scope, $modalInstance, Auth) {
+
     });

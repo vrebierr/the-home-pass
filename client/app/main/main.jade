@@ -42,7 +42,11 @@ div(ng-include='"components/navbar/navbar.html"')
             .columns.large-1.medium-1.small-2
                 span.postfix.addon
                     i.fa.fa-search
+        .row
+            .columns.large-12
+                span.label test
 
+                
         ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
             li(ng-repeat='ad in items | filter:search')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')

@@ -856,7 +856,7 @@ button.alert {
 }
 
 .modal-map .angular-google-map-container {
-    height: 200px !important;
+    height: 100px !important;
 }
 
 .postfix.addon {
@@ -1001,8 +1001,6 @@ hr {
 
 div.pac-container {
     z-index: 1051 !important;
-    margin-top: -14px !important;
-    margin-left: -14px !important;
 }
 
 .search {
@@ -1057,4 +1055,9 @@ a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
     color: #656C70;
     font-family: 'Roboto', 'sans-serif';
     padding: 0px;
+}
+
+i.postfix.addon {
+    height: 45px;
+    width: 45px;
 }

@@ -6,57 +6,68 @@ div(ng-include='"components/navbar/admin.html"')
             h3 Utilisateurs
 
 .custom-panel-body
-    table.custom-table.responsive
-        thead
-            tr
-                th Adresse email
-                th Numéro
-                th Role
-        tbody
-            tr(ng-repeat='user in users')
-                td {{user.email}}
-                td {{user.phone}}
-                td {{user.role}}
+    .row
+        .columns.large-2.medium-6.small-12
+            button.button.tiny.radius.success(ng-click='create()')
+                i.fa.fa-plus
+                |  Ajouter
+        .columns.large-2
+            input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
 
+    .row
+        .columns.large-12
+            table.custom-table.responsive
+                thead
+                    tr
+                        th Adresse email
+                        th Numéro
+                        th Role
+                tbody
+                    tr(ng-repeat='user in users | filter:search')
+                        td {{user.email}}
+                        td {{user.phone}}
+                        td {{user.role}}
+
+script(type='text/ng-template' id='mod.html')
+    form(name='form', novalidate='')
+        label Adresse Email
+        input(type='email', ng-model='user.email', required='')
+        label Mot de passe
+        input(type='password', ng-model='user.password', required='')
+        button.black.expand(href='' ng-click='login(form)') Se connecter
+        a.close-reveal-modal(ng-click='$dismiss()') &#215;
 
 script(type='text/ng-template', id='modal.html')
-    .modal-primary
-        .modal-header
-            button.close(type='button', ng-click='$dismiss()') &times;
-            h4.modal-title Ajouter un nouvel utilisateur
-        .modal-body
-            form(name='form')
-                .form-group
-                    label Nom
-                    input.form-control(type='text', ng-model='user.name', required='')
-                .form-group
-                    label Numéro
-                    input.form-control(type='text', ng-model='user.phone')
-                .form-group
-                    label Adresse email
-                    input.form-control(type='email', ng-model='user.email')
-                .form-group
-                    label Mot de passe
-                    .input-group
-                        input.form-control(type='text', ng-model='user.pass', required='')
-                        span.input-group-btn
-                            button.btn.btn-default(type='button', ng-click='refresh()')
-                                i.fa.fa-refresh
-                .form-group
-                    label Déménage de l'adresse
-                    #from
-                .form-group
-                    label Emménage à l'adresse
-                    #to
-                ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', refresh='true', style='z-index: -1000;')
-                    ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
-                    ui-gmap-search-box(template='"search-box-to.html"', parentdiv='"to"', events='events.to')
-                    ui-gmap-marker(idKey='"from"', coords='user.from')
-                    ui-gmap-marker(idKey='"to"', coords='user.to')
+    h2 {{user._id && 'Modifier' || 'Ajouter'}} un utilisateur
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    form(name='form', novalidate='')
+        .row
+            label Role
+            select(ng-model='user.role', ng-options='role._id as role.name for role in [{_id: "user", name: "Utilisateur"}, {_id: "advertiser", name: "Annonceur"}, {_id: "admin", name: "Administrateur"}]', required='')
+        
+        .row(ng-if='user.role === "user"')
+            label Nom
+            input(type='text', ng-model='user.name')
 
-        .modal-footer
-            button.btn.btn-primary(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
-            button.btn.btn-default(ng-click='$dismiss()') Annuler
+            label Numéro
+            input(type='text', ng-model='user.phone')
+
+            label Adresse email
+            input(type='email', ng-model='user.email')
+                
+            label pass
+            input(type='text', ng-model='user.pass', required='true')
+
+            label Adresse
+            #address
+            .modal-map
+                ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map')
+                    ui-gmap-search-box(template='"search-box.html"', parentdiv='"address"', events='events.from')
+                    ui-gmap-marker(idKey='"address"', coords='user.from')
+    br
+    .row
+        button.button.right(ng-click='$close()') {{ user._id && 'Modifier' || 'Ajouter'}}
+        button.button.secondary(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='confirm.html')
     .modal-danger
@@ -70,8 +81,5 @@ script(type='text/ng-template', id='confirm.html')
             button.btn.btn-danger(ng-click='$close()') Supprimer
             button.btn.btn-default(ng-click='$dismiss()') Annuler
 
-script(type='text/ng-template', id='search-box-from.html')
-    input.form-control#from_input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')
-
-script(type='text/ng-template', id='search-box-to.html')
-    input.form-control#to_input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.to.address')
+script(type='text/ng-template', id='search-box.html')
+    input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')
