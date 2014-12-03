@@ -899,6 +899,10 @@ button.alert {
     max-width: none !important;
 }
 
+.modal-map .angular-google-map-container {
+    height: 200px !important;
+}
+
 .postfix.addon {
     background-color: black !important;
     color: white !important;
@@ -1001,7 +1005,7 @@ em.exclu {
 
 .ads {
     height: calc(100vh - 305px) !important;
-    overflow: scroll;
+    overflow-y: scroll;
     box-shadow: inset 0 20px 20px -20px white,
                 inset 0 -15px 15px -15px white;
     padding-top: 10px;
@@ -1009,10 +1013,6 @@ em.exclu {
     border-bottom: black 1px solid;
     margin-right: 1px !important;
     margin-left: 1px !important;
-}
-
-.ads::-webkit-scrollbar {
-    display: none;
 }
 
 hr {

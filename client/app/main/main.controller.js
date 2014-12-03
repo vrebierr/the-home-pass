@@ -6,6 +6,7 @@ angular.module('theHomePassApp')
         $scope.location = 0;
 
         $scope.scroll = function () {
+            console.log('asd')
             for (var i = 0; i < 15; i++) {
                 var index = $scope.items.length;
                 if ($scope.ads[index]) {
@@ -107,8 +108,8 @@ angular.module('theHomePassApp')
             };
         });
 
-        for (var i = 0; i < 100; i++) {
-            $scope.items.push({id: i})
+        for (var i = 0; i < 1000; i++) {
+            $scope.ads.push({id: i})
         }
 
         $scope.changeLocation = function () {

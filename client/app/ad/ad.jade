@@ -16,25 +16,28 @@ div(ng-include='"components/navbar/navbar.html"')
             .columns.large-12
                 .show
                     ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
-                        ui-gmap-marker(model='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
+                        ui-gmap-marker(idKey='pos._id', coords='pos', events='events', icon='pos.icon')
         .row
             .columns.large-12
-                p
+                div
                     strong {{pos.name}}
                     |  - {{pos.address}}
-                    br
+                div(ng-show='pos.email')
                     strong Email : 
                     | {{pos.email}}
-                    br
+                div(ng-show='pos.phone')
                     strong Tel. : 
                     | {{pos.phone}}
-                    br
+                div(ng-show='pos.fax')
                     strong Fax : 
                     | {{pos.fax}}
-                    br
+                div(ng-show='pos.opening')
                     strong Ouverture : 
                     | {{pos.opening}}
-                    br
+                div(ng-show='pos.website')
+                    strong Site web : 
+                    | {{pos.website}}
+
     .columns.large-8
         .ad
             .row

@@ -43,7 +43,7 @@ div(ng-include='"components/navbar/navbar.html"')
                 span.postfix.addon
                     i.fa.fa-search
 
-        ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', nfinite-scroll-immediate-check='true')
+        ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
             li(ng-repeat='ad in items | filter:search')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
                     figure
