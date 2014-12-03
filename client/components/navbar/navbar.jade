@@ -34,7 +34,7 @@ nav.row.full-width(ng-controller='NavbarCtrl')
 
 script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
-    form(name='form', ng-submit='login(form)', novalidate='')
+    form(name='form', novalidate='')
         label Adresse Email
         input(type='email', ng-model='user.email', required='')
         label Mot de passe
@@ -44,7 +44,7 @@ script(type='text/ng-template' id='loginModal.html')
 
 script(type='text/ng-template' id='registerModal.html')
     h2 Inscription
-    form(name='form', ng-submit='register(form)', novalidate='')
+    form(name='form', novalidate='')
         label Adresse Email
         input(type='email', ng-model='user.email', required='')
         label Mot de passe

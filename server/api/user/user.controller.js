@@ -7,6 +7,8 @@ var jwt = require('jsonwebtoken');
 var _ = require('lodash');
 var nodemailer = require('nodemailer');
 var async = require('async');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
 
 var validationError = function(res, err) {
   return res.json(422, err);
@@ -55,6 +57,28 @@ exports.create = function (req, res, next) {
     newUser.role = 'user';
     newUser.save(function(err, user) {
         if (err) return validationError(res, err);
+
+        var transporter = nodemailer.createTransport(smtpTransport({
+            host: 'mail.gandi.net',
+            port: 465,
+            secure: true,
+            auth: {
+                user: 'noreply@thehomepass.com',
+                password: ']pdapsdskk1o2r-==++'
+            }
+        }));
+
+        console.log(transporter)
+
+        transporter.sendMail({
+            from: 'noreply@thehomepass.com',
+            to: 'valentin.rebierre@gmail.com',
+            subject: 'test',
+            text: 'test mail.'
+        }, function (err, info) {
+            console.log(err)
+            console.log(info)
+        });
         var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
         res.json({ token: token });
     });
