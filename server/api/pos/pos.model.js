@@ -16,7 +16,8 @@ var PosSchema = new Schema({
 	phone: {type: String, default: ''},
 	fax: {type: String, default: ''},
 	opening: {type: String, default: ''},
-	website: {type: String, default: ''}
+	website: {type: String, default: ''},
+	createdAt: {type: Date, default: new Date()}
 });
 
 module.exports = mongoose.model('Pos', PosSchema);

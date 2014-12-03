@@ -16,7 +16,7 @@ var AdSchema = new Schema({
 	start: Date,
 	end: Date,
 	exclu: {type: Boolean, default: false},
-	status: {type: String, default: 'enabled'}
+	status: {type: String, default: 'pending'}
 });
 
 module.exports = mongoose.model('Ad', AdSchema);

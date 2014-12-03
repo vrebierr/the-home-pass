@@ -1,4 +1,4 @@
-nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
+nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarAdminCtrl')
     ul.title-area
         li.name
             h1
@@ -20,14 +20,15 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarCtrl')
                     |  Utilisateurs
                                 
             li.has-dropdown(ui-sref-active='active')
-                a(ui-sref='adAdmin()')
+                a(ui-sref='adAdmin({state: "pending"})')
                     i.fa.fa-map-marker
-                        |  Annonce
+                        |  Annonce  
+                        span.label.round {{pending}}
                 ul.dropdown
                     li(ui-sref-active='active')
                         a(ui-sref='adAdmin({state: "pending"})') En attente 
                             | 
-                            span.label.round 0
+                            span.label.round {{pending}}
                     li(ui-sref-active='active')
                         a(ui-sref='adAdmin({state: "enabled"})') Activées
                     li(ui-sref-active='active')

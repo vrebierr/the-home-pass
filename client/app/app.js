@@ -15,7 +15,8 @@ angular.module('theHomePassApp', [
   'mm.foundation',
   'infinite-scroll',
   'LocalStorageModule',
-  'highcharts-ng'
+  'highcharts-ng',
+  'angularMoment'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
     $urlRouterProvider

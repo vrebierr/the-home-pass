@@ -13,7 +13,15 @@ angular.module('theHomePassApp')
 				url: '/admin',
 				templateUrl: 'app/admin/admin.html',
 				controller: 'AdminCtrl',
-				authenticate: true
+				authenticate: true,
+				resolve: {
+					ads: function (Restangular) {
+						return Restangular.all('items').getList();
+					},
+					users: function (Restangular) {
+						return Restangular.all('users').all('admin').getList();
+					},
+				}
 			})
 			.state('userAdmin', {
 				url: '/admin/user',
@@ -44,7 +52,6 @@ angular.module('theHomePassApp')
 				authenticate: true,
 				resolve: {
 					ads: function (Restangular, $stateParams) {
-						console.log($stateParams)
 						return Restangular.all('items').one('state', $stateParams.state).getList();
 					},
 					categories: function (Restangular) {
