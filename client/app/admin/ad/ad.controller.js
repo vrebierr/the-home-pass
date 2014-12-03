@@ -6,6 +6,8 @@ angular.module('theHomePassApp')
         $scope.categories = categories;
         $scope.ad = {};
 
+        $scope.params = $stateParams;
+
         $scope.$watchCollection('ads', function () {
             $scope.ads = _.map($scope.ads, function (item) {
                 item.author = _.findWhere(users, {_id: item.author});
@@ -36,13 +38,20 @@ angular.module('theHomePassApp')
                 templateUrl: 'modal.html',
                 scope: $scope
             }).result.then(function () {
-                console.log($scope.ad);
                 $scope.ad.category = $scope.ad.category._id;
                 Restangular.one('items', $scope.ad._id).customPUT($scope.ad).then(function (data) {
-
-                    if (data.status != $stateParams.state) {
-                        $scope.ads = _.without($scope.ads, $scope.ad);
+                    $scope.ads = _.map($scope.ads, function (item) {
+                        if (item._id === data._id) {
+                            return data;
+                        }
+                        else {
+                            return item;
+                        }
+                    });
+                    if ($stateParams.state != data.status) {
+                        $scope.ads = _.without($scope.ads, data);
                     }
+
                     toastr.success('Annonce modifiée !');
                 }).catch(function () {
                     toastr.error('Une erreure s\'est produite.');

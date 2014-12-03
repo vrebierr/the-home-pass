@@ -41,7 +41,13 @@ script(type='text/ng-template', id='modal.html')
         label Categorie
         select(ng-model='ad.category._id', ng-options='category._id as category.name for category in categories', required='')
             
-        button.button.right(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
+        label Date de lancement
+        input(ng-model='ad.start', type='date', required='')
+            
+        label Date de fin
+        input(ng-model='ad.end', type='date', required='')
+            
+        button.button.right(ng-click='$close()') {{ ad._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
 
 script(type='text/ng-template', id='confirm.html')
