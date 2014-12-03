@@ -1,5 +1,5 @@
-section.sidebar
-    ul.sidebar-menu
+section.columns.large-2.medium-12.small-12
+    ul.side-nav
         li(ui-sref-active='active')
             a(ui-sref='admin')
                 i.fa.fa-dashboard
@@ -9,9 +9,9 @@ section.sidebar
                 i.fa.fa-users
                 span Utilisateurs
         li(ui-sref-active='active')
-            a(ui-sref='newsletter')
+            a(ui-sref='newsletter') Newsletter
                 i.fa.fa-envelope
-                span Newsletter
+                | 
         li(ui-sref-active='active')
             a(ui-sref='adAdmin')
                 i.fa.fa-map-marker

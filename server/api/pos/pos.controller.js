@@ -48,6 +48,7 @@ exports.create = function(req, res) {
         phone: req.body.phone,
         fax: req.body.fax,
         opening: req.body.opening,
+        website: req.body.website
     };
 
     console.log(pos)

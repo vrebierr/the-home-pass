@@ -12,9 +12,7 @@ a {
     border: 1px solid #e1e1e1;
 }
 
-a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
-    color: #f16c65;
-}
+
 
 .tabs-content {
     margin-bottom: 1.5rem;
@@ -28,23 +26,6 @@ a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
     border-radius: 50%;
     width: 40px;
 }
-
-.side-nav {
-    border-right: 1px solid #E6E0E6;
-    padding-bottom: 0px;
-}
-
-    .side-nav > li > ul {
-        margin-left: 0px;
-    }
-
-
-    .side-nav .accordion dd > a {
-        background: #FFFFFF;
-        color: #656C70;
-        font-family: 'Roboto', 'sans-serif';
-        padding: 0px;
-    }
 
 .top-part-no-padding {
     padding-left: 0px;
@@ -154,33 +135,7 @@ a {
     font-family: 'Roboto', 'sans-serif';
 }
 
-.side-nav {
-    background: #fff;
-}
 
-    .side-nav li {
-        list-style: none;
-    }
-
-    .side-nav > li {
-        padding: 10px;
-        border-bottom: 1px solid #ebeaeb;
-        vertical-align: middle;
-    }
-
-    .side-nav li a:not(.button) {
-        color: #444;
-    }
-
-    .side-nav .active {
-        color: #f16c65;
-    }
-
-    .side-nav li.active > a:first-child:not(.button) {
-        color: #f16c65;
-        font-weight: bold;
-        font-family: 'Roboto', 'sans-serif';
-    }
 
 .no-padding .columns {
     padding: 0px;
@@ -1051,4 +1006,54 @@ div.pac-container {
 
 .search {
     margin: 0 !important;
+}
+
+.side-nav {
+    background: #fff;
+}
+
+.side-nav li {
+    list-style: none;
+}
+
+.side-nav > li {
+    padding: 10px;
+    border-bottom: 1px solid #ebeaeb;
+    vertical-align: middle;
+}
+
+.side-nav li a:not(.button) {
+    color: #444;
+}
+
+.side-nav .active {
+    color: #f16c65;
+}
+
+.side-nav li.active > a:first-child:not(.button) {
+    color: #f16c65;
+    font-weight: bold;
+    font-family: 'Roboto', 'sans-serif';
+}
+
+
+a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
+    color: #f16c65;
+}
+
+.side-nav {
+    border-right: 1px solid #E6E0E6;
+    padding-bottom: 0px;
+}
+
+.side-nav > li > ul {
+    margin-left: 0px;
+}
+
+
+.side-nav .accordion dd > a {
+    background: #FFFFFF;
+    color: #656C70;
+    font-family: 'Roboto', 'sans-serif';
+    padding: 0px;
 }
