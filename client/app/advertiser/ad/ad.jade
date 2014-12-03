@@ -66,13 +66,15 @@ div(ng-include='"components/navbar/navbar.html"')
 						.columns.small-11
 							input(type='date', ng-model='ad.start', required='')
 						.columns.small-1
-							i.postfix.addon.fa.fa-calendar
+							span.postfix.addon
+								i.fa.fa-calendar
 					
 					label.row.collapse Date de fin
 						.columns.small-11
 							input(type='date', ng-model='ad.end', required='')
 						.columns.small-1
-							i.postfix.addon.fa.fa-calendar
+							span.postfix.addon
+								i.fa.fa-calendar
 
 					label Offre exclusive Home Pass : 
 						input(type='checkbox', ng-model='ad.exclu')

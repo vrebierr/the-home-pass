@@ -51,7 +51,7 @@ angular.module('theHomePassApp')
                     if ($stateParams.state != data.status) {
                         $scope.ads = _.without($scope.ads, data);
                     }
-
+                    
                     toastr.success('Annonce modifiée !');
                 }).catch(function () {
                     toastr.error('Une erreure s\'est produite.');
