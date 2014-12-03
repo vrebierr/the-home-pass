@@ -4,7 +4,7 @@ angular.module('theHomePassApp')
     .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular) {
         $scope.menu = [{
             'title': 'Home',
-              'link': '/'
+            'link': '/'
         }];
 
         $scope.Auth = Auth;
@@ -38,7 +38,7 @@ angular.module('theHomePassApp')
             $scope.modal = $modal.open({
                 templateUrl: 'registerModal.html',
                 scope: $scope,
-                windowClass: 'tiny',
+                windowClass: '',
                 controller: 'loginModalCtrl'
             }).result.then(function () {
                 Restangular.one('users', 'me').get().then(function (user) {

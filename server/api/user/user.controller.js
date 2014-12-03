@@ -63,8 +63,8 @@ exports.create = function (req, res, next) {
             port: 465,
             secure: true,
             auth: {
-                user: 'noreply@thehomepass.com',
-                password: ']pdapsdskk1o2r-==++'
+                user: 'FT836-GANDI@thehomepass.com',
+                password: 'Valentine2000'
             }
         }));
 
