@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('theHomePassApp')
-  .controller('PostCtrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+    .controller('PostAdminCtrl', function ($scope, post) {
+        $scope.post = post;
+    });
