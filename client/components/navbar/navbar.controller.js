@@ -2,11 +2,6 @@
 
 angular.module('theHomePassApp')
     .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular, uiGmapGoogleMapApi) {
-        $scope.menu = [{
-            'title': 'Home',
-            'link': '/'
-        }];
-
         $scope.Auth = Auth;
         $scope.isCollapsed = true;
         $scope.isLoggedIn = Auth.isLoggedIn;
