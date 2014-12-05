@@ -1,0 +1,49 @@
+div(ng-include='"components/navbar/admin.html"')
+    
+.row
+    .columns.large-10
+        .page-name
+            h3 Catégories
+            
+.row
+    .columns.large-2.medium-6.small-12
+        button.button.tiny.radius.success(ng-click='create()')
+            i.fa.fa-plus
+            |  Ajouter
+    .columns.large-3
+        input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+                                    
+.row
+    .columns.large-12
+        table.responsive
+            thead
+                tr
+                    th Nom
+                    th.right Actions
+            tbody
+                tr(ng-repeat='tag in tags | filter:search')
+                    td {{tag.name}}
+                    td.right
+                        button.button.tiny.fa.fa-pencil(ng-click='update(tag)')
+                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(tag)')
+                                                                            
+
+script(type='text/ng-template', id='modal.html')
+    h2 {{tag._id && 'Modifier' || 'Ajouter'}} une catégorie
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    form(name='form', novalidate='')
+        h2 {{tag._id && 'Modifer' || 'Ajouter'}} une Catégorie
+        label Nom
+        input(type='text', ng-model='category.name', required='')
+            
+        button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
+        button.button.secondary(ng-click='$dismiss()') Annuler
+            
+script(type='text/ng-template', id='confirm.html')
+    h2 Confirmation
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    p Êtes vous certain de vouloir supprimer
+    strong  {{tag.name}} ?
+    button.button.alert.right(ng-click='$close()') Supprimer
+    button.button.secondary(ng-click='$dismiss()') Annuler
+    

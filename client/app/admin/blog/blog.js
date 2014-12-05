@@ -28,5 +28,15 @@ angular.module('theHomePassApp')
                         return Restangular.all('tags').getList();
                     }
                 }
+            })
+            .state('tagAdmin', {
+                url: '/admin/tag',
+                templateUrl: 'app/admin/blog/tag/tag.html',
+                controller: 'TagAdminCtrl',
+                resolve: {
+                    tags: function (Restangular) {
+                        return Restangular.all('tags').getList();
+                    }
+                }
             });
         });

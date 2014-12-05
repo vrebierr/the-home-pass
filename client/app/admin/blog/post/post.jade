@@ -14,11 +14,25 @@ div(ng-include='"components/navbar/admin.html"')
             label Article
             textarea(ng-model='post.content', required='', ckeditor='ckeOptions')
         .columns.large-4.medium-4.small-12
-            h5 Options
-            
-            label Catégorie
-            input(ng-model='post.category', required='')
-                
-            button.button.tiny.success
-                i.fa.fa-plus
-            button.button.tiny.success.right {{post._id && 'Modifier' || 'Ajouter'}}
+            .row
+                .columns.large-12
+                    h5 Options
+                    
+                    label Catégorie
+                    .row.collapse
+                        .columns.small-10.medium-11
+                            input(ng-model='post.category', selectize='config', required='', options='tags')
+                        .columns.small-2.medium-1
+                            span.button.tiny.success(ng-click='addTag()')
+                                i.fa.fa-plus
+                    
+                    button.button.tiny.success.right {{post._id && 'Modifier' || 'Ajouter'}}
+
+script(type='text/ng-template', id='addTag.html')
+    h2 Ajouter une catégorie
+
+    label Nom
+    input(ng-model='tag.name', type='text', required='')
+        
+    button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
+    button.button.secondary(ng-click='$dismiss()') Annuler
