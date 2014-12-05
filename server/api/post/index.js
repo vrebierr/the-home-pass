@@ -7,6 +7,7 @@ var auth = require('../../auth/auth.service');
 var router = express.Router();
 
 router.get('/tag/:id', controller.findByTag);
+router.get('/slug/:slug', controller.findBySlug);
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);

@@ -1,7 +1,6 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('BlogCtrl', function ($scope, posts, tags) {
+    .controller('BlogCtrl', function ($scope, posts) {
         $scope.posts = posts;
-        $scope.tags = tags;
     });

@@ -10,19 +10,16 @@ angular.module('theHomePassApp')
             resolve: {
                 posts: function (Restangular) {
                     return Restangular.all('posts').getList();
-                },
-                tags: function (Restangular) {
-                    return Restangular.all('tags').getList();
                 }
             }
         })
         .state('post', {
-            url: '/blog/article/:title',
-            templateUrl: 'app/blog/blog.html',
+            url: '/blog/article/:slug',
+            templateUrl: 'app/blog/post/post.html',
             controller: 'PostCtrl',
             resolve: {
                 post: function (Restangular, $stateParams) {
-                    return Restangular.all('posts').one('title', $stateParams.title).get();
+                    return Restangular.all('posts').one('slug', $stateParams.slug).get();
                 }
             }
         })

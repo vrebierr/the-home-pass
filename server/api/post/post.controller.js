@@ -1,6 +1,7 @@
 'use strict';
 
 var _ = require('lodash');
+var slug = require('slug');
 var Post = require('./post.model');
 var mongoose = require('mongoose');
 var Tag = mongoose.model('Tag');
@@ -17,7 +18,16 @@ exports.findByTag = function (req, res) {
             return res.send(200, posts);
         });
     });
-}
+};
+
+exports.findBySlug = function (req, res) {
+    Post.findOne({slug: req.params.slug}, function (err, post) {
+        if (err) {return res.send(500, err);}
+        if (!post) {return res.send(404);}
+
+        return res.send(200, post);
+    });
+};
 
 // Get list of posts
 exports.index = function(req, res) {
@@ -38,10 +48,29 @@ exports.show = function(req, res) {
 
 // Creates a new post in the DB.
 exports.create = function(req, res) {
-  Post.create(req.body, function(err, post) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, post);
-  });
+    if (req.body.tags) {
+        var tmp = req.body.tags.split(',');
+    }
+    else {
+        var tmp = ''
+    }
+
+    Tag.find({_id: {$in: tmp}}, function (err, tags) {
+        if (err) {return res.send(500, err);}
+
+        var post = {
+            title: req.body.title,
+            slug: slug(req.body.title),
+            content: req.body.content,
+            enabled: req.body.enabled,
+            tags: tags,
+        };
+
+        Post.create(post, function(err, post) {
+            if(err) {return res.send(500, err);}
+            return res.json(201, post);
+        });
+    });
 };
 
 // Updates an existing post in the DB.

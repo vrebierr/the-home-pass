@@ -22,7 +22,7 @@ div(ng-include='"components/navbar/admin.html"')
                      
                     label.row.collapse Catégorie
                         .columns.small-10.medium-11
-                            input(ng-model='post.category', selectize='config', required='', options='tags')
+                            input(ng-model='post.tags', selectize='config', required='', options='tags')
                         .columns.small-2.medium-1
                             span.button.tiny.success(ng-click='addTag()')
                                 i.fa.fa-plus
