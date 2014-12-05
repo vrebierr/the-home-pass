@@ -1,1 +1,13 @@
 div(ng-include='"components/navbar/admin.html"')
+
+.row
+    .columns.large-10
+        .page-name
+            h3 {{post._id && 'Modifier' || 'Ajouter'}} un article
+                    
+.row
+    .columns.large-8.medium-8.small-12
+        form(name='form')
+            input(ng-model='post.title', type='text', required='')
+                
+            textarea#content(ng-model='post.content', required='')

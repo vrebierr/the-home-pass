@@ -13,6 +13,18 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarAdminCtrl')
                 a(ui-sref='admin()')
                     i.fa.fa-dashboard
                     |  Dashboard
+            
+            li.has-dropdown(ui-sref-active='active')
+                a(ui-sref='blogAdmin()')
+                    i.fa.fa-newspaper-o
+                    |  Blog
+                ul.dropdown
+                    li(ui-sref-active='active')
+                        a(ui-sref='blogAdmin()') Articles
+                    li(ui-sref-active='active')
+                        a(ui-sref='adAdmin({state: "enabled"})') Catégories
+                    li(ui-sref-active='active')
+                        a(ui-sref='adAdmin({state: "archived"})') Commentaires
                         
             li(ui-sref-active='active')
                 a(ui-sref='userAdmin()')
@@ -22,8 +34,8 @@ nav.top-bar(data-topbar='', role='navigation', ng-controller='NavbarAdminCtrl')
             li.has-dropdown(ui-sref-active='active')
                 a(ui-sref='adAdmin({state: "pending"})')
                     i.fa.fa-map-marker
-                        |  Annonce  
-                        span.label.round {{pending}}
+                    |  Annonces  
+                    span.label.round {{pending}}
                 ul.dropdown
                     li(ui-sref-active='active')
                         a(ui-sref='adAdmin({state: "pending"})') En attente 
