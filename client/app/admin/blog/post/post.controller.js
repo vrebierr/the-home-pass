@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('PostAdminCtrl', function ($scope, post, tags, $modal, localStorageService) {
+    .controller('PostAdminCtrl', function ($scope, post, tags, $modal, localStorageService, Restangular, $state) {
         localStorageService.bind($scope, 'post');
 
         $scope.post = post;
@@ -42,6 +42,27 @@ angular.module('theHomePassApp')
                 option: function (item) {
                     return '<div><strong>' + item.name + '</strong><br><em>' + item.address + '</em></div>';
                 }
+            }
+        };
+
+        $scope.save = function () {
+            if ($scope.post._id) {
+                $scope.post.put().then(function (data) {
+                    $scope.post = data;
+                    toastr.success('Les modifications ont été sauvegardés !');
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
+                });
+            }
+            else {
+                Restangular.all('posts').post($scope.post).then(function (data) {
+                    $scope.post = data;
+                    console.log(data);
+                    toastr.success('L\'article a été crée !');
+                    $state.go('postAdmin', {id: data._id});
+                }).catch(function () {
+                    toastr.error('Une erreure s\'est produite.');
+                });
             }
         };
     });

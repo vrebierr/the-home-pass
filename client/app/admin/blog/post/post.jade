@@ -16,30 +16,31 @@ div(ng-include='"components/navbar/admin.html"')
         .columns.large-4.medium-4.small-12
             .row
                 .columns.large-12
-                    h5 Options
+                    .row
+                        h5 Options
                     
-                    label Catégorie
-                    .row.collapse
+                     
+                    label.row.collapse Catégorie
                         .columns.small-10.medium-11
                             input(ng-model='post.category', selectize='config', required='', options='tags')
                         .columns.small-2.medium-1
                             span.button.tiny.success(ng-click='addTag()')
                                 i.fa.fa-plus
                     
+                    
                     label Public
                     .switch.small
                         input#enabled(type='checkbox', ng-model='post.enabled')
                         label(for='enabled') Public
                     
-                    button.button.tiny.success.right {{post._id && 'Modifier' || 'Ajouter'}}
+                    button.button.tiny.success.right(ng-click='save()') {{post._id && 'Modifier' || 'Ajouter'}}
 
 script(type='text/ng-template', id='addTag.html')
     h2 Ajouter une catégorie
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
 
     label(for='name') Nom
     input#name(ng-model='tag.name', type='text', required='')
-        
-    
-        
+
     button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
     button.button.secondary(ng-click='$dismiss()') Annuler

@@ -14,7 +14,7 @@ angular.module('theHomePassApp')
                 }
             })
             .state('postAdmin', {
-                url: '/admin/post',
+                url: '/admin/post/:id',
                 templateUrl: 'app/admin/blog/post/post.html',
                 controller: 'PostAdminCtrl',
                 resolve: {

@@ -18,31 +18,21 @@ div(ng-include='"components/navbar/admin.html"')
         table.responsive
             thead
                 tr
-                    th Nom
+                    th Titre
                     th.right Actions
                     tbody
-                tr(ng-repeat='category in categories | filter:search')
-                    td {{category.name}}
+                tr(ng-repeat='post in posts | filter:search')
+                    td {{post.title}}
                     td.right
-                        button.button.tiny.fa.fa-pencil(ng-click='update(category)')
-                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(category)')
-                                        
-                                        
-script(type='text/ng-template', id='modal.html')
-    h2 {{category._id && 'Modifier' || 'Ajouter'}} une catégorie
-    a.close-reveal-modal(ng-click='$dismiss()') &#215;
-    form(name='form', novalidate='')
-        label Nom
-        input(type='text', ng-model='category.name', required='')
-            
-        button.button.right(ng-click='$close()') {{ category._id && 'Modifier' || 'Ajouter'}}
-        button.button.secondary(ng-click='$dismiss()') Annuler
+                        button.button.tiny.fa.fa-pencil(ui-sref='postAdmin({id: post._id})')
+                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(post)')
+
         
 script(type='text/ng-template', id='confirm.html')
     h2 Confirmation
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     p Êtes vous certain de vouloir supprimer
-    strong  {{category.name}} ?
+        strong  {{post.title}} ?
     button.button.alert.right(ng-click='$close()') Supprimer
     button.button.secondary(ng-click='$dismiss()') Annuler
                                                 
