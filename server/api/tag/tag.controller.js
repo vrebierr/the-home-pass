@@ -3,6 +3,15 @@
 var _ = require('lodash');
 var Tag = require('./tag.model');
 
+exports.findByName = function (req, res) {
+    Tag.findOne({name: req.params.name}, function (err, tag) {
+        if (err) {return res.send(500, err);}
+        if (!tag) {return res.send(404);}
+
+        return res.send(200, tag);
+    });
+};
+
 // Get list of tags
 exports.index = function(req, res) {
   Tag.find(function (err, tags) {

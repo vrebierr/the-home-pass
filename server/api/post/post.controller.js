@@ -2,6 +2,22 @@
 
 var _ = require('lodash');
 var Post = require('./post.model');
+var mongoose = require('mongoose');
+var Tag = mongoose.model('Tag');
+
+exports.findByTag = function (req, res) {
+    Tag.findById(req.params.id, function (err, tag) {
+        if (err) {return res.send(500, err);}
+        if (!tag) {return res.send(404);}
+
+        Post.find({tag: req.params.id}, function (err, posts) {
+            if (err) {return res.send(500, err);}
+            if (!posts) {return res.send(404);}
+
+            return res.send(200, posts);
+        });
+    });
+}
 
 // Get list of posts
 exports.index = function(req, res) {

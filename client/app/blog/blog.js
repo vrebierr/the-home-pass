@@ -32,7 +32,7 @@ angular.module('theHomePassApp')
             controller: 'TagCtrl',
             resolve: {
                 tag: function (Restangular, $stateParams) {
-                    return Restangular.all('tags').one('name', $stateParams.tag).get();
+                    return Restangular.all('tags').one('name', $stateParams.name).get();
                 },
                 posts: function (Restangular, tag) {
                     return Restangular.all('posts').one('tag', tag._id).getList();
