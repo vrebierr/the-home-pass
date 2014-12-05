@@ -26,13 +26,20 @@ div(ng-include='"components/navbar/admin.html"')
                             span.button.tiny.success(ng-click='addTag()')
                                 i.fa.fa-plus
                     
+                    label Public
+                    .switch.small
+                        input#enabled(type='checkbox', ng-model='post.enabled')
+                        label(for='enabled') Public
+                    
                     button.button.tiny.success.right {{post._id && 'Modifier' || 'Ajouter'}}
 
 script(type='text/ng-template', id='addTag.html')
     h2 Ajouter une catégorie
 
-    label Nom
-    input(ng-model='tag.name', type='text', required='')
+    label(for='name') Nom
+    input#name(ng-model='tag.name', type='text', required='')
+        
+    
         
     button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
     button.button.secondary(ng-click='$dismiss()') Annuler

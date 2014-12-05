@@ -32,9 +32,8 @@ script(type='text/ng-template', id='modal.html')
     h2 {{tag._id && 'Modifier' || 'Ajouter'}} une catégorie
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     form(name='form', novalidate='')
-        h2 {{tag._id && 'Modifer' || 'Ajouter'}} une Catégorie
         label Nom
-        input(type='text', ng-model='category.name', required='')
+        input(type='text', ng-model='tag.name', required='')
             
         button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
@@ -43,7 +42,7 @@ script(type='text/ng-template', id='confirm.html')
     h2 Confirmation
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     p Êtes vous certain de vouloir supprimer
-    strong  {{tag.name}} ?
+        strong  {{tag.name}} ?
     button.button.alert.right(ng-click='$close()') Supprimer
     button.button.secondary(ng-click='$dismiss()') Annuler
     

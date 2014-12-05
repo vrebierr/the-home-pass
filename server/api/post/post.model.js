@@ -9,6 +9,8 @@ var PostSchema = new Schema({
     createdAt: {type: Date, default: new Date()},
     active: {type: Boolean, default: false},
     tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
+    state: {type: String, default: 'draft'},
+    enabled: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Post', PostSchema);

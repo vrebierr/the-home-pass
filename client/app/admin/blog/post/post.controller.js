@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('PostAdminCtrl', function ($scope, post, tags, $modal) {
+    .controller('PostAdminCtrl', function ($scope, post, tags, $modal, localStorageService) {
+        localStorageService.bind($scope, 'post');
+
         $scope.post = post;
         $scope.tags = tags;
 

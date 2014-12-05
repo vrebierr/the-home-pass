@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('TagCtrl', function ($scope, tags) {
+    .controller('TagAdminCtrl', function ($scope, tags, $modal, Restangular) {
         $scope.tags = tags;
         $scope.tag = {};
 
@@ -49,7 +49,7 @@ angular.module('theHomePassApp')
                 scope: $scope
             }).result.then(function () {
                 tag.remove().then(function () {
-                    $scope.tags = _.without($scope.tags, category);
+                    $scope.tags = _.without($scope.tags, tag);
                     toastr.error('Catégorie supprimée !');
                 }).catch(function () {
                     toastr.error('Une erreure s\'est produite.');
