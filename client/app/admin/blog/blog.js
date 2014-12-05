@@ -23,6 +23,9 @@ angular.module('theHomePassApp')
                             return Restangular.one('posts', $stateParams.id).get();
                         }
                         return {};
+                    },
+                    tags: function (Restangular) {
+                        return Restangular.all('tags').getList();
                     }
                 }
             });

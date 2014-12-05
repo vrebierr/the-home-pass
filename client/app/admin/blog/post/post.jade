@@ -19,4 +19,6 @@ div(ng-include='"components/navbar/admin.html"')
             label Catégorie
             input(ng-model='post.category', required='')
                 
+            button.button.tiny.success
+                i.fa.fa-plus
             button.button.tiny.success.right {{post._id && 'Modifier' || 'Ajouter'}}
