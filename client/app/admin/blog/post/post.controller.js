@@ -7,4 +7,12 @@ angular.module('theHomePassApp')
         $scope.ckeOptions = {
             language: 'fr'
         };
+
+
+
+        $scope.addTag = function () {
+            
+        };
+
+        $scope.tags = tags;
     });
