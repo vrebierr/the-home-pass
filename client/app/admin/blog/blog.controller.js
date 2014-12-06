@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('BlogAdminCtrl', function ($scope, posts, $modal) {
+    .controller('BlogAdminCtrl', function ($scope, posts, $modal, Restangular) {
         $scope.posts = posts;
 
         $scope.confirm = function (post) {
@@ -10,7 +10,7 @@ angular.module('theHomePassApp')
                 templateUrl: 'confirm.html',
                 scope: $scope
             }).result.then(function () {
-                $scope.post.remove().then(function () {
+                Restangular.one('posts', $scope.post._id).remove().then(function () {
                     $scope.posts = _.without($scope.posts, post);
                     toastr.error('Article supprimé !');
                 }).catch(function () {

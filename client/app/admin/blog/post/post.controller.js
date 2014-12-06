@@ -16,7 +16,7 @@ angular.module('theHomePassApp')
                 templateUrl: 'addTag.html',
                 scope: $scope
             }).result.then(function () {
-                if (!_.contains(tags, {name: name})) {
+                if (!_.find($scope.tags, {name: name})) {
                     tags.post($scope.tag).then(function (res) {
                         $scope.tags.push(res);
                         toastr.success('Catégorie crée !');
@@ -39,7 +39,7 @@ angular.module('theHomePassApp')
             create: false,
             render: {
                 option: function (item) {
-                    return '<div><strong>' + item.name + '</strong><br><em>' + item.address + '</em></div>';
+                    return '<div><strong>' + item.name + '</strong></div>';
                 }
             }
         };
