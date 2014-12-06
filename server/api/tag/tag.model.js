@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
 
 var TagSchema = new Schema({
     name: {type: String, unique: true, default: ''},
+    slug: {type: String, unique: true, default: ''},
 });
 
 module.exports = mongoose.model('Tag', TagSchema);

@@ -11,7 +11,7 @@ exports.findByTag = function (req, res) {
         if (err) {return res.send(500, err);}
         if (!tag) {return res.send(404);}
 
-        Post.find({tag: req.params.id}, function (err, posts) {
+        Post.find({tags: req.params.id, state: 'published'}, function (err, posts) {
             if (err) {return res.send(500, err);}
             if (!posts) {return res.send(404);}
 
@@ -51,6 +51,7 @@ exports.show = function (req, res) {
     Post.findById(req.params.id, function (err, post) {
         if (err) {return res.send(500, err);}
         if (!post) {return res.send(404);}
+        console.log(post)
 
         return res.json(200, post);
     });
@@ -62,46 +63,88 @@ exports.create = function(req, res) {
         return res.send(500, 'Bad title');
     }
 
-    if (req.body.tags) {
-        var tmp = req.body.tags.split(',');
+    if (_.isArray(req.body.tags)) {
 
-        Tag.find({_id: {$in: tmp}}, function (err, tags) {
+        Tag.find({_id: {$in: req.body.tags}}, function (err, tags) {
             if (err) {return res.send(500, err);}
 
-            var tag = tags;
+            var post = {
+                title: req.body.title,
+                slug: slug(req.body.title),
+                content: req.body.content,
+                enabled: req.body.enabled,
+                tags: tags,
+                state: req.body.state
+            };
+
+            Post.create(post, function(err, post) {
+                if(err) {return res.send(500, err);}
+                return res.json(201, post);
+            });
         });
     }
     else {
-        var tag = null;
-    }
-    console.log(tag)
-    var post = {
-        title: req.body.title,
-        slug: slug(req.body.title),
-        content: req.body.content,
-        enabled: req.body.enabled,
-        tags: tag,
-        state: req.body.state
-    };
+        var post = {
+            title: req.body.title,
+            slug: slug(req.body.title),
+            content: req.body.content,
+            state: req.body.state,
+            tags: null
+        };
 
-    Post.create(post, function(err, post) {
-        if(err) {return res.send(500, err);}
-        return res.json(201, post);
-    });
+        Post.create(post, function(err, post) {
+            if(err) {return res.send(500, err);}
+            return res.json(201, post);
+        });
+    }
 };
 
 // Updates an existing post in the DB.
 exports.update = function(req, res) {
-  if(req.body._id) { delete req.body._id; }
-  Post.findById(req.params.id, function (err, post) {
-    if (err) { return handleError(res, err); }
-    if(!post) { return res.send(404); }
-    var updated = _.merge(post, req.body);
-    updated.save(function (err) {
-      if (err) { return handleError(res, err); }
-      return res.json(200, post);
+    if(req.body._id) { delete req.body._id; }
+    if (!_.isString(req.body.title)) {
+        return res.send(500, 'Bad title');
+    }
+
+    Post.findById(req.params.id, function (err, post) {
+        if (err) {return res.send(500, err)}
+        if(!post) {return res.send(404);}
+
+        if (_.isArray(req.body.tags)) {
+            Tag.find({_id: {$in: req.body.tags}}, function (err, tags) {
+                if (err) {return res.send(500, err);}
+
+                var tmp = {
+                    title: req.body.title,
+                    slug: slug(req.body.title),
+                    content: req.body.content,
+                    state: req.body.state,
+                    tags: tags
+                };
+
+                var updated = _.merge(post, tmp);
+                updated.save(function (err, data) {
+                    if (err) {return res.send(500, err);}
+                    return res.json(200, data);
+                });
+            });
+        }
+        else {
+            var tmp = {
+                title: req.body.title,
+                slug: slug(req.body.title),
+                content: req.body.content,
+                state: req.body.state,
+                tags: null
+            };
+
+            var updated = _.merge(post, tmp);
+            updated.save(function (err, data) {
+                if (err) {return res.send(500, err);}
+                return res.json(200, data);
+            });
+        }
     });
-  });
 };
 
 // Deletes a post from the DB.

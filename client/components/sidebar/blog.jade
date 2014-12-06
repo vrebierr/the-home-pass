@@ -3,4 +3,4 @@ div(ng-controller='SidebarCtrl')
 
     ul
         li(ng-repeat='tag in tags', ui-sref-active='active')
-            a(ui-sref='tag({name: tag.name})') {{tag.name}}
+            a(ui-sref='tag({name: tag.slug})') {{tag.name}}

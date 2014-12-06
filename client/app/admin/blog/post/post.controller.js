@@ -2,7 +2,6 @@
 
 angular.module('theHomePassApp')
     .controller('PostAdminCtrl', function ($scope, post, tags, $modal, localStorageService, Restangular, $state) {
-        localStorageService.bind($scope, 'post');
         $scope.post = post;
         $scope.tags = tags;
 
@@ -45,6 +44,10 @@ angular.module('theHomePassApp')
         };
 
         $scope.save = function () {
+            if (_.isString($scope.post.tags)) {
+                $scope.post.tags = $scope.post.tags.split(',');
+            }
+
             if ($scope.post._id) {
                 $scope.post.put().then(function (data) {
                     $scope.post = data;

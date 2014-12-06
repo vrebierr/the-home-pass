@@ -2,9 +2,10 @@
 
 var _ = require('lodash');
 var Tag = require('./tag.model');
+var slug = require('slug');
 
 exports.findByName = function (req, res) {
-    Tag.findOne({name: req.params.name}, function (err, tag) {
+    Tag.findOne({slug: req.params.name}, function (err, tag) {
         if (err) {return res.send(500, err);}
         if (!tag) {return res.send(404);}
 
@@ -31,10 +32,19 @@ exports.show = function(req, res) {
 
 // Creates a new tag in the DB.
 exports.create = function(req, res) {
-  Tag.create(req.body, function(err, tag) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, tag);
-  });
+    if (!_.isString(req.body.name)) {
+        return res.send(500, 'Bad name.');
+    }
+
+    var tag = {
+        name: req.body.name,
+        slug: slug(req.body.name)
+    };
+
+    Tag.create(tag, function(err, tag) {
+        if (err) {return res.send(500, err);}
+        return res.json(201, tag);
+    });
 };
 
 // Updates an existing tag in the DB.
