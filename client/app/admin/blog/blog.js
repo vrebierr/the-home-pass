@@ -29,6 +29,16 @@ angular.module('theHomePassApp')
                     }
                 }
             })
+            .state('postPreview', {
+                url: '/admin/post/preview/:id',
+                templateUrl: 'app/blog/post/post.html',
+                controller: 'PostCtrl',
+                resolve: {
+                    post: function (Restangular, $stateParams) {
+                        return Restangular.one('posts', $stateParams.id).get();
+                    }
+                }
+            })
             .state('tagAdmin', {
                 url: '/admin/tag',
                 templateUrl: 'app/admin/blog/tag/tag.html',

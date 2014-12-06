@@ -26,6 +26,7 @@ div(ng-include='"components/navbar/admin.html"')
                     td {{post.title}}
                     td {{post.state | translate}}
                     td.right
+                        button.button.tiny.secondary.fa.fa-search(ui-sref='postPreview({id: post._id})')
                         button.button.tiny.fa.fa-pencil(ui-sref='postAdmin({id: post._id})')
                         button.button.tiny.alert.fa.fa-trash(ng-click='confirm(post)')
 

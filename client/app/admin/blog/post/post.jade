@@ -26,8 +26,7 @@ div(ng-include='"components/navbar/admin.html"')
                         .columns.small-2.medium-1
                             span.button.tiny.success(ng-click='addTag()')
                                 i.fa.fa-plus
-                    
-                    
+
                     label État
                     select(ng-model='post.state', ng-options='state._id as state.name for state in [{_id: "draft", name: "Brouillon"}, {_id: "pending", name: "En attente"}, {_id: "published", name: "Publié"}]', required='')
                     
