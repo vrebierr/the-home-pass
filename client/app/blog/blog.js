@@ -20,6 +20,9 @@ angular.module('theHomePassApp')
             resolve: {
                 post: function (Restangular, $stateParams) {
                     return Restangular.all('posts').one('slug', $stateParams.slug).get();
+                },
+                comments: function (Restangular, post) {
+                    return Restangular.all('comments').one('post', post._id).getList();
                 }
             }
         })

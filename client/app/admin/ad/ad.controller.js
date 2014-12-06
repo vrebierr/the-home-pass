@@ -26,7 +26,7 @@ angular.module('theHomePassApp')
                 ads.post($scope.ads).then(function (res) {
                     $scope.ads.push(res);
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });;
             });
         };
@@ -51,10 +51,10 @@ angular.module('theHomePassApp')
                     if ($stateParams.state != data.status) {
                         $scope.ads = _.without($scope.ads, data);
                     }
-                    
+
                     toastr.success('Annonce modifiée !');
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });;
             });
         };
@@ -69,7 +69,7 @@ angular.module('theHomePassApp')
                     $scope.ads = _.without($scope.ads, ad);
                     toastr.success('Annonce supprimée !');
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });;
             });
         };

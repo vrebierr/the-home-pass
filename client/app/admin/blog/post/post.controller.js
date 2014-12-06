@@ -21,7 +21,7 @@ angular.module('theHomePassApp')
                         toastr.success('Catégorie crée !');
                         $scope.tag = {};
                     }).catch(function () {
-                        toastr.error('Une erreure s\'est produite.');
+                        toastr.error('Une erreur s\'est produite.');
                     });;
                 }
                 else {
@@ -53,7 +53,7 @@ angular.module('theHomePassApp')
                     $scope.post = data;
                     toastr.success('Les modifications ont été sauvegardés !');
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });
             }
             else {
@@ -63,7 +63,7 @@ angular.module('theHomePassApp')
                     toastr.success('L\'article a été crée !');
                     $state.go('postAdmin', {id: data._id});
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });
             }
         };

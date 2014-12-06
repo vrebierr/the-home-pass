@@ -11,4 +11,11 @@ div(ng-include='"components/navbar/navbar.html"')
                         
         .row(ng-repeat='comment in comments')
             p {{comment.content}}
-            
+        
+        .row
+            form(name='form', novalidate='')
+                label(ng-class='{true: "error"}[form.$submitted && form.content.$invalid]') Message
+                    textarea(ng-model='comment.content', required='', name='content')
+                small.error(ng-show='form.$submitted && form.content.$invalid') Veuillez saisir un message. 
+                
+                button.button.tiny.black(ng-click='send(form)') Envoyer

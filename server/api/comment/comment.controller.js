@@ -1,7 +1,9 @@
 'use strict';
 
 var _ = require('lodash');
-var Comment = require('./comment.model');
+var mongoose = require('mongoose');
+var Comment = mongoose.model('Comment');
+var Post = mongoose.model('Post');
 
 // Get list of comments
 exports.index = function(req, res) {
@@ -34,7 +36,8 @@ exports.create = function(req, res) {
             content: req.body.content,
             author: req.user._id,
             post: post
-        }
+        };
+
         Comment.create(req.body, function(err, comment) {
             if(err) { return handleError(res, err); }
             return res.json(201, comment);

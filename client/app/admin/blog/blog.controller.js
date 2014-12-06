@@ -14,7 +14,7 @@ angular.module('theHomePassApp')
                     $scope.posts = _.without($scope.posts, post);
                     toastr.error('Article supprimé !');
                 }).catch(function () {
-                    toastr.error('Une erreure s\'est produite.');
+                    toastr.error('Une erreur s\'est produite.');
                 });
             });
         };

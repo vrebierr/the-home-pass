@@ -165,6 +165,8 @@ angular.module('theHomePassApp')
                         };
                         $scope.submitted = false;
                         toastr.success('Votre annonce a été crée ! Elle est maintenant en attente de validation.');
+                    }).catch(function (err) {
+                        toastr.error('Une erreur est survenue.');
                     });
                 }
             };
