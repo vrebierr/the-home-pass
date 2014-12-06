@@ -7,13 +7,12 @@ angular.module('theHomePassApp')
     $scope.comments = comments;
 
     $scope.$watchCollection('comments', function () {
-        $scope.ads = _.map($scope.ads, function (item) {
-            item.author = _.findWhere(users, {_id: item.author});
-            item.post = _.findWhere(posts, {_id: item.post});
+        $scope.comments = _.map($scope.comments, function (item) {
+            item.author = _.findWhere($scope.users, {_id: item.author});
+            item.target = _.findWhere($scope.posts, {_id: item.target});
             return item;
         });
     });
-    console.log($scope.comments)
 
     $scope.update = function (comment) {
         $scope.comment = Restangular.copy(comment);

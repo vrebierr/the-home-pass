@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 
 var CommentSchema = new Schema({
     content: {type: String, default: ''},
-    post: {type: Schema.Types.ObjectId, ref: 'Post'},
+    target: {type: Schema.Types.ObjectId, ref: 'Post'},
     author: {type: Schema.Types.ObjectId, ref: 'User'},
     createdAt: {type: Date, default: new Date()},
     updatedAt: {type: Date, default: new Date()}

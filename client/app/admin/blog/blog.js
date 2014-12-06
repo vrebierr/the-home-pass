@@ -36,6 +36,9 @@ angular.module('theHomePassApp')
                 resolve: {
                     post: function (Restangular, $stateParams) {
                         return Restangular.one('posts', $stateParams.id).get();
+                    },
+                    comments: function (Restangular, $stateParams) {
+                        return Restangular.all('comments').one('post', $stateParams.id).getList();
                     }
                 }
             })
@@ -58,7 +61,7 @@ angular.module('theHomePassApp')
                         return Restangular.all('comments').getList();
                     },
                     posts: function (Restangular) {
-                        return Restangular.all('posts').getList();
+                        return Restangular.all('posts').all('admin').getList();
                     },
                     users: function (Restangular) {
                         return Restangular.all('users').getList();

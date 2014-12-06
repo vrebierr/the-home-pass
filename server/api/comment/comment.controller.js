@@ -15,7 +15,7 @@ exports.index = function(req, res) {
 };
 
 exports.findByPost = function (req, res) {
-    Comment.find({post: req.params.id}, function (err, comments) {
+    Comment.find({target: req.params.id}, function (err, comments) {
         if (err) {return res.send(500, err);}
 
         return res.json(200, comments);
@@ -33,15 +33,15 @@ exports.show = function(req, res) {
 };
 
 exports.create = function(req, res) {
-    Post.findById(req.params.id, function (err, post) {
+    Post.findById(req.body.post, function (err, post) {
         var comment = {
             content: req.body.content,
             author: req.user._id,
-            post: post
+            target: post
         };
 
-        Comment.create(req.body, function(err, comment) {
-            if(err) { return handleError(res, err); }
+        Comment.create(comment, function(err, comment) {
+            if(err) {return res.send(500, err);}
             return res.json(201, comment);
         });
     });

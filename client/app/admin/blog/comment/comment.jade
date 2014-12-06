@@ -21,10 +21,11 @@ div(ng-include='"components/navbar/admin.html"')
                     th.right Actions
             tbody
                 tr(ng-repeat='comment in comments | filter:search')
-                    td {{comment.post}}
-                    td {{comment.author.username}}
+                    td
+                        a(ui-sref='postPreview({id: comment.target._id})') {{comment.target.title}}
+                    td {{comment.author.name}}
                     td {{comment.content}}
-                    td {{ad.createdAt | date:'dd/MM/yyyy'}}
+                    td {{comment.createdAt | date:'dd/MM/yyyy'}}
                     td.right
                         button.button.tiny.fa.fa-pencil(ng-click='update(comment)')
                         button.button.tiny.alert.fa.fa-trash(ng-click='confirm(comment)')
