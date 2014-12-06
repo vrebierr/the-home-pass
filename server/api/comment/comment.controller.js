@@ -53,7 +53,7 @@ exports.update = function(req, res) {
     Comment.findById(req.params.id, function (err, comment) {
         if (err) {return res.send(500, err);}
         if (!comment) {return res.send(404);}
-        if (comment.author != req.user._id) {return res.send(403);}
+        if (!comment.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
 
         var tmp = {
             content: req.body.content,
@@ -70,16 +70,12 @@ exports.update = function(req, res) {
 
 // Deletes a comment from the DB.
 exports.destroy = function(req, res) {
-  Comment.findById(req.params.id, function (err, comment) {
-    if(err) { return handleError(res, err); }
-    if(!comment) { return res.send(404); }
-    comment.remove(function(err) {
-      if(err) { return handleError(res, err); }
-      return res.send(204);
+    Comment.findById(req.params.id, function (err, comment) {
+        if (err) {return res.send(500, err);}
+        if (!comment) {return res.send(404);}
+        comment.remove(function(err) {
+            if (err) {return res.send(500, err);}
+            return res.send(204);
+        });
     });
-  });
 };
-
-function handleError(res, err) {
-  return res.send(500, err);
-}
