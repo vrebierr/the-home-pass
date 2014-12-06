@@ -74,7 +74,7 @@ exports.create = function(req, res) {
     else {
         var tag = null;
     }
-
+    console.log(tag)
     var post = {
         title: req.body.title,
         slug: slug(req.body.title),
