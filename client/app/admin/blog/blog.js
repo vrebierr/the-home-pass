@@ -48,5 +48,21 @@ angular.module('theHomePassApp')
                         return Restangular.all('tags').getList();
                     }
                 }
+            })
+            .state('commentAdmin', {
+                url: '/admin/comment',
+                templateUrl: 'app/admin/blog/comment/comment.html',
+                controller: 'CommentAdminCtrl',
+                resolve: {
+                    comments: function (Restangular) {
+                        return Restangular.all('comments').getList();
+                    },
+                    posts: function (Restangular) {
+                        return Restangular.all('posts').getList();
+                    },
+                    users: function (Restangular) {
+                        return Restangular.all('users').getList();
+                    }
+                }
             });
         });

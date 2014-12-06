@@ -22,7 +22,7 @@ angular.module('theHomePassApp')
                         $scope.tag = {};
                     }).catch(function () {
                         toastr.error('Une erreur s\'est produite.');
-                    });;
+                    });
                 }
                 else {
                     toastr.error('Cette catégorie éxiste déjà !');

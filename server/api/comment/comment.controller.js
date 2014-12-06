@@ -2,13 +2,14 @@
 
 var _ = require('lodash');
 var mongoose = require('mongoose');
-var Comment = mongoose.model('Comment');
-var Post = mongoose.model('Post');
+var Comment = require('./comment.model');
+var Post = require('../post/post.model');
 
 // Get list of comments
 exports.index = function(req, res) {
     Comment.find(function (err, comments) {
-        if (err) {return res.send(500, err)}
+        if (err) {return res.send(500, err);}
+
         return res.json(200, comments);
     });
 };
@@ -26,6 +27,7 @@ exports.show = function(req, res) {
     Comment.findById(req.params.id, function (err, comment) {
         if (err) {return res.send(500, err);}
         if (!comment) {return res.send(404);}
+
         return res.json(comment);
     });
 };

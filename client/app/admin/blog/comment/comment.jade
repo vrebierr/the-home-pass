@@ -1,0 +1,49 @@
+div(ng-include='"components/navbar/admin.html"')
+
+.row
+    .columns.large-10
+        .page-name
+            h3 Commentaires
+
+.row
+    .columns.large-3
+        input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+
+.row
+    .columns.large-12
+        table.responsive
+            thead
+                tr
+                    th Article
+                    th Auteur
+                    th Message
+                    th Écrit le
+                    th.right Actions
+            tbody
+                tr(ng-repeat='comment in comments | filter:search')
+                    td {{comment.post}}
+                    td {{comment.author.username}}
+                    td {{comment.content}}
+                    td {{ad.createdAt | date:'dd/MM/yyyy'}}
+                    td.right
+                        button.button.tiny.fa.fa-pencil(ng-click='update(comment)')
+                        button.button.tiny.alert.fa.fa-trash(ng-click='confirm(comment)')
+                                            
+script(type='text/ng-template', id='modal.html')
+    h2 Modifier une annonce
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    form(name='form', novalidate='')
+        label(ng-class='{true: "error"}[form.$submitted && form.content.$invalid]') Message
+            textarea(ng-model='comment.content', required='', name='content')
+        small.error(ng-show='form.$submitted && form.content.$invalid') Veuillez saisir un message.
+            
+        button.button.right(ng-click='$close()') {{ ad._id && 'Modifier' || 'Ajouter'}}
+        button.button.secondary(ng-click='$dismiss()') Annuler
+        
+script(type='text/ng-template', id='confirm.html')
+    h2 Confirmation
+    a.close-reveal-modal(ng-click='$dismiss()') &#215;
+    p Êtes vous certain de vouloir supprimer ce commentaire ?
+    button.button.alert.right(ng-click='$close()') Supprimer
+    button.button.secondary(ng-click='$dismiss()') Annuler
+                            

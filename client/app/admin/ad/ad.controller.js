@@ -33,7 +33,6 @@ angular.module('theHomePassApp')
 
         $scope.update = function (ad) {
             $scope.ad = Restangular.copy(ad);
-            console.log($scope.ad);
             $modal.open({
                 templateUrl: 'modal.html',
                 scope: $scope
