@@ -28,10 +28,8 @@ div(ng-include='"components/navbar/admin.html"')
                                 i.fa.fa-plus
                     
                     
-                    label Public
-                    .switch.small
-                        input#enabled(type='checkbox', ng-model='post.enabled')
-                        label(for='enabled') Public
+                    label État
+                    select(ng-model='post.state', ng-options='state._id as state.name for state in [{_id: "draft", name: "Brouillon"}, {_id: "pending", name: "En attente"}, {_id: "published", name: "Publié"}]', required='')
                     
                     button.button.tiny.success.right(ng-click='save()') {{post._id && 'Modifier' || 'Ajouter'}}
 

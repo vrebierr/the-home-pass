@@ -8,6 +8,7 @@ var router = express.Router();
 
 router.get('/tag/:id', controller.findByTag);
 router.get('/slug/:slug', controller.findBySlug);
+router.get('/admin', auth.hasRole('admin'), controller.indexAdmin);
 
 router.get('/', controller.index);
 router.get('/:id', controller.show);

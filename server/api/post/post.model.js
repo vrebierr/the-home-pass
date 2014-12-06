@@ -5,12 +5,12 @@ var mongoose = require('mongoose'),
 
 var PostSchema = new Schema({
     title: {type: String, default: '', unique: true},
+    slug: {type: String, default: '', unique: true},
     content: {type: String, default: ''},
     createdAt: {type: Date, default: new Date()},
-    active: {type: Boolean, default: false},
+    updatedAt: {type: Date, default: new Date()},
     tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
-    state: {type: String, default: 'draft'},
-    enabled: {type: Boolean, default: false}
+    state: {type: String, default: 'draft'}
 });
 
 module.exports = mongoose.model('Post', PostSchema);

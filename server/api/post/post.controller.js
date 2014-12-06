@@ -29,12 +29,21 @@ exports.findBySlug = function (req, res) {
     });
 };
 
+exports.index = function (req, res) {
+    Post.find({state: 'published'}, function (err, posts) {
+        if (err) {return res.send(500, err);}
+
+        return res.send(200, posts);
+    });
+};
+
 // Get list of posts
-exports.index = function(req, res) {
-  Post.find(function (err, posts) {
-    if(err) { return handleError(res, err); }
-    return res.json(200, posts);
-  });
+exports.indexAdmin = function (req, res) {
+    Post.find(function (err, posts) {
+        if (err) {return res.send(500, err);}
+
+        return res.json(200, posts);
+    });
 };
 
 // Get a single post
@@ -59,6 +68,7 @@ exports.create = function(req, res) {
             content: req.body.content,
             enabled: req.body.enabled,
             tags: tags,
+            state: req.body.state
         };
 
         Post.create(post, function(err, post) {
