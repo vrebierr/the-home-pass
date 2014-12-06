@@ -17,9 +17,10 @@ angular.module('theHomePassApp', [
   'LocalStorageModule',
   'highcharts-ng',
   'angularMoment',
-  'ngCkeditor'
+  'ngCkeditor',
+  'pascalprecht.translate'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider, $translateProvider) {
     $urlRouterProvider
       .otherwise('/');
 
@@ -39,6 +40,13 @@ angular.module('theHomePassApp', [
         closeButton: true,
         timeout: 3000
     };
+
+    $translateProvider.translations('fr', {
+        draft: 'Brouillon',
+        pending: 'En attente',
+        published: 'Publié'
+    });
+    $translateProvider.preferredLanguage('fr');
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

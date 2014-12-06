@@ -15,17 +15,17 @@ exports.findByTag = function (req, res) {
             if (err) {return res.send(500, err);}
             if (!posts) {return res.send(404);}
 
-            return res.send(200, posts);
+            return res.json(200, posts);
         });
     });
 };
 
 exports.findBySlug = function (req, res) {
-    Post.findOne({slug: req.params.slug}, function (err, post) {
+    Post.findOne({slug: req.params.slug, state: 'published'}, function (err, post) {
         if (err) {return res.send(500, err);}
         if (!post) {return res.send(404);}
 
-        return res.send(200, post);
+        return res.json(200, post);
     });
 };
 
@@ -33,7 +33,7 @@ exports.index = function (req, res) {
     Post.find({state: 'published'}, function (err, posts) {
         if (err) {return res.send(500, err);}
 
-        return res.send(200, posts);
+        return res.json(200, posts);
     });
 };
 
@@ -47,34 +47,46 @@ exports.indexAdmin = function (req, res) {
 };
 
 // Get a single post
-exports.show = function(req, res) {
-  Post.findById(req.params.id, function (err, post) {
-    if(err) { return handleError(res, err); }
-    if(!post) { return res.send(404); }
-    return res.json(post);
-  });
+exports.show = function (req, res) {
+    Post.findById(req.params.id, function (err, post) {
+        if (err) {return res.send(500, err);}
+        if (!post) {return res.send(404);}
+
+        return res.json(200, post);
+    });
 };
 
 // Creates a new post in the DB.
 exports.create = function(req, res) {
-    var tmp = req.body.tags.split(',');
+    if (!_.isString(req.body.title)) {
+        return res.send(500, 'Bad title');
+    }
 
-    Tag.find({_id: {$in: tmp}}, function (err, tags) {
-        if (err) {return res.send(500, err);}
+    if (req.body.tags) {
+        var tmp = req.body.tags.split(',');
 
-        var post = {
-            title: req.body.title,
-            slug: slug(req.body.title),
-            content: req.body.content,
-            enabled: req.body.enabled,
-            tags: tags,
-            state: req.body.state
-        };
+        Tag.find({_id: {$in: tmp}}, function (err, tags) {
+            if (err) {return res.send(500, err);}
 
-        Post.create(post, function(err, post) {
-            if(err) {return res.send(500, err);}
-            return res.json(201, post);
+            var tag = tags;
         });
+    }
+    else {
+        var tag = null;
+    }
+
+    var post = {
+        title: req.body.title,
+        slug: slug(req.body.title),
+        content: req.body.content,
+        enabled: req.body.enabled,
+        tags: tag,
+        state: req.body.state
+    };
+
+    Post.create(post, function(err, post) {
+        if(err) {return res.send(500, err);}
+        return res.json(201, post);
     });
 };
 

@@ -19,10 +19,12 @@ div(ng-include='"components/navbar/admin.html"')
             thead
                 tr
                     th Titre
+                    th État
                     th.right Actions
                     tbody
                 tr(ng-repeat='post in posts | filter:search')
                     td {{post.title}}
+                    td {{post.state | translate}}
                     td.right
                         button.button.tiny.fa.fa-pencil(ui-sref='postAdmin({id: post._id})')
                         button.button.tiny.alert.fa.fa-trash(ng-click='confirm(post)')
