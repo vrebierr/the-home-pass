@@ -5,7 +5,7 @@ div(ng-include='"components/navbar/navbar.html"')
         div(ng-include='"components/sidebar/blog.html"')
     .columns.small-12.medium-8.large-8
         .row(ng-repeat='post in posts')
-            h4 {{post.title}}
+            h4(ui-sref='post({slug: post.slug})') {{post.title}}
                     
             div(ng-bind-html='post.content')
                         

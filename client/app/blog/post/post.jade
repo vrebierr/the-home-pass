@@ -9,3 +9,6 @@ div(ng-include='"components/navbar/navbar.html"')
             
             div(ng-bind-html='post.content')
                         
+        .row(ng-repeat='comment in comments')
+            p {{comment.content}}
+            
