@@ -48,12 +48,7 @@ exports.show = function(req, res) {
 
 // Creates a new post in the DB.
 exports.create = function(req, res) {
-    if (req.body.tags) {
-        var tmp = req.body.tags.split(',');
-    }
-    else {
-        var tmp = ''
-    }
+    var tmp = req.body.tags.split(',');
 
     Tag.find({_id: {$in: tmp}}, function (err, tags) {
         if (err) {return res.send(500, err);}

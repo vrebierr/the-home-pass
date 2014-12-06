@@ -3,7 +3,6 @@
 angular.module('theHomePassApp')
     .controller('PostAdminCtrl', function ($scope, post, tags, $modal, localStorageService, Restangular, $state) {
         localStorageService.bind($scope, 'post');
-
         $scope.post = post;
         $scope.tags = tags;
 
