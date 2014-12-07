@@ -6,12 +6,10 @@ angular.module('theHomePassApp')
     $scope.users = users;
     $scope.comments = comments;
 
-    $scope.$watchCollection('comments', function () {
-        $scope.comments = _.map($scope.comments, function (item) {
-            item.author = _.findWhere($scope.users, {_id: item.author});
-            item.target = _.findWhere($scope.posts, {_id: item.target});
-            return item;
-        });
+    $scope.comments = _.map($scope.comments, function (item) {
+        item.author = _.findWhere($scope.users, {_id: item.author});
+        item.target = _.findWhere($scope.posts, {_id: item.target});
+        return item;
     });
 
     $scope.update = function (comment) {
@@ -23,6 +21,9 @@ angular.module('theHomePassApp')
             $scope.comment.put().then(function (data) {
                 $scope.comments = _.map($scope.comments, function (item) {
                     if (item._id === data._id) {
+                        item = data;
+                        item.author = _.findWhere($scope.users, {_id: item.author});
+                        item.target = _.findWhere($scope.posts, {_id: item.target});
                         return data;
                     }
                     else {
