@@ -23,7 +23,7 @@ exports.findByPost = function (req, res) {
 };
 
 // Get a single comment
-exports.show = function(req, res) {
+exports.show = function (req, res) {
     Comment.findById(req.params.id, function (err, comment) {
         if (err) {return res.send(500, err);}
         if (!comment) {return res.send(404);}
@@ -32,7 +32,7 @@ exports.show = function(req, res) {
     });
 };
 
-exports.create = function(req, res) {
+exports.create = function (req, res) {
     Post.findById(req.body.post, function (err, post) {
         var comment = {
             content: req.body.content,
@@ -47,7 +47,7 @@ exports.create = function(req, res) {
     });
 };
 
-exports.update = function(req, res) {
+exports.update = function (req, res) {
     if (req.body._id) {delete req.body._id;}
 
     Comment.findById(req.params.id, function (err, comment) {
@@ -68,11 +68,12 @@ exports.update = function(req, res) {
     });
 };
 
-// Deletes a comment from the DB.
-exports.destroy = function(req, res) {
+exports.destroy = function (req, res) {
     Comment.findById(req.params.id, function (err, comment) {
         if (err) {return res.send(500, err);}
         if (!comment) {return res.send(404);}
+        if (!comment.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
+
         comment.remove(function(err) {
             if (err) {return res.send(500, err);}
             return res.send(204);

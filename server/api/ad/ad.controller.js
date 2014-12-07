@@ -73,7 +73,7 @@ exports.create = function(req, res) {
         Pos.find({_id: {$in: tmp}}, function (err, pos) {
             if (err) {return res.send(500, err);}
             if (!pos) {return res.send(404);}
-            // if (pos.author != req.user._id) {return res.send(403);}
+            if (!pos.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
 
             var ad = {
                 pos: pos,
@@ -101,20 +101,18 @@ exports.create = function(req, res) {
 };
 
 // Updates an existing ad in the DB.
-exports.update = function(req, res) {
+exports.update = function (req, res) {
     if (req.body._id) {delete req.body._id;}
 
     if (req.user.role === 'admin') {
-        console.log(req.body)
         Category.findById(req.body.category, function (err, category) {
             if (err) {return res.send(500, err);}
             if (!category) {return res.send(404);}
 
-            console.log(category)
-
             Ad.findById(req.params.id, function (err, ad) {
                 if (err) {return res.send(500, err);}
                 if (!ad) {return res.send(404, 'Not found.');}
+                if (!ad.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
 
                 var updated = {
                     category: category._id,
@@ -131,7 +129,6 @@ exports.update = function(req, res) {
                 };
 
                 ad = _.merge(ad, updated);
-                console.log(ad)
                 ad.save(function (err) {
                     if (err) {return res.send(500, err);}
                     return res.json(200, ad);
@@ -141,18 +138,15 @@ exports.update = function(req, res) {
     }
 };
 
-// Deletes a ad from the DB.
-exports.destroy = function(req, res) {
+exports.destroy = function (req, res) {
     Ad.findById(req.params.id, function (err, ad) {
-        if(err) { return handleError(res, err); }
-        if(!ad) { return res.send(404); }
+        if (err) {return res.send(500, err)}
+        if (!ad) {return res.send(404);}
+        if (!ad.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
+
         ad.remove(function(err) {
-            if(err) { return handleError(res, err); }
+            if(err) {return res.send(500, err);}
             return res.send(204);
         });
     });
 };
-
-function handleError(res, err) {
-    return res.send(500, err);
-}
