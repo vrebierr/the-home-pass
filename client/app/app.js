@@ -18,7 +18,8 @@ angular.module('theHomePassApp', [
   'highcharts-ng',
   'angularMoment',
   'ngCkeditor',
-  'pascalprecht.translate'
+  'pascalprecht.translate',
+  'ngCsvImport'
 ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider, $translateProvider) {
         $urlRouterProvider

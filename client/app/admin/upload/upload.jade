@@ -20,8 +20,9 @@ div(ng-include='"components/navbar/admin.html"')
                     th.right Actions
                     tbody
                         tr(ng-repeat='upload in uploads | filter:search')
-                            td {{upload.name}}
+                            td /uploads/{{upload.path}}
                             td.right
+                                button.button.tiny.secondary.fa.fa-search(href='/uploads/{{upload.path}}')
                                 button.button.tiny.fa.fa-pencil(ng-click='update(upload)')
                                 button.button.tiny.alert.fa.fa-trash(ng-click='confirm(upload)')
 

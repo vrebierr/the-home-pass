@@ -5,6 +5,10 @@ angular.module('theHomePassApp')
 		$scope.pos = pos;
 		$scope.selected = {};
 
+		$scope.import = function () {
+
+		}
+
 		uiGmapGoogleMapApi.then(function (maps) {
 			var geocoder = new maps.Geocoder();
 			$scope.map = {
@@ -80,6 +84,7 @@ angular.module('theHomePassApp')
 		});
 
 		$scope.onFileSelect = function ($files) {
+			console.log($files)
 			$scope.upload = $upload.upload({
 				url: 'api/uploads/',
 				file: $files[0]
