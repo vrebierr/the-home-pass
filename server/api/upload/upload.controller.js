@@ -58,18 +58,18 @@ exports.upload = function (req, res) {
 }
 
 // Get list of uploads
-exports.index = function(req, res) {
+exports.index = function (req, res) {
     Upload.find(function (err, uploads) {
-        if(err) { return handleError(res, err); }
+        if (err) {return res.send(500 ,err);}
         return res.json(200, uploads);
     });
 };
 
 // Get a single upload
-exports.show = function(req, res) {
+exports.show = function (req, res) {
     Upload.findById(req.params.id, function (err, upload) {
-        if(err) { return handleError(res, err); }
-        if(!upload) { return res.send(404); }
+        if (err) {return res.send(500, err);}
+        if (!upload) {return res.send(404);}
         return res.json(upload);
     });
 };

@@ -29,7 +29,6 @@
     "angular-morph": "~0.1.0",
     "angular-foundation": "~0.5.0",
     "ngInfiniteScroll": "~1.1.2",
-    "jquery-csv": "*",
     "angular-local-storage": "~0.1.5",
     "highcharts": "~4.0.4",
     "highcharts-ng": "~0.0.7",

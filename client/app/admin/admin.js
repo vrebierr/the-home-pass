@@ -61,5 +61,16 @@ angular.module('theHomePassApp')
 						return Restangular.all('users').all('admin').getList();
 					},
 				}
+			})
+			.state('uploadAdmin', {
+				url: '/admin/upload',
+				templateUrl: 'app/admin/upload/upload.html',
+				controller: 'UploadAdminCtrl',
+				authenticate: true,
+				resolve: {
+					uploads: function (Restangular) {
+						return Restangular.all('uploads').getList();
+					},
+				}
 			});
 	});

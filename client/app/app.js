@@ -20,34 +20,34 @@ angular.module('theHomePassApp', [
   'ngCkeditor',
   'pascalprecht.translate'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider, $translateProvider) {
-    $urlRouterProvider
-      .otherwise('/');
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider, uiGmapGoogleMapApiProvider, $translateProvider) {
+        $urlRouterProvider
+            .otherwise('/');
 
-    $locationProvider.html5Mode(true).hashPrefix('!');
-    $httpProvider.interceptors.push('authInterceptor');
+        $locationProvider.html5Mode(true).hashPrefix('!');
+        $httpProvider.interceptors.push('authInterceptor');
 
-    // restangular - config
-    RestangularProvider.setBaseUrl('/api');
-    RestangularProvider.setRestangularFields({id: '_id'});
+        // restangular - config
+        RestangularProvider.setBaseUrl('/api');
+        RestangularProvider.setRestangularFields({id: '_id'});
 
-    uiGmapGoogleMapApiProvider.configure({
-        libraries: 'places'
-    });
+        uiGmapGoogleMapApiProvider.configure({
+            libraries: 'places'
+        });
 
-    toastr.options = {
-        progressBar: true,
-        closeButton: true,
-        timeout: 2500
-    };
+        toastr.options = {
+            progressBar: true,
+            closeButton: true,
+            timeout: 2500
+        };
 
-    $translateProvider.translations('fr', {
-        draft: 'Brouillon',
-        pending: 'En attente',
-        published: 'Publié'
-    });
-    $translateProvider.preferredLanguage('fr');
-  })
+        $translateProvider.translations('fr', {
+            draft: 'Brouillon',
+            pending: 'En attente',
+            published: 'Publié'
+        });
+        $translateProvider.preferredLanguage('fr');
+    })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
     return {
