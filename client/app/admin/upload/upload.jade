@@ -31,7 +31,7 @@ script(type='text/ng-template', id='modal.html')
     form(name='form', novalidate='')
         label Nom
         input(type='text', ng-model='tag.name', required='')
-            
+
         button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
         button.button.secondary(ng-click='$dismiss()') Annuler
 

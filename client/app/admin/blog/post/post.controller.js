@@ -30,6 +30,13 @@ angular.module('theHomePassApp')
             });
         };
 
+        $scope.uplaods = function () {
+            $modal.open({
+                templateUrl: 'upload.html',
+                scope: $scope
+            }).result
+        }
+
         $scope.config = {
             plugins: ['remove_button'],
             labelField: 'name',
@@ -59,7 +66,6 @@ angular.module('theHomePassApp')
             else {
                 Restangular.all('posts').post($scope.post).then(function (data) {
                     $scope.post = data;
-                    console.log(data);
                     toastr.success('L\'article a été crée !');
                     $state.go('postAdmin', {id: data._id});
                 }).catch(function () {

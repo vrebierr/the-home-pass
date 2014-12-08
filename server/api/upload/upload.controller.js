@@ -4,7 +4,6 @@ var _ = require('lodash');
 var Upload = require('./upload.model');
 var fs = require('fs');
 var uuid = require('node-uuid');
-var gm = require('gm');
 
 exports.upload = function (req, res) {
     var tmp = req.files.file.path.split('.');
@@ -25,11 +24,7 @@ exports.upload = function (req, res) {
                 fs.mkdir('client/uploads/', '0755', function () {
                     fs.writeFile(path, data, function (err) {
                         if (err) {return res.send(500, err);}
-                        console.log(path);
-                        gm(path).resize(240, 240).write('client/uploads/test.jpg', function (err) {
-                            if (err) {console.log(err)}
-                            console.log('done')
-                        });
+
                         Upload.create({
                             path: name
                         }, function (err, upload) {

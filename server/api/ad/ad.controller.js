@@ -70,10 +70,9 @@ exports.create = function(req, res) {
 
         var tmp = req.body.pos.split(',');
 
-        Pos.find({_id: {$in: tmp}}, function (err, pos) {
+        Pos.find({_id: {$in: tmp}, author: req.user._id}, function (err, pos) {
             if (err) {return res.send(500, err);}
             if (!pos) {return res.send(404);}
-            if (!pos.author.equals(req.user._id) && req.user.role !== 'admin') {return res.send(403);}
 
             var ad = {
                 pos: pos,
@@ -90,14 +89,13 @@ exports.create = function(req, res) {
                 exclu: req.body.exclu || false
             };
 
-            Ad.create(ad, function(err, ad) {
-                if(err) { return handleError(res, err); }
-                    console.log(ad);
+            Ad.create(ad, function (err, ad) {
+                if (err) {return res.send(500, err);}
+
                 return res.json(201, ad);
             });
         });
     });
-
 };
 
 // Updates an existing ad in the DB.
