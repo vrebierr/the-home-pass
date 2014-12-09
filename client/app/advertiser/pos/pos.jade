@@ -12,6 +12,10 @@ div(ng-include='"components/navbar/navbar.html"')
 
 		.columns.small-12.medium-12.large-7
 			h3 Ajouter un point de vente
+			input(type='file', on-read-file='importCsv($fileContent, delimiter)', accept='text/csv')
+			select(ng-model='delimiter', ng-options='delimiter for delimiter in [",", ";"]')
+			p Adresse: {{csv.result[0]}}
+			p {{csv}}
 			form(enctype='multipart/form-data', name='form')
 				label Nom
 				input(type='text', ng-model='selected.name', required='')

@@ -5,9 +5,29 @@ angular.module('theHomePassApp')
 		$scope.pos = pos;
 		$scope.selected = {};
 
+		$scope.importCsv = function ($fileContent, delimiter) {
+			var tab = $fileContent.split(delimiter);
+			var imports = [];
+			for (var i = 0; i < tab.length / 8; i++) {
+				var tmp = {
+					name: tab[i],
+					address: tab[i + 1],
+					email: tab[i + 2],
+					phone: tab[i + 3],
+					fax: tab[i + 4],
+					opening: tab[i + 5],
+					website: tab[i + 6],
+					info: tab[i + 7],
+					tos: tab[i + 8]
+				}
+				imports.push(tmp);
+			}
+			console.log(imports);
+		};
+
 		$scope.import = function () {
 
-		}
+		};
 
 		uiGmapGoogleMapApi.then(function (maps) {
 			var geocoder = new maps.Geocoder();
@@ -84,7 +104,6 @@ angular.module('theHomePassApp')
 		});
 
 		$scope.onFileSelect = function ($files) {
-			console.log($files)
 			$scope.upload = $upload.upload({
 				url: 'api/uploads/',
 				file: $files[0]
@@ -120,4 +139,26 @@ angular.module('theHomePassApp')
                 }
             }
         };
+	});
+
+	angular.module('theHomePassApp').directive('onReadFile', function ($parse) {
+		return {
+			restrict: 'A',
+			scope: false,
+			link: function(scope, element, attrs) {
+				var fn = $parse(attrs.onReadFile);
+
+				element.on('change', function(onChangeEvent) {
+					var reader = new FileReader();
+
+					reader.onload = function(onLoadEvent) {
+						scope.$apply(function() {
+							fn(scope, {$fileContent:onLoadEvent.target.result});
+						});
+					};
+
+					reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+				});
+			}
+		};
 	});
