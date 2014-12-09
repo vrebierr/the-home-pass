@@ -38,7 +38,7 @@ angular.module('theHomePassApp', [
         toastr.options = {
             progressBar: true,
             closeButton: true,
-            timeout: 2500
+            timeout: 2000
         };
 
         $translateProvider.translations('fr', {

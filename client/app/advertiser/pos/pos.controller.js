@@ -23,11 +23,10 @@ angular.module('theHomePassApp')
 				imports.push(tmp);
 			}
 			console.log(imports);
+			$scope.import(imports)
 		};
 
-		$scope.import = function () {
 
-		};
 
 		uiGmapGoogleMapApi.then(function (maps) {
 			var geocoder = new maps.Geocoder();
@@ -37,6 +36,12 @@ angular.module('theHomePassApp')
 					longitude: 2.3183781999999997
 				},
 				zoom: 8,
+			};
+
+			$scope.import = function (imports) {
+				_.forEach(imports, function (item) {
+					geocod.geocode()
+				});
 			};
 
 			$scope.$watch('selected.address', function () {

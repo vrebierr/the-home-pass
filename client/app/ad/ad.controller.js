@@ -6,7 +6,6 @@ angular.module('theHomePassApp')
         $scope.pos = pos;
         $scope.pos.icon = '/assets/images/marker.png';
         $scope.ads = ads;
-        console.log(pos)
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
