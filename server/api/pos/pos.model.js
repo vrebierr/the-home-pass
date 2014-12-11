@@ -5,7 +5,12 @@ var mongoose = require('mongoose'),
 
 var PosSchema = new Schema({
 	name: {type: String, default: ''},
-	address: {type: String, default: ''},
+	street_address: {type: String, default: ''},
+	street_number: {type: String, default: ''},
+	city: {type: String, default: ''},
+	country: {type: String, default: ''},
+	postal_code: {type: String, default: ''},
+	formatted_address: {type: String, default: ''},
 	info: {type: String, default: ''},
 	active: { type: Boolean, default: false },
 	latitude: { type: Number, default: 0 },

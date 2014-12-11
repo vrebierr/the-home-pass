@@ -29,7 +29,7 @@ exports.create = function (req, res) {
 };
 
 exports.update = function (req, res) {
-    if(req.body._id) { delete req.body._id; }
+    if (req.body._id) { delete req.body._id; }
     Slide.findById(req.params.id, function (err, slide) {
         if (err) {return res.send(500, err);}
         if (!slide) {return res.send(404);}
@@ -42,7 +42,6 @@ exports.update = function (req, res) {
     });
 };
 
-// Deletes a slide from the DB.
 exports.destroy = function(req, res) {
     Slide.findById(req.params.id, function (err, slide) {
         if (err) {return res.send(500, err);}

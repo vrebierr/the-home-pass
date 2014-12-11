@@ -25,7 +25,9 @@ div(ng-include='"components/navbar/navbar.html"')
             .columns.large-12
                 h5 Actuellement
                     strong {{items.length}}
-                    |  offres exclusives à proximité de ma ville
+                    |  offres exclusives à proximité de  
+                    span(ng-if='currentUser.city') {{currentUser.city}}
+                    span(ng-if='!currentUser.city') ma position
             
         .row.collapse
             .columns.large-3.medium-6

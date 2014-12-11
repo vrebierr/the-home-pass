@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/admin.html"')
 
 .row
     .columns.large-12
-        h3 Uploads
+        h3 Slides
 .row
     .columns.large-2.medium-6.small-12
         button.button.tiny.radius.success(ng-click='create()')
@@ -10,7 +10,7 @@ div(ng-include='"components/navbar/admin.html"')
                 |  Ajouter
     .columns.large-3
         input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
-
+                        
 .row
     .columns.large-12
         table.responsive
@@ -27,10 +27,10 @@ div(ng-include='"components/navbar/admin.html"')
                                 button.button.tiny.alert.fa.fa-trash(ng-click='confirm(upload)')
 
 script(type='text/ng-template', id='modal.html')
-    h2 Upload une image
+    h2 {{tag._id && 'Modifier' || 'Ajouter'}} une catégorie
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
     form(name='form', novalidate='')
-        label Fichier
+        label Nom
         input(type='text', ng-model='tag.name', required='')
 
         button.button.right(ng-click='$close()') {{ tag._id && 'Modifier' || 'Ajouter'}}
@@ -39,7 +39,6 @@ script(type='text/ng-template', id='modal.html')
 script(type='text/ng-template', id='confirm.html')
     h2 Confirmation
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
-    p Êtes vous certain de vouloir supprimer
-        strong  {{tag.name}} ?
+    p Êtes vous certain de vouloir supprimer ce slide ?
     button.button.alert.right(ng-click='$close()') Supprimer
     button.button.secondary(ng-click='$dismiss()') Annuler

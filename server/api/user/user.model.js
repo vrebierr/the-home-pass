@@ -17,12 +17,22 @@ var UserSchema = new Schema({
     phone: Number,
     pass: { type: String, default: '' },
     from: {
-        address: String,
+        street_address: {type: String, default: ''},
+        street_number: {type: String, default: ''},
+        city: {type: String, default: ''},
+        country: {type: String, default: ''},
+        postal_code: {type: String, default: ''},
+        formatted_address: {type: String, default: ''},
         latitude: { type: Number, default: 0 },
         longitude: { type: Number, default: 0 }
     },
     to: {
-        address: String,
+        street_address: {type: String, default: ''},
+        street_number: {type: String, default: ''},
+        city: {type: String, default: ''},
+        country: {type: String, default: ''},
+        postal_code: {type: String, default: ''},
+        formatted_address: {type: String, default: ''},
         latitude: { type: Number, default: 0 },
         longitude: { type: Number, default: 0 }
     },

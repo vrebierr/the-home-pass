@@ -72,5 +72,16 @@ angular.module('theHomePassApp')
 						return Restangular.all('uploads').getList();
 					},
 				}
+			})
+			.state('slideAdmin', {
+				url: '/admin/slide',
+				templateUrl: 'app/admin/slide/slide.html',
+				controller: 'SlideAdminCtrl',
+				authenticate: true,
+				resolve: {
+					slides: function (Restangular) {
+						return Restangular.all('slides').getList();
+					},
+				}
 			});
 	});
