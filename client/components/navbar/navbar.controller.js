@@ -107,6 +107,9 @@ angular.module('theHomePassApp')
                 })
                 .then(function() {
                     $modalInstance.close(form);
+                })
+                .catch(function (err) {
+                    $scope.err = err;
                 });
             }
         };

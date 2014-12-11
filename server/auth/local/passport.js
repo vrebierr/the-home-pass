@@ -12,10 +12,10 @@ exports.setup = function (User, config) {
             if (err) return done(err);
 
             if (!user) {
-                return done(null, false, { message: 'This email is not registered.' });
+                return done(null, false, {message: 'Cette adresse mail n\'est pas inscrite.', type: 'email'});
             }
             if (!user.authenticate(password)) {
-                return done(null, false, { message: 'This password is not correct.' });
+                return done(null, false, {message: 'Ce mot de passe n\'est pas correct', type: 'password'});
             }
             return done(null, user);
         });

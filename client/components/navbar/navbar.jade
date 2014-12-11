@@ -35,10 +35,14 @@ nav.row(ng-controller='NavbarCtrl')
 script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
     form(name='form', novalidate='')
-        label Adresse Email
-        input(type='email', ng-model='user.email', required='')
-        label Mot de passe
-        input(type='password', ng-model='user.password', required='')
+        label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]')  Adresse Email
+            input(type='email', ng-model='user.email', required='')
+        small.error(ng-show='form.$submitted && err.type === "email"') {{err.message}}
+            
+        label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]') Mot de passe
+            input(type='password', ng-model='user.password', required='')
+        small.error(ng-show='form.$submitted && err.type === "password"') {{err.message}}
+
         button.black.expand(href='' ng-click='login(form)') Se connecter
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
 

@@ -51,8 +51,8 @@ exports.index = function(req, res) {
 // Get a single ad
 exports.show = function(req, res) {
     Ad.findById(req.params.id, function (err, ad) {
-        if(err) { return handleError(res, err); }
-        if(!ad) { return res.send(404); }
+        if (err) {return res.send(500, err);}
+        if (!ad) {return res.send(404);}
         return res.json(ad);
     });
 };

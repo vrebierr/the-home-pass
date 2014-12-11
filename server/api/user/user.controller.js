@@ -68,8 +68,6 @@ exports.create = function (req, res, next) {
             }
         }));
 
-        console.log(transporter)
-
         transporter.sendMail({
             from: 'noreply@thehomepass.com',
             to: 'valentin.rebierre@gmail.com',

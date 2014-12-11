@@ -6,9 +6,8 @@ angular.module('theHomePassApp')
         $scope.user = {};
 
         $scope.$watch('user.from', function () {
-            if ($scope.user.from !== undefined) {
-                console.log($scope.user.from);
-
+            if ($scope.user.from) {
+                angular.element('#form_input').val($scope.user.from.address);
             }
             else {
                 angular.element('#from_input').val(null);
@@ -48,7 +47,12 @@ angular.module('theHomePassApp')
                             return;
 
                         $scope.user.from = {
-                            address: place.formatted_address,
+                            formatted_address: place.formatted_address,
+                            street_address: place.street_address,
+                            street_number: place.street_number,
+                            city: place.city,
+                            country: place.country,
+                            postal_code: place.postal_code,
                             latitude: place.geometry.location.k,
                             longitude: place.geometry.location.B
                         };
@@ -67,7 +71,12 @@ angular.module('theHomePassApp')
                             return;
 
                         $scope.user.to = {
-                            address: place.formatted_address,
+                            formatted_address: place.formatted_address,
+                            street_address: place.street_address,
+                            street_number: place.street_number,
+                            city: place.city,
+                            country: place.country,
+                            postal_code: place.postal_code,
                             latitude: place.geometry.location.k,
                             longitude: place.geometry.location.B
                         };
