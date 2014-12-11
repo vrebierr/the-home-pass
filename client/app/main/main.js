@@ -20,6 +20,9 @@ angular.module('theHomePassApp')
                     },
                     uploads: function (Restangular) {
                         return Restangular.all('uploads').getList();
+                    },
+                    slides: function (Restangular) {
+                        return Restangular.all('slides').getList();
                     }
                 }
             });
