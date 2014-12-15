@@ -31,7 +31,7 @@ div(ng-include='"components/navbar/navbar.html"')
             
         .row.collapse
             .columns.large-3.medium-6
-                select(ng-model='categories', ng-options='category._id as category.name for category in categories')
+                select(ng-model='category', ng-change='addTag()', ng-options='category.name for category in categories')
                     option(value='') Filtrer par univers
             .columns.large-4.medium-6
                 select(ng-model='type')
@@ -46,11 +46,11 @@ div(ng-include='"components/navbar/navbar.html"')
                     i.fa.fa-search
         .row
             .columns.large-12
-                span.label test
+                span.label(ng-repeat='tag in tags') {{tag.name}}
 
                 
         ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
-            li(ng-repeat='ad in items | filter:search')
+            li(ng-repeat='ad in items | filter:search | filter:filter')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
                     figure
                         img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')

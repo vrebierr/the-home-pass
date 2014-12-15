@@ -4,9 +4,13 @@ angular.module('theHomePassApp')
     .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, slides, Auth, Restangular, $http, uploads, uiGmapGoogleMapApi, $state) {
         $scope.currentUser = Auth.getCurrentUser();
         $scope.location = 0;
+        $scope.categories = categories;
+        $scope.selected = {};
+        $scope.range = 0;
+
+        $scope.categor
 
         $scope.scroll = function () {
-            console.log('asd')
             for (var i = 0; i < 15; i++) {
                 var index = $scope.items.length;
                 if ($scope.ads[index]) {
@@ -14,6 +18,25 @@ angular.module('theHomePassApp')
                 }
             }
         };
+
+        $scope.tags = [];
+        $scope.addCategory = function () {
+            $scope.tags.push($scope.category);
+            $scope.categories = _.without($scope.categories, $scope.category);
+            $scope.category = {};
+        };
+
+        $scope.filter = function (item) {
+            if ($scope.tags === []) {
+                return true;
+            }
+            _.forEach($scope.tags, function (tag) {
+                if (tag._id === item.category || tag === item.type) {
+                    return true;
+                }
+            });
+            return false;
+        }
 
         $scope.refresh = function () {
             $scope.ads = [];
@@ -51,12 +74,6 @@ angular.module('theHomePassApp')
             $scope.scroll();
         }
         $scope.refresh();
-
-        $scope.categories = categories;
-        $scope.selected = {};
-        $scope.range = 0;
-
-
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
