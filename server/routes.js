@@ -10,7 +10,6 @@ module.exports = function(app) {
 
   // Insert routes below
   app.use('/api/slides', require('./api/slide'));
-  app.use('/api/likes', require('./api/like'));
   app.use('/api/comments', require('./api/comment'));
   app.use('/api/tags', require('./api/tag'));
   app.use('/api/posts', require('./api/post'));

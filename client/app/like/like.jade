@@ -1,0 +1,22 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.row
+    .columns.small-12.medium-6.large-6
+        h1
+            i.fa.fa-angle-left.pointer(ui-sref='main()')
+            | Mes favoris
+    .columns.small-12.medium-6.large-6
+        h5 Actuellement {{likes.length}} offres exclusives dans vos favoris
+
+.row
+    .columns.small-12.medium-6.large-6(ng-repeat='ad in ads')
+        .ad
+            .row
+                .columns.small-5
+                    img(ng-src='uploads/{{ad.image}}')
+
+                .columns.small-7
+                    p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
+                    h3 {{pos.name}}
+                    h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+                    p {{ad.info}}

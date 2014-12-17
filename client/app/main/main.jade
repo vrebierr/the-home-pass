@@ -1,7 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .row
-    .columns.medium-12.large-5.show-for-medium-up
+    .columns.medium-5.large-5.show-for-medium-up
         .gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
@@ -11,7 +11,7 @@ div(ng-include='"components/navbar/navbar.html"')
                             h4 {{name}}
                             p {{address}}
 
-    .columns.small-12.medium-12.large-7
+    .columns.small-12.medium-7.large-7
         .row
             .columns.large-5
                 button.button.black.tiny.expand(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
@@ -28,7 +28,7 @@ div(ng-include='"components/navbar/navbar.html"')
                     |  offres exclusives à proximité de  
                     span(ng-if='currentUser.city') {{currentUser.city}}
                     span(ng-if='!currentUser.city') ma position
-            
+
         .row.collapse
             .columns.large-3.medium-6
                 select(ng-model='category', ng-change='addTag()', ng-options='category.name for category in categories')
@@ -48,9 +48,8 @@ div(ng-include='"components/navbar/navbar.html"')
             .columns.large-12
                 span.label(ng-repeat='tag in tags') {{tag.name}}
 
-                
         ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
-            li(ng-repeat='ad in items | filter:search | filter:filter')
+            li(ng-repeat='ad in items | filter:search')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
                     figure
                         img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')

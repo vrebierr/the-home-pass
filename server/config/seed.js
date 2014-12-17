@@ -28,7 +28,8 @@ User.find({}).remove(function() {
         role: 'advertiser',
         name: 'Ad',
         email: 'ad@ad.com',
-        password: 'ad'
+        password: 'ad',
+        pass: 'ad'
     }, {
         provider: 'pass',
         name: 'Pass',
@@ -36,12 +37,12 @@ User.find({}).remove(function() {
         password: 'pass',
         pass: 'pass',
         from: {
-            address: '50 Rue de Rivoli, 75004 Paris, France',
+            formatted_address: '50 Rue de Rivoli, 75004 Paris, France',
             latitude: 48.8567484,
             longitude: 2.35390469999993
         },
         to: {
-            address: 'London, UK',
+            formatted_address: 'London, UK',
             latitude: 51.5073509,
             longitude: -0.12775829999998223
         }
@@ -52,12 +53,12 @@ User.find({}).remove(function() {
         password: 'DEMO2TEST',
         pass: 'DEMO2TEST',
         from: {
-            address: 'Suresnes, France',
+            formatted_address: 'Suresnes, France',
             latitude: 48.869798,
             longitude: 2.2190329999999676
         },
         to: {
-            address: 'Senlis, France',
+            formatted_address: 'Senlis, France',
             latitude: 49.205164,
             longitude: 2.583212000000003
         }

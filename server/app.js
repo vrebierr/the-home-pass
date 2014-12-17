@@ -3,6 +3,7 @@
  */
 
 'use strict';
+try {
 
 // Set default node environment to development
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -35,3 +36,6 @@ server.listen(config.port, config.ip, function () {
 
 // Expose app
 exports = module.exports = app;
+} catch (e) {
+    console.log(e);
+}

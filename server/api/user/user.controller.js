@@ -11,7 +11,7 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 var validationError = function(res, err) {
-  return res.json(422, err);
+    return res.json(422, err);
 };
 
 exports.newsletter = function (req, res) {
@@ -42,10 +42,10 @@ exports.newsletter = function (req, res) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
-    res.json(200, users);
-  });
+    User.find({}, '-salt -hashedPassword', function (err, users) {
+        if(err) return res.send(500, err);
+        res.json(200, users);
+    });
 };
 
 /**

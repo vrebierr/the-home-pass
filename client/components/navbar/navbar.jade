@@ -4,6 +4,7 @@ nav.row(ng-controller='NavbarCtrl')
         .logbox(ng-if='!Auth.isLoggedIn()')
             a(href='', ng-click='registerModal()') Inscription
             a(href='', ng-click='loginModal()') Connexion
+        a(ui-sref='like()') Favoris
         a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
             img(ng-src='assets/images/user.png')
             span  {{ Auth.getCurrentUser().name }}
@@ -48,21 +49,31 @@ script(type='text/ng-template' id='loginModal.html')
 
 script(type='text/ng-template' id='registerModal.html')
     h2 Inscription
+    p Bienvenue sur the home pass A partir d’aujourd’hui, vous allez bénéficier d’1 an d’avantages exclusifs pour déménager, emménager, aménager et profiter de votre nouvelle vi(ll)e...
     form(name='form', novalidate='')
+        label Prénom
+            input(type='text', ng-model='user.first_name', required='')
+        
+        label Nom
+            input(type='text', ng-model='user.last_name', required='')
+                
         label Adresse Email
-        input(type='email', ng-model='user.email', required='')
+            input(type='email', ng-model='user.email', required='')
+                
         label Mot de passe
-        input(type='password', ng-model='user.password', required='')
+            input(type='password', ng-model='user.password', required='')
+                
         label Retapez votre mot de passe
-        
-        input(type='password', ng-model='user.retype', required='')
+            input(type='password', ng-model='user.retype', required='')
+
         label Votre adresse
-        #from
-        .modal-map
-            ui-gmap-google-map(center='map.center', zoom='map.zoom', events='events.map', refresh='true', style='z-index: -1000;')
-                ui-gmap-search-box(template='"search-box-from.html"', parentdiv='"from"', events='events.from')
-                ui-gmap-marker(idKey='"from"', coords='user.from')
-        
+            input#search(type='text', ng-model='user.formatted_address', required='')
+                
+        p Adresse: {{user.street_number}} {{user.street_address}}
+        p Ville: {{user.city}}
+        p Code postal: {{user.postal_code}}
+        p Pays: {{user.country}}
+
         button.black.expand(href='' ng-click='register(form)') S'inscrire
     a.close-reveal-modal(ng-click='$dismiss()') &#215;
 

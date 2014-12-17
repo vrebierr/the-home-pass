@@ -1,51 +1,12 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular, uiGmapGoogleMapApi) {
+    .controller('NavbarCtrl', function ($scope, $rootScope, Auth, $state, $modal, Restangular) {
         $scope.Auth = Auth;
         $scope.isCollapsed = true;
         $scope.isLoggedIn = Auth.isLoggedIn;
         $scope.getCurrentUser = Auth.getCurrentUser;
         $scope.user = {};
-
-        uiGmapGoogleMapApi.then(function (maps) {
-            $scope.map = {
-                center: {
-                    latitude: 48.89670230000001,
-                    longitude: 2.3183781999999997
-                },
-                zoom: 15
-            };
-
-            $scope.events = {
-                map: {
-                    idle: function (map) {
-                        maps.event.trigger(map, 'resize');
-                    }
-                },
-                from: {
-                    places_changed: function (search, eventName) {
-                        var place = search.getPlaces()[0];
-
-                        if (place === undefined)
-                            return;
-
-                        $scope.user.from = {
-                            address: place.formatted_address,
-                            latitude: place.geometry.location.k,
-                            longitude: place.geometry.location.B
-                        };
-
-                        console.log($scope.user)
-
-                        $scope.map.center = {
-                            latitude: place.geometry.location.k,
-                            longitude: place.geometry.location.B
-                        };
-                    }
-                }
-            };
-        });
 
         $scope.loginModal = function () {
             $scope.modal = $modal.open({
@@ -72,7 +33,7 @@ angular.module('theHomePassApp')
             $scope.modal = $modal.open({
                 templateUrl: 'registerModal.html',
                 scope: $scope,
-                windowClass: 'tiny',
+                windowClass: '',
                 controller: 'loginModalCtrl'
             }).result.then(function () {
                 Restangular.one('users', 'me').get().then(function (user) {
@@ -95,9 +56,44 @@ angular.module('theHomePassApp')
     });
 
 angular.module('theHomePassApp')
-    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth) {
+    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth, uiGmapGoogleMapApi) {
         $scope.user = {};
         $scope.errors = {};
+
+        uiGmapGoogleMapApi.then(function (maps) {
+            var input = document.getElementById('search');
+            var autocomplete = new google.maps.places.Autocomplete(
+            /** @type {HTMLInputElement} */(input));
+
+            var components = {
+                street_number: 'short_name',
+                country: 'long_name',
+                postal_code: 'short_name',
+                administrative_area_level_1: 'short_name'
+            };
+
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var place = autocomplete.getPlace();
+                $scope.user.from = {
+                    latitude: place.geometry.location.k,
+                    longitude: place.geometry.location.B
+                };
+                console.log($scope.user);
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var type = place.address_components[i];
+                    if (components[type]) {
+                        if (type === 'street_number')
+                            $scope.user.from.street_number = place.address_components[i][components[type]];
+                        if (type === 'country')
+                            $scope.user.from.country = place.address_components[i][components[type]];
+                        if (type === 'administrative_area_level_1')
+                            $scope.user.from.city = place.address_components[i][components[type]];
+
+                    }
+                    console.log(place.address_components[i])
+                }
+            });
+        });
 
         $scope.login = function (form) {
             if (form.$valid) {

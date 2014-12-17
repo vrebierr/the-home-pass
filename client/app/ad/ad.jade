@@ -2,16 +2,14 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .row
     .columns.large-12
-        hr
-.row
-    .columns.large-12
-        h1
+        h3
             i.fa.fa-angle-left.pointer(ui-sref='main()')
             |  {{pos.name}}
-            i.right.fa.fa-print.pointer(ng-click='print()')
+            img.icon.pointer.right(src='assets/images/print.png', ng-click='print()')
+            img.icon.pointer.right(src='assets/images/heart.png', ng-click='like()')
 
 .row
-    .columns.large-4
+    .columns.large-4.medium-4
         .row
             .columns.large-12
                 .show
@@ -38,7 +36,7 @@ div(ng-include='"components/navbar/navbar.html"')
                     strong Site web : 
                     | {{pos.website}}
 
-    .columns.large-8
+    .columns.large-8.medium-8
         .ad
             .row
                 .columns.small-5
@@ -46,8 +44,10 @@ div(ng-include='"components/navbar/navbar.html"')
         
                 .columns.small-7
                     p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
-                    h3 {{pos.name}}
-                    h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+                    h3
+                        strong {{pos.name}}
+                    h2
+                        strong -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
                     p {{ad.info}}
         .row
             .columns.large-12

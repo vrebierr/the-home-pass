@@ -8,8 +8,6 @@ angular.module('theHomePassApp')
         $scope.selected = {};
         $scope.range = 0;
 
-        $scope.categor
-
         $scope.scroll = function () {
             for (var i = 0; i < 15; i++) {
                 var index = $scope.items.length;

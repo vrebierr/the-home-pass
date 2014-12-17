@@ -1,11 +1,11 @@
 body {
     font-family: 'Roboto', 'sans-serif';
-    color: #656C70;
+    color: black;
     background-color: white !important;
 }
 
 a {
-    color: #656C70;
+    color: black;
 }
 
 .border {
@@ -110,7 +110,7 @@ body, html {
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', 'sans-serif';
     font-weight: 300;
-    color: #656C70 !important;
+    color: black !important;
 }
 
 p, div {
@@ -125,7 +125,7 @@ div {
 table tr th, table tr td {
     padding: 0.5625rem 0.625rem;
     font-size: 0.875rem;
-    color: #656C70;
+    color: black;
 }
 
 .wrapper {
@@ -686,7 +686,7 @@ input[type="text"] {
 }
 
 .profile-info dd a {
-    color: #656C70;
+    color: black;
 }
 
 @media all and (max-width:1024px) {
@@ -1056,7 +1056,7 @@ a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
 
 .side-nav .accordion dd > a {
     background: #FFFFFF;
-    color: #656C70;
+    color: black;
     font-family: 'Roboto', 'sans-serif';
     padding: 0px;
 }
@@ -1084,4 +1084,13 @@ table th.right, table td.right {
 
 .active span.label {
     background-color: black !important;
+}
+
+.icon {
+    height: 25px;
+    margin-left: 10px;
+}
+
+h3 {
+    line-height: 18px !important;
 }
