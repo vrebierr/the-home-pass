@@ -1,7 +1,7 @@
 body {
     font-family: 'Roboto', 'sans-serif';
     color: black;
-    background-color: white !important;
+    background-color: #F6F6F6 !important;
 }
 
 a {
@@ -701,8 +701,9 @@ input[type="text"] {
 /* end profile item*/
 
 nav.row {
-    padding-bottom: 20px;
-    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background-color: white;
 }
 
 input:not([type]) {
@@ -743,8 +744,8 @@ button:focus {
 }
 
 .logo {
-    height: 90px;
-    width: 90px;
+    height: 40px;
+    width: 40px;
     background: url('/assets/images/logo.png') no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -1093,4 +1094,28 @@ table th.right, table td.right {
 
 h3 {
     line-height: 18px !important;
+}
+
+.my-pass {
+    height: 30px;
+    background-color: black;
+    overflow: hidden;
+    color: white;
+    vertical-align: middle;
+    img {
+        height: 50px;
+        margin-top: -10px;
+    }
+    span {
+        height: 30px;
+        margin-top: 0;
+        vertical-align: middle;
+    }
+}
+
+nav .menu {
+    float: right;
+    img {
+        height: 25px;
+    }
 }

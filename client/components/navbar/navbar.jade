@@ -5,11 +5,15 @@ nav.row(ng-controller='NavbarCtrl')
             a(href='', ng-click='registerModal()') Inscription
             a(href='', ng-click='loginModal()') Connexion
         a(ui-sref='like()') Favoris
+        .menu.pointer
+            img(src='assets/images/user.png')
+            span {{currentUser.name}}
+                |  
+                i.fa.fa-angle-down
         a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
             img(ng-src='assets/images/user.png')
             span  {{ Auth.getCurrentUser().name }}
-                |  
-                i.fa.fa-angle-down
+                
             ul#profile.f-dropdown(ng-if='Auth.hasRole("user")')
                 li
                     a(href='#') Mes favoris

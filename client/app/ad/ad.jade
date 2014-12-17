@@ -49,6 +49,11 @@ div(ng-include='"components/navbar/navbar.html"')
                     h2
                         strong -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
                     p {{ad.info}}
+            .row
+                .columns.small-12
+                    .my-pass
+                        img(src='assets/images/logo-login.png')
+                        span {{currentUser.pass}}
         .row
             .columns.large-12
                 h5 Présentation
