@@ -30,10 +30,9 @@ div(ng-include='"components/navbar/navbar.html"')
                     option(value='1') Offre de remboursement
                     option(value='2') Remise immédiate
                     option(value='3') Vente privée
-            .columns.large-4.medium-11.small-10
-                input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
-            .columns.large-1.medium-1.small-2
-                span.postfix.addon
+            .columns.large-5.medium-12.small-12
+                input.addon(type='text', ng-model='search', placeHolder='Entrez votre recherche')
+                span.addon
                     i.fa.fa-search
         .row
             .columns.large-12
