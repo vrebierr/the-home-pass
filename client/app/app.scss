@@ -834,19 +834,17 @@ button.alert {
     margin-left: -40px;
 }
 
-@media only screen and (min-width: 1025px) {
-    .gm {
-        position: absolute;
-        height: calc(100vh - 160px) !important;
-        width: 100%;
-        padding-right: 30px;
-    }
+.gm {
+    position: absolute;
+    height: calc(100vh - 55px) !important;
+    width: 100%;
+    padding-right: 30px;
+}
 
-    .gm > .angular-google-map,
-    .gm > .angular-google-map > .angular-google-map,
-    .gm > .angular-google-map > .angular-google-map > .angular-google-map-container {
-        height: 100% !important;
-    }
+.gm > .angular-google-map,
+.gm > .angular-google-map > .angular-google-map,
+.gm > .angular-google-map > .angular-google-map > .angular-google-map-container {
+    height: 100% !important;
 }
 
 .angular-google-map-container {
@@ -967,7 +965,7 @@ em.exclu {
 }
 
 .ads {
-    height: calc(100vh - 305px) !important;
+    height: calc(100vh - 220px) !important;
     overflow-y: scroll;
     box-shadow: inset 0 20px 20px -20px white,
                 inset 0 -15px 15px -15px white;
@@ -1129,6 +1127,10 @@ nav .menu {
         font-weight: normal;
         font-size: 11px !important;
     }
+    button {
+        height: 30px;
+        width: 190px;
+    }
 }
 
 .logo-login {
@@ -1139,8 +1141,9 @@ nav .menu {
 
 footer {
     background-color: #363435;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    min-height: 200px;
 
     ul {
         list-style: none;
@@ -1152,9 +1155,37 @@ footer {
     }
     h5 {
         font-weight: normal;
-        font-size: 13px;
+        font-size: 14px;
+        margin-bottom: 5px;
     }
     a {
-        font-size: 10px;
+        font-size: 11px;
     }
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.filters {
+    input, select {
+        height: 22px !important;
+        line-height: 22px;
+    }
+    .addon {
+        height: 22px;
+        border: 1px solid black;
+    }
+}
+
+.footer-menu {
+    width: 140px;
+    display: inline-block;
+}
+
+.columns.full {
+    height: calc(100vh - 85px);
+}
+
+.margin-top {
+    padding-top: 35px;
 }

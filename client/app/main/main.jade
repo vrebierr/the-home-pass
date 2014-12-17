@@ -1,6 +1,6 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.row
+.row.margin-top
     .columns.medium-5.large-5.show-for-medium-up
         .gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
@@ -11,16 +11,7 @@ div(ng-include='"components/navbar/navbar.html"')
                             h4 {{name}}
                             p {{address}}
 
-    .columns.small-12.medium-7.large-7
-        .row
-            .columns.large-5
-                button.button.black.tiny.expand(ng-if='!location', ng-click='changeLocation()') Voir les offres où je déménage
-                    |  
-                    .fa.fa-refresh
-                button.button.black.tiny.expand(ng-if='location', ng-click='changeLocation()') Voir les offres où j'habite
-                    |  
-                    .fa.fa-refresh
-
+    .columns.small-12.medium-7.large-7.full
         .row
             .columns.large-12
                 h5 Actuellement
@@ -29,7 +20,7 @@ div(ng-include='"components/navbar/navbar.html"')
                     span(ng-if='currentUser.city') {{currentUser.city}}
                     span(ng-if='!currentUser.city') ma position
 
-        .row.collapse
+        .row.collapse.filters
             .columns.large-3.medium-6
                 select(ng-model='category', ng-change='addTag()', ng-options='category.name for category in categories')
                     option(value='') Filtrer par univers
