@@ -701,8 +701,8 @@ input[type="text"] {
 /* end profile item*/
 
 nav.row {
-    padding-bottom: 10px;
-    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     background-color: white;
 }
 
@@ -1098,6 +1098,7 @@ h3 {
 
 .my-pass {
     height: 30px;
+    width: 200px;
     background-color: black;
     overflow: hidden;
     color: white;
@@ -1117,5 +1118,43 @@ nav .menu {
     float: right;
     img {
         height: 25px;
+    }
+    a {
+        display: inline-block;
+        text-align: center;
+        margin-left: 25px;
+    }
+    span {
+        display: block;
+        font-weight: normal;
+        font-size: 11px !important;
+    }
+}
+
+.logo-login {
+    height: 100px;
+    width: 100px;
+    margin-top: 15px;
+}
+
+footer {
+    background-color: #363435;
+    padding-top: 15px;
+    padding-bottom: 15px;
+
+    ul {
+        list-style: none;
+        margin: 0;
+    }
+
+    a, h5 {
+        color: white !important;
+    }
+    h5 {
+        font-weight: normal;
+        font-size: 13px;
+    }
+    a {
+        font-size: 10px;
     }
 }

@@ -4,38 +4,25 @@ nav.row(ng-controller='NavbarCtrl')
         .logbox(ng-if='!Auth.isLoggedIn()')
             a(href='', ng-click='registerModal()') Inscription
             a(href='', ng-click='loginModal()') Connexion
-        a(ui-sref='like()') Favoris
-        .menu.pointer
-            img(src='assets/images/user.png')
-            span {{currentUser.name}}
-                |  
-                i.fa.fa-angle-down
-        a.logbox(ng-if='Auth.isLoggedIn()', dropdown-toggle='#profile')
-            img(ng-src='assets/images/user.png')
-            span  {{ Auth.getCurrentUser().name }}
-                
-            ul#profile.f-dropdown(ng-if='Auth.hasRole("user")')
-                li
-                    a(href='#') Mes favoris
-                li
-                    a(href='#') Mon compte
-                li
-                    a(href='#', ng-click='logout()') Se déconnecter
-            ul#profile.f-dropdown(ng-if='Auth.hasRole("advertiser")')
-                li
-                    a(href='#') Mon compte
-                li
-                    a(ui-sref='ad') Mes annonces
-                li
-                    a(ui-sref='pos') Mes points de vente
-                li
-                    a(href='#', ng-click='logout()') Se déconnecter
-            ul#profile.f-dropdown(ng-if='Auth.hasRole("admin")')
-                li
-                    a(href='#') Mon compte
-                li
-                    a(href='#', ng-click='logout()') Se déconnecter
 
+        .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "user"')
+            a(ui-sref='blog')
+                img(src='assets/images/comment.png')
+                span Le mag
+            a(href='#')
+                img(src='assets/images/calendar.png')
+                span Solde jours
+            a(ui-sref='like()')
+                img(src='assets/images/likes.png')
+                span Mes favoris
+            a(href='#', dropdown-toggle='#profile')
+                img(src='assets/images/user.png')
+                span {{Auth.getCurrentUser().name}}
+                    |  
+                    i.fa.fa-angle-down
+                ul#profile.f-dropdown
+                    li
+                        a(href='#', ng-click='logout()') Se déconnecter
 
 script(type='text/ng-template' id='loginModal.html')
     h2 Connexion
