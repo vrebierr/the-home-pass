@@ -11,8 +11,10 @@ angular.module('theHomePassApp')
                 resolve: {
                     ads : function (Restangular, Auth) {
                         var likes = Auth.getCurrentUser().likes;
+                        console.log(Auth.getCurrentUser())
+                        console.log(likes)
                         if (likes) {
-                            return Restangular.all('items').getList(Auth.getCurrentUser().likes);
+                            return Restangular.all('items').getList(likes);
                         }
                         else {
                             return [];
