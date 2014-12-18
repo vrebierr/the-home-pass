@@ -1038,7 +1038,7 @@ div.pac-container {
 
 
 a:hover, .side-nav li a:not(.button):hover, .side-nav li a:not(.button):focus {
-    color: #f16c65;
+    color: #008cba;
 }
 
 .side-nav {
@@ -1206,4 +1206,16 @@ footer {
 
 .margin-top {
     padding-top: 30px;
+}
+
+@media all and (min-width:640px) {
+    .reveal-modal {
+        width: 400px !important;
+    }
+}
+
+@media all and (max-width:640px) {
+    .reveal-modal {
+        width: 100% !important;
+    }
 }

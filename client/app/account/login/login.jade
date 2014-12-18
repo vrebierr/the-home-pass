@@ -1,9 +1,9 @@
-.row(ng-controller='NavbarCtrl')
+.row
     .columns.small-12
         img.logo-login(src='assets/images/logo-login.png')
         .logbox
-            a(href='', ng-click='registerModal()') Inscription
-            a(href='', ng-click='loginModal()') Connexion
+            a(href='#', ng-click='Modal.registration()') Inscription
+            a(href='#', ng-click='Modal.login()') Connexion
 
 form.pass-form(name='form', ng-submit='login(form)', novalidate='')
     .row.collapse

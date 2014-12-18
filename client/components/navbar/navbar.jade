@@ -2,8 +2,8 @@ nav.row(ng-controller='NavbarCtrl')
     .columns.small-12
         a.logo(ui-sref='main')
         .logbox(ng-if='!Auth.isLoggedIn()')
-            a(href='', ng-click='registerModal()') Inscription
-            a(href='', ng-click='loginModal()') Connexion
+            a(href='#', ng-click='Modal.registration()') Inscription
+            a(href='#', ng-click='Modal.login("main")') Connexion
 
         .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "user"')
             a(ui-sref='blog')
@@ -23,50 +23,3 @@ nav.row(ng-controller='NavbarCtrl')
                 ul#profile.f-dropdown
                     li
                         a(href='#', ng-click='logout()') Se déconnecter
-
-script(type='text/ng-template' id='loginModal.html')
-    h2 Connexion
-    form(name='form', novalidate='')
-        label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]')  Adresse Email
-            input(type='email', ng-model='user.email', required='')
-        small.error(ng-show='form.$submitted && err.type === "email"') {{err.message}}
-            
-        label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]') Mot de passe
-            input(type='password', ng-model='user.password', required='')
-        small.error(ng-show='form.$submitted && err.type === "password"') {{err.message}}
-
-        button.black.expand(href='' ng-click='login(form)') Se connecter
-    a.close-reveal-modal(ng-click='$dismiss()') &#215;
-
-script(type='text/ng-template' id='registerModal.html')
-    h2 Inscription
-    p Bienvenue sur the home pass A partir d’aujourd’hui, vous allez bénéficier d’1 an d’avantages exclusifs pour déménager, emménager, aménager et profiter de votre nouvelle vi(ll)e...
-    form(name='form', novalidate='')
-        label Prénom
-            input(type='text', ng-model='user.first_name', required='')
-        
-        label Nom
-            input(type='text', ng-model='user.last_name', required='')
-                
-        label Adresse Email
-            input(type='email', ng-model='user.email', required='')
-                
-        label Mot de passe
-            input(type='password', ng-model='user.password', required='')
-                
-        label Retapez votre mot de passe
-            input(type='password', ng-model='user.retype', required='')
-
-        label Votre adresse
-            input#search(type='text', ng-model='user.formatted_address', required='')
-                
-        p Adresse: {{user.street_number}} {{user.street_address}}
-        p Ville: {{user.city}}
-        p Code postal: {{user.postal_code}}
-        p Pays: {{user.country}}
-
-        button.black.expand(href='' ng-click='register(form)') S'inscrire
-    a.close-reveal-modal(ng-click='$dismiss()') &#215;
-
-script(type='text/ng-template', id='search-box-from.html')
-    input(type='text', required='', placeHolder='Entrez votre recherche', ng-value='user.from.address')

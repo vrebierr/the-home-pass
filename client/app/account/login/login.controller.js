@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LoginCtrl', function ($scope, Auth, $state, $rootScope) {
+    .controller('LoginCtrl', function ($scope, Auth, $state, $rootScope, Modal) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -18,6 +18,8 @@ angular.module('theHomePassApp')
                 });
             }
         };
+
+        $scope.Modal = Modal;
 
         angular.element('body').addClass('bg');
 

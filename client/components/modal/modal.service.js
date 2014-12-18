@@ -1,29 +1,23 @@
 'use strict';
 
 angular.module('theHomePassApp')
-  .factory('Modal', function ($rootScope, $modal) {
-    /**
-     * Opens a modal
-     * @param  {Object} scope      - an object to be merged with modal's scope
-     * @param  {String} modalClass - (optional) class(es) to be applied to the modal
-     * @return {Object}            - the instance $modal.open() returns
-     */
-    function openModal(scope, modalClass) {
-      var modalScope = $rootScope.$new();
-      scope = scope || {};
-      modalClass = modalClass || 'modal-default';
-
-      angular.extend(modalScope, scope);
-
-      return $modal.open({
-        templateUrl: 'components/modal/modal.html',
-        windowClass: modalClass,
-        scope: modalScope
-      });
-    }
-
+  .factory('Modal', function ($rootScope, $modal, $q) {
     // Public API here
     return {
+        login: function (cb) {
+            var cb = cb || angular.noop;
+            var defer = $q.defer();
+            $modal.open({
+                templateUrl: 'components/modal/login.html',
+                controller: 'loginModalCtrl'
+            }).result.then(function () {
+                defer.resolve();
+                return cb();
+            }).catch(function (err) {
+                defer.reject();
+                return cb(err);
+            });
+        },
 
       /* Confirmation modals */
       confirm: {
@@ -75,3 +69,58 @@ angular.module('theHomePassApp')
       }
     };
   });
+
+angular.module('theHomePassApp')
+    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth, uiGmapGoogleMapApi) {
+        $scope.user = {};
+        $scope.errors = {};
+
+
+        $scope.login = function (form) {
+            if (form.$valid) {
+                Auth.login({
+                    email: $scope.user.email,
+                    password: $scope.user.password
+                })
+                .then(function() {
+                    toastr.success('Vous êtes à présent connecté');
+                    $modalInstance.close(form);
+                })
+                .catch(function (err) {
+                    $scope.err = err;
+                });
+            }
+        };
+
+        $scope.register = function(form) {
+            $scope.submitted = true;
+            console.log(form)
+            if ($scope.user.password !== $scope.user.retype) {
+                $scope.form.$valid = false;
+            }
+
+            if(form.$valid) {
+                if ($scope.user.password === $scope.user.retype) {
+                    Auth.createUser({
+                        name: $scope.user.name,
+                        email: $scope.user.email,
+                        password: $scope.user.password
+                    }).then( function() {
+                        // Account created, redirect to home
+                        toastr.success('Un mail de confirmation vous a été envoyé. Merci de cliquer sur le lien dans celui-ci pour valider votre inscription');
+                        $state.go('main');
+                    }).catch(function(err) {
+                        err = err.data;
+                        console.log(err)
+                        $scope.errors = {};
+
+                        // Update validity of form fields that match the mongoose errors
+                        angular.forEach(err.errors, function(error, field) {
+                            form[field].$setValidity('mongoose', false);
+                            $scope.errors[field] = error.message;
+                        });
+                    });
+                }
+            }
+        };
+    });
