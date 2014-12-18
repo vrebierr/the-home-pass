@@ -1,22 +1,25 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-.row
+.row.margin-top
     .columns.small-12.medium-6.large-6
-        h1
+        h2
             i.fa.fa-angle-left.pointer(ui-sref='main()')
             | Mes favoris
     .columns.small-12.medium-6.large-6
-        h5 Actuellement {{likes.length}} offres exclusives dans vos favoris
+        h5.middle-like Actuellement 
+            strong.number {{like && likes.length || 0}}
+            |  offres exclusives dans vos favoris
 
-.row
-    .columns.small-12.medium-6.large-6(ng-repeat='ad in ads')
-        .row.likes
-            .columns.small-12.medium-7.large-5
+ul.small-block-grid-1.medium-block-grid-2.large-block-grid-2.ads    
+    li(ng-repeat='ad in ads')
+        span.pointer.grey(ui-sref='show({id: ad._id, pos: null})')
+            .columns.small-12.medium-12.large-5
                 img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')
                 img(ng-if='!ad.image', ng-src='http://placehold.it/200x200')
 
-            .columns.small-12.medium-5.large-7
-                p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
+            .columns.small-12.medium-12.large-7
+                p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm/yyyy'}}
+                    span.right {{ad.num}}
                 h3 {{pos.name}}
                 h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
                 p {{ad.info}}

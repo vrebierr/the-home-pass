@@ -1,3 +1,9 @@
-.likes {
-    margin: 10px;
+
+
+h5.middle-like {
+    line-height: 65px !important;
+}
+
+strong.number {
+    font-size: 28px;
 }
