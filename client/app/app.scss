@@ -1171,6 +1171,11 @@ footer {
     input, select {
         height: 22px !important;
         line-height: 22px;
+
+    }
+    input {
+        width: calc(100% - 22px) !important;
+        display: inline-block;
     }
     .addon {
         height: 22px;
@@ -1178,6 +1183,7 @@ footer {
         border: 1px solid black;
     }
     i {
+        margin: auto;
         height: 100%;
     }
 }
