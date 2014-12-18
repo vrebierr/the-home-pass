@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LikeCtrl', function ($scope, ads, $http) {
+    .controller('LikeCtrl', function ($scope, ads, $http, Auth) {
         $scope.ads = ads;
 
         $scope.delete = function (ad) {
@@ -9,6 +9,7 @@ angular.module('theHomePassApp')
 
             $http.put('/api/users/like', ads).then(function (likes) {
                 $scope.ads = _.without($scope.ads, ad);
+                Auth.refresh();
             }).catch(function (err) {
 
             });

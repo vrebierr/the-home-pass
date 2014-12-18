@@ -7,7 +7,7 @@ angular.module('theHomePassApp')
         $scope.pos.icon = '/assets/images/marker.png';
         $scope.ads = ads;
         $scope.currentUser = Auth.getCurrentUser();
-        console.log($scope.currentUser)
+        $scope.liked = _.contains($scope.currentUser.likes, ad._id);
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
@@ -34,6 +34,7 @@ angular.module('theHomePassApp')
 
             $http.put('/api/users/like', likes).then(function (likes) {
                 Auth.refresh();
+                $scope.liked = !$scope.liked;
             }).catch(function (err) {
 
             });

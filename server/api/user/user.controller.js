@@ -241,3 +241,11 @@ exports.like = function (req, res) {
         });
     });
 };
+
+exports.getLikes = function (req, res) {
+    Ad.find({_id: {$in: req.user.likes}}, function (err, likes) {
+        if (err) {return res.send(500, err);}
+
+        return res.send(200, likes);
+    });
+};

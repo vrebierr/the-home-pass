@@ -6,7 +6,8 @@ div(ng-include='"components/navbar/navbar.html"')
             i.fa.fa-angle-left.pointer(ui-sref='main()')
             |  {{pos.name}}
             img.icon.pointer.right(src='assets/images/print.png', ng-click='print()')
-            img.icon.pointer.right(src='assets/images/heart.png', ng-click='like()')
+            img.icon.pointer.right(src='assets/images/heart.png', ng-click='like()', ng-if='!liked')
+            img.icon.pointer.right(src='assets/images/red-heart.png', ng-click='like()', ng-if='liked')
 
 .row
     .columns.large-4.medium-4

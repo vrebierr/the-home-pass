@@ -12,8 +12,8 @@ div(ng-include='"components/navbar/navbar.html"')
 
 ul.small-block-grid-1.medium-block-grid-2.large-block-grid-2.ads    
     li(ng-repeat='ad in ads')
-        img.mini-icon.right(ng-src='assets/images/print.png', ng-click='print(ad)')
-        img.mini-icon.right(ng-src='assets/images/trash.png', ng-click='delete(ad)')
+        img.mini-icon.right.pointer(ng-src='assets/images/print.png', ng-click='print(ad)')
+        img.mini-icon.right.pointer(ng-src='assets/images/trash.png', ng-click='delete(ad)')
         br
         span.pointer.grey(ui-sref='show({id: ad._id, pos: null})')
             .columns.small-12.medium-12.large-5

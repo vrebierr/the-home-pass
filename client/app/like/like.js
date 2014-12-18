@@ -14,7 +14,7 @@ angular.module('theHomePassApp')
                         console.log(Auth.getCurrentUser())
                         console.log(likes)
                         if (likes) {
-                            return Restangular.all('items').getList(likes);
+                            return Restangular.one('users', 'me').getList('likes');
                         }
                         else {
                             return [];
