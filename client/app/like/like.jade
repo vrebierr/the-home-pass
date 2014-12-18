@@ -9,14 +9,14 @@ div(ng-include='"components/navbar/navbar.html"')
         h5 Actuellement {{likes.length}} offres exclusives dans vos favoris
 
 .row
-    .columns.small-12.medium-6.large-6(ng-repeat='ad in ads')
-        .ad
-            .row
-                .columns.small-5
-                    img(ng-src='uploads/{{ad.image}}')
+    ul.small-block-grid-1.medium-block-grid-2(ng-repeat='ad in ads')
+        li.ad
+            .columns.small-12.medium-7.large-5
+                img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')
+                img(ng-if='!ad.image', ng-src='http://placehold.it/200x200')
 
-                .columns.small-7
-                    p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
-                    h3 {{pos.name}}
-                    h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
-                    p {{ad.info}}
+            .columns.small-12.medium-5.large-7
+                p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
+                h3 {{pos.name}}
+                h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
+                p {{ad.info}}

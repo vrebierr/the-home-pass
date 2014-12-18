@@ -9,6 +9,8 @@ var nodemailer = require('nodemailer');
 var async = require('async');
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
+var mongoose = require('mongoose');
+var Ad = mongoose.model('Ad');
 
 var validationError = function(res, err) {
     return res.json(422, err);
@@ -221,4 +223,21 @@ exports.me = function(req, res, next) {
  */
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
+};
+
+exports.like = function (req, res) {
+    if (!_.isArray(req.body)) {
+        return res.send(500, 'Not a Array.');
+    }
+
+    Ad.find({_id: {$in: req.body}}, function (err, likes) {
+        if (err) {return res.send(500, err);}
+
+        req.user.likes = likes;
+        req.user.save(function (err, user) {
+            if (err) {return res.send(err);}
+
+            return res.send(200, likes);
+        });
+    });
 };
