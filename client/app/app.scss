@@ -836,7 +836,7 @@ button.alert {
 
 .gm {
     position: absolute;
-    height: calc(100vh - 55px) !important;
+    height: calc(100vh - 85px) !important;
     width: 100%;
     padding-right: 30px;
 }
@@ -965,7 +965,7 @@ em.exclu {
 }
 
 .ads {
-    height: calc(100vh - 220px) !important;
+    height: calc(100vh - 200px) !important;
     overflow-y: scroll;
     padding-top: 10px;
     margin-right: 1px !important;
@@ -1097,20 +1097,27 @@ h3 {
 
 .my-pass {
     height: 30px;
-    width: 200px;
+    width: auto;
+    padding-right: 10px;
     background-color: black;
     overflow: hidden;
     color: white;
     vertical-align: middle;
+    display: inline-block;
     img {
         height: 50px;
         margin-top: -10px;
     }
     span {
         height: 30px;
-        margin-top: 0;
+        display: block;
+        margin-top: -35px;
+        margin-left: 60px;
         vertical-align: middle;
     }
+}
+span.right.pass {
+    line-height: 30px;
 }
 
 nav .menu {

@@ -44,16 +44,16 @@ div(ng-include='"components/navbar/navbar.html"')
         
                 .columns.small-7
                     p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm yyyy'}}
+                        span.right {{ad.num}}
                     h3
                         strong {{pos.name}}
                     h2
                         strong -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
                     p {{ad.info}}
-            .row
-                .columns.small-12
                     .my-pass
                         img(src='assets/images/logo-login.png')
                         span {{currentUser.pass}}
+                    span.right.pass {{currentUser.name}}
         .row
             .columns.large-12
                 h5 Présentation

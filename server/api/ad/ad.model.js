@@ -1,11 +1,13 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema;
+	Schema = mongoose.Schema,
+	uuid = require('node-uuid');
 
 var AdSchema = new Schema({
 	pos: [{ type: Schema.Types.ObjectId, ref: 'Pos' }],
 	author: { type: Schema.Types.ObjectId, ref: 'User' },
+	num: {type: String, default: uuid.v4().split('-')[0]},
 	image: String,
 	type: String,
 	valueType: {type: String, default: 'percent'},
