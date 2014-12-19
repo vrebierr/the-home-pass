@@ -11,7 +11,6 @@ angular.module('theHomePassApp', [
     'selectize-ng',
     'uuid4',
     'uiGmapgoogle-maps',
-    'ngMorph',
     'mm.foundation',
     'infinite-scroll',
     'LocalStorageModule',
