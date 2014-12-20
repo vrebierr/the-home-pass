@@ -1,9 +1,9 @@
 nav.row(ng-controller='NavbarCtrl')
     .columns.small-12
-        a.logo(ui-sref='main')
-        .logbox(ng-if='!Auth.isLoggedIn()')
+        a.logo(ui-sref='blog()')
+        .menu-log(ng-if='!Auth.isLoggedIn()')
             a(href='#', ng-click='Modal.registration()') Inscription
-            a(href='#', ng-click='Modal.login("main")') Connexion
+            a(href='#', ui-sref='login()') Connexion
 
         .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "user"')
             a(ui-sref='blog')
@@ -15,6 +15,19 @@ nav.row(ng-controller='NavbarCtrl')
             a(ui-sref='like()')
                 img(src='assets/images/likes.png')
                 span Mes favoris
+            a(href='#', dropdown-toggle='#profile')
+                img(src='assets/images/user.png')
+                span {{Auth.getCurrentUser().name}}
+                    |  
+                    i.fa.fa-angle-down
+                ul#profile.f-dropdown
+                    li
+                        a(href='#', ng-click='logout()') Se déconnecter
+        
+        .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "admin"')
+            a(ui-sref='admin()')
+                i.fa.fa-dashboard
+                span Dashboard
             a(href='#', dropdown-toggle='#profile')
                 img(src='assets/images/user.png')
                 span {{Auth.getCurrentUser().name}}

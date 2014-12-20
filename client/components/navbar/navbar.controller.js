@@ -5,9 +5,16 @@ angular.module('theHomePassApp')
         $scope.Auth = Auth;
         $scope.isCollapsed = true;
         $scope.isLoggedIn = Auth.isLoggedIn;
-        $scope.getCurrentUser = Auth.getCurrentUser;
+        $scope.currentUser = Auth.getCurrentUser();
         $scope.user = {};
 
+        if ($scope.currentUser.role === 'user') {
+            console.log(moment())
+            var expire = moment($scope.currentUser.createdAt) - moment().add('y', 1);
+            $scope.expire = expire;
+        }
+
+        console.log($scope.expire)
         $scope.registerModal = function () {
             $scope.modal = $modal.open({
                 templateUrl: 'registerModal.html',
