@@ -989,13 +989,6 @@ hr {
     margin-top: 0;
 }
 
-.container {
-    max-width: 1900px !important;
-    width: 100%;
-    margin: auto;
-    padding: 15px;
-}
-
 .pointer {
     cursor: pointer;
 }
@@ -1224,4 +1217,27 @@ footer {
 
 .grey {
     background-color: #e7e7e7 !important;
+}
+
+.container {
+    width: 1024px !important;
+    margin: auto;
+}
+
+.img-header {
+    height: 320px;
+    background: url('/assets/images/bg.jpg') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+ul.sidebar {
+    list-style: none;
+    margin: 0;
+    hr {
+        margin-top: 10px;
+        border-bottom: 1px;
+    }
 }

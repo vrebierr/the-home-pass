@@ -1,6 +1,5 @@
 div(ng-controller='SidebarCtrl')
-    h4 Catégories
-
-    ul
+    ul.sidebar
         li(ng-repeat='tag in tags', ui-sref-active='active')
             a(ui-sref='tag({name: tag.slug})') {{tag.name}}
+            hr
