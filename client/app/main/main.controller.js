@@ -18,10 +18,17 @@ angular.module('theHomePassApp')
         };
 
         $scope.tags = [];
-        $scope.addCategory = function () {
-            $scope.tags.push($scope.category);
-            $scope.categories = _.without($scope.categories, $scope.category);
+        $scope.addCategory = function (category) {
+            $scope.tags.push(category);
+            $scope.categories = _.without($scope.categories, category);
             $scope.category = {};
+        };
+
+        $scope.types = [];
+        $scope.addType = function (type) {
+            $scope.types.push(type);
+            $scope.types = _.without($scope.types, type);
+            $scope.type = {};
         };
 
         $scope.filter = function (item) {
