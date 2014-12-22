@@ -71,7 +71,7 @@ angular.module('theHomePassApp')
   });
 
 angular.module('theHomePassApp')
-    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth, uiGmapGoogleMapApi) {
+    .controller('loginModalCtrl', function ($scope, $modalInstance, Auth, uiGmapGoogleMapApi, Restangular, $state) {
         $scope.user = {};
         $scope.errors = {};
 
@@ -85,6 +85,17 @@ angular.module('theHomePassApp')
                 .then(function() {
                     toastr.success('Vous êtes à présent connecté');
                     $modalInstance.close(form);
+                    Restangular.one('users', 'me').get().then(function (user) {
+                        if(user.role === 'advertiser') {
+                            $state.go('advertiser');
+                        }
+                        else if (user.role === 'admin') {
+                            $state.go('admin');
+                        }
+                        else {
+                            $state.go('main');
+                        }
+                    });
                 })
                 .catch(function (err) {
                     $scope.err = err;

@@ -2,7 +2,7 @@ nav.row(ng-controller='NavbarCtrl')
     .columns.small-12
         a.logo(ui-sref='blog()')
         .menu-log(ng-if='!Auth.isLoggedIn()')
-            a(href='#', ng-click='Modal.registration()') Inscription
+            a(href='#', ng-click='registration()') Inscription
             a(href='#', ui-sref='login()') Connexion
 
         .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "user"')

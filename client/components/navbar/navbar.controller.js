@@ -14,7 +14,10 @@ angular.module('theHomePassApp')
             $scope.expire = expire;
         }
 
-        console.log($scope.expire)
+        $scope.login = function () {
+            $scope.Auth.loginModal();
+        };
+
         $scope.registerModal = function () {
             $scope.modal = $modal.open({
                 templateUrl: 'registerModal.html',
