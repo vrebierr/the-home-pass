@@ -1205,6 +1205,8 @@ footer {
         height: 25px !important;
         line-height: 25px;
         border-right: 0;
+        padding: 0;
+        padding-left: 8px;
     }
     input {
         width: calc(100% - 25px) !important;
