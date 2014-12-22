@@ -2,11 +2,11 @@ h2 Connexion
 form(name='form', novalidate='')
     label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]')  Adresse Email
         input(type='email', ng-model='user.email', required='')
-    small.error(ng-show='form.$submitted && err.type === "email"') {{err.message}}
+        small.error(ng-show='form.$submitted && err.type === "email"') {{err.message}}
 
     label(ng-class='{true: "error"}[form.$submitted && form.pos.$invalid]') Mot de passe
         input(type='password', ng-model='user.password', required='')
-    small.error(ng-show='form.$submitted && err.type === "password"') {{err.message}}
+        small.error(ng-show='form.$submitted && err.type === "password"') {{err.message}}
 
     button.black.expand(href='' ng-click='login(form)') Se connecter
 a.close-reveal-modal(ng-click='$dismiss()') &#215;

@@ -38,8 +38,8 @@ div(ng-include='"components/navbar/navbar.html"')
                     i.fa.fa-search
         .row
             .columns.large-12
-                span.label(ng-repeat='tag in tags', ng-click='removeTag(tag)') {{tag.name}}
-                span.label(ng-repeat='type in types') {{type}}
+                span.filter(ng-repeat='tag in tags', ng-click='removeTag(tag)') {{tag.name}}  
+                    i.fa.fa-times
 
         ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
             li(ng-repeat='ad in items | filter:search | filter:type:type')
