@@ -9,16 +9,18 @@ angular.module('theHomePassApp')
                 controller: 'LikeCtrl',
                 authenticated: true,
                 resolve: {
-                    ads : function (Restangular, Auth) {
-                        var likes = Auth.getCurrentUser().likes;
-                        console.log(Auth.getCurrentUser())
-                        console.log(likes)
-                        if (likes) {
-                            return Restangular.one('users', 'me').getList('likes');
-                        }
-                        else {
-                            return [];
-                        }
+                    likes: function (Restangular, Auth) {
+                        Restangular.all('items').getList().then(function (ads) {
+                            Restangular.all('pos').getList().then(function (pos) {
+                                var likes = _.map(Auth.getCurrentUser().likes, function (item) {
+                                    item.ad = _.findWhere(ads, {_id: item.ad});
+                                    item.pos = _.findWhere(pos, {_id: item.pos});
+                                    return item;
+                                });
+
+                                return likes;
+                            });
+                        });
                     }
                 }
             });

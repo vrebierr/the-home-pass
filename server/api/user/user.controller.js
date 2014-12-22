@@ -211,6 +211,7 @@ exports.me = function(req, res, next) {
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
+    console.log(user)
     res.json(user);
   });
 };
@@ -230,14 +231,15 @@ exports.like = function (req, res) {
             if (err) {return res.send(500, err);}
 
             var like = {
-                ad: ad,
-                pos: pos
+                ad: ad._id,
+                pos: pos._id
             };
-            console.log(req.user.likes)
-            console.log(like)
-            if (_.contains(req.user.likes, like)) {
-                return res.send(500, 'Already exist.')
-            }
+
+            _.forEach(req.user.likes, function (item) {
+                if (item.ad.equals(ad._id)) {
+                    return res.send(500, 'Already exist.')
+                }
+            });
 
             if (!_.isArray(req.user.likes)) {
                 req.user.likes = [];
@@ -254,22 +256,23 @@ exports.like = function (req, res) {
 };
 
 exports.removeLike = function (req, res) {
-    Ad.findById(req.params.id, function (err, ad) {
-        if (err) {return res.send(500, err);}
-
-        req.user.likes = _.without(req.user.likes, {ad: ad._id});
-        req.user.save(function (err, user) {
-            if (err) {return res.send(500, err);}
-
-            return res.send(204);
-        });
+    var likes = _.filter(req.user.likes, function (item) {
+        if (item.ad.equals(req.params.id)) {
+            return false;
+        }
+        else {
+            return true;
+        }
     });
-};
 
-exports.getLikes = function (req, res) {
-    Ad.find({_id: {$in: req.user.likes}}, function (err, likes) {
+    if (likes.length !== req.user.likes.length - 1) {
+        return res.send(404);
+    }
+
+    req.user.likes = likes;
+    req.user.save(function (err, user) {
         if (err) {return res.send(500, err);}
 
-        return res.send(200, likes);
+        return res.send(204);
     });
 };

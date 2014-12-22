@@ -7,22 +7,22 @@ div(ng-include='"components/navbar/navbar.html"')
             |  Mes favoris
     .columns.small-12.medium-6.large-6
         h5.middle-like Actuellement 
-            strong.number {{like && likes.length || 0}}
+            strong.number {{likes && likes.length || 0}}
             |  offres exclusives dans vos favoris
 
 ul.small-block-grid-1.medium-block-grid-2.large-block-grid-2.ads    
-    li(ng-repeat='ad in ads')
-        img.mini-icon.right.pointer(ng-src='assets/images/print.png', ng-click='print(ad)')
-        img.mini-icon.right.pointer(ng-src='assets/images/trash.png', ng-click='delete(ad)')
+    li(ng-repeat='like in likes')
+        img.mini-icon.right.pointer(ng-src='assets/images/print.png', ng-click='print(like.ad)')
+        img.mini-icon.right.pointer(ng-src='assets/images/trash.png', ng-click='delete(like)')
         br
-        span.pointer.grey(ui-sref='show({id: ad._id, pos: null})')
+        span.pointer.grey(ui-sref='show({id: like.ad._id, pos: like.pos._id})')
             .columns.small-12.medium-12.large-5
-                img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')
-                img(ng-if='!ad.image', ng-src='http://placehold.it/200x200')
+                img(ng-if='like.ad.image', ng-src='uploads/{{like.ad.image}}')
+                img(ng-if='!like.ad.image', ng-src='http://placehold.it/200x200')
 
             .columns.small-12.medium-12.large-7
-                p Du {{ad.start | date:'d/mm'}} au {{ad.end | date:'dd/mm/yyyy'}}
-                    span.right {{ad.num}}
+                p Du {{like.ad.start | date:'d/mm'}} au {{like.ad.end | date:'dd/mm/yyyy'}}
+                    span.right {{like.ad.num}}
                 h3 {{pos.name}}
-                h2 -{{ad.value}}{{ad.valueType === 'euro' ? '€' : '%'}}
-                p {{ad.info}}
+                h2 -{{like.ad.value}}{{like.ad.valueType === 'euro' ? '€' : '%'}}
+                p {{like.ad.info}}
