@@ -211,7 +211,6 @@ exports.me = function(req, res, next) {
   }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
     if (err) return next(err);
     if (!user) return res.json(401);
-    console.log(user)
     res.json(user);
   });
 };
@@ -226,9 +225,11 @@ exports.authCallback = function(req, res, next) {
 exports.like = function (req, res) {
     Ad.findById(req.body.ad, function (err, ad) {
         if (err) {return res.send(500, err);}
+        if (!ad) {return res.send(404);}
 
         Pos.findById(req.body.pos, function (err, pos) {
             if (err) {return res.send(500, err);}
+            if (!pos) {return res.send(404);}
 
             var like = {
                 ad: ad._id,

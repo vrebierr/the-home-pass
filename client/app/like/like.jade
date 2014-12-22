@@ -15,7 +15,7 @@ ul.small-block-grid-1.medium-block-grid-2.large-block-grid-2.ads
         img.mini-icon.right.pointer(ng-src='assets/images/print.png', ng-click='print(like.ad)')
         img.mini-icon.right.pointer(ng-src='assets/images/trash.png', ng-click='delete(like)')
         br
-        span.pointer.grey(ui-sref='show({id: like.ad._id, pos: like.pos._id})')
+        span.pointer.grey(ui-sref='show({ad: like.ad._id, pos: like.pos._id})')
             .columns.small-12.medium-12.large-5
                 img(ng-if='like.ad.image', ng-src='uploads/{{like.ad.image}}')
                 img(ng-if='!like.ad.image', ng-src='http://placehold.it/200x200')
