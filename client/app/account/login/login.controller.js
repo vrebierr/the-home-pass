@@ -14,7 +14,7 @@ angular.module('theHomePassApp')
                     $state.go('main');
                 })
                 .catch(function() {
-                    $scope.error = true;
+                    toastr.error('Votre numéro de Pass est incorrect.');
                 });
             }
         };
