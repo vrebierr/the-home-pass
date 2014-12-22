@@ -7,7 +7,7 @@ angular.module('theHomePassApp')
         $scope.pos.icon = '/assets/images/marker.png';
         $scope.ads = ads;
         $scope.currentUser = Auth.getCurrentUser();
-        $scope.liked = _.contains($scope.currentUser.likes, ad._id);
+        $scope.liked = _.contains($scope.currentUser.likes, {ad: ad._id});
 
         uiGmapGoogleMapApi.then(function (maps) {
             $scope.map = {
@@ -25,18 +25,17 @@ angular.module('theHomePassApp')
 
         $scope.like = function () {
             var likes = Auth.getCurrentUser().likes;
-            if (_.contains(likes, $scope.ad._id)) {
-                likes = _.without(likes, $scope.ad._id);
+            if (_.contains(likes, {ad: $scope.ad._id, pos: $scope.pos._id})) {
+                $http.delete('/api/users/likes/' + $scope.ad._id).then(function () {
+                    Auth.refresh();
+                    $scope.liked = !$scope.liked;
+                });
             }
             else {
-                likes.push($scope.ad._id);
+                $http.post('/api/users/likes', {ad: $scope.ad._id, pos: $scope.pos._id}).then(function (likes) {
+                    Auth.refresh();
+                    $scope.liked = !$scope.liked;
+                });
             }
-
-            $http.put('/api/users/like', likes).then(function (likes) {
-                Auth.refresh();
-                $scope.liked = !$scope.liked;
-            }).catch(function (err) {
-
-            });
         };
     });

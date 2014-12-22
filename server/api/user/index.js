@@ -16,7 +16,8 @@ router.post('/admin', auth.hasRole('admin'), controller.createAdmin);
 router.put('/admin/:id', auth.hasRole('admin'), controller.updateAdmin);
 
 router.get('/me/likes', auth.isAuthenticated(), controller.getLikes)
-router.put('/like', auth.isAuthenticated(), controller.like);
+router.post('/likes', auth.isAuthenticated(), controller.like);
+router.delete('/likes/:id', auth.isAuthenticated(), controller.removeLike);
 
 router.get('/', auth.hasRole('advertiser'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);

@@ -17,21 +17,24 @@ User.find({}).remove(function() {
         name: 'Test User',
         email: 'test@test.com',
         password: 'test',
-        pass: 'test'
+        pass: 'test',
+        enabled: true
     }, {
         provider: 'local',
         role: 'admin',
         name: 'Admin',
         email: 'admin@admin.com',
         password: 'admin',
-        pass: 'admin'
+        pass: 'admin',
+        enabled: true
     }, {
         provider: 'local',
         role: 'advertiser',
         name: 'Ad',
         email: 'ad@ad.com',
         password: 'ad',
-        pass: 'ad'
+        pass: 'ad',
+        enabled: true
     }, {
         provider: 'pass',
         name: 'Pass',
@@ -47,7 +50,8 @@ User.find({}).remove(function() {
             formatted_address: 'London, UK',
             latitude: 51.5073509,
             longitude: -0.12775829999998223
-        }
+        },
+        enabled: true
     }, {
         provider: 'local',
         name: 'Demo 2 Test',
@@ -63,8 +67,10 @@ User.find({}).remove(function() {
             formatted_address: 'Senlis, France',
             latitude: 49.205164,
             longitude: 2.583212000000003
-        }
-    }, function () {
+        },
+        enabled: true
+    }, function (err) {
+        console.log(err)
         Pos.find({}).remove(function() {
             User.findOne({email: 'ad@ad.com'}, function (err, user) {
                 Pos.create({

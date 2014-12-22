@@ -25,22 +25,24 @@ div(ng-include='"components/navbar/navbar.html"')
                 select(ng-model='category', ng-change='addCategory(category)', ng-options='category.name for category in categories')
                     option(value='') Filtrer par univers
             .columns.large-4.medium-6
-                select(ng-model='type', ng-change='addType(type)')
+                select(ng-model='type')
                     option(value='') Filtrer par types d'offres
-                    option(value='1') Offre de remboursement
-                    option(value='2') Remise immédiate
+                    option(value='1') Promotion
+                    option(value='2') Avant première
                     option(value='3') Vente privée
+                    option(value='4') Destockage
+                    option(value='5') Actualité
             .columns.large-5.medium-12.small-12
                 input(type='text', ng-model='search', placeHolder='Entrez votre recherche')
                 span.addon
                     i.fa.fa-search
         .row
             .columns.large-12
-                span.label(ng-repeat='tag in tags') {{tag.name}}
-                span.label(ng-repeat='type in types') {{type.value}}
+                span.label(ng-repeat='tag in tags', ng-click='removeTag(tag)') {{tag.name}}
+                span.label(ng-repeat='type in types') {{type}}
 
         ul.ads.small-block-grid-1.medium-block-grid-2.large-block-grid-3.xlarge-block-grid-4(infinite-scroll='scroll()', infinite-scroll-parent='false', infinite-scroll-distance='20', infinite-scroll-immediate-check='true')
-            li(ng-repeat='ad in items | filter:search')
+            li(ng-repeat='ad in items | filter:search | filter:type:type')
                 a(ui-sref='show({ad: ad._id, pos: ad.currentPos._id})')
                     figure
                         img(ng-if='ad.image', ng-src='uploads/{{ad.image}}')

@@ -8,12 +8,15 @@ var UserSchema = new Schema({
     name: String,
     first_name: {type: String},
     last_name: {type: String},
-    email: { type: String, lowercase: true },
+    email: {type: String, lowercase: true},
     role: {
         type: String,
         default: 'user'
     },
-    likes: [{type: Schema.Types.ObjectId, ref: 'Ad'}],
+    likes: [{
+        ad: {type: Schema.Types.ObjectId, ref: 'Ad'},
+        pos: {type: Schema.Types.ObjectId, ref: 'Pos'}
+    }],
     hashedPassword: String,
     provider: String,
     salt: String,
@@ -40,7 +43,8 @@ var UserSchema = new Schema({
         longitude: { type: Number, default: 0 }
     },
     createdAt: {type: Date, default: new Date()},
-    enabled: {type: Boolean, default: false}
+    enabled: {type: Boolean, default: false},
+    tokenRegistration: {type: String}
 });
 
 /**

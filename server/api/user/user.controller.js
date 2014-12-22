@@ -11,6 +11,8 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 var mongoose = require('mongoose');
 var Ad = mongoose.model('Ad');
+var Pos = mongoose.model('Pos');
+var uuid = require('node-uuid');
 
 var validationError = function(res, err) {
     return res.json(422, err);
@@ -43,7 +45,7 @@ exports.newsletter = function (req, res) {
  * Get list of users
  * restriction: 'admin'
  */
-exports.index = function(req, res) {
+exports.index = function (req, res) {
     User.find({}, '-salt -hashedPassword', function (err, users) {
         if(err) return res.send(500, err);
         res.json(200, users);
@@ -55,26 +57,20 @@ exports.index = function(req, res) {
  */
 exports.create = function (req, res, next) {
     var newUser = new User(req.body);
+
     newUser.provider = 'local';
     newUser.role = 'user';
-    newUser.save(function(err, user) {
+    newUser.tokenRegistration = uuid.v4();
+    newUser.save(function (err, user) {
         if (err) return validationError(res, err);
 
-        var transporter = nodemailer.createTransport(smtpTransport({
-            host: 'mail.gandi.net',
-            port: 465,
-            secure: true,
-            auth: {
-                user: 'FT836-GANDI@thehomepass.com',
-                password: 'Valentine2000'
-            }
-        }));
+        var transporter = nodemailer.createTransport();
 
         transporter.sendMail({
             from: 'noreply@thehomepass.com',
             to: 'valentin.rebierre@gmail.com',
             subject: 'test',
-            text: 'test mail.'
+            text: 'http://localhost:9000/user/validate/' + user.tokenRegistration,
         }, function (err, info) {
             console.log(err)
             console.log(info)
@@ -88,13 +84,14 @@ exports.create = function (req, res, next) {
  * Get a single user
  */
 exports.show = function (req, res, next) {
-  var userId = req.params.id;
+    var userId = req.params.id;
 
-  User.findById(userId, function (err, user) {
-    if (err) return next(err);
-    if (!user) return res.send(401);
-    res.json(user.profile);
-  });
+    User.findById(userId, function (err, user) {
+        if (err) return next(err);
+        if (!user) return res.send(401);
+
+        res.json(user.profile);
+    });
 };
 
 exports.createAdmin = function (req, res) {
@@ -226,18 +223,45 @@ exports.authCallback = function(req, res, next) {
 };
 
 exports.like = function (req, res) {
-    if (!_.isArray(req.body)) {
-        return res.send(500, 'Not a Array.');
-    }
-
-    Ad.find({_id: {$in: req.body}}, function (err, likes) {
+    Ad.findById(req.body.ad, function (err, ad) {
         if (err) {return res.send(500, err);}
 
-        req.user.likes = likes;
-        req.user.save(function (err, user) {
-            if (err) {return res.send(err);}
+        Pos.findById(req.body.pos, function (err, pos) {
+            if (err) {return res.send(500, err);}
 
-            return res.send(200, likes);
+            var like = {
+                ad: ad,
+                pos: pos
+            };
+            console.log(req.user.likes)
+            console.log(like)
+            if (_.contains(req.user.likes, like)) {
+                return res.send(500, 'Already exist.')
+            }
+
+            if (!_.isArray(req.user.likes)) {
+                req.user.likes = [];
+            }
+
+            req.user.likes.push(like);
+            req.user.save(function (err, user) {
+                if (err) {return res.send(500, err);}
+
+                return res.send(201, req.user.likes);
+            });
+        });
+    });
+};
+
+exports.removeLike = function (req, res) {
+    Ad.findById(req.params.id, function (err, ad) {
+        if (err) {return res.send(500, err);}
+
+        req.user.likes = _.without(req.user.likes, {ad: ad._id});
+        req.user.save(function (err, user) {
+            if (err) {return res.send(500, err);}
+
+            return res.send(204);
         });
     });
 };
