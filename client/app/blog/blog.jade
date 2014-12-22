@@ -4,10 +4,10 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .row.container.margin-top
     .columns.small-12.medium-8.large-8
-        .row.pointer(ng-repeat='post in posts', ui-sref='post({id: post._id, slug: post.title})')
+        .row.pointer(ng-repeat='post in posts', ui-sref='post({id: post._id, slug: post.slug})')
             .columns.small-12
                 img(ng-src='uploads/{{post.image}}')
-                span {{post.createdAt | date:'dd.mm.yyyy'}}
+                span {{post.createdAt | date:'dd.MM.yyyy'}}
                 h4(ui-sref='post({slug: post.slug})') {{post.title}}
                 
                 div(ng-bind-html='post.content')
