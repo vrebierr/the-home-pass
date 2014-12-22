@@ -781,31 +781,48 @@ nav > div > a {
     color: black;
 }
 
+.middle {
+    height: calc(100vh - 115px) !important;
+    line-height: calc(100vh - 115px) !important;
+}
+
 .pass-form {
-    color: white;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: auto;
-    width: 100%;
-    margin: 15px;
+    display: inline-block;
+    text-align: center;
     vertical-align: middle;
-}
+    input {
+        display: inline-block;
+        background-color: black !important;
+        border: 0px;
+        border-right: solid 1px white;
+        transition: all 0.3s linear 0;
+        color: white !important;
+        width: 220px;
+        height: 31px;
+        color: white;
+    }
 
-.pass-form h2 {
-    margin-left: 10px;
-    color: white;
-    font-size: 28px;
-    line-height: 28px;
-    padding: 2px;
-}
+    input::-webkit-input-placeholder {
+        color:    white;
+    }
+    input:-moz-placeholder {
+       color:    white;
+       opacity:  1;
+    }
+    input::-moz-placeholder {
+       color:    white;
+       opacity:  1;
+    }
+    input:-ms-input-placeholder {
+       color:    white;
+    }
 
-.pass-form input {
-    background-color: black !important;
-    border: solid 1px black;
-    border-right: solid 1px white;
-    transition: all 0.3s linear 0;
-    color: white !important;
+    h2 {
+        display: inline-block;
+        margin-left: 18px;
+        color: white;
+        font-size: 30px;
+    }
 }
 
 .pass-form input:focus {
@@ -815,9 +832,12 @@ nav > div > a {
 }
 
 .pass-form button {
+    display: inline-block;
     background-color: black;
     color: white;
-    width: 90px;
+    width: 50px;
+    height: 31px;
+    padding: 0;
 }
 
 .black {
