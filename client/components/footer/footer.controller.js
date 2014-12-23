@@ -6,7 +6,7 @@ angular.module('theHomePassApp')
 
         angular.element('#copyrights').mouseup(function (e) {
             var selection = window.getSelection().toString();
-            console.log(selection)
+
             if (selection === '© 2015 The Home Pass') {
                 angular.element(this).text('Made with ♡ by vrebierr');
                 flag = 1;
