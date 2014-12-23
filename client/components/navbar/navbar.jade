@@ -13,12 +13,15 @@ nav.row(ng-controller='NavbarCtrl')
         .menu(ng-if='Auth.isLoggedIn() && Auth.getCurrentUser().role === "user"')
             a(ui-sref='blog')
                 img(src='assets/images/comment.png')
+                
                 span Le mag
             a(href='#')
                 img(src='assets/images/calendar.png')
+                span.label 2
                 span Solde jours
             a(ui-sref='like()')
                 img(src='assets/images/likes.png')
+                span.label 2
                 span Mes favoris
             a(href='#', dropdown-toggle='#profile')
                 img(src='assets/images/user.png')

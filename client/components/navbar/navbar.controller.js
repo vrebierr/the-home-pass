@@ -42,4 +42,8 @@ angular.module('theHomePassApp')
         $scope.logout = function() {
             Auth.logout();
         };
+        
+        angular.element('#menu').on('click', function () {
+
+        });
     });

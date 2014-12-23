@@ -1158,6 +1158,13 @@ nav .menu {
         height: 30px;
         width: 190px;
     }
+    span.label {
+        font-size: 8px !important;
+        display: inline-block;
+        position: absolute;
+        background-color: #db0000;
+        border-radius: 5px;
+    }
 }
 
 nav .menu-log {
