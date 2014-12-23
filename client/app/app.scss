@@ -12,8 +12,6 @@ a {
     border: 1px solid #e1e1e1;
 }
 
-
-
 .tabs-content {
     margin-bottom: 1.5rem;
     width: 100%;
@@ -1206,13 +1204,17 @@ footer {
         min-height: 200px !important;
     }
 
-    .copyrights {
+    #copyrights {
         color: white;
         font-weight: 300 !important;
         font-size: 12px;
         position: absolute;
         bottom: 10px;
         right: 20px;
+        transition: all 0.4s linear 0;
+        -webkit-transition: all 0.4s linear 0;
+        -moz-transition: all 0.4s linear 0;
+        -o-transition: all 0.4s linear 0;
     }
 }
 
@@ -1253,10 +1255,10 @@ span.filter {
     i {
         margin-left: 5px;
     }
-    -webkit-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+    -webkit-transition: all 0.4s linear;
+    -moz-transition: all 0.4s linear;
+    -o-transition: all 0.4s linear;
+    transition: all 0.4s linear;
     line-height: 30px;
     margin-right: 5px;
 }
