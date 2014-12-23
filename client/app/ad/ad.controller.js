@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('AdCtrl', function ($scope, ad, pos, ads, uiGmapGoogleMapApi, Auth, $http) {
+    .controller('AdCtrl', function ($scope, ad, pos, ads, uiGmapGoogleMapApi, Auth, $http, $rootScope) {
         $scope.ad = ad;
         $scope.pos = pos;
         $scope.pos.icon = '/assets/images/marker.png';
@@ -35,14 +35,16 @@ angular.module('theHomePassApp')
         $scope.like = function () {
             if ($scope.liked) {
                 $http.delete('/api/users/likes/' + $scope.ad._id).then(function () {
-                    Auth.refresh();
                     $scope.liked = !$scope.liked;
+                    $rootScope.$broadcast('like', -1);
                 });
             }
             else {
                 $http.post('/api/users/likes', {ad: $scope.ad._id, pos: $scope.pos._id}).then(function (likes) {
-                    Auth.refresh();
                     $scope.liked = !$scope.liked;
+                    $rootScope.$broadcast('like', 1);
+                    $scope.currentUser.likes = likes.data;
+                    $scope.$apply();
                 });
             }
         };

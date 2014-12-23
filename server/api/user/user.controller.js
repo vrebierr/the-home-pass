@@ -266,6 +266,9 @@ exports.removeLike = function (req, res) {
         }
     });
 
+    console.log(likes.length)
+    console.log(req.user.likes.length -1)
+
     if (likes.length !== req.user.likes.length - 1) {
         return res.send(404);
     }

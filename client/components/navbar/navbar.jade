@@ -17,11 +17,11 @@ nav.row(ng-controller='NavbarCtrl')
                 span Le mag
             a(href='#')
                 img(src='assets/images/calendar.png')
-                span.label 2
+                span.label {{expire}}
                 span Solde jours
             a(ui-sref='like()')
                 img(src='assets/images/likes.png')
-                span.label 2
+                span.label {{numLikes}}
                 span Mes favoris
             a(href='#', dropdown-toggle='#profile')
                 img(src='assets/images/user.png')

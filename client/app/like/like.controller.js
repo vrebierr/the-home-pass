@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('LikeCtrl', function ($scope, ads, pos, Restangular, $http) {
+    .controller('LikeCtrl', function ($scope, ads, pos, Restangular, $http, $rootScope) {
         Restangular.all('users').one('me').get().then(function (res) {
             $scope.currentUser = res;
 
@@ -13,9 +13,9 @@ angular.module('theHomePassApp')
         });
 
         $scope.delete = function (like) {
-            $http.delete('/api/users/like', like.ad._id).then(function () {
+            $http.delete('/api/users/likes/' + like.ad._id).then(function () {
                 $scope.likes = _.without($scope.likes, like);
-                Auth.refresh();
+                $rootScope.$broadcast('like', -1);
             });
         };
 

@@ -9,10 +9,15 @@ angular.module('theHomePassApp')
         $scope.user = {};
 
         if ($scope.currentUser.role === 'user') {
-            console.log(moment())
-            var expire = moment($scope.currentUser.createdAt) - moment().add('y', 1);
-            $scope.expire = expire;
+            var expire = moment($scope.currentUser.createdAt).add('y', 1);
+            $scope.expire = expire.diff(moment(), 'days');
         }
+
+        $scope.numLikes = $scope.currentUser.likes.length;
+
+        $scope.$on('like', function (e, data) {
+            $scope.numLikes += data;
+        });
 
         $scope.login = function () {
             $scope.Auth.loginModal();
@@ -42,7 +47,7 @@ angular.module('theHomePassApp')
         $scope.logout = function() {
             Auth.logout();
         };
-        
+
         angular.element('#menu').on('click', function () {
 
         });
