@@ -1329,13 +1329,15 @@ button.localise {
         display: inline-block;
         float: left;
         vertical-align: middle;
-        font-size: 10px;
+        font-size: 8px;
         line-height: 24px;
-
+        font-weight: 400;
+        text-transform: uppercase;
     }
     i {
         margin-left: 5px;
         font-size: 22px;
+        font-weight: 200;
         line-height: 24px
     }
 }
@@ -1352,6 +1354,8 @@ button.test {
         font-size: 10px;
         line-height: 24px;
         padding-bottom: 8px;
+        font-weight: 400;
+        text-transform: uppercase;
     }
     i {
         margin-left: 5px;
