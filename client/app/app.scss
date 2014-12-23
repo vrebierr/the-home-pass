@@ -1326,3 +1326,23 @@ button.localise {
         line-height: 24px
     }
 }
+
+button.test {
+    display: inline-block;
+    margin: 0 !important;
+    height: 28px;
+    padding: 3px 8px;
+    p {
+        display: inline-block;
+        margin: auto;
+        vertical-align: middle;
+        font-size: 10px;
+        line-height: 24px;
+        padding-bottom: 8px;
+    }
+    i {
+        margin-left: 5px;
+        font-size: 22px;
+        line-height: 24px
+    }
+}

@@ -2,6 +2,9 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .row.margin-top
     .columns.medium-5.large-5.show-for-medium-up
+        button.button.black.expand.test
+            p Voir les offres où j'emménage
+            i.fa.fa-refresh
         .gm
             ui-gmap-google-map(center='map.center', zoom='map.zoom', options='map.options', control='map.control', event='events.map')
                 ui-gmap-markers(models='pos', idKey='"_id"', coords='"self"', events='events', options='"options"', icon='"icon"')
