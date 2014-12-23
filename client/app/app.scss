@@ -1201,6 +1201,18 @@ footer {
     a:hover {
         text-decoration: underline;
     }
+    .columns {
+        min-height: 200px !important;
+    }
+
+    .copyrights {
+        color: white;
+        font-weight: 300 !important;
+        font-size: 12px;
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+    }
 }
 
 .filters {
