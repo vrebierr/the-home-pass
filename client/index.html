@@ -14,7 +14,7 @@
     <link id="foundation" href="//cdn.jsdelivr.net/foundation/5.4.7/css/foundation.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- inject:css -->
+    <!-- inject:bower -->
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="bower_components/datatables/media/css/jquery.dataTables.css">
     <link rel="stylesheet" href="bower_components/ng-table/ng-table.css">
@@ -24,6 +24,11 @@
     <link rel="stylesheet" href="bower_components/ionrangeslider/css/ion.rangeSlider.skinSimple.css">
     <link rel="stylesheet" href="bower_components/toastr/toastr.css">
     <link rel="stylesheet" href="bower_components/selectize/dist/css/selectize.css">
+    <!-- endinject -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/client/app/app.css">
+    <link rel="stylesheet" href="/client/app/like/like.css">
     <!-- endinject -->
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
@@ -51,62 +56,48 @@
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
+    <!-- inject:bower -->
+    <!-- endinject -->
+
     <!-- inject:js -->
-    <script src="/public/app/app.js"></script>
-    <script src="/public/app/account/account.js"></script>
-    <script src="/public/app/ad/ad.controller.js"></script>
-    <script src="/public/app/ad/ad.controller.spec.js"></script>
-    <script src="/public/app/ad/ad.js"></script>
-    <script src="/public/app/advertiser/advertiser.controller.js"></script>
-    <script src="/public/app/advertiser/advertiser.js"></script>
-    <script src="/public/app/admin/admin.controller.js"></script>
-    <script src="/public/app/admin/admin.controller.spec.js"></script>
-    <script src="/public/app/admin/admin.js"></script>
-    <script src="/public/app/blog/blog.controller.js"></script>
-    <script src="/public/app/blog/blog.controller.spec.js"></script>
-    <script src="/public/app/blog/blog.js"></script>
-    <script src="/public/app/like/like.controller.js"></script>
-    <script src="/public/app/like/like.controller.spec.js"></script>
-    <script src="/public/app/like/like.js"></script>
-    <script src="/public/app/main/main.controller.js"></script>
-    <script src="/public/app/main/main.controller.spec.js"></script>
-    <script src="/public/app/main/main.js"></script>
-    <script src="/public/app/static/static.controller.js"></script>
-    <script src="/public/app/static/static.controller.spec.js"></script>
-    <script src="/public/app/static/static.js"></script>
-    <script src="/public/app/account/login/login.controller.js"></script>
-    <script src="/public/app/account/settings/settings.controller.js"></script>
-    <script src="/public/app/account/signup/signup.controller.js"></script>
-    <script src="/public/app/advertiser/ad/ad.controller.js"></script>
-    <script src="/public/app/advertiser/ad/ad.controller.spec.js"></script>
-    <script src="/public/app/advertiser/ad/ad.js"></script>
-    <script src="/public/app/advertiser/ad/daterangepicker.js"></script>
-    <script src="/public/app/advertiser/pos/pos.controller.js"></script>
-    <script src="/public/app/advertiser/pos/pos.controller.spec.js"></script>
-    <script src="/public/app/advertiser/pos/pos.js"></script>
-    <script src="/public/app/admin/ad/ad.controller.js"></script>
-    <script src="/public/app/admin/ad/ad.controller.spec.js"></script>
-    <script src="/public/app/admin/blog/blog.controller.js"></script>
-    <script src="/public/app/admin/blog/blog.controller.spec.js"></script>
-    <script src="/public/app/admin/blog/blog.js"></script>
-    <script src="/public/app/admin/category/category.controller.js"></script>
-    <script src="/public/app/admin/category/category.controller.spec.js"></script>
-    <script src="/public/app/admin/newsletter/newsletter.controller.js"></script>
-    <script src="/public/app/admin/newsletter/newsletter.controller.spec.js"></script>
-    <script src="/public/app/admin/slide/slide.controller.js"></script>
-    <script src="/public/app/admin/upload/upload.controller.js"></script>
-    <script src="/public/app/admin/user/user.controller.js"></script>
-    <script src="/public/app/admin/user/user.controller.spec.js"></script>
-    <script src="/public/app/blog/post/post.controller.js"></script>
-    <script src="/public/app/blog/post/post.controller.spec.js"></script>
-    <script src="/public/app/blog/tag/tag.controller.js"></script>
-    <script src="/public/app/blog/tag/tag.controller.spec.js"></script>
-    <script src="/public/app/advertiser/account/signup/signup.controller.js"></script>
-    <script src="/public/app/admin/blog/comment/comment.controller.js"></script>
-    <script src="/public/app/admin/blog/post/post.controller.js"></script>
-    <script src="/public/app/admin/blog/post/post.controller.spec.js"></script>
-    <script src="/public/app/admin/blog/tag/tag.controller.js"></script>
-    <script src="/public/app/admin/blog/tag/tag.controller.spec.js"></script>
+    <script src="/client/app/app.js"></script>
+    <script src="/client/app/account/account.js"></script>
+    <script src="/client/app/ad/ad.controller.js"></script>
+    <script src="/client/app/ad/ad.js"></script>
+    <script src="/client/app/admin/admin.controller.js"></script>
+    <script src="/client/app/admin/admin.js"></script>
+    <script src="/client/app/advertiser/advertiser.controller.js"></script>
+    <script src="/client/app/advertiser/advertiser.js"></script>
+    <script src="/client/app/blog/blog.controller.js"></script>
+    <script src="/client/app/blog/blog.js"></script>
+    <script src="/client/app/like/like.controller.js"></script>
+    <script src="/client/app/like/like.js"></script>
+    <script src="/client/app/main/main.controller.js"></script>
+    <script src="/client/app/main/main.js"></script>
+    <script src="/client/app/static/static.controller.js"></script>
+    <script src="/client/app/static/static.js"></script>
+    <script src="/client/app/account/login/login.controller.js"></script>
+    <script src="/client/app/account/settings/settings.controller.js"></script>
+    <script src="/client/app/account/signup/signup.controller.js"></script>
+    <script src="/client/app/admin/ad/ad.controller.js"></script>
+    <script src="/client/app/admin/blog/blog.controller.js"></script>
+    <script src="/client/app/admin/blog/blog.js"></script>
+    <script src="/client/app/admin/category/category.controller.js"></script>
+    <script src="/client/app/admin/newsletter/newsletter.controller.js"></script>
+    <script src="/client/app/admin/slide/slide.controller.js"></script>
+    <script src="/client/app/admin/upload/upload.controller.js"></script>
+    <script src="/client/app/admin/user/user.controller.js"></script>
+    <script src="/client/app/advertiser/ad/ad.controller.js"></script>
+    <script src="/client/app/advertiser/ad/ad.js"></script>
+    <script src="/client/app/advertiser/ad/daterangepicker.js"></script>
+    <script src="/client/app/advertiser/pos/pos.controller.js"></script>
+    <script src="/client/app/advertiser/pos/pos.js"></script>
+    <script src="/client/app/blog/post/post.controller.js"></script>
+    <script src="/client/app/blog/tag/tag.controller.js"></script>
+    <script src="/client/app/admin/blog/comment/comment.controller.js"></script>
+    <script src="/client/app/admin/blog/post/post.controller.js"></script>
+    <script src="/client/app/admin/blog/tag/tag.controller.js"></script>
+    <script src="/client/app/advertiser/account/signup/signup.controller.js"></script>
     <!-- endinject -->
 </body>
 </html>

@@ -27,10 +27,13 @@ gulp.task('css', function () {
 });
 
 gulp.task('inject', function () {
-    var sources = gulp.src(['public/app/**/*.js', 'public/app/**/*.css'], {read: false});
+    var sources = gulp.src(['client/app/**/*.js', 'client/app/**/*.css', '!client/app/**/*.spec.js'], {read: false});
 
     return gulp.src('client/index.html')
-        .pipe($.inject(gulp.src(bowerFiles(), {read: false}), {relative: true}))
+        .pipe($.inject(gulp.src(bowerFiles(), {read: false}), {
+            name: 'bower',
+            relative: true
+        }))
         .pipe($.inject(sources), {relative: true})
         .pipe(gulp.dest('client'));
 });
@@ -51,10 +54,12 @@ gulp.task('watch', function () {
         gulp.start('css');
     });
 
-    gulp.watch('/client/**/*.html', function (e) {
+    gulp.watch('client/**/*.html', function (e) {
         console.log('File ' + e.type + ': ' + e.path);
         gulp.start('html');
     });
+
+    gulp.watch('gulpfile.js', ['serve']);
 });
 
 gulp.task('assets', function () {
