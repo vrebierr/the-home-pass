@@ -71,7 +71,6 @@ User.find({}).remove(function() {
         },
         enabled: true
     }, function (err) {
-        console.log(err)
         Pos.find({}).remove(function() {
             User.findOne({email: 'ad@ad.com'}, function (err, user) {
                 Pos.create({
@@ -179,7 +178,6 @@ Post.find({}).remove(function () {
         content: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus malesuada felis nulla, at pretium neque pretium sit amet. Sed elementum ullamcorper nulla, vitae blandit nibh. Praesent tempor rhoncus dapibus. Integer ut faucibus tellus. Phasellus non facilisis est. Praesent venenatis turpis lectus, nec feugiat sem dapibus ac. Donec dignissim ultricies pharetra. Fusce vel nisi at arcu consequat euismod. Proin commodo placerat metus, ac sagittis lacus tincidunt in. Fusce id pulvinar ex, eget condimentum urna. Mauris facilisis enim sit amet molestie semper. Vestibulum mattis metus lorem. Nulla eu arcu accumsan, eleifend justo a, ultrices nisi.</p>',
         state: 'published'
     }, function (err, post) {
-        console.log(err)
-        console.log(post)
+        
     });
 });
