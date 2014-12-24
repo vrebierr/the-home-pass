@@ -1,6 +1,12 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var watch = require('gulp-watch');
+var bowerFiles = require('main-bower-files');
+
+gulp.task('html', ['inject'], function () {
+    gulp.src('client/**/*.html')
+        .pipe(gulp.dest('public'));
+});
 
 gulp.task('jade', function () {
     gulp.src('client/**/*.jade')
@@ -21,15 +27,15 @@ gulp.task('css', function () {
 });
 
 gulp.task('inject', function () {
-    var sources = gulp.src(['client/**/*.js', 'client/**/*.css'], {read: false});
+    var sources = gulp.src(['public/app/**/*.js', 'public/app/**/*.css'], {read: false});
 
-    return gulp.src('/client/index.html')
-        .pipe($.inject(sources))
-        .pipe(gulp.dest('public'));
+    return gulp.src('client/index.html')
+        .pipe($.inject(gulp.src(bowerFiles(), {read: false}), {relative: true}))
+        .pipe($.inject(sources), {relative: true})
+        .pipe(gulp.dest('client'));
 });
 
-
-gulp.task('watch', ['inject'], function () {
+gulp.task('watch', function () {
     gulp.watch('client/**/*.js', function (e) {
         console.log('File ' + e.type + ': ' + e.path);
         gulp.start('js');
@@ -44,6 +50,11 @@ gulp.task('watch', ['inject'], function () {
         console.log('File ' + e.type + ': ' + e.path);
         gulp.start('css');
     });
+
+    gulp.watch('/client/**/*.html', function (e) {
+        console.log('File ' + e.type + ': ' + e.path);
+        gulp.start('html');
+    });
 });
 
 gulp.task('assets', function () {
@@ -54,7 +65,7 @@ gulp.task('assets', function () {
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('build', ['jade', 'js', 'css', 'assets']);
+gulp.task('build', ['html', 'jade', 'js', 'css', 'assets']);
 
 gulp.task('serve', ['build', 'watch'], function () {
     $.nodemon({script: 'server/app.js', ext: 'js', ignore: ['client/', 'node_modules/', 'dist/', 'public/']})

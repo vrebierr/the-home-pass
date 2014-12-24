@@ -62,6 +62,7 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
+    "main-bower-files": "^2.4.1",
     "open": "~0.0.4",
     "path2glob": "0.0.2",
     "readable-stream": "^1.0.33",
