@@ -31,10 +31,12 @@ gulp.task('inject', function () {
 
     return gulp.src('client/index.html')
         .pipe($.inject(gulp.src(bowerFiles(), {read: false}), {
-            name: 'bower',
-            relative: true
+            name: 'bower'
         }))
-        .pipe($.inject(sources), {relative: true})
+        .pipe($.inject(sources, {
+            addRootSlash: false,
+            ignorePath: 'client/'
+        }))
         .pipe(gulp.dest('client'));
 });
 
