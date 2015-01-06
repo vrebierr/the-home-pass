@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('theHomePassApp')
-    .controller('MainCtrl', function ($scope, $rootScope, pos, ads, categories, slides, Auth, Restangular, $http, uploads, uiGmapGoogleMapApi, $state) {
+    .controller('MainCtrl', function ($modal, $scope, $rootScope, pos, ads, categories, slides, Auth, Restangular, $http, uploads, uiGmapGoogleMapApi, $state) {
         $scope.currentUser = Auth.getCurrentUser();
         $scope.location = 0;
         $scope.categories = categories;
@@ -141,7 +141,7 @@ angular.module('theHomePassApp')
                 $scope.location = !$scope.location;
             }
             else {
-                if (Auth.getCurrentUser().to.address) {
+                if (Auth.getCurrentUser().to) {
                     $scope.map.center = {
                         latitude: Auth.getCurrentUser().to.latitude,
                         longitude: Auth.getCurrentUser().to.longitude
